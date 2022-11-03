@@ -1,0 +1,34 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "@vue/airbnb",
+    "@vue/typescript",
+    "@vue/typescript/recommended"
+  ],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "curly": "off",
+    "space-before-function-paren": "off",
+    "no-multiple-empty-lines": "off",
+    "linebreak-style": "off",
+    "semi": "off",
+    "nonblock-statement-body-position": "off",
+    "operator-linebreak": "off",
+    "comma-dangle": "off",
+    "import/newline-after-import": "off",
+    "max-len": "off",
+    "vue/multi-word-component-names": "off",
+    "import/prefer-default-export": "off",
+    "no-spaced-func": "off",
+    "func-call-spacing": "off",
+    "no-plusplus": "off"
+  }
+}

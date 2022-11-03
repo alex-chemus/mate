@@ -1,0 +1,59 @@
+:root {
+  // colors
+  --accent-1: #455DF6;
+  --accent-2: #71AAEB;
+  --dark-1: #000;
+  --dark-2: #212121;
+  --gray-1: #767676;
+  --gray-2: #9198A5;
+  --light: #fff;
+  --text-color: var(--light);
+
+  // dark theme colors
+  --dark-theme-color-1: #282A37;
+  --dark-theme-color-2: #3D404A;
+  --dark-theme-color-3: #323645;
+  --dark-theme-color-4: #353840;
+
+  // fonts
+  --ff-ubuntu: 'Ubuntu', sans-serif;
+  --ff-noto-sans: 'Noto Sans', sans-serif;
+  --ff-montserrat: 'Montserrat', sans-serif;
+  --fw-normal: 400;
+  --fw-bold: 700;
+  --fw-medium: 500;
+
+  // transitons
+  --fast: all .15s ease-out;
+  --slow: all .6s ease-out;
+}
+
+:root[data-theme="light"],
+:root {
+  --text-color: var(--dark-2);
+}
+
+:root[data-theme="dark"] {
+  --text-color: var(--light);
+}
+
+// duplicate for sass functions
+$accent-1: #455DF6;
+$accent-2: #71AAEB;
+$dark-1: #000;
+$dark-2: #212121;
+$gray-1: #767676;
+$gray-2: #9198A5;
+$light: #fff;
+
+$dark-theme-color-1: #282A37;
+$dark-theme-color-2: #3D404A;
+$dark-theme-color-3: #323645;
+
+button {
+  padding: 0;
+  background: transparent;
+  border: none;
+  @include flex(center, center);
+  cursor: pointer;
+}
