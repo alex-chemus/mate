@@ -6,6 +6,7 @@
   --dark-2: #212121;
   --gray-1: #767676;
   --gray-2: #9198A5;
+  --gray-3: #999999;
   --light: #fff;
   --text-color: var(--light);
 
@@ -28,15 +29,6 @@
   --slow: all .6s ease-out;
 }
 
-:root[data-theme="light"],
-:root {
-  --text-color: var(--dark-2);
-}
-
-:root[data-theme="dark"] {
-  --text-color: var(--light);
-}
-
 // duplicate for sass functions
 $accent-1: #455DF6;
 $accent-2: #71AAEB;
@@ -44,6 +36,7 @@ $dark-1: #000;
 $dark-2: #212121;
 $gray-1: #767676;
 $gray-2: #9198A5;
+$gray-3: #999999;
 $light: #fff;
 
 $dark-theme-color-1: #282A37;

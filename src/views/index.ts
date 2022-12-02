@@ -1,3 +1,6 @@
-export { default as MainView } from './MainView.vue'
+export { default as LandingView } from './LandingView.vue'
 export { default as PriceView } from './PriceView.vue'
 export { default as FeaturesView } from './FeaturesView.vue'
+export { default as MainView } from './MainView.vue'
+export { default as LoginView } from './LoginView.vue'
+export { default as ProfileView } from './ProfileView.vue'

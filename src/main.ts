@@ -4,6 +4,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+// установка темы
+
 type Theme = 'dark' | 'light'
 const prefers = (theme: Theme) => {
   if (localStorage.getItem('theme'))
@@ -11,13 +13,11 @@ const prefers = (theme: Theme) => {
   return window.matchMedia(`(prefers-color-scheme: ${theme})`).matches
 }
 
-const root = document.querySelector(':root') as HTMLElement
+//const root = document.querySelector(':root') as HTMLElement
 if (prefers('light')) {
   store.commit('setTheme', 'light')
-  root.dataset.theme = 'light'
 } else if (prefers('dark')) {
   store.commit('setTheme', 'dark')
-  root.dataset.theme = 'dark'
 }
 
 /* также при переключении темы через кнопку
