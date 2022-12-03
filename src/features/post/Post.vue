@@ -5,6 +5,7 @@ import { IState } from '@/store/types'
 
 import PostAuthor from './PostAuthor.vue'
 import PostButtons from './PostButtons.vue'
+import PostComment from './PostComment.vue'
 
 const { state } = useStore<IState>()
 
@@ -47,7 +48,12 @@ const reaction = ref<0 | 1 | -1>(1)
           :dislikes="postDislikes"
           :comments="comments"
           :reaction="reaction"
+          @like="reaction = 1"
         />
+      </div>
+
+      <div class="comment-container">
+        <post-comment />
       </div>
     </div>
   </article>
@@ -121,5 +127,9 @@ const reaction = ref<0 | 1 | -1>(1)
 
 .author-container {
   margin-bottom: 16px;
+}
+
+.buttons-wrapper {
+  margin-bottom: 18px;
 }
 </style>

@@ -2,6 +2,7 @@
 import { CommonHeader } from '@/features/CommonHeader'
 import {
   ProfileCard, Subscriptions, Partners, NewPost,
+  ProfileProjects, ProfileEmployees
 } from '@/features/profile'
 import { Post } from '@/features/post'
 </script>
@@ -23,6 +24,11 @@ import { Post } from '@/features/post'
         </div>
         <post />
       </section>
+
+      <aside class="projects-aside">
+        <profile-projects />
+        <profile-employees />
+      </aside>
     </main>
   </section>
 </template>
@@ -50,5 +56,11 @@ aside {
 
 .new-post-wrapper {
   margin: 18px 0 28px;
+}
+
+.projects-aside {
+  & > *:not(:last-child) {
+    margin-bottom: 23px;
+  }
 }
 </style>

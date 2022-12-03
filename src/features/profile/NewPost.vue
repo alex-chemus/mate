@@ -143,7 +143,7 @@ const img = ref<string | null>(null)
   }
 
   &.dark {
-    background-color: #1E1F29;
+    background-color: var(--dark-theme-color-5);
   }
 }
 
