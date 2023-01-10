@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { useStore } from 'vuex'
-import { IState } from '@/store/types'
+import { useTheme } from '@/utils';
 import { defineEmits, defineProps } from 'vue'
 
 defineProps<{
@@ -11,7 +10,7 @@ const emit = defineEmits<{
   (e: 'input', value: Event): void
 }>()
 
-const { state } = useStore<IState>()
+const theme = useTheme()
 </script>
 
 
@@ -20,7 +19,7 @@ const { state } = useStore<IState>()
   <input
     type="text"
     :placeholder="placeholder"
-    :class="state.theme"
+    :class="theme"
     @input="e => emit('input', e)"
   />
 </template>
@@ -28,7 +27,7 @@ const { state } = useStore<IState>()
 
 <style lang="scss" scoped>
 @use 'sass:color';
-@import '@/styles/style.scss';
+@import '@/assets/styles/style.scss';
 
 input {
   height: 40px;

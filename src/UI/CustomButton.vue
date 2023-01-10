@@ -20,7 +20,7 @@ const emit = defineEmits<{
 
 <style lang="scss" scoped>
 @use 'sass:color';
-@import '@/styles/style.scss';
+@import '@/assets/styles/style.scss';
 
 button {
   height: 35px;

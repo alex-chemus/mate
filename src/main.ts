@@ -6,7 +6,7 @@ import store from './store'
 
 // установка темы
 
-type Theme = 'dark' | 'light'
+/*type Theme = 'dark' | 'light'
 const prefers = (theme: Theme) => {
   if (localStorage.getItem('theme'))
     return localStorage.getItem('theme') === theme
@@ -18,7 +18,7 @@ if (prefers('light')) {
   store.commit('setTheme', 'light')
 } else if (prefers('dark')) {
   store.commit('setTheme', 'dark')
-}
+}*/
 
 /* также при переключении темы через кнопку
 надо не забыть сделать переключение в localStorage и store */

@@ -1,0 +1,7 @@
+export { default as LandingPage } from './LandingPage/LandingPage.vue'
+export { default as PricePage } from './PricePage/PricePage.vue'
+export { default as FeaturesPage } from './FeaturesPage/FeaturesPage.vue'
+export { default as MainPage } from './MainPage/MainPage.vue'
+export { default as LoginPage } from './LoginPage/LoginPage.vue'
+export { default as ProfilePage } from './ProfilePage/ProfilePage.vue'
+export { default as AuthErrorPage } from './AuthErrorPage/AuthErrorPage.vue'

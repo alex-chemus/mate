@@ -1,9 +1,8 @@
 <script lang="ts" setup>
+import { useTheme } from '@/utils';
 import { defineEmits, defineProps, StyleValue } from 'vue'
-import { useStore } from 'vuex'
-import { IState } from '@/store/types'
 
-const { state } = useStore<IState>()
+const theme = useTheme()
 
 const props = defineProps<{
   height?: number,
@@ -47,14 +46,14 @@ const setStyle = () => {
 </script>
 
 <template>
-  <button @click="emit('click')" :style="setStyle()" :class="state.theme">
+  <button @click="emit('click')" :style="setStyle()" :class="theme">
     <slot />
   </button>
 </template>
 
 <style lang="scss" scoped>
 @use 'sass:color';
-@import '@/styles/style.scss';
+@import '@/assets/styles/style.scss';
 
 button {
   position: relative;

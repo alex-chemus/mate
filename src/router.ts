@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import {
-  FeaturesView, LandingView, PriceView, MainView,
-  LoginView, ProfileView
-} from '@/views'
+  FeaturesPage, LandingPage, PricePage, MainPage,
+  LoginPage, ProfilePage, AuthErrorPage
+} from '@/pages'
 
 const routes: Array<RouteRecordRaw> = [
-  { path: '/', component: MainView },
-  { path: '/landing', component: LandingView },
-  { path: '/price', component: PriceView },
-  { path: '/features', component: FeaturesView },
-  { path: '/login', component: LoginView },
-  { path: '/profile', component: ProfileView }
+  { path: '/', component: MainPage },
+  { path: '/landing', component: LandingPage },
+  { path: '/price', component: PricePage },
+  { path: '/features', component: FeaturesPage },
+  { path: '/login', component: LoginPage },
+  { path: '/profile', component: ProfilePage },
+  { path: '/auth-error', component: AuthErrorPage }
 ]
 
 const router = createRouter({

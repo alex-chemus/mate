@@ -1,0 +1,12 @@
+export enum authActions {
+  SET_FETCHED_TOKEN = 'SET_FETCHED_TOKEN',
+  SET_TOKEN = 'SET_TOKEN',
+  SET_ERROR = 'SET_ERROR',
+  GET_LOCAL_TOKEN = 'GET_LOCAL_TOKEN',
+  FETCH_TOKEN = 'FETCH_TOKEN'
+}
+
+export enum themeActions {
+  SET_THEME = 'SET_THEME',
+  GET_DEFAULT_THEME = 'GET_DEFAULT_THEME'
+}

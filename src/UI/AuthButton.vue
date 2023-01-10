@@ -39,7 +39,7 @@ if (props.textAccent) cls.value.push('text-accent')
 
 <style lang="scss" scoped>
 @use 'sass:color';
-@import '@/styles/style.scss';
+@import '@/assets/styles/style.scss';
 
 .button {
   height: 45px;
