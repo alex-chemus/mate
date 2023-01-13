@@ -9,7 +9,6 @@ const theme = useTheme()
 
 const switchTheme = (theme: 'light' | 'dark') => {
   localStorage.setItem('theme', theme)
-  //commit('setTheme', theme)
   commit(themeActions.SET_THEME, theme)
 }
 </script>
@@ -34,6 +33,6 @@ const switchTheme = (theme: 'light' | 'dark') => {
 @import '@/assets/styles/style.scss';
 
 svg {
-  color: var(--text-color);
+  color: var(--text-color, $text-color);
 }
 </style>

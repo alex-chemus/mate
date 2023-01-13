@@ -26,18 +26,18 @@ button {
   height: 35px;
   border-radius: 6px;
   padding: 0 13px !important;
-  font-family: var(--ff-ubuntu) !important;
+  font-family: var(--ff-ubuntu, $ff-ubuntu) !important;
   font-size: 16px !important;
-  font-weight: var(--fw-bold) !important;
+  font-weight: var(--fw-bold, $fw-bold) !important;
 
   &.primary {
-    background-color: var(--accent-1);
-    color: var(--light);
+    background-color: var(--accent-1, $accent-1);
+    color: var(--light, $light);
   }
 
   &.regular {
-    background-color: var(--light);
-    color: var(--dark-2);
+    background-color: var(--light, $light);
+    color: var(--dark-2, $dark-2);
     border: 1px solid color.change($gray-1, $alpha: .4);
   }
 }

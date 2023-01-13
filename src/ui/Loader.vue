@@ -31,11 +31,11 @@ const theme = props.theme ? props.theme : useTheme()
   animation: rotation 1s linear infinite;
 
   &.dark {
-    border: 5px solid var(--accent-2);
+    border: 5px solid var(--accent-2, $accent-2);
   }
 
   &.light {
-    border: 5px solid var(--accent-1);
+    border: 5px solid var(--accent-1, $accent-1);
   }
 }
 

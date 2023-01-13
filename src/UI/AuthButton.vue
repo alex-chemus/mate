@@ -8,7 +8,6 @@ const emit = defineEmits<{
 const props = defineProps<{
   primary?: boolean,
   centered?: boolean,
-  disabled?: boolean,
   withIcon?: boolean,
   textAccent?: boolean
 }>()
@@ -19,8 +18,6 @@ if (props.primary) cls.value.push('primary')
 else cls.value.push('secondary')
 
 if (props.centered) cls.value.push('centered')
-
-if (props.disabled) cls.value.push('disabled')
 
 if (props.withIcon) cls.value.push('with-icon')
 
@@ -49,15 +46,8 @@ if (props.textAccent) cls.value.push('text-accent')
   padding: 0 13px;
   cursor: pointer;
 
-  /*display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: auto;
-  align-content: center;
-  justify-items: start;
-  grid-gap: 13px;*/
-
-  font-family: var(--ff-ubuntu);
-  font-weight: var(--fw-medium);
+  font-family: var(--ff-ubuntu, $ff-ubuntu);
+  font-weight: var(--fw-medium, $fw-medium);
   font-size: 16px;
 }
 
@@ -79,17 +69,17 @@ if (props.textAccent) cls.value.push('text-accent')
 }
 
 .button.primary {
-  color: var(--light);
-  background-color: var(--accent-1);
+  color: var(--light, $light);
+  background-color: var(--accent-1, $accent-1);
 }
 
 .button.secondary {
   border: 1px solid color.change($gray-1, $alpha: 0.4);
-  background-color: var(--light);
-  color: var(--gray-1);
+  background-color: var(--light, $light);
+  color: var(--gray-1, $gray-1);
 }
 
 .button.text-accent {
-  color: var(--accent-1);
+  color: var(--accent-1, $accent-1);
 }
 </style>

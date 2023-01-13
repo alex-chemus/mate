@@ -72,7 +72,11 @@ onMounted(async () => {
 <template>
   <profile-layout v-if="accountInfo" :loading="!accountInfo">
     <template #header>
-      <Header :img="accountInfo.avatar.avatarCompressed" />
+      <Header
+        :img="accountInfo.avatar.avatarCompressed"
+        :full-name="`${accountInfo.firstName} ${accountInfo.lastName}`"
+        :email="accountInfo.email"
+      />
     </template>
 
     <template #profile-card>

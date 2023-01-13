@@ -8,7 +8,7 @@
   --gray-2: #9198A5;
   --gray-3: #999999;
   --light: #fff;
-  --text-color: var(--light);
+  --text-color: var(--light, $light);
 
   // dark theme colors
   --dark-theme-color-1: #282A37;
@@ -39,12 +39,23 @@ $gray-1: #767676;
 $gray-2: #9198A5;
 $gray-3: #999999;
 $light: #fff;
+$text-color: $light;
 
 $dark-theme-color-1: #282A37;
 $dark-theme-color-2: #3D404A;
 $dark-theme-color-3: #323645;
 $dark-theme-color-4: #353840;
 $dark-theme-color-5: #1E1F29;
+
+$ff-ubuntu: 'Ubuntu', sans-serif;
+$ff-noto-sans: 'Noto Sans', sans-serif;
+$ff-montserrat: 'Montserrat', sans-serif;
+$fw-normal: 400;
+$fw-bold: 700;
+$fw-medium: 500;
+
+$fast: all .15s ease-out;
+$slow: all .6s ease-out;
 
 button {
   padding: 0;

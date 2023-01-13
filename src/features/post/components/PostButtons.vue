@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, ref } from 'vue'
 import { useTheme } from '@/utils'
+import { BDropdown, BDropdownItem } from 'bootstrap-vue'
+import PostPopupTemplate from './PostPopupTemplate.vue'
 
 const theme = useTheme()
 
@@ -17,7 +19,7 @@ const emit = defineEmits<{
   (e: 'comment'): void
 }>()
 
-const isPopupVisible = ref(false)
+const isOpen = ref(false)
 </script>
 
 <template>
@@ -50,32 +52,15 @@ const isPopupVisible = ref(false)
       <span>Поделиться</span>
     </button>
 
-    <button :class="theme" class="button --round" @click="isPopupVisible = !isPopupVisible">
+    <button :class="theme" class="button --round" @click="isOpen = !isOpen">
       <svg width="20" height="20" viewBox="0 0 20 20">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-dots-vertical" />
       </svg>
     </button>
 
-    <ul v-if="isPopupVisible" class="popup" :class="theme">
-      <li><button>
-        <svg width="18" height="18" viewBox="0 0 18 18">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
-        </svg>
-        <span>Сохранить в закладках</span>
-      </button></li>
-      <li><button>
-        <svg width="18" height="18" viewBox="0 0 18 18">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-exclamation-mark" />
-        </svg>
-        <span>Пожаловаться</span>
-      </button></li>
-      <li><button>
-        <svg width="18" height="18" viewBox="0 0 18 18">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-pencil" />
-        </svg>
-        <span>Редактировать</span>
-      </button></li>
-    </ul>
+    <!-- <dropdown-menu v-model="isOpen">
+      <post-popup-template />
+    </dropdown-menu> -->
   </div>
 </template>
 
@@ -95,6 +80,8 @@ const isPopupVisible = ref(false)
   height: 33px;
   border-radius: 30px;
   padding: 0 9px;
+  border: 1px solid transparent;
+  transition: var(--fast);
 
   &.--round {
     padding: 0;
@@ -107,7 +94,7 @@ const isPopupVisible = ref(false)
   }
 
   &.light {
-    background-color: #f2f2f2;
+    background-color: #F9FBFC;
     color: #0f0f0f;
   }
 
@@ -133,49 +120,13 @@ const isPopupVisible = ref(false)
   &.dark span {
     color: var(--light);
   }
-}
 
-.popup {
-  position: absolute;
-  bottom: 105%;
-  right: 0%;
-
-  border-radius: 13px;
-  padding: 12px;
-  list-style: none;
-  margin: 0;
-
-  &.light {
-    color: var(--dark-1);
-    background-color: var(--light);
-    border: 1px solid #e6e6e6;
+  &.light:hover {
+    border-color: var(--accent-1);
   }
 
-  &.dark {
-    color: var(--light);
-    background-color: var(--dark-theme-color-2);
-    border: 1px solid rgba(118 118 118 / .25);
-    box-shadow: 0 0 14px 0 rgba(0 0 0 / .25);
-  }
-
-  li {
-    @include flex(flex-start, center);
-  }
-
-  li:not(:last-child) {
-    margin-bottom: 10px;
-  }
-
-  li button {
-    font-family: var(--ff-ubuntu);
-    font-size: 13px;
-    line-height: 140%;
-    letter-spacing: -3.3%;
-    color: inherit;
-  }
-
-  li span {
-    margin-left: 9px;
+  &.dark:hover {
+    border-color: var(--accent-2);
   }
 }
 </style>

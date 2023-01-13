@@ -1,13 +1,15 @@
 <script lang="ts" setup>
 //import { Logo } from '@/ui'
-import { defineProps, computed } from 'vue'
+import { defineProps } from 'vue'
 import HeaderLayout from './HeaderLayout.vue'
 import HeaderSearch from './components/HeaderSearch.vue'
 import HeaderTabs from './components/HeaderTabs.vue'
 import HeaderProfile from './components/HeaderProfile.vue'
 
-const props = defineProps<{
-  img?: string
+defineProps<{
+  img?: string,
+  fullName?: string,
+  email?: string
 }>()
 
 // todo: fetch avatar if not passed
@@ -24,7 +26,11 @@ const props = defineProps<{
     </template>
 
     <template #profile-popup>
-      <header-profile :img="(img as string)" />
+      <header-profile
+        :img="(img as string)"
+        :full-name="fullName ?? 'noname'"
+        :email="email ?? 'noname@mail.ru'"
+      />
     </template>
   </header-layout>
 </template>

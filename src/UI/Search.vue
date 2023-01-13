@@ -2,15 +2,16 @@
 import { useTheme } from '@/utils';
 import { defineEmits, defineProps } from 'vue'
 
-defineProps<{
-  placeholder: string
+const props = defineProps<{
+  placeholder: string,
+  theme?: ReturnType<typeof useTheme>
 }>()
 
 const emit = defineEmits<{
   (e: 'input', value: Event): void
 }>()
 
-const theme = useTheme()
+const theme = props.theme ?? useTheme()
 </script>
 
 
@@ -35,20 +36,20 @@ input {
   //box-sizing: border-box;
   border-radius: 10px;
   padding: 0 16px;
-  font-family: var(--ff-ubuntu);
+  font-family: var(--ff-ubuntu, $ff-ubuntu);
   font-size: 16px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-medium, $fw-medium);
   border: 1px solid color.change($gray-1, $alpha: .4);
   transition: .15s ease-out;
   outline: none;
-  color: var(--text-color);
+  color: var(--text-color, $text-color);
 
   &:focus {
-    border-color: var(--accent-2);
+    border-color: var(--accent-2, $accent-2);
   }
 
   &.light {
-    background-color: var(--light);
+    background-color: var(--light, $light);
   }
 
   &.dark {

@@ -3,14 +3,15 @@ import { ref, defineProps } from 'vue'
 import { useTheme } from '@/utils'
 
 defineProps<{
-  img: string
+  img: string,
+  fullName: string,
+  email: string
 }>()
 
 const theme = useTheme()
 
 const hasNews = ref(true)
 //const img = ref<string | null>(null)
-const fullName = ref('Александр Соромотин')
 const isOpen = ref(false)
 </script>
 

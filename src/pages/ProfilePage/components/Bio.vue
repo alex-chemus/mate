@@ -12,7 +12,7 @@ const theme = useTheme()
 <template>
   <section class="bio-section" :class="theme">
     <h5>О себе</h5>
-    <p>{{ bio }}</p>
+    <p>{{ bio.length === 0 ? 'Расскажите о себе' : bio }}</p>
   </section>
 </template>
 

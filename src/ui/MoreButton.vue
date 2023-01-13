@@ -1,8 +1,12 @@
 <script lang="ts" setup>
 import { useTheme } from '@/utils'
-import { defineEmits } from 'vue'
+import { defineEmits, defineProps } from 'vue'
 
-const theme = useTheme()
+const props = defineProps<{
+  theme?: ReturnType<typeof useTheme>
+}>()
+
+const theme = props.theme ?? useTheme()
 
 const emit = defineEmits<{
   (e: 'click'): void
@@ -27,17 +31,17 @@ const emit = defineEmits<{
   background-color: transparent;
   transition: all .15s;
 
-  font-family: var(--ff-ubuntu);
+  font-family: var(--ff-ubuntu, $ff-ubuntu);
   font-size: 13px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-medium, $fw-medium);
   letter-spacing: .2%;
 
   &.light {
-    color: var(--accent-1);
+    color: var(--accent-1, $accent-1);
   }
 
   &.dark {
-    color: var(--accent-2);
+    color: var(--accent-2, $accent-2);
   }
 
   &:hover {
