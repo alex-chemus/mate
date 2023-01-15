@@ -6,7 +6,7 @@ const props = defineProps<{
   text: string
 }>()
 
-const theme = useTheme()
+const { theme } = useTheme()
 
 const isClipped = ref(true)
 const shouldClip = ref(props.text.length > 400)

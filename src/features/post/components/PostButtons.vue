@@ -4,7 +4,7 @@ import { useTheme } from '@/utils'
 import { Popover } from 'ant-design-vue'
 import PostPopupTemplate from './PostPopupTemplate.vue'
 
-const theme = useTheme()
+const { theme } = useTheme()
 
 const props = defineProps<{
   likes: string,

@@ -4,7 +4,7 @@ import { useTheme } from '@/utils'
 import { MoreButton } from '@/ui'
 import type { Company } from '../types';
 
-const theme = useTheme()
+const { theme } = useTheme()
 
 defineProps<{
   subscriptions: Company[]

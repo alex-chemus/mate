@@ -1,12 +1,26 @@
 import { useStore } from 'vuex'
 import { RootState } from '@/store/types'
 import { computed } from 'vue'
+import { themeActions } from '@/store/constants'
 
 const useTheme = () => {
-  const { state } = useStore<RootState>()
+  const { state, commit } = useStore<RootState>()
+
   const theme = computed(() => state.theme.theme)
 
-  return theme
+  const toggleTheme = () => {
+    console.log('toggle theme')
+
+    if (theme.value === 'light') {
+      localStorage.setItem('theme', 'dark')
+      commit(themeActions.SET_THEME, 'dark')
+    } else {
+      localStorage.setItem('theme', 'light')
+      commit(themeActions.SET_THEME, 'light')
+    }
+  }
+
+  return { theme, toggleTheme }
 }
 
 export default useTheme

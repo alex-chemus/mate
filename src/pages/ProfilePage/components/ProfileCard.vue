@@ -11,7 +11,7 @@ defineProps<{
   nickname: string
 }>()
 
-const theme = useTheme()
+const { theme } = useTheme()
 
 /*const fullName = ref('Александр Соромотин')
 const img = ref<string | null>(null)

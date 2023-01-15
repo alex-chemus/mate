@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { useTheme } from '@/utils';
-import { defineEmits, defineProps } from 'vue'
+import { defineEmits, defineProps, ref } from 'vue'
 
 const props = defineProps<{
   placeholder: string,
-  theme?: ReturnType<typeof useTheme>
+  theme?: 'light' | 'dark'
 }>()
 
 const emit = defineEmits<{
   (e: 'input', value: Event): void
 }>()
 
-const theme = props.theme ?? useTheme()
+const theme = props.theme ? ref(props.theme) : useTheme().theme
 </script>
 
 

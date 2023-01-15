@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
+import { Popover } from 'ant-design-vue'
 import { useTheme } from '@/utils'
+import ProfilePopup from './ProfilePopup.vue'
 
 defineProps<{
   img: string,
@@ -8,30 +10,17 @@ defineProps<{
   email: string
 }>()
 
-const theme = useTheme()
+const { theme } = useTheme()
 
-const hasNews = ref(true)
-//const img = ref<string | null>(null)
 const isOpen = ref(false)
 </script>
 
 <template>
-  <div class="profile-wrapper">
-    <button
-      class="bell-button" :class="[theme, { 'with-news': hasNews }]"
-      @click="hasNews = !hasNews"
-    >
-      <svg width="30" height="30" viewBox="0 0 30 30">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-bell" />
-      </svg>
-    </button>
-
-    <button class="popup-button" :class="theme" @click="isOpen = !isOpen">
+  <popover v-model:visible="isOpen" trigger="click" placement="bottomRight">
+    <button class="popup-button" :class="theme">
       <img v-if="img" :src="img" alt="" class="avatar" />
       <div v-else class="placeholder" />
-
       <span>{{ fullName }}</span>
-
       <svg
         :class="[theme, { 'open': isOpen }]"
         width="20" height="20" viewBox="0 0 20 20"
@@ -39,20 +28,20 @@ const isOpen = ref(false)
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-chevron-down" />
       </svg>
     </button>
-  </div>
+
+    <template #content>
+      <profile-popup
+        :img="img"
+        :full-name="fullName"
+        :email="email"
+      />
+    </template>
+  </popover>
 </template>
 
 <style lang="scss" scoped>
 @use 'sass:color';
 @import '@/assets/styles/style.scss';
-
-.profile-wrapper {
-  @include flex(flex-end, center);
-
-  & > *:not(:last-child) {
-    margin-right: 20px;
-  }
-}
 
 .bell-button {
   color: var(--gray-1);

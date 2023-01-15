@@ -12,7 +12,7 @@ const emit = defineEmits<{
   (e: 'to-slide', payload: number): void
 }>()
 
-const theme = useTheme()
+const { theme } = useTheme()
 </script>
 
 

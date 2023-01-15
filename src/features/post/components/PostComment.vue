@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useTheme } from '@/utils'
 
-const theme = useTheme()
+const { theme } = useTheme()
 
 const commentText = ref('')
 const img = ref<string | null>()

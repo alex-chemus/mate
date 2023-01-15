@@ -2,9 +2,10 @@
 //import { Logo } from '@/ui'
 import { defineProps } from 'vue'
 import HeaderLayout from './HeaderLayout.vue'
-import HeaderSearch from './components/HeaderSearch.vue'
-import HeaderTabs from './components/HeaderTabs.vue'
-import HeaderProfile from './components/HeaderProfile.vue'
+import Search from './components/Search.vue'
+import Tabs from './components/Tabs.vue'
+import Profile from './components/Profile.vue'
+import Notifications from './components/Notifications.vue'
 
 defineProps<{
   img?: string,
@@ -18,19 +19,31 @@ defineProps<{
 <template>
   <header-layout>
     <template #search>
-      <header-search />
+      <search />
     </template>
 
     <template #tabs>
-      <header-tabs />
+      <tabs />
     </template>
 
-    <template #profile-popup>
-      <header-profile
+    <template #notifications>
+      <notifications />
+    </template>
+
+    <template #profile>
+      <profile
         :img="(img as string)"
         :full-name="fullName ?? 'noname'"
         :email="email ?? 'noname@mail.ru'"
       />
     </template>
+
+    <!-- <template #profile-popup>
+      <header-profile
+        :img="(img as string)"
+        :full-name="fullName ?? 'noname'"
+        :email="email ?? 'noname@mail.ru'"
+      />
+    </template> -->
   </header-layout>
 </template>

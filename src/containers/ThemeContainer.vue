@@ -3,7 +3,7 @@ import { watch, onMounted } from 'vue'
 import { themeActions } from '@/store/constants'
 import { useTheme, useDispatch } from '@/utils'
 
-const theme = useTheme()
+const { theme } = useTheme()
 const dispatch = useDispatch()
 
 const changeTheme = () => {

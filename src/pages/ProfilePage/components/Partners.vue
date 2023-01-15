@@ -5,7 +5,7 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import type { Partner } from '../types'
 import './carousel.css'
 
-const theme = useTheme()
+const { theme } = useTheme()
 
 defineProps<{
   partners: Partner[]

@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 import { useTheme } from '@/utils'
 
 const props = defineProps<{
   size?: number,
-  theme?: ReturnType<typeof useTheme>
+  theme?: 'light' | 'dark'
 }>()
 
-const theme = props.theme ? props.theme : useTheme()
+const theme = props.theme ? ref(props.theme) : useTheme().theme
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 import { ThemeSwitcher, Logo } from '@/ui'
 import { useTheme } from '@/utils'
 
-const theme = useTheme()
+const { theme } = useTheme()
 </script>
 
 

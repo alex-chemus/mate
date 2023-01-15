@@ -12,7 +12,7 @@ const props = defineProps<{
   author: IAuthor
 }>()
 
-const theme = useTheme()
+const { theme } = useTheme()
 </script>
 
 <template>

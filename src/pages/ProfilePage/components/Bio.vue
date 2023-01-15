@@ -6,7 +6,7 @@ defineProps<{
   bio: string
 }>()
 
-const theme = useTheme()
+const { theme } = useTheme()
 </script>
 
 <template>

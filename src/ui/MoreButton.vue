@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { useTheme } from '@/utils'
-import { defineEmits, defineProps } from 'vue'
+import { defineEmits, defineProps, ref } from 'vue'
 
 const props = defineProps<{
-  theme?: ReturnType<typeof useTheme>
+  theme?: 'light' | 'dark'
 }>()
 
-const theme = props.theme ?? useTheme()
+const theme = props.theme ? ref(props.theme) : useTheme().theme
 
 const emit = defineEmits<{
   (e: 'click'): void

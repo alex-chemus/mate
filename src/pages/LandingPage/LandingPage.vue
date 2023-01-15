@@ -15,7 +15,7 @@ import LandingFooter from './components/Footer.vue'
 //import LandingSlider from './Slider.vue'
 import SliderContainer from './components/SliderContainer.vue'
 
-const theme = useTheme()
+const { theme } = useTheme()
 </script>
 
 

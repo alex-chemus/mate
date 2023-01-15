@@ -10,7 +10,11 @@ import { Logo } from '@/ui'
 
     <slot name="search" />
     <slot name="tabs" />
-    <slot name="profile-popup" />
+    <!-- <slot name="profile-popup" /> -->
+    <div class="profile-wrapper">
+      <slot name="notifications" />
+      <slot name="profile" />
+    </div>
   </header>
 </template>
 
@@ -29,5 +33,19 @@ import { Logo } from '@/ui'
   position: absolute;
   left: -42px;
   transform: translateX(-100%);
+}
+
+.profile-wrapper {
+  /*@include flex(flex-end, center);
+
+  & > *:not(:last-child) {
+    margin-right: 20px;
+  }*/
+
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: end;
+  align-items: center;
+  grid-gap: 20px;
 }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useTheme } from '@/utils';
 
-const theme = useTheme()
+const { theme } = useTheme()
 </script>
 
 <template>
