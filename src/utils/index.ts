@@ -1,6 +1,6 @@
 export { default as useTheme } from './useTheme'
 export { default as useApiState } from './useApiState'
 export { default as useAuthState } from './useAuthState'
+export { default as useFetchState } from './useFetchState'
 export { default as useDispatch } from './useDispatch'
-export { default as validateToken } from './validateToken'
 export { default as withStoriesDecorator } from './withStoriesDecorator'

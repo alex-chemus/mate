@@ -1,12 +1,12 @@
 import type { Module } from 'vuex'
 import type { AuthModuleState, RootState } from '@/store/types'
-import { authActions } from '../constants'
+import { authActions, fetchActions } from '../constants'
 
 const authModule: Module<AuthModuleState, RootState> = {
   state: () => ({
     token: null,
-    isError: false,
-    errorMessage: null,
+    // isError: false,
+    // errorMessage: null,
     fetchedToken: false
   }),
 
@@ -19,10 +19,10 @@ const authModule: Module<AuthModuleState, RootState> = {
       state.fetchedToken = value
     },
 
-    [authActions.SET_ERROR](state, value: string) {
-      state.isError = true
-      state.errorMessage = value
-    }
+    // [authActions.SET_ERROR](state, value: string) {
+    //   state.isError = true
+    //   state.errorMessage = value
+    // }
   },
 
   actions: {
@@ -31,38 +31,45 @@ const authModule: Module<AuthModuleState, RootState> = {
 
       if (token === null) {
         // todo later
-        commit(authActions.SET_ERROR, 'Не найден локальный токен')
+        // commit(authActions.SET_ERROR, 'Не найден локальный токен')
       } else if (token.trim().length > 0) {
         commit(authActions.SET_TOKEN, token)
       } else {
         // todo later
-        commit(authActions.SET_ERROR, 'Не найден локальный токен')
+        // commit(authActions.SET_ERROR, 'Не найден локальный токен')
       }
 
       commit(authActions.SET_FETCHED_TOKEN, true)
     },
 
-    async [authActions.FETCH_TOKEN]({ commit, rootState }, payload: { login: string, password: string }) {
+    async [authActions.FETCH_TOKEN]({ commit, rootState, dispatch }, payload: { login: string, password: string }) {
       if (!payload.login.trim() || !payload.password.trim()) return
 
-      console.log('fetch token')
+      //console.log('fetch token')
 
       const body = new FormData();
       body.append('login', payload.login)
       body.append('password', payload.password)
 
       try {
-        const res = await fetch(`${rootState.api.apiUrl}/id/auth.getToken/`, {
+        const data = await dispatch(fetchActions.FETCH, {
+          url: `${rootState.api.apiUrl}/id/auth.getToken/`,
+          info: {
+            method: 'POST',
+            body
+          }
+        })
+
+        /*const res = await fetch(`${rootState.api.apiUrl}/id/auth.getToken/`, {
           method: 'POST',
           body
         })
-
-        const data = await res.json()
+        const data = await res.json()*/
 
         commit(authActions.SET_TOKEN, data.response)
         localStorage.setItem('token', data.response)
       } catch (e) {
-        commit(authActions.SET_ERROR, 'Неверный запрос токена')
+        // commit(authActions.SET_ERROR, 'Неверный запрос токена')
       }
     }
   }

@@ -71,10 +71,10 @@ const theme = useTheme()
 @import '@/assets/styles/style.scss';
 
 .popup {
-  position: absolute;
+  /*position: absolute;
   bottom: 105%;
   right: 0%;
-  z-index: 10;
+  z-index: 10;*/
 
   border-radius: 6px;
   padding: 12px;

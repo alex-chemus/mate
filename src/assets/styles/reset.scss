@@ -76,3 +76,21 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+// popover 
+
+.ant-popover-inner {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.ant-popover-inner-content {
+  padding: 0 !important;
+  color: transparent !important;
+  background: transparent !important;
+  //background: none;
+}
+
+.ant-popover-arrow {
+  display: none !important;
+}

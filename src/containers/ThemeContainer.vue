@@ -9,7 +9,6 @@ const dispatch = useDispatch()
 const changeTheme = () => {
   const app = document.getElementById('app') as HTMLElement
 
-  //console.log('set theme to app')
   if (theme.value === 'light')
     app.className = 'light'
   else

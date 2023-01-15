@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, ref } from 'vue'
 import { useTheme } from '@/utils'
-import { BDropdown, BDropdownItem } from 'bootstrap-vue'
+import { Popover } from 'ant-design-vue'
 import PostPopupTemplate from './PostPopupTemplate.vue'
 
 const theme = useTheme()
@@ -52,15 +52,17 @@ const isOpen = ref(false)
       <span>Поделиться</span>
     </button>
 
-    <button :class="theme" class="button --round" @click="isOpen = !isOpen">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-dots-vertical" />
-      </svg>
-    </button>
+    <popover v-model:visible="isOpen" trigger="click" placement="bottomRight">
+      <button :class="theme" class="button --round">
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-dots-vertical" />
+        </svg>
+      </button>
 
-    <!-- <dropdown-menu v-model="isOpen">
-      <post-popup-template />
-    </dropdown-menu> -->
+      <template #content>
+        <post-popup-template />
+      </template>
+    </popover>
   </div>
 </template>
 
