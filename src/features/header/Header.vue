@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-//import { Logo } from '@/ui'
 import { defineProps } from 'vue'
 import HeaderLayout from './HeaderLayout.vue'
 import Search from './components/Search.vue'
 import Tabs from './components/Tabs.vue'
 import Profile from './components/Profile.vue'
 import Notifications from './components/Notifications.vue'
+import type { Notice } from './types'
 
 defineProps<{
   img?: string,
@@ -13,7 +13,29 @@ defineProps<{
   email?: string
 }>()
 
-// todo: fetch avatar if not passed
+const notices: Notice[] = [
+  {
+    type: 'subscribed',
+    person: 'Алексей Грибанов',
+    subject: 'Вас',
+    subjectUrl: '#',
+    date: 'Час назад'
+  },
+  {
+    type: 'joined',
+    person: 'Алексей Грибанов',
+    subject: 'FINDCREEK',
+    subjectUrl: '#',
+    date: 'Час назад'
+  },
+  {
+    type: 'request',
+    person: 'Алексей Грибанов',
+    subject: 'FINDCREEK',
+    subjectUrl: '#',
+    date: 'Час назад'
+  }
+]
 </script>
 
 <template>
@@ -27,7 +49,7 @@ defineProps<{
     </template>
 
     <template #notifications>
-      <notifications />
+      <notifications :notices="notices" />
     </template>
 
     <template #profile>

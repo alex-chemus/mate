@@ -43,25 +43,6 @@ const isOpen = ref(false)
 @use 'sass:color';
 @import '@/assets/styles/style.scss';
 
-.bell-button {
-  color: var(--gray-1);
-
-  &.with-news {
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #FB1F1E;
-      border-radius: 100vmax;
-      top: 2px;
-      right: 2px;
-    }
-  }
-}
-
 .popup-button {
   padding: 5px;
   border-radius: 10px;

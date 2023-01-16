@@ -28,6 +28,9 @@
   // transitons
   --fast: all .15s ease-out;
   --slow: all .6s ease-out;
+
+  // shadows
+  --popup-shadow: 0 9px 40px 0 rgba(0 0 0 / .25);
 }
 
 // duplicate for sass functions
