@@ -85,6 +85,7 @@ const img = ref<string | null>()
   color: inherit;
   font-family: var(--ff-ubuntu);
   font-size: 14px;
+  background-color: transparent;
 }
 
 .image-button {

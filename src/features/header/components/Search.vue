@@ -36,18 +36,21 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .search-wrapper {
-  color: var(--gray-1);
+  //color: var(--gray-1);
   border: 1px solid color.change($gray-1, $alpha: 0.25);
   border-radius: 10px;
   padding: 10px;
+  height: 40px;
   @include flex(flex-start, stretch);
 
   &.light {
     background-color: var(--light);
+    color: #5c5c5c;
   }
 
   &.dark {
     background-color: var(--dark-theme-color-2);
+    color: #bbb;
   }
 
   & > *:not(:last-child) {
@@ -61,7 +64,7 @@ const { theme } = useTheme()
 
 .search-input {
   font-family: var(--ff-ubuntu);
-  font-size: 16px;
+  font-size: 14px;
   color: currentColor;
   background-color: transparent;
   border: none;

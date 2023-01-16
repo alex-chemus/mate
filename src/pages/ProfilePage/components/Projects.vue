@@ -134,6 +134,7 @@ const projects = ref<IProject[]>([
     font-size: 14px;
     letter-spacing: -3%;
     margin: 0;
+    color: currentColor;
   }
 
   &.light {

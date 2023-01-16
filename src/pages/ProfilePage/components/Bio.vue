@@ -41,6 +41,7 @@ const { theme } = useTheme()
     letter-spacing: 1%;
     margin: 0;
     margin-bottom: 12px;
+    color: currentColor;
   }
 
   p {
