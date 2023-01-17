@@ -46,8 +46,8 @@ if (props.textAccent) cls.value.push('text-accent')
   padding: 0 13px;
   cursor: pointer;
 
-  font-family: var(--ff-ubuntu, $ff-ubuntu);
-  font-weight: var(--fw-medium, $fw-medium);
+  font-family: var(--findcreek-medium, $findcreek);
+  font-weight: var(--medium, $medium);
   font-size: 16px;
 }
 

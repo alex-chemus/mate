@@ -4,39 +4,6 @@ const { theme } = useTheme()
 </script>
 
 <template>
-  <!-- <ul class="popup" :class="theme">
-    <li>
-      <button :class="theme">
-        <svg width="18" height="18" viewBox="0 0 18 18">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
-        </svg>
-        <span>Сохранить в закладках</span>
-      </button>
-    </li>
-
-    <li>
-      <button :class="theme">
-        <svg width="18" height="18" viewBox="0 0 18 18">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-exclamation-mark" />
-        </svg>
-        <span>Пожаловаться</span>
-      </button>
-    </li>
-
-    <li>
-      <button :class="theme">
-        <svg width="18" height="18" viewBox="0 0 18 18">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-pencil" />
-        </svg>
-        <span>Редактировать</span>
-      </button>
-    </li>
-  </ul>
-
-  <Teleport to="body">
-    <div class="backdrop" @click="emit('close')" @keyup.esc="emit('close')" />
-  </Teleport> -->
-
   <ul class="popup" :class="theme">
     <li>
       <button :class="theme">
@@ -105,7 +72,7 @@ li {
 }
 
 button {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 13px;
   line-height: 140%;
   letter-spacing: -3.3%;

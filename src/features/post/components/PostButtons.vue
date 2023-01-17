@@ -110,8 +110,8 @@ const isOpen = ref(false)
   }
 
   span {
-    font-family: var(--ff-noto-sans);
-    font-weight: var(--fw-bold);
+    font-family: var(--noto-sans);
+    font-weight: var(--bold);
     font-size: 11px;
   }
 

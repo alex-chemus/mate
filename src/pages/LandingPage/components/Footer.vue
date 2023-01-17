@@ -48,8 +48,8 @@ footer {
 .links-wrapper a,
 .copyright {
   font-size: 12px;
-  font-family: var(--ff-ubuntu);
-  font-weight: var(--fw-medium);
+  font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   text-decoration: none;
   color: inherit;
 

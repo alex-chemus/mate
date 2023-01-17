@@ -36,9 +36,9 @@ input {
   //box-sizing: border-box;
   border-radius: 10px;
   padding: 0 16px;
-  font-family: var(--ff-ubuntu, $ff-ubuntu);
+  font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 16px;
-  font-weight: var(--fw-medium, $fw-medium);
+  font-weight: var(--medium, $medium);
   border: 1px solid color.change($gray-1, $alpha: .4);
   transition: .15s ease-out;
   outline: none;

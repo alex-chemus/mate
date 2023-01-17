@@ -89,8 +89,8 @@ const { theme, toggleTheme } = useTheme()
 }
 
 h6 {
-  font-family: var(--ff-ubuntu);
-  font-weight: var(--fw-medium);
+  font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 16px;
   margin: 0;
 
@@ -104,7 +104,7 @@ h6 {
 }
 
 small {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-weight: normal;
   font-size: 12px;
 
@@ -174,9 +174,9 @@ small {
   border-radius: 8px;
   @include flex(center, center);
   border: 1px solid currentColor;
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-medium);
   font-size: 12px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--medium);
   transition: var(--fast);
 
   &.light {

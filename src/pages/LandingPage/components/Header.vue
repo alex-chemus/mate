@@ -42,9 +42,9 @@ header {
 }
 
 .nav-link {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-bold);
   font-size: 20px;
-  font-weight: var(--fw-bold);
+  font-weight: var(--bold);
   color: rgb(145 152 165 / .8);
   text-decoration: none;
 }
@@ -59,8 +59,8 @@ header {
 
   span {
     font-size: 22px;
-    font-family: var(--ff-montserrat);
-    font-weight: var(--fw-bold);
+    font-family: var(--montserrat);
+    font-weight: var(--bold);
     color: var(--text-color)
   }
 

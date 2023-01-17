@@ -83,7 +83,7 @@ const img = ref<string | null>()
   border: none;
   margin-right: 10px;
   color: inherit;
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 14px;
   background-color: transparent;
 }

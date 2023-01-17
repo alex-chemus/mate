@@ -18,12 +18,16 @@
   --dark-theme-color-5: #1E1F29;
 
   // fonts
-  --ff-ubuntu: 'Ubuntu', sans-serif;
-  --ff-noto-sans: 'Noto Sans', sans-serif;
-  --ff-montserrat: 'Montserrat', sans-serif;
-  --fw-normal: 400;
-  --fw-bold: 700;
-  --fw-medium: 500;
+  // --ff-ubuntu: 'Ubuntu', sans-serif;
+  --noto-sans: 'Noto Sans', sans-serif;
+  --montserrat: 'Montserrat', sans-serif;
+  // --fw-normal: 400;
+  --bold: 700;
+  --medium: 500;
+  --findcreek: 'Findcreek Regular', sans-serif;
+  --findcreek-medium: 'Findcreek Medium', sans-serif;
+  --findcreek-bold: 'Findcreek Bold', sans-serif;
+  --findcreek-light: 'Findcreek Light', sans-serif;
 
   // transitons
   --fast: all .15s ease-out;
@@ -50,12 +54,15 @@ $dark-theme-color-3: #323645;
 $dark-theme-color-4: #353840;
 $dark-theme-color-5: #1E1F29;
 
-$ff-ubuntu: 'Ubuntu', sans-serif;
-$ff-noto-sans: 'Noto Sans', sans-serif;
-$ff-montserrat: 'Montserrat', sans-serif;
-$fw-normal: 400;
-$fw-bold: 700;
-$fw-medium: 500;
+//$ff-ubuntu: 'Ubuntu', sans-serif;
+$noto-sans: 'Noto Sans', sans-serif;
+$montserrat: 'Montserrat', sans-serif;
+$findcreek: 'Findcreek Regular', sans-serif;
+$findcreek-medium: 'Findcreek Medium', sans-serif;
+$findcreek-bold: 'Findcreek Bold', sans-serif;
+$findcreek-light: 'Findcreek Light', sans-serif;
+$bold: 700;
+$medium: 500;
 
 $fast: all .15s ease-out;
 $slow: all .6s ease-out;
@@ -66,4 +73,27 @@ button {
   border: none;
   @include flex(center, center);
   cursor: pointer;
+}
+
+@font-face {
+  font-family: 'Findcreek Regular';
+  src: url('@/assets/fonts/Findcreek-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Findreek Bold';
+  src: url('@/assets/fonts/Findcreek-Bold.otf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Findreek Medium';
+  src: url('@/assets/fonts/Findcreek-Medium.otf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Findcreek Light';
+  src: url('@/assets/fonts/Findcreek-Light.otf');
+  font-weight: 300;
 }

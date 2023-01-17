@@ -93,7 +93,7 @@ const sortedNotifications = computed(() => {
   margin-bottom: 25px;
 
   h5 {
-    font-family: var(--ff-ubuntu);
+    font-family: var(--findcreek);
     font-size: 22px;
     letter-spacing: -3.5%;
     margin: 0;

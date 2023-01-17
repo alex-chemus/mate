@@ -72,9 +72,9 @@ defineProps<{
 }
 
 .title {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--medium);
 
   &.light {
     color: var(--dark-2);
@@ -127,7 +127,7 @@ defineProps<{
   h6 {
     margin: 0;
     margin-bottom: 1px;
-    font-family: var(--ff-noto-sans);
+    font-family: var(--noto-sans);
     font-size: 18px;
   }
 
@@ -141,7 +141,7 @@ defineProps<{
 
   small {
     margin: 0;
-    font-family: var(--ff-noto-sans);
+    font-family: var(--noto-sans);
     font-size: 14px;
   }
 

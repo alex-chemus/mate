@@ -66,9 +66,9 @@ const projects = ref<IProject[]>([
 
 .projects-title {
   margin-bottom: 26px;
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--medium);
 
   &.light {
     color: var(--dark-2);
@@ -79,8 +79,8 @@ const projects = ref<IProject[]>([
   }
 
   span {
-    font-family: var(--ff-noto-sans);
-    font-weight: var(--fw-bold);
+    font-family: var(--noto-sans);
+    font-weight: var(--bold);
     margin-left: 7px;
   }
 
@@ -129,8 +129,8 @@ const projects = ref<IProject[]>([
 
 .project-wrapper {
   h5 {
-    font-family: var(--ff-montserrat);
-    font-weight: var(--fw-bold);
+    font-family: var(--montserrat);
+    font-weight: var(--bold);
     font-size: 14px;
     letter-spacing: -3%;
     margin: 0;
@@ -146,13 +146,13 @@ const projects = ref<IProject[]>([
   }
 
   small {
-    font-family: var(--ff-ubuntu);
+    font-family: var(--findcreek);
     font-size: 13px;
     letter-spacing: -3%;
   }
 
   small span {
-    font-family: var(--ff-noto-sans);
+    font-family: var(--noto-sans);
   }
 
   &.light small {

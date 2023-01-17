@@ -96,16 +96,16 @@ main {
 }
 
 h1 {
-  font-family: var(--ff-ubuntu);
-  font-weight: var(--fw-bold);
+  font-family: var(--findcreek-bold);
+  font-weight: var(--bold);
   font-size: 58px;
   margin-bottom: 26px;
   color: var(--text-color);
 }
 
 h2 {
-  font-family: var(--ff-ubuntu);
-  font-weight: var(--fw-bold);
+  font-family: var(--findcreek-bold);
+  font-weight: var(--bold);
   font-size: 20px;
   margin-bottom: 64px;
   margin-bottom: 13px;
@@ -124,8 +124,8 @@ h2 {
 }
 
 h3 {
-  font-family: var(--ff-ubuntu);
-  font-weight: var(--fw-bold);
+  font-family: var(--findcreek-bold);
+  font-weight: var(--bold);
   font-size: 20px;
   color: var(--text-color);
 }
@@ -150,8 +150,8 @@ h3 {
 .div-separator {
   height: 50px;
   width: min-content;
-  font-family: var(--ff-ubuntu);
-  font-weight: var(--fw-meduim);
+  font-family: var(--findcreek-medium);
+  font-weight: var(--meduim);
   font-size: 16px;
   color: var(--gray-1);
   @include flex(center, center);
@@ -163,8 +163,8 @@ h3 {
 
   .text {
     font-size: 16px;
-    font-weight: var(--fw-medium);
-    font-family: var(--ff-ubuntu);
+    font-weight: var(--medium);
+    font-family: var(--findcreek-medium);
     margin-bottom: 16px;
     color: var(--text-color);
   }

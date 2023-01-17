@@ -54,8 +54,8 @@ const { theme } = useTheme()
 .author-wrapper {
   h5 {
     margin: 0;
-    font-family: var(--ff-ubuntu);
-    font-weight: var(--fw-medium);
+    font-family: var(--findcreek-medium);
+    font-weight: var(--medium);
     font-size: 12px;
   }
 
@@ -69,7 +69,7 @@ const { theme } = useTheme()
 
   small {
     margin: 0;
-    font-family: var(--ff-noto-sans);
+    font-family: var(--noto-sans);
     font-size: 10px;
     margin-bottom: 4px;
   }

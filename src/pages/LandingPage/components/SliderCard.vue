@@ -123,9 +123,9 @@ const { theme } = useTheme()
 }
 
 .content-wrapper h4 {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-bold);
   font-size: 16px;
-  font-weight: var(--fw-bold);
+  font-weight: var(--bold);
 
   &.light {
     color: var(--dark-2);
@@ -153,7 +153,7 @@ const { theme } = useTheme()
 }
 
 .content-wrapper p {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 13px;
   color: var(--text-color);
 }
@@ -170,7 +170,7 @@ const { theme } = useTheme()
   h5 {
     margin: 0;
     margin-left: 6px;
-    font-family: var(--ff-ubuntu);
+    font-family: var(--findcreek);
     font-size: 13px;
     color: var(--text-color)
   }
@@ -202,9 +202,9 @@ const { theme } = useTheme()
 
   span {
     font-size: 13px;
-    font-family: var(--ff-ubuntu);
+    font-family: var(--findcreek-medium);
     color: var(--gray-1);
-    font-weight: var(--fw-medium);
+    font-weight: var(--medium);
   }
 }
 
@@ -224,9 +224,9 @@ const { theme } = useTheme()
 }
 
 .date {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-medium);
   font-size: 13px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--medium);
   color: var(--gray-1);
 }
 </style>

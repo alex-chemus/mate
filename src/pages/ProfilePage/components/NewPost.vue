@@ -131,7 +131,7 @@ defineProps<{
   height: 40px;
   padding: 0 15px;
   border-radius: 8px;
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 14px;
   color: var(--gray-1);
   border: 1px solid color.change($gray-1, $alpha: .5);
@@ -155,7 +155,7 @@ defineProps<{
   padding-left: 3px;
   padding-right: 13px;
   border: 1px solid color.change($gray-1, $alpha: .7);
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 12px;
 
   &.light {

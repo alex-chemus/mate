@@ -63,7 +63,7 @@ const { theme } = useTheme()
 }
 
 .search-input {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 14px;
   color: currentColor;
   background-color: transparent;

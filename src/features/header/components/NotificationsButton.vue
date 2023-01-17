@@ -72,7 +72,7 @@ const { theme } = useTheme()
 }
 
 .text {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 14px;
   letter-spacing: -1.5%;
 }
@@ -82,10 +82,10 @@ const { theme } = useTheme()
   height: 20px;
   aspect-ratio: 1;
   @include flex(center, center);
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-medium);
   font-size: 12px;
   line-height: 1em;
-  font-weight: var(--fw-medium);
+  font-weight: var(--medium);
   letter-spacing: .04em;
 
   &.light {

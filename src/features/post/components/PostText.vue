@@ -32,7 +32,7 @@ const computedText = computed(() => {
 @import '@/assets/styles/style.scss';
 
 .text {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 13px;
   line-height: 140%;
   letter-spacing: -3.3%;
@@ -48,7 +48,7 @@ const computedText = computed(() => {
 
 .more-button {
   display: inline;
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 13px;
   line-height: 140%;
   letter-spacing: -3.3%;

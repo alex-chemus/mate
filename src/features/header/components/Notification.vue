@@ -97,7 +97,7 @@ const title = computed(() => {
 }
 
 .message {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 15px;
   letter-spacing: .01em;
   text-align: left;
@@ -108,11 +108,11 @@ const title = computed(() => {
   max-width: 100%;
 
   strong {
-    font-weight: var(--fw-medium);
+    font-weight: var(--medium);
   }
 
   a {
-    font-weight: var(--fw-medium);
+    font-weight: var(--medium);
   }
 
   a:focus, a:hover {
@@ -137,7 +137,7 @@ const title = computed(() => {
 }
 
 small {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 12px;
   text-align: left;
 

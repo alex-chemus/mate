@@ -73,15 +73,15 @@ const { theme } = useTheme()
     margin-bottom: 20px;
     text-align: center;
     color: var(--text-color);
-    font-family: var(--ff-ubuntu);
+    font-family: var(--findcreek-bold);
     font-size: 24px;
-    font-weight: var(--fw-bold);
+    font-weight: var(--bold);
   }
 
   p {
     text-align: center;
     font-size: 16px;
-    font-family: var(--ff-ubuntu);
+    font-family: var(--findcreek);
     color: var(--text-color);
   }
 }

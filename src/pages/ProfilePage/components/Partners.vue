@@ -55,9 +55,9 @@ defineProps<{
 }
 
 .title {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-bold);
   font-size: 16px;
-  font-weight: var(--fw-bold);
+  font-weight: var(--bold);
   margin-bottom: 15px;
 
   &.light {

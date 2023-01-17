@@ -26,9 +26,9 @@ button {
   height: 35px;
   border-radius: 6px;
   padding: 0 13px !important;
-  font-family: var(--ff-ubuntu, $ff-ubuntu) !important;
+  font-family: var(--findcreek-bold, $findcreek-bold) !important;
   font-size: 16px !important;
-  font-weight: var(--fw-bold, $fw-bold) !important;
+  font-weight: var(--bold, $bold) !important;
 
   &.primary {
     background-color: var(--accent-1, $accent-1);

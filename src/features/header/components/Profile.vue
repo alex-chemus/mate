@@ -48,9 +48,9 @@ const isOpen = ref(false)
   border-radius: 10px;
   border: 1px solid color.change($gray-1, $alpha: .25);
 
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-medium);
   font-size: 16px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--medium);
 
   &.light {
     color: var(--dark-2);

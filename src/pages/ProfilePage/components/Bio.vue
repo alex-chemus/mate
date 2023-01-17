@@ -35,9 +35,9 @@ const { theme } = useTheme()
   }
 
   h5 {
-    font-family: var(--ff-ubuntu);
+    font-family: var(--findcreek-medium);
     font-size: 14px;
-    font-weight: var(--fw-medium);
+    font-weight: var(--medium);
     letter-spacing: 1%;
     margin: 0;
     margin-bottom: 12px;
@@ -45,7 +45,7 @@ const { theme } = useTheme()
   }
 
   p {
-    font-family: var(--ff-ubuntu);
+    font-family: var(--medium);
     font-size: 13px;
     line-height: 160%;
     letter-spacing: -2%;

@@ -122,8 +122,8 @@ const nickname = ref('alexandersoromotin')*/
   h5 {
     margin: 0;
     margin-bottom: 10px;
-    font-family: var(--ff-noto-sans);
-    font-weight: var(--fw-bold);
+    font-family: var(--noto-sans);
+    font-weight: var(--bold);
     font-size: 16px;
   }
 
@@ -137,8 +137,8 @@ const nickname = ref('alexandersoromotin')*/
 
   p {
     font-size: 12px;
-    font-family: var(--ff-ubuntu);
-    font-weight: var(--fw-medium);
+    font-family: var(--findcreek-medium);
+    font-weight: var(--medium);
     margin: 0;
   }
 
@@ -167,9 +167,9 @@ const nickname = ref('alexandersoromotin')*/
 }
 
 .fullname {
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-medium);
   font-size: 16px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--medium);
   margin: 0;
   margin-bottom: 3px;
 
@@ -183,7 +183,7 @@ const nickname = ref('alexandersoromotin')*/
 }
 
 .nickname {
-  font-family: var(--ff-noto-sans);
+  font-family: var(--noto-sans);
   font-size: 12px;
   margin: 0;
   margin-bottom: 18px;
@@ -230,9 +230,9 @@ const nickname = ref('alexandersoromotin')*/
   }
 
   strong {
-    font-family: var(--ff-montserrat);
+    font-family: var(--montserrat);
     font-size: 13px;
-    font-weight: var(--fw-bold);
+    font-weight: var(--bold);
   }
 }
 
@@ -245,7 +245,7 @@ const nickname = ref('alexandersoromotin')*/
   padding: 16px 0;
 
   span {
-    font-family: var(--ff-ubuntu);
+    font-family: var(--findcreek);
     font-size: 14px;
   }
 
@@ -267,7 +267,7 @@ const nickname = ref('alexandersoromotin')*/
 .bio {
   text-align: center;
   margin: 18px 0;
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek);
   font-size: 14px;
   line-height: 160%;
 

@@ -54,9 +54,9 @@ const { theme } = useTheme()
 
 .employees-title {
   margin-bottom: 26px;
-  font-family: var(--ff-ubuntu);
+  font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--medium);
 
   &.light {
     color: var(--dark-2);
@@ -67,8 +67,8 @@ const { theme } = useTheme()
   }
 
   span {
-    font-family: var(--ff-noto-sans);
-    font-weight: var(--fw-bold);
+    font-family: var(--noto-sans);
+    font-weight: var(--bold);
     margin-left: 7px;
   }
 
@@ -113,8 +113,8 @@ const { theme } = useTheme()
 
 .employee-wrapper {
   h5 {
-    font-family: var(--ff-ubuntu);
-    font-weight: var(--fw-bold);
+    font-family: var(--findcreek-bold);
+    font-weight: var(--bold);
     font-size: 14px;
     letter-spacing: -3%;
     margin: 0;
@@ -129,7 +129,7 @@ const { theme } = useTheme()
   }
 
   small {
-    font-family: var(--ff-ubuntu);
+    font-family: var(--findcreek);
     font-size: 12px;
     letter-spacing: -3%;
   }
