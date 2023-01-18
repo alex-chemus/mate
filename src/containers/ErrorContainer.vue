@@ -10,7 +10,7 @@ watch(
   () => fetchState.value.errorCode,
   () => {
     if (fetchState.value.errorCode)
-      router.push('error')
+      router.push('/error')
   }
 )
 </script>

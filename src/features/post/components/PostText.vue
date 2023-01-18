@@ -22,7 +22,7 @@ const computedText = computed(() => {
   <button
     v-if="shouldClip && isClipped"
     @click="isClipped = false"
-    class="more-button"
+    class="more-button" :class="theme"
   >
     Читать далее
   </button>
@@ -52,6 +52,13 @@ const computedText = computed(() => {
   font-size: 13px;
   line-height: 140%;
   letter-spacing: -3.3%;
-  color: var(--accent-1);
+
+  &.light {
+    color: var(--accent-1);
+  }
+
+  &.dark {
+    color: var(--accent-2);
+  }
 }
 </style>

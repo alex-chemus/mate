@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { Post } from '@/features/post'
 import { Header } from '@/features/header'
 import type {
-  Company, Partner, Project, Employee, AccountInfo
+  Company, Partner, Project, Employee, AccountInfo, ProjectInfo
 } from './types'
 import ProfileCard from './components/ProfileCard.vue'
 import Subscriptions from './components/Subscriptions.vue'
@@ -12,9 +13,11 @@ import Bio from './components/Bio.vue'
 import NewPost from './components/NewPost.vue'
 import Projects from './components/Projects.vue'
 import Employees from './components/Employees.vue'
-import Skills from './components/Skills.vue'
-import ProfileLayout from './ProfileLayout.vue'
-import useFetchGetInfo from './api/useFetchGetInfo'
+import ProfileLayout from './ProjectLayout.vue'
+import useFetchAccountInfo from './api/useFetchAccountInfo'
+import useFetchProjectInfo from './api/useFetchProjectInfo'
+
+const route = useRoute()
 
 const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
@@ -58,21 +61,26 @@ const employees = ref<Employee[]>([
   }
 ])
 
-const fetchGetInfo = useFetchGetInfo()
+const fetchAccountInfo = useFetchAccountInfo()
 const accountInfo = ref<AccountInfo | null>(null)
 
 onMounted(async () => {
   try {
-    accountInfo.value = await fetchGetInfo()
+    accountInfo.value = await fetchAccountInfo()
   } catch (e) {
     console.log(`error in profile: ${e}`)
   }
 })
 
-const skills = computed(() => {
-  if (!accountInfo.value) return null
-  if (accountInfo.value.skills === '') return []
-  return accountInfo.value.skills.split(', ')
+const fetchProjectInfo = useFetchProjectInfo()
+const projectInfo = ref<ProjectInfo | null>(null)
+
+onMounted(async () => {
+  try {
+    projectInfo.value = await fetchProjectInfo(route.params.id as string)
+  } catch (e) {
+    console.log(`error in profile: ${e}`)
+  }
 })
 </script>
 
@@ -94,10 +102,6 @@ const skills = computed(() => {
         :following="following"
         :nickname="accountInfo.textID"
       />
-    </template>
-
-    <template #skills>
-      <skills v-if="skills && skills" :skills="skills" />
     </template>
 
     <template #subscriptions>
