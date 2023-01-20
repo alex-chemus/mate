@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import PostLayout from './PostLayout.vue'
-import PostAuthor from './components/PostAuthor.vue'
-import PostButtons from './components/PostButtons.vue'
-import PostComment from './components/PostComment.vue'
-import PostText from './components/PostText.vue'
+import {
+  PostAuthor, PostButtons, PostComment, PostText
+} from './components'
 
 interface IAuthor {
   img?: string,

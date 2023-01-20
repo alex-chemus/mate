@@ -18,9 +18,8 @@ export type Project = {
 }
 
 export type Employee = {
-  img?: string,
-  fullName: string,
-  position: string,
+  name: string,
+  avatar?: string,
   id: number
 }
 
@@ -113,7 +112,7 @@ export type ProjectInfo = {
     profileCoverScale: number,
   },
   slogan: string,
-  descriptions: string,
+  description: string,
   social: {
     findcreek: string,
     [index: string]: string,

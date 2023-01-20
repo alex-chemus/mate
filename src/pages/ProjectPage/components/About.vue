@@ -3,23 +3,23 @@ import { defineProps } from 'vue'
 import { useTheme } from '@/utils'
 
 defineProps<{
-  bio: string
+  text: string
 }>()
 
 const { theme } = useTheme()
 </script>
 
 <template>
-  <section class="bio-section" :class="theme">
-    <h5>О себе</h5>
-    <p>{{ bio.length === 0 ? 'Расскажите о себе' : bio }}</p>
+  <section class="about-section" :class="theme">
+    <h5>О проекте</h5>
+    <p>{{ text.length === 0 ? 'Нет описания' : text }}</p>
   </section>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
 
-.bio-section {
+.about-section {
   border-radius: 13px;
   border: 1px solid rgba(118 118 118 / .25);
   padding: 11px 19px;

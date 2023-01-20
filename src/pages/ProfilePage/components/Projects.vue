@@ -1,21 +1,23 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, defineProps, computed } from 'vue'
 import { useTheme } from '@/utils'
+import { MoreButton } from '@/ui'
+import type { ProjectInfo } from '../types'
+
+const props = defineProps<{
+  projects: ProjectInfo[]
+}>()
 
 const { theme } = useTheme()
 
-interface IProject {
-  name: string,
-  img?: string,
-  started: string
-}
-
-const projects = ref<IProject[]>([
-  {
-    name: 'FINDCREEK Mate',
-    started: '22.07.22'
-  }
-])
+const shouldTrimProjects = ref(true)
+const computedProjects = computed(() => {
+  // if (shouldTrimProjects.value) return props.projects
+  // else return props.projects.slice(0, 3)
+  return shouldTrimProjects.value
+    ? props.projects.slice(0, 3)
+    : props.projects
+})
 </script>
 
 <template>
@@ -25,24 +27,37 @@ const projects = ref<IProject[]>([
       <span>{{ projects.length }}</span>
     </h4>
 
-    <ul class="projects-list" :class="theme">
-      <!-- todo: сделать функцию для сортировки по строке с датой -->
-      <li
-        v-for="project in projects" :key="project.started"
-        class="project-container" :class="theme"
-      >
-        <img v-if="project.img" :src="project.img" alt="" class="icon" />
-        <div v-else class="icon placeholder" />
+    <div v-if="!projects.length">У вас нет проектов</div>
 
-        <div class="project-wrapper" :class="theme">
-          <h5>{{ project.name }}</h5>
-          <small>
-            Начало работ:&#32;
-            <span>{{ project.started }}</span>
-          </small>
-        </div>
-      </li>
-    </ul>
+    <template v-else>
+      <ul class="projects-list" :class="theme">
+        <li
+          v-for="project in computedProjects" :key="project.id"
+          class="project-container" :class="theme"
+        >
+          <router-link :to="`/project/${project.id}`" :class="theme">
+            <img
+              v-if="project.avatar.avatarCompressed"
+              :src="project.avatar.avatarCompressed"
+              alt="" class="icon"
+            />
+            <div v-else class="icon placeholder" />
+
+            <div class="project-wrapper" :class="theme">
+              <h5>{{ project.name }}</h5>
+              <small>
+                Начало работ:&#32;
+                <span v-if="project.foundationDate">{{ project.foundationDate }}</span>
+                <span v-else>???</span>
+              </small>
+            </div>
+          </router-link>
+        </li>
+      </ul>
+      <div v-if="shouldTrimProjects && projects.length > 3" class="more-button-wrapper">
+        <more-button @click="shouldTrimProjects = false">Ещё</more-button>
+      </div>
+    </template>
   </section>
 </template>
 
@@ -97,21 +112,37 @@ const projects = ref<IProject[]>([
   padding: 0;
   margin: 0;
   list-style: none;
+  @include flex(flex-start, stretch, column);
+  gap: 12px;
 }
 
-.project-container {
+.project-container a {
   padding: 20px 23px;
   border-radius: 15px;
   @include flex(flex-start, center);
+  transition: var(--fast);
 
   &.light {
     border-top: 1px solid color.change($gray-1, $alpha: .25);
     border-bottom: 1px solid color.change($gray-1, $alpha: .25);
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+  }
+
+  &.light:hover,
+  &.light:focus {
+    border-left: 1px solid color.change($gray-1, $alpha: .25);
+    border-right: 1px solid color.change($gray-1, $alpha: .25);
   }
 
   &.dark {
     background-color: #2D303B;
     border: 1px solid color.change($gray-1, $alpha: .25);
+  }
+
+  &.dark:hover,
+  &.dark:focus {
+    box-shadow: 0 0 20px 0 rgba(0 0 0 / .25);
   }
 }
 
@@ -162,5 +193,9 @@ const projects = ref<IProject[]>([
   &.dark small {
     color: #bbb;
   }
+}
+
+.more-button-wrapper {
+  margin-top: 20px;
 }
 </style>

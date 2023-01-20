@@ -1,53 +1,55 @@
 <script lang="ts" setup>
-import { ref, defineProps } from 'vue'
+import { defineProps } from 'vue'
 import { Logo } from '@/ui'
 import { useTheme } from '@/utils'
 
 defineProps<{
-  fullName: string,
+  name: string,
   img?: string,
+  banner?: string,
   followers: string,
   following: string,
   nickname: string
 }>()
 
 const { theme } = useTheme()
-
-/*const fullName = ref('Александр Соромотин')
-const img = ref<string | null>(null)
-const followers = ref('6 млн')
-const following = ref('67')
-const nickname = ref('alexandersoromotin')*/
-//const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 </script>
 
 <template>
   <section class="card-section" :class="theme">
-    <button class="more-button">
+    <!-- <button class="more-button">
       <svg width="25" height="25" viewBox="0 0 25 25">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-dots-vertical" />
       </svg>
-    </button>
+    </button> -->
 
-    <img src="@/assets/imgs/profile-card-img.png" alt="FINDCREEK" class="banner-img" />
+    <div v-if="banner" class="cover-container">
+      <img :src="banner" :alt="name" class="banner-img" />
+
+      <button class="cover-button">
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-camera" />
+        </svg>
+      </button>
+    </div>
 
     <div class="profile-container">
       <div class="content-container">
-        <div class="content-wrapper" :class="theme">
+        <!-- <div class="content-wrapper" :class="theme">
           <h5>{{ followers }}</h5>
           <p>Подписчиков</p>
-        </div>
+        </div> -->
 
-        <img v-if="img" :src="img" :alt="fullName" class="avatar" />
+        <img v-if="img" :src="img" :alt="name" class="avatar" />
         <div v-else class="placeholder" />
 
-        <div class="content-wrapper" :class="theme">
+        <!-- <div class="content-wrapper" :class="theme">
           <h5>{{ following }}</h5>
           <p>Подписок</p>
-        </div>
+        </div> -->
       </div>
 
-      <h3 class="fullname" :class="theme">{{ fullName }}</h3>
+      <h3 class="fullname" :class="theme">{{ name }}</h3>
       <p class="nickname" :class="theme">@{{ nickname }}</p>
 
       <button class="button logo-button" :class="theme">
@@ -61,9 +63,7 @@ const nickname = ref('alexandersoromotin')*/
         <span>Редактировать профиль</span>
       </button>
 
-      <div class="separator" />
-
-      <!--<p class="bio" :class="theme">{{ bio }}</p>-->
+      <!-- <div class="separator" /> -->
     </div>
   </section>
 </template>
@@ -87,33 +87,59 @@ const nickname = ref('alexandersoromotin')*/
   }
 }
 
-.more-button {
+// .more-button {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   border-radius: 0 0 0 10px;
+//   padding: 6px;
+//   background-color: color.change($gray-1, $alpha: .1);
+//   color: var(--gray-1);
+// }
+
+.cover-button {
   position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 0 0 0 10px;
-  padding: 6px;
+  top: 5px;
+  right: 5px;
+  border-radius: 100vmax;
+  height: 40px;
+  width: 40px;
+  @include flex(center, center);
   background-color: color.change($gray-1, $alpha: .1);
-  color: var(--gray-1);
+  color: #5C5C5C;
+  display: none;
+}
+
+.cover-container:hover .cover-button {
+  display: flex;
+}
+
+.cover-container {
+  margin-bottom: 32px;
 }
 
 .banner-img {
   border-bottom: 1px solid color.change($gray-1, $alpha: .25);
   background-color: var(--light);
+  object-fit: cover;
+  height: 140px;
+  width: 100%;
 }
 
 .profile-container {
   @include flex(flex-start, center, column);
-  padding: 0 17px;
+  padding: 17px;
 }
 
 .content-container {
   //@include flex(space-between, center);
-  display: grid;
-  grid-template-columns: 1fr max-content 1fr;
-  align-items: center;
-  align-self: stretch;
-  margin: 32px 0 12px;
+  // display: grid;
+  // grid-template-columns: 1fr max-content 1fr;
+  // align-items: center;
+  // align-self: stretch;
+  // margin: 32px 0 12px;
+  margin-bottom: 12px;
+  @include flex(center, center);
 }
 
 .content-wrapper {
@@ -203,7 +229,11 @@ const nickname = ref('alexandersoromotin')*/
   position: relative;
   align-self: stretch;
   padding: 7px;
-  margin-bottom: 10px;
+  transition: var(--fast);
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
 
   &.light {
     border: 1px solid color.change($gray-1, $alpha: .2);
@@ -213,12 +243,22 @@ const nickname = ref('alexandersoromotin')*/
     }
   }
 
+  &.light:hover,
+  &.light:focus {
+    box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);
+  }
+
   &.dark {
     border: 1px solid color.change($gray-3, $alpha: .5);
 
     strong {
       color: var(--light);
     }
+  }
+
+  &.dark:hover,
+  &.dark:focus {
+    box-shadow: 0 0 10px 0 rgba(0 0 0 / .5);
   }
 
   .logo {
@@ -262,6 +302,7 @@ const nickname = ref('alexandersoromotin')*/
   height: 1px;
   background-color: color.change($gray-1, $alpha: .2);
   margin-bottom: 12px;
+  width: 100%;
 }
 
 .bio {

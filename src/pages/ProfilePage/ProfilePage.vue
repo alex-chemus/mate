@@ -1,29 +1,27 @@
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue'
+import {
+  ref, onMounted, computed, watch
+} from 'vue'
 import { Post } from '@/features/post'
 import { Header } from '@/features/header'
 import type {
-  Company, Partner, Project, Employee, AccountInfo
+  Company, Partner, Employee, AccountInfo, ProjectInfo
 } from './types'
-import ProfileCard from './components/ProfileCard.vue'
-import Subscriptions from './components/Subscriptions.vue'
-import Partners from './components/Partners.vue'
-import Bio from './components/Bio.vue'
-import NewPost from './components/NewPost.vue'
-import Projects from './components/Projects.vue'
-import Employees from './components/Employees.vue'
-import Skills from './components/Skills.vue'
+import {
+  Bio, Employees, NewPost, Partners,
+  ProfileCard, Projects, Skills, Subscriptions
+} from './components'
 import ProfileLayout from './ProfileLayout.vue'
-import useFetchGetInfo from './api/useFetchGetInfo'
+import { useAccountInfo, useFetchProjectsInfo } from './api'
 
-const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
+//const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
 const following = ref('67')
-const subscriptions = ref<Company[]>([
-  { name: 'Yandex', followers: '800 тыс. подписчиков', id: 0 },
-  { name: 'Google', followers: '8 млн подписчиков', id: 1 },
-  { name: 'Tesla', followers: '1 млн подписчиков', id: 2 }
-])
+// const subscriptions = ref<Company[]>([
+//   { name: 'Yandex', followers: '800 тыс. подписчиков', id: 0 },
+//   { name: 'Google', followers: '8 млн подписчиков', id: 1 },
+//   { name: 'Tesla', followers: '1 млн подписчиков', id: 2 }
+// ])
 const partners = ref<Partner[]>([
   { link: '/google', id: 0 },
   { link: '/yandex', id: 1 },
@@ -34,36 +32,56 @@ const partners = ref<Partner[]>([
   { link: '/profile', id: 6 },
   { link: '/profile', id: 7 }
 ])
-const projects = ref<Project[]>([
-  {
-    name: 'FINDCREEK Mate',
-    started: '22.07.22'
-  }
-])
-const employees = ref<Employee[]>([
-  {
-    fullName: 'Александр Соромотин',
-    position: 'Бэкенд разработчик',
-    id: 0
-  },
-  {
-    fullName: 'Алексей Грибанов',
-    position: 'Мобильный разработчик',
-    id: 1
-  },
-  {
-    fullName: 'Александр Чемус',
-    position: 'Фронтенд разработчик',
-    id: 2
-  }
-])
+// const projects = ref<Project[]>([
+//   {
+//     name: 'FINDCREEK Mate',
+//     started: '22.07.22'
+//   }
+// ])
+// const employees = ref<Employee[]>([
+//   {
+//     fullName: 'Александр Соромотин',
+//     position: 'Бэкенд разработчик',
+//     id: 0
+//   },
+//   {
+//     fullName: 'Алексей Грибанов',
+//     position: 'Мобильный разработчик',
+//     id: 1
+//   },
+//   {
+//     fullName: 'Александр Чемус',
+//     position: 'Фронтенд разработчик',
+//     id: 2
+//   }
+// ])
 
-const fetchGetInfo = useFetchGetInfo()
-const accountInfo = ref<AccountInfo | null>(null)
+// const fetchAccountInfo = useFetchAccountInfo()
+// const accountInfo = ref<AccountInfo | null>(null)
 
-onMounted(async () => {
+// onMounted(async () => {
+//   try {
+//     accountInfo.value = await fetchAccountInfo()
+//   } catch (e) {
+//     console.log(`error in profile: ${e}`)
+//   }
+// })
+
+const accountInfo = useAccountInfo()
+
+const fetchProjectsInfo = useFetchProjectsInfo()
+const projectsInfo = ref<ProjectInfo[] | null>(null)
+//const hasProjects = ref<boolean | null>(null)
+const hasProjects = computed(() => {
+  if (!accountInfo.value) return null
+  return !!accountInfo.value.projectsMember.length
+})
+
+watch(accountInfo, async () => {
+  if (!accountInfo.value || hasProjects.value === false) return
+
   try {
-    accountInfo.value = await fetchGetInfo()
+    projectsInfo.value = await fetchProjectsInfo(accountInfo.value.projectsMember)
   } catch (e) {
     console.log(`error in profile: ${e}`)
   }
@@ -93,27 +111,28 @@ const skills = computed(() => {
         :followers="followers"
         :following="following"
         :nickname="accountInfo.textID"
+        :banner="accountInfo.profileCover"
       />
     </template>
 
     <template #skills>
-      <skills v-if="skills && skills" :skills="skills" />
+      <Skills v-if="skills && skills" :skills="skills" />
     </template>
 
-    <template #subscriptions>
+    <!-- <template #subscriptions>
       <Subscriptions
         :subscriptions="subscriptions"
       />
-    </template>
+    </template> -->
 
     <template #partners>
-      <partners
+      <Partners
         :partners="partners"
       />
     </template>
 
     <template #bio>
-      <bio :bio="accountInfo.bio" />
+      <Bio :bio="accountInfo.bio" />
     </template>
 
     <template #new-post>
@@ -125,13 +144,13 @@ const skills = computed(() => {
     </template>
 
     <template #projects>
-      <projects />
+      <Projects v-if="projectsInfo" :projects="projectsInfo" />
     </template>
 
-    <template #employees>
+    <!-- <template #employees>
       <employees
         :employees="employees"
       />
-    </template>
+    </template> -->
   </profile-layout>
 </template>

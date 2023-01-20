@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import HeaderLayout from './HeaderLayout.vue'
-import Search from './components/Search.vue'
-import Tabs from './components/Tabs.vue'
-import Profile from './components/Profile.vue'
-import Notifications from './components/Notifications.vue'
+import {
+  Search, Tabs, Profile, Notifications
+} from './components'
 import type { Notice } from './types'
 
 defineProps<{

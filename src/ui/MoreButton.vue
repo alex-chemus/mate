@@ -44,8 +44,12 @@ const emit = defineEmits<{
     color: var(--accent-2, $accent-2);
   }
 
-  &:hover {
-    box-shadow: 0 0 4px 0 rgba(0 0 0 / .15);
+  &.light:hover {
+    box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);
+  }
+
+  &.dark:hover {
+    box-shadow: 0 0 10px 0 rgba(0 0 0 / .5);
   }
 }
 </style>

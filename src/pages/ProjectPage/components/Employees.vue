@@ -22,12 +22,12 @@ const { theme } = useTheme()
         v-for="employee in employees" :key="employee.id"
         class="employee-container" :class="theme"
       >
-        <img v-if="employee.img" :src="employee.img" alt="" class="icon" />
+        <img v-if="employee.avatar" :src="employee.avatar" alt="" class="icon" />
         <div v-else class="icon placeholder" />
 
         <div class="employee-wrapper" :class="theme">
-          <h5>{{ employee.fullName }}</h5>
-          <small>{{ employee.position }}</small>
+          <h5>{{ employee.name }}</h5>
+          <!-- <small>{{ employee.position }}</small> -->
         </div>
       </li>
     </ul>

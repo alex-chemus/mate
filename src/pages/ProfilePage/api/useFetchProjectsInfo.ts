@@ -1,8 +1,8 @@
 import { useApiState, useAuthState, useDispatch } from '@/utils'
 import { fetchActions } from '@/store/constants'
-import type { AccountInfo } from '../types'
+import type { ProjectInfo } from '../types'
 
-const useFetchGetInfo = () => {
+const useFetchProjectsInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -10,24 +10,20 @@ const useFetchGetInfo = () => {
   const body = new FormData()
   body.append('token', authState.value.token as string)
 
-  return async () => {
-    /*const res = await fetch(`${apiState.value.apiUrl}/mate/account.getInfo/`, {
-      method: 'POST',
-      body
-    })
-    const data = await res.json()*/
-    //return data.response as AccountInfo
-
+  return async (projectsIds: number[] | string[]) => {
     if (!authState.value.token) return null
 
+    console.log(projectsIds.join(', '))
+    body.append('projectsIDs', projectsIds.join(', '))
+
     return (await dispatch(fetchActions.FETCH, {
-      url: `${apiState.value.apiUrl}/mate/account.getInfo/`,
+      url: `${apiState.value.apiUrl}/mate/project.getInfo/`,
       info: {
         method: 'POST',
         body
       }
-    })) as AccountInfo
+    })) as ProjectInfo[]
   }
 }
 
-export default useFetchGetInfo
+export default useFetchProjectsInfo

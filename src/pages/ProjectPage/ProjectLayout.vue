@@ -21,14 +21,14 @@ defineProps<{
         <div>
           <slot name="profile-card" />
         </div>
-        <div>
+        <!-- <div>
           <slot name="subscriptions" />
-        </div>
+        </div> -->
       </aside>
 
       <section class="center-container">
         <div class="bio-wrapper">
-          <slot name="bio" />
+          <slot name="about" />
         </div>
         <slot name="partners" />
         <div class="new-post-wrapper">
@@ -38,9 +38,9 @@ defineProps<{
       </section>
 
       <aside class="project-aside">
-        <div>
+        <!-- <div>
           <slot name="projects" />
-        </div>
+        </div> -->
         <div>
           <slot name="employees" />
         </div>

@@ -6,14 +6,10 @@ import { useTheme } from '@/utils';
   FacebookAuthButton, LandingHeader, LandingFooter,
   LandingSlider
 } from '@/features/landing'*/
-import GoogleAuthButton from './components/GoogleAuthButton.vue'
-import VkAuthButton from './components/VkAuthButton.vue'
-import AppleAuthButton from './components/AppleAuthButton.vue'
-import FacebookAuthButton from './components/FacebookAuthButton.vue'
-import LandingHeader from './components/Header.vue'
-import LandingFooter from './components/Footer.vue'
-//import LandingSlider from './Slider.vue'
-import SliderContainer from './components/SliderContainer.vue'
+import {
+  GoogleAuthButton, VkAuthButton, AppleAuthButton, FacebookAuthButton,
+  LandingHeader, LandingFooter, SliderContainer
+} from './components'
 
 const { theme } = useTheme()
 </script>

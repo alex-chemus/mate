@@ -1,0 +1,7 @@
+export { default as GoogleAuthButton } from './GoogleAuthButton.vue'
+export { default as VkAuthButton } from './VkAuthButton.vue'
+export { default as AppleAuthButton } from './AppleAuthButton.vue'
+export { default as FacebookAuthButton } from './FacebookAuthButton.vue'
+export { default as LandingHeader } from './Header.vue'
+export { default as LandingFooter } from './Footer.vue'
+export { default as SliderContainer } from './SliderContainer.vue'

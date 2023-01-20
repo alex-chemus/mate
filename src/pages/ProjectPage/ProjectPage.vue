@@ -6,18 +6,12 @@ import { Header } from '@/features/header'
 import type {
   Company, Partner, Project, Employee, AccountInfo, ProjectInfo
 } from './types'
-import ProfileCard from './components/ProfileCard.vue'
-import Subscriptions from './components/Subscriptions.vue'
-import Partners from './components/Partners.vue'
-import Bio from './components/Bio.vue'
-import NewPost from './components/NewPost.vue'
-import Projects from './components/Projects.vue'
-import Employees from './components/Employees.vue'
+import {
+  ProfileCard, Subscriptions, Partners, About,
+  NewPost, Projects, Employees
+} from './components'
 import ProfileLayout from './ProjectLayout.vue'
-import useFetchAccountInfo from './api/useFetchAccountInfo'
-import useFetchProjectInfo from './api/useFetchProjectInfo'
-
-const route = useRoute()
+import { useAccountInfo, useProjectInfo } from './api'
 
 const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
@@ -43,49 +37,30 @@ const projects = ref<Project[]>([
     started: '22.07.22'
   }
 ])
-const employees = ref<Employee[]>([
-  {
-    fullName: 'Александр Соромотин',
-    position: 'Бэкенд разработчик',
-    id: 0
-  },
-  {
-    fullName: 'Алексей Грибанов',
-    position: 'Мобильный разработчик',
-    id: 1
-  },
-  {
-    fullName: 'Александр Чемус',
-    position: 'Фронтенд разработчик',
-    id: 2
-  }
-])
+// const employees = ref<Employee[]>([
+//   {
+//     fullName: 'Александр Соромотин',
+//     position: 'Бэкенд разработчик',
+//     id: 0
+//   },
+//   {
+//     fullName: 'Алексей Грибанов',
+//     position: 'Мобильный разработчик',
+//     id: 1
+//   },
+//   {
+//     fullName: 'Александр Чемус',
+//     position: 'Фронтенд разработчик',
+//     id: 2
+//   }
+// ])
 
-const fetchAccountInfo = useFetchAccountInfo()
-const accountInfo = ref<AccountInfo | null>(null)
-
-onMounted(async () => {
-  try {
-    accountInfo.value = await fetchAccountInfo()
-  } catch (e) {
-    console.log(`error in profile: ${e}`)
-  }
-})
-
-const fetchProjectInfo = useFetchProjectInfo()
-const projectInfo = ref<ProjectInfo | null>(null)
-
-onMounted(async () => {
-  try {
-    projectInfo.value = await fetchProjectInfo(route.params.id as string)
-  } catch (e) {
-    console.log(`error in profile: ${e}`)
-  }
-})
+const accountInfo = useAccountInfo()
+const { projectInfo, projectEmployees } = useProjectInfo()
 </script>
 
 <template>
-  <profile-layout v-if="accountInfo" :loading="!accountInfo">
+  <profile-layout v-if="accountInfo && projectInfo" :loading="!accountInfo || !projectInfo">
     <template #header>
       <Header
         :img="accountInfo.avatar.avatarCompressed"
@@ -95,12 +70,13 @@ onMounted(async () => {
     </template>
 
     <template #profile-card>
-      <profile-card
-        :full-name="`${accountInfo.firstName} ${accountInfo.lastName}`"
-        :img="accountInfo.avatar.avatarCompressed"
+      <ProfileCard
+        :name="projectInfo.name"
+        :img="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar"
         :followers="followers"
         :following="following"
-        :nickname="accountInfo.textID"
+        :nickname="projectInfo.textID"
+        :banner="projectInfo.profileCover.profileCover"
       />
     </template>
 
@@ -111,30 +87,31 @@ onMounted(async () => {
     </template>
 
     <template #partners>
-      <partners
+      <Partners
         :partners="partners"
       />
     </template>
 
-    <template #bio>
-      <bio :bio="accountInfo.bio" />
+    <template #about v-if="projectInfo.description.length">
+      <About :text="projectInfo.description" />
     </template>
 
     <template #new-post>
-      <new-post :img="accountInfo.avatar.avatarCompressed" />
+      <new-post :img="accountInfo.avatar.avatarCompressed ?? accountInfo.avatar.avatar" />
     </template>
 
     <template #post>
-      <post />
+      <Post />
     </template>
 
     <template #projects>
-      <projects />
+      <Projects />
     </template>
 
-    <template #employees>
-      <employees
-        :employees="employees"
+    <template v-if="projectEmployees" #employees>
+      <Employees
+        v-if="projectEmployees"
+        :employees="projectEmployees"
       />
     </template>
   </profile-layout>

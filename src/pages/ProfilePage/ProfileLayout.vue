@@ -24,9 +24,9 @@ defineProps<{
         <div>
           <slot name="skills" />
         </div>
-        <div>
+        <!-- <div>
           <slot name="subscriptions" />
-        </div>
+        </div> -->
       </aside>
 
       <section class="center-container">
@@ -44,9 +44,9 @@ defineProps<{
         <div>
           <slot name="projects" />
         </div>
-        <div>
+        <!-- <div>
           <slot name="employees" />
-        </div>
+        </div> -->
       </aside>
     </main>
   </section>

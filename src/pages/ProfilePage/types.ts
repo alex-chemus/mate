@@ -11,11 +11,11 @@ export type Partner = {
   id: number
 }
 
-export type Project = {
+/*export type Project = {
   name: string,
   img?: string,
   started: string
-}
+}*/
 
 export type Employee = {
   img?: string,
@@ -80,3 +80,49 @@ export type AccountInfo = {
     registrationDate: string
   }
 }
+
+export type ProjectProduct = {
+  id: number,
+  name: string,
+  description: string,
+  image: string,
+  link: string,
+  creatorID: number,
+  creationDate: string,
+  lastEditor: string,
+  lastEditDate: string
+}
+
+export type ProjectInfo = {
+  id: number,
+  founderID: number,
+  textID: string,
+  name: string,
+  avatar: {
+    avatar: string,
+    avatarCompressed: string,
+    avatarShiftX: number,
+    avatarShiftY: number,
+    avatarScale: number
+  },
+  profileCover: {
+    profileCover: string,
+    profileCoverCompressed: null,
+    profileCoverShiftX: number,
+    profileCoverShiftY: number,
+    profileCoverScale: number,
+  },
+  slogan: string,
+  description: string,
+  social: {
+    findcreek: string,
+    [index: string]: string,
+  },
+  subscribers: number[],
+  members: number[],
+  partners: number[],
+  foundationDate: string,
+  products: ProjectProduct[],
+  links: string[]
+}
+

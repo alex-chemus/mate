@@ -1,8 +1,9 @@
+import { ref, onMounted } from 'vue'
 import { useApiState, useAuthState, useDispatch } from '@/utils'
 import { fetchActions } from '@/store/constants'
 import type { AccountInfo } from '../types'
 
-const useFetchGetInfo = () => {
+const useAccountInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -10,14 +11,7 @@ const useFetchGetInfo = () => {
   const body = new FormData()
   body.append('token', authState.value.token as string)
 
-  return async () => {
-    /*const res = await fetch(`${apiState.value.apiUrl}/mate/account.getInfo/`, {
-      method: 'POST',
-      body
-    })
-    const data = await res.json()*/
-    //return data.response as AccountInfo
-
+  const fetchAccountInfo = async () => {
     if (!authState.value.token) return null
 
     return (await dispatch(fetchActions.FETCH, {
@@ -28,6 +22,14 @@ const useFetchGetInfo = () => {
       }
     })) as AccountInfo
   }
+
+  const accountInfo = ref<AccountInfo | null>(null)
+
+  onMounted(async () => {
+    accountInfo.value = await fetchAccountInfo()
+  })
+
+  return accountInfo
 }
 
-export default useFetchGetInfo
+export default useAccountInfo

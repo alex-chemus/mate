@@ -1,8 +1,9 @@
+import { ref, onMounted } from 'vue'
 import { useApiState, useAuthState, useDispatch } from '@/utils'
 import { fetchActions } from '@/store/constants'
-import type { ProjectInfo } from '../types'
+import type { AccountInfo } from '../types'
 
-const useFetchProjectInfo = () => {
+const useAccountInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -10,19 +11,25 @@ const useFetchProjectInfo = () => {
   const body = new FormData()
   body.append('token', authState.value.token as string)
 
-  return async (id: string) => {
+  const fetchAccountInfo = async () => {
     if (!authState.value.token) return null
 
-    body.append('projectsIDs', id)
-
     return (await dispatch(fetchActions.FETCH, {
-      url: `${apiState.value.apiUrl}/mate/project.getInfo/`,
+      url: `${apiState.value.apiUrl}/mate/account.getInfo/`,
       info: {
         method: 'POST',
         body
       }
-    }))[0] as ProjectInfo
+    })) as AccountInfo
   }
+
+  const accountInfo = ref<AccountInfo | null>(null)
+
+  onMounted(async () => {
+    accountInfo.value = await fetchAccountInfo()
+  })
+
+  return accountInfo
 }
 
-export default useFetchProjectInfo
+export default useAccountInfo
