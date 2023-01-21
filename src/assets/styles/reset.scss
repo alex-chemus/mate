@@ -94,3 +94,21 @@ select {
 .ant-popover-arrow {
   display: none !important;
 }
+
+// modal
+
+.ant-modal-content {
+  background-color: transparent !important;
+}
+
+.ant-modal-body {
+  padding: 0 !important;
+}
+
+.ant-modal-footer {
+  display: none !important;
+}
+
+.ant-modal-close {
+  display: none !important;
+}

@@ -132,7 +132,15 @@ const skills = computed(() => {
     </template>
 
     <template #bio>
-      <Bio :bio="accountInfo.bio" />
+      <Bio
+        :bio="accountInfo.bio"
+        :email="accountInfo.email"
+        :specialties="accountInfo.specialties.map(s => s.rusName)"
+        :registration-date="accountInfo.additionalData.registrationDate"
+        :phone="accountInfo.contacts.phone"
+        :city="accountInfo.address.cityRusName"
+        :skills="accountInfo.skills"
+      />
     </template>
 
     <template #new-post>

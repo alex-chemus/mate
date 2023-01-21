@@ -1,19 +1,48 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 import { useTheme } from '@/utils'
+import { Modal } from 'ant-design-vue'
+import ProfileInfo from './ProfileInfo.vue'
 
 defineProps<{
-  bio: string
+  bio: string,
+  email: string,
+  specialties: string[],
+  registrationDate: string,
+  phone: string,
+  city: string,
+  skills: string
 }>()
 
 const { theme } = useTheme()
+
+const isOpen = ref(false)
 </script>
 
 <template>
   <section class="bio-section" :class="theme">
     <h5>О себе</h5>
     <p>{{ bio.length === 0 ? 'Расскажите о себе' : bio }}</p>
+    <button class="info-button" :class="theme" @click="isOpen = true">
+      <svg width="16" height="16" viewBox="0 0 16 16">
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-info-circle" />
+      </svg>
+      <span>Подробнее</span>
+    </button>
   </section>
+
+  <modal v-model:visible="isOpen" centered width="600px">
+    <profile-info
+      :bio="bio"
+      :email="email"
+      :specialties="specialties"
+      :registration-date="registrationDate"
+      :phone="phone"
+      :city="city"
+      :skills="skills"
+      @close="isOpen = false"
+    />
+  </modal>
 </template>
 
 <style lang="scss" scoped>
@@ -49,6 +78,25 @@ const { theme } = useTheme()
     font-size: 13px;
     line-height: 160%;
     letter-spacing: -2%;
+    margin-bottom: 6px;
+  }
+}
+
+.info-button {
+  @include flex(flex-start, center);
+  gap: 2px;
+
+  &.light {
+    color: var(--accent-1);
+  }
+
+  &.dark {
+    color: var(--accent-2);
+  }
+
+  span {
+    font-family: var(--findcreek);
+    font-size: 12px;
   }
 }
 </style>
