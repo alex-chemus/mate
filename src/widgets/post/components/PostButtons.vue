@@ -2,7 +2,7 @@
 import { defineProps, defineEmits, ref } from 'vue'
 import { useTheme } from '@/utils'
 import { Popover } from 'ant-design-vue'
-import PostPopupTemplate from './PostPopupTemplate.vue'
+import PostPopupLayout from './PostPopupLayout.vue'
 
 const { theme } = useTheme()
 
@@ -60,7 +60,7 @@ const isOpen = ref(false)
       </button>
 
       <template #content>
-        <post-popup-template />
+        <post-popup-layout />
       </template>
     </popover>
   </div>

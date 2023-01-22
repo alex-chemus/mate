@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { Post } from '@/features/post'
-import { Header } from '@/features/header'
+import { Post } from '@/widgets/post'
+import { Header } from '@/widgets/header'
 import type {
   Company, Partner, Project, Employee, AccountInfo, ProjectInfo
 } from './types'

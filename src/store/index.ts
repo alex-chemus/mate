@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import {
-  apiModule, authModule, themeModule, fetchModule
+  apiModule, authModule, themeModule, fetchModule, updateModule
 } from './modules'
 import { RootState } from './types'
 
@@ -9,7 +9,8 @@ const store = createStore<RootState>({
     auth: authModule,
     theme: themeModule,
     api: apiModule,
-    fetch: fetchModule
+    fetch: fetchModule,
+    update: updateModule
   }
 })
 

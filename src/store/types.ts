@@ -18,9 +18,14 @@ export type FetchModuleState = {
   errorMsg: string | null
 }
 
+export type UpdateModuleState = {
+  update: symbol
+}
+
 export type RootState = {
   auth: AuthModuleState,
   theme: ThemeModuleState,
   api: ApiModuleState,
-  fetch: FetchModuleState
+  fetch: FetchModuleState,
+  update: UpdateModuleState
 }

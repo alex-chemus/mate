@@ -1,5 +1,7 @@
-import { ref, onMounted } from 'vue'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
+import { ref, onMounted, watch } from 'vue'
+import {
+  useApiState, useAuthState, useDispatch, useUpdate
+} from '@/utils'
 import { fetchActions } from '@/store/constants'
 import type { AccountInfo } from '../types'
 
@@ -7,6 +9,7 @@ const useAccountInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
+  const { update } = useUpdate()
 
   const body = new FormData()
   body.append('token', authState.value.token as string)
@@ -26,6 +29,10 @@ const useAccountInfo = () => {
   const accountInfo = ref<AccountInfo | null>(null)
 
   onMounted(async () => {
+    accountInfo.value = await fetchAccountInfo()
+  })
+
+  watch(update, async () => {
     accountInfo.value = await fetchAccountInfo()
   })
 

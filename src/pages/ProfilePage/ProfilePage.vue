@@ -2,8 +2,8 @@
 import {
   ref, onMounted, computed, watch
 } from 'vue'
-import { Post } from '@/features/post'
-import { Header } from '@/features/header'
+import { Post } from '@/widgets/post'
+import { Header } from '@/widgets/header'
 import type {
   Company, Partner, Employee, AccountInfo, ProjectInfo
 } from './types'

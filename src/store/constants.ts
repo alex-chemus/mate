@@ -15,3 +15,7 @@ export enum fetchActions {
   SET_ERROR = 'FETCH__SET_ERROR',
   FETCH = 'FETCH__FETCH'
 }
+
+export enum updateActions {
+  SET_UPDATE = 'SET_UPDATE'
+}

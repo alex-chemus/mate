@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { useTheme } from '@/utils'
+import { useTheme, useUpdate } from '@/utils'
 import ThemeSwitcher from './ThemeSwitcher.vue'
 
 defineProps<{
@@ -10,6 +10,7 @@ defineProps<{
 }>()
 
 const { theme, toggleTheme } = useTheme()
+const { update, setUpdate } = useUpdate()
 </script>
 
 <template>
@@ -22,7 +23,7 @@ const { theme, toggleTheme } = useTheme()
       </div>
     </div>
 
-    <button class="button" :class="theme">
+    <button class="button" :class="theme" @click="setUpdate()">
       <svg width="24" height="25" viewBox="0 0 24 24">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-settings" />
       </svg>
