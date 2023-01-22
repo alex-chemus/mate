@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/utils'
+import { ModalTemplate } from '@/ui'
 
 defineProps<{
   bio: string,
@@ -20,7 +21,108 @@ const { theme } = useTheme()
 </script>
 
 <template>
-  <section class="info-modal" :class="theme">
+  <modal-template @close="emit('close')">
+    <h5 class="title" :class="theme">Подробная информация о пользователе</h5>
+
+    <ul class="content-list">
+      <li v-if="bio.length" class="content-item">
+        <svg
+          class="icon" :class="theme"
+          width="24" height="24" viewBox="0 0 24 24"
+        >
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-notes" />
+        </svg>
+        <div class="content-wrapper">
+          <h6 :class="theme">О себе</h6>
+          <p :class="theme">{{ bio }}</p>
+        </div>
+      </li>
+
+      <li v-if="email.length" class="content-item">
+        <svg
+          class="icon" :class="theme"
+          width="24" height="24" viewBox="0 0 24 24"
+        >
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-mail" />
+        </svg>
+        <div class="content-wrapper">
+          <h6 :class="theme">Электронная почта</h6>
+          <p :class="theme">{{ email }}</p>
+        </div>
+      </li>
+
+      <li class="content-item">
+        <svg
+          class="icon" :class="theme"
+          width="24" height="24" viewBox="0 0 24 24"
+        >
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-hammer" />
+        </svg>
+        <div class="content-wrapper">
+          <h6 :class="theme">Специальности</h6>
+          <p :class="theme">{{ specialties.join(', ') }}</p>
+        </div>
+      </li>
+
+      <li v-if="registrationDate" class="content-item">
+        <svg
+          class="icon" :class="theme"
+          width="24" height="24" viewBox="0 0 24 24"
+        >
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-registered" />
+        </svg>
+        <div class="content-wrapper">
+          <h6 :class="theme">Был зарегистрирован на платформе</h6>
+          <p :class="theme">{{ registrationDate }}</p>
+        </div>
+      </li>
+
+      <li v-if="city.length | phone.length" class="content-item">
+        <svg
+          class="icon" :class="theme"
+          width="24" height="24" viewBox="0 0 24 24"
+        >
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-id-badge-2" />
+        </svg>
+        <div class="content-wrapper">
+          <h6 :class="theme">Личная информация</h6>
+          <div class="personal-info-wrapper">
+            <template v-if="phone">
+              <p :class="theme">Номер телефона:</p>
+              <p class="colored" :class="theme">{{ phone }}</p>
+            </template>
+            <template v-if="city">
+              <p :class="theme">Город:</p>
+              <p class="colored" :class="theme">{{ city }}</p>
+            </template>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div v-if="skills.length" class="skills-container">
+      <svg
+        class="icon" :class="theme"
+        width="24" height="24" viewBox="0 0 24 24"
+      >
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-id-badge-2" />
+      </svg>
+
+      <div class="skills-wrapper">
+        <h6 :class="theme">Навыки</h6>
+        <ul class="skills-list">
+          <li
+            v-for="(skill, i) in skills.split(', ')" :key="i"
+            class="skill-item" :class="theme"
+          >
+            {{ skill }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </modal-template>
+
+  <!-- <section class="info-modal" :class="theme">
     <div class="header-wrapper">
       <h5 class="title" :class="theme">Подробная информация о пользователе</h5>
       <button @click="emit('close')" class="close-button" :class="theme">
@@ -126,36 +228,37 @@ const { theme } = useTheme()
         </ul>
       </div>
     </div>
-  </section>
+  </section> -->
 </template>
 
 <style lang="scss" scoped>
 @use 'sass:color';
 @import '@/assets/styles/style.scss';
 
-.info-modal {
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 13px;
+// .info-modal {
+//   margin: 0 auto;
+//   padding: 20px;
+//   border-radius: 13px;
 
-  &.light {
-    background-color: var(--light);
-  }
+//   &.light {
+//     background-color: var(--light);
+//   }
 
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
-}
+//   &.dark {
+//     background-color: var(--dark-theme-color-2);
+//   }
+// }
 
-.header-wrapper {
-  @include flex(space-between, center);
-  margin-bottom: 25px;
-}
+// .header-wrapper {
+//   @include flex(space-between, center);
+//   margin-bottom: 25px;
+// }
 
 .title {
   font-family: var(--findcreek-medium);
   font-weight: var(--medium);
   font-size: 14px;
+  margin-bottom: 25px;
 
   &.light {
     color: var(--dark-1);
@@ -166,15 +269,15 @@ const { theme } = useTheme()
   }
 }
 
-.close-button {
-  color: var(--gray-2);
-  transition: var(--fast);
+// .close-button {
+//   color: var(--gray-2);
+//   transition: var(--fast);
 
-  &:hover,
-  &:focus {
-    color: var(--gray-1)
-  }
-}
+//   &:hover,
+//   &:focus {
+//     color: var(--gray-1)
+//   }
+// }
 
 .content-list {
   @include flex(flex-start, stretch, column);

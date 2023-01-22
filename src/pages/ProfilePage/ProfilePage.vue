@@ -12,7 +12,7 @@ import {
   ProfileCard, Projects, Skills, Subscriptions
 } from './components'
 import ProfileLayout from './ProfileLayout.vue'
-import { useAccountInfo, useFetchProjectsInfo } from './api'
+import { useAccountInfo, useFetchProjectsInfo } from './hooks'
 
 //const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')

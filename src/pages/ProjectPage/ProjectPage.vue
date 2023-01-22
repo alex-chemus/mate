@@ -11,7 +11,7 @@ import {
   NewPost, Projects, Employees
 } from './components'
 import ProfileLayout from './ProjectLayout.vue'
-import { useAccountInfo, useProjectInfo } from './api'
+import { useAccountInfo, useProjectInfo } from './hooks'
 
 const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
