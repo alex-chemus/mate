@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 import { useTheme, useUpdate } from '@/utils'
+import { ProfileSettings } from '@/widgets/profileSettings'
 import ThemeSwitcher from './ThemeSwitcher.vue'
 
 defineProps<{
@@ -11,6 +12,8 @@ defineProps<{
 
 const { theme, toggleTheme } = useTheme()
 const { update, setUpdate } = useUpdate()
+
+const isProfileOpen = ref(false)
 </script>
 
 <template>
@@ -23,7 +26,7 @@ const { update, setUpdate } = useUpdate()
       </div>
     </div>
 
-    <button class="button" :class="theme" @click="setUpdate()">
+    <button class="button" :class="theme" @click="isProfileOpen = !isProfileOpen">
       <svg width="24" height="25" viewBox="0 0 24 24">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-settings" />
       </svg>
@@ -48,6 +51,11 @@ const { update, setUpdate } = useUpdate()
       Выйти из аккаунта
     </button>
   </div>
+
+  <profile-settings
+    :is-open="isProfileOpen"
+    @toggle="payload => isProfileOpen = payload"
+  />
 </template>
 
 <style lang="scss" scoped>

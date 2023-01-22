@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, ref } from 'vue'
-import { useTheme } from '@/utils'
 import { Modal } from 'ant-design-vue'
+import { useTheme } from '@/utils'
 import ProfileInfo from './ProfileInfo.vue'
 
 defineProps<{

@@ -47,6 +47,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 10;
   color: var(--gray-2);
   transition: var(--fast);
 
