@@ -1,15 +1,7 @@
 <script lang="ts" setup>
-import { useTheme } from '@/utils'
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 import { Popover } from 'ant-design-vue'
-import type { Notice } from '../types'
-import NotificationsPopup from './NotificationsPopup.vue'
 
-defineProps<{
-  notices: Notice[]
-}>()
-
-const { theme } = useTheme()
 const isOpen = ref(false)
 </script>
 
@@ -22,7 +14,7 @@ const isOpen = ref(false)
     </button>
 
     <template #content>
-      <notifications-popup :notices="notices" />
+      <slot />
     </template>
   </popover>
 </template>

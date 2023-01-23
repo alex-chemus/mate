@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { CustomButton, Search } from '@/ui'
-import { useTheme } from '@/utils';
+import { Button } from '@/ui'
+import { useTheme } from '@/utils'
+import Search from './Search.vue'
 
 const { theme } = useTheme()
 </script>
@@ -48,8 +49,8 @@ const { theme } = useTheme()
       </div>
 
       <div class="button-wrapper">
-        <custom-button>Узнать больше</custom-button>
-        <custom-button :is-primary="true">Ответить</custom-button>
+        <Button>Узнать больше</Button>
+        <Button :is-primary="true">Ответить</Button>
       </div>
 
       <div class="info-wrapper">

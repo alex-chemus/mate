@@ -2,11 +2,12 @@
 import {
   defineProps, defineEmits, ref
 } from 'vue'
-import ProfileSettingsLayout from './ProfileSettingsLayout.vue'
+import { useUpdate } from '@/utils'
+import ProfileSettingsLayout from './SettingsLayout.vue'
 import { useAccountInfo } from './hooks'
 import type { Tab } from './types'
 import {
-  UserCard, Tabs
+  UserCard, Tabs, SaveButton
 } from './components'
 
 const props = defineProps<{
@@ -20,6 +21,7 @@ const emit = defineEmits<{
   (e: 'toggle', payload: boolean): void
 }>()
 
+const { setUpdate } = useUpdate()
 const { getFullName, getEmail, getImg } = useAccountInfo(props)
 
 const currentTab = ref<Tab>('general')
@@ -41,6 +43,10 @@ const currentTab = ref<Tab>('general')
         :current-tab="currentTab"
         @change="payload => currentTab = payload"
       />
+    </template>
+
+    <template #save-button>
+      <save-button @click="setUpdate()" />
     </template>
   </profile-settings-layout>
 </template>

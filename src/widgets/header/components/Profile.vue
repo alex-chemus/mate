@@ -2,12 +2,11 @@
 import { ref, defineProps } from 'vue'
 import { Popover } from 'ant-design-vue'
 import { useTheme } from '@/utils'
-import ProfilePopup from './ProfilePopup.vue'
 
 defineProps<{
   img: string,
   fullName: string,
-  email: string
+  email: string,
 }>()
 
 const { theme } = useTheme()
@@ -30,11 +29,13 @@ const isOpen = ref(false)
     </button>
 
     <template #content>
-      <profile-popup
+      <!-- <profile-popup
         :img="img"
         :full-name="fullName"
         :email="email"
-      />
+        :settings-open="settingsOpen"
+      /> -->
+      <slot />
     </template>
   </popover>
 </template>

@@ -31,6 +31,9 @@ const { theme } = useTheme()
         <section class="main-section">
           <slot name="title" />
           <slot name="main-content" />
+          <div class="save-button-wrapper">
+            <slot name="save-button" />
+          </div>
         </section>
       </section>
     </modal-layout>
@@ -45,6 +48,7 @@ const { theme } = useTheme()
   grid-template-columns: 260px 1fr;
   grid-gap: 55px;
   //padding-top: 20px;
+  min-height: 700px;
 }
 
 aside {
@@ -72,5 +76,9 @@ aside h6 {
   @include flex(flex-start, stretch, column);
   gap: 20px;
   padding-top: 10px;
+}
+
+.save-button-wrapper {
+  margin-top: auto;
 }
 </style>

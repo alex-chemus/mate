@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { AuthButton } from '@/ui'
+//import { AuthButton } from '@/ui'
+import AuthButton from './AuthButton.vue'
 </script>
 
 

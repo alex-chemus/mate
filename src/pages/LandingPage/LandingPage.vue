@@ -1,14 +1,8 @@
 <script lang="ts" setup>
-import { AuthButton } from '@/ui'
-import { useTheme } from '@/utils';
-/*import {
-  GoogleAuthButton, VkAuthButton, AppleAuthButton,
-  FacebookAuthButton, LandingHeader, LandingFooter,
-  LandingSlider
-} from '@/features/landing'*/
+import { useTheme } from '@/utils'
 import {
   GoogleAuthButton, VkAuthButton, AppleAuthButton, FacebookAuthButton,
-  LandingHeader, LandingFooter, SliderContainer
+  LandingHeader, LandingFooter, SliderContainer, AuthButton
 } from './components'
 
 const { theme } = useTheme()

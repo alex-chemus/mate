@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { ThemeSwitcher, Logo } from '@/ui'
+import { Logo } from '@/ui'
 import { useTheme } from '@/utils'
+import ThemeSwitcher from './ThemeSwitcher.vue'
 
 const { theme } = useTheme()
 </script>

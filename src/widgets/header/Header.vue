@@ -2,8 +2,10 @@
 import { defineProps } from 'vue'
 import HeaderLayout from './HeaderLayout.vue'
 import {
-  Search, Tabs, Profile, Notifications
+  Search, Tabs, Profile, Notifications,
+  ProfilePopup, NotificationsPopup
 } from './components'
+import { useSettings } from './hooks'
 import type { Notice } from './types'
 
 defineProps<{
@@ -11,6 +13,9 @@ defineProps<{
   fullName?: string,
   email?: string
 }>()
+
+// const { notificationsOpen, toggleNotifications } = useNotifications()
+const { settingsOpen, toggleSettings } = useSettings()
 
 const notices: Notice[] = [
   {
@@ -48,7 +53,9 @@ const notices: Notice[] = [
     </template>
 
     <template #notifications>
-      <notifications :notices="notices" />
+      <notifications>
+        <notifications-popup :notices="notices" />
+      </notifications>
     </template>
 
     <template #profile>
@@ -56,15 +63,15 @@ const notices: Notice[] = [
         :img="(img as string)"
         :full-name="fullName ?? 'noname'"
         :email="email ?? 'noname@mail.ru'"
-      />
+      >
+        <profile-popup
+          :img="(img as string)"
+          :full-name="fullName ?? 'noname'"
+          :email="email ?? 'noname@mail.ru'"
+          :settings-open="settingsOpen"
+          @toggle-settings="toggleSettings"
+        />
+      </profile>
     </template>
-
-    <!-- <template #profile-popup>
-      <header-profile
-        :img="(img as string)"
-        :full-name="fullName ?? 'noname'"
-        :email="email ?? 'noname@mail.ru'"
-      />
-    </template> -->
   </header-layout>
 </template>

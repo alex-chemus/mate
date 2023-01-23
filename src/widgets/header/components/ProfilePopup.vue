@@ -1,19 +1,23 @@
 <script lang="ts" setup>
-import { defineProps, ref } from 'vue'
-import { useTheme, useUpdate } from '@/utils'
-import { ProfileSettings } from '@/widgets/profileSettings'
+import { defineProps, defineEmits } from 'vue'
+import { useTheme } from '@/utils'
+import { Settings } from '@/widgets/settings'
 import ThemeSwitcher from './ThemeSwitcher.vue'
 
 defineProps<{
   img: string,
   fullName: string,
-  email: string
+  email: string,
+  settingsOpen: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: 'toggle-settings', payload: boolean): void
 }>()
 
 const { theme, toggleTheme } = useTheme()
-const { update, setUpdate } = useUpdate()
 
-const isProfileOpen = ref(false)
+//const isProfileOpen = ref(false)
 </script>
 
 <template>
@@ -26,7 +30,7 @@ const isProfileOpen = ref(false)
       </div>
     </div>
 
-    <button class="button" :class="theme" @click="isProfileOpen = !isProfileOpen">
+    <button class="button" :class="theme" @click="emit('toggle-settings', !settingsOpen)">
       <svg width="24" height="25" viewBox="0 0 24 24">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-settings" />
       </svg>
@@ -52,9 +56,12 @@ const isProfileOpen = ref(false)
     </button>
   </div>
 
-  <profile-settings
-    :is-open="isProfileOpen"
-    @toggle="payload => isProfileOpen = payload"
+  <settings
+    :is-open="settingsOpen"
+    :full-name="fullName"
+    :email="email"
+    :img="img"
+    @toggle="payload => emit('toggle-settings', payload)"
   />
 </template>
 
