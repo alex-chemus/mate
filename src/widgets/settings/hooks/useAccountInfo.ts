@@ -7,14 +7,11 @@ import {
 import { fetchActions } from '@/store/constants'
 import { AccountInfo } from '../types'
 
-type Props = Readonly<{
-  isOpen: boolean,
+const useAccountInfo = (props: Readonly<{
   fullName?: string,
   email?: string,
   img?: string
-}>
-
-const useAccountInfo = (props: Props) => {
+}>) => {
   if (props.email && props.fullName && props.img) {
     return {
       getFullName: computed(() => props.fullName),

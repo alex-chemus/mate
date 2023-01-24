@@ -1,23 +1,19 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/utils'
-import { Settings } from '@/widgets/settings'
 import ThemeSwitcher from './ThemeSwitcher.vue'
 
 defineProps<{
   img: string,
   fullName: string,
   email: string,
-  settingsOpen: boolean
 }>()
 
 const emit = defineEmits<{
-  (e: 'toggle-settings', payload: boolean): void
+  (e: 'open-settings'): void
 }>()
 
 const { theme, toggleTheme } = useTheme()
-
-//const isProfileOpen = ref(false)
 </script>
 
 <template>
@@ -30,7 +26,7 @@ const { theme, toggleTheme } = useTheme()
       </div>
     </div>
 
-    <button class="button" :class="theme" @click="emit('toggle-settings', !settingsOpen)">
+    <button class="button" :class="theme" @click="emit('open-settings')">
       <svg width="24" height="25" viewBox="0 0 24 24">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-settings" />
       </svg>
@@ -55,14 +51,6 @@ const { theme, toggleTheme } = useTheme()
       Выйти из аккаунта
     </button>
   </div>
-
-  <settings
-    :is-open="settingsOpen"
-    :full-name="fullName"
-    :email="email"
-    :img="img"
-    @toggle="payload => emit('toggle-settings', payload)"
-  />
 </template>
 
 <style lang="scss" scoped>

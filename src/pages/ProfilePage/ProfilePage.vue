@@ -4,6 +4,7 @@ import {
 } from 'vue'
 import { Post } from '@/widgets/post'
 import { Header } from '@/widgets/header'
+import { Settings } from '@/widgets/settings'
 import type {
   Company, Partner, Employee, AccountInfo, ProjectInfo
 } from './types'
@@ -71,7 +72,6 @@ const accountInfo = useAccountInfo()
 
 const fetchProjectsInfo = useFetchProjectsInfo()
 const projectsInfo = ref<ProjectInfo[] | null>(null)
-//const hasProjects = ref<boolean | null>(null)
 const hasProjects = computed(() => {
   if (!accountInfo.value) return null
   return !!accountInfo.value.projectsMember.length
@@ -95,6 +95,13 @@ const skills = computed(() => {
 </script>
 
 <template>
+  <settings
+    v-if="accountInfo"
+    :full-name="`${accountInfo.firstName} ${accountInfo.lastName}`"
+    :email="accountInfo.email"
+    :img="accountInfo.avatar.avatarCompressed"
+  />
+
   <profile-layout v-if="accountInfo" :loading="!accountInfo">
     <template #header>
       <Header

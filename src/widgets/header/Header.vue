@@ -15,7 +15,7 @@ defineProps<{
 }>()
 
 // const { notificationsOpen, toggleNotifications } = useNotifications()
-const { settingsOpen, toggleSettings } = useSettings()
+const { openSettings } = useSettings()
 
 const notices: Notice[] = [
   {
@@ -68,8 +68,7 @@ const notices: Notice[] = [
           :img="(img as string)"
           :full-name="fullName ?? 'noname'"
           :email="email ?? 'noname@mail.ru'"
-          :settings-open="settingsOpen"
-          @toggle-settings="toggleSettings"
+          @open-settings="openSettings"
         />
       </profile>
     </template>

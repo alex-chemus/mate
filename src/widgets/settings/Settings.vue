@@ -1,34 +1,26 @@
 <script lang="ts" setup>
-import {
-  defineProps, defineEmits, ref
-} from 'vue'
+import { defineProps } from 'vue'
 import { useUpdate } from '@/utils'
 import ProfileSettingsLayout from './SettingsLayout.vue'
-import { useAccountInfo } from './hooks'
-import type { Tab } from './types'
+import { useAccountInfo, useTabs } from './hooks'
 import {
   UserCard, Tabs, SaveButton
 } from './components'
 
 const props = defineProps<{
-  isOpen: boolean,
+  //isOpen: boolean,
   fullName?: string,
   email?: string,
   img?: string
 }>()
 
-const emit = defineEmits<{
-  (e: 'toggle', payload: boolean): void
-}>()
-
 const { setUpdate } = useUpdate()
+const { currentTab, toggleTabs } = useTabs()
 const { getFullName, getEmail, getImg } = useAccountInfo(props)
-
-const currentTab = ref<Tab>('general')
 </script>
 
 <template>
-  <profile-settings-layout :visible="isOpen" @toggle="payload => emit('toggle', payload)">
+  <profile-settings-layout :visible="!!currentTab" @toggle="toggleTabs(null)">
     <template #user-card>
       <user-card
         v-if="getFullName && getImg && getEmail"
@@ -40,8 +32,9 @@ const currentTab = ref<Tab>('general')
 
     <template #tabs>
       <tabs
+        v-if="currentTab"
         :current-tab="currentTab"
-        @change="payload => currentTab = payload"
+        @change="toggleTabs"
       />
     </template>
 
