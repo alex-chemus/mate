@@ -37,6 +37,7 @@
     "no-shadow": "off",
     "arrow-body-style": "off",
     "quotes": "warn",
-    "symbol-description": "off"
+    "symbol-description": "off",
+    "import/no-unresolved": "off"
   }
 }

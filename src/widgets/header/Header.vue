@@ -5,16 +5,17 @@ import {
   Search, Tabs, Profile, Notifications,
   ProfilePopup, NotificationsPopup
 } from './components'
-import { useSettings } from './hooks'
+import { useSettings, useAccountInfo } from './hooks'
 import type { Notice } from './types'
 
-defineProps<{
+const props = defineProps<{
   img?: string,
   fullName?: string,
   email?: string
 }>()
 
-// const { notificationsOpen, toggleNotifications } = useNotifications()
+const { getImg, getFullName, getEmail } = useAccountInfo(props)
+
 const { openSettings } = useSettings()
 
 const notices: Notice[] = [
@@ -60,14 +61,15 @@ const notices: Notice[] = [
 
     <template #profile>
       <profile
-        :img="(img as string)"
-        :full-name="fullName ?? 'noname'"
-        :email="email ?? 'noname@mail.ru'"
+        v-if="getFullName && getImg && getEmail"
+        :img="getImg"
+        :full-name="getFullName"
+        :email="getEmail"
       >
         <profile-popup
-          :img="(img as string)"
-          :full-name="fullName ?? 'noname'"
-          :email="email ?? 'noname@mail.ru'"
+          :img="getImg"
+          :full-name="getFullName"
+          :email="getEmail"
           @open-settings="openSettings"
         />
       </profile>
