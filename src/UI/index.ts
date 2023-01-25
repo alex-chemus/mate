@@ -1,6 +1,0 @@
-export { default as Logo } from './Logo.vue'
-export { default as Button } from './Button.vue'
-export { default as Search } from '../pages/LandingPage/components/Search.vue'
-export { default as MoreButton } from './MoreButton.vue'
-export { default as Loader } from './Loader.vue'
-export { default as ModalLayout } from './ModalLayout.vue'
