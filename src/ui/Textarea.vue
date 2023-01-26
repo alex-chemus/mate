@@ -5,6 +5,7 @@ import { useTheme } from '@/utils'
 const props = defineProps<{
   value?: string,
   placeholder?: string,
+  labelText?: string,
   theme?: 'light' | 'dark'
 }>()
 
@@ -16,13 +17,16 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 </script>
 
 <template>
-  <textarea
-    class="textarea" :class="theme"
-    :value="value ?? ''"
-    :placeholder="placeholder ?? ''"
-    @input="e => emit('update:value', (e.target as HTMLTextAreaElement).value)"
-    rows="6"
-  />
+  <label>
+    <p v-if="labelText" class="label" :class="theme">{{ labelText }}</p>
+    <textarea
+      class="textarea" :class="theme"
+      :value="value ?? ''"
+      :placeholder="placeholder ?? ''"
+      @input="e => emit('update:value', (e.target as HTMLTextAreaElement).value)"
+      rows="6"
+    />
+  </label>
 </template>
 
 <style lang="scss" scoped>
@@ -60,6 +64,20 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   &.dark:focus {
     border: 1px solid #55B1FF;
     outline: none;
+  }
+}
+
+.label {
+  font-family: var(--findcreek-medium, $findcreek-medium);
+  font-size: 13px;
+  margin: 0 0 6px 10px;
+
+  &.light {
+    color: #5c5c5c;
+  }
+
+  &.dark {
+    color: #bbb;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
 import { Modal } from 'ant-design-vue'
-import { ModalLayout } from '@/ui'
+import { ModalLayout } from '@/hocs'
 import { useTheme } from '@/utils'
 
 defineProps<{
@@ -29,7 +29,9 @@ const { theme } = useTheme()
         </aside>
 
         <section class="main-section">
-          <slot name="title" />
+          <h2 class="title" :class="theme">
+            <slot name="title" />
+          </h2>
           <slot name="main-content" />
           <div class="save-button-wrapper">
             <slot name="save-button" />
@@ -47,7 +49,7 @@ const { theme } = useTheme()
   display: grid;
   grid-template-columns: 260px 1fr;
   grid-gap: 55px;
-  //padding-top: 20px;
+  padding-right: 20px;
   min-height: 700px;
 }
 
@@ -74,11 +76,24 @@ aside h6 {
 
 .main-section {
   @include flex(flex-start, stretch, column);
-  gap: 20px;
+  gap: 30px;
   padding-top: 10px;
 }
 
 .save-button-wrapper {
   margin-top: auto;
+}
+
+.title {
+  font-family: var(--findcreek-medium);
+  font-size: 18px;
+
+  &.light {
+    color: var(--dark-1);
+  }
+
+  &.dark {
+    color: var(--light);
+  }
 }
 </style>

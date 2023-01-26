@@ -1,5 +1,5 @@
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { Tab } from '../types'
 
 const useTabs = () => {
@@ -8,13 +8,7 @@ const useTabs = () => {
   const currentTab = ref<Tab | null>(null)
 
   onMounted(() => {
-    console.log('has been mounted')
-  })
-
-  onMounted(() => {
     const hasSettings = Object.keys(route.query).includes('settings')
-
-    console.log('has settings: ', hasSettings)
 
     if (!hasSettings) currentTab.value = null
 
@@ -87,7 +81,26 @@ const useTabs = () => {
       router.push({ path: route.path })
   }
 
-  return { currentTab, toggleTabs }
+  const currentTitle = computed(() => {
+    switch (currentTab.value) {
+      case 'general':
+        return 'Редактировать основную информацию'
+
+      case 'profile':
+        return 'Редактировать профиль'
+
+      case 'project':
+        return 'Редактировать профиль проекта'
+
+      case 'privacy':
+        return 'Безопасность'
+
+      default:
+        return null
+    }
+  })
+
+  return { currentTab, toggleTabs, currentTitle }
 }
 
 export default useTabs

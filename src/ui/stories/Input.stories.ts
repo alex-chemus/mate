@@ -49,6 +49,12 @@ WithValue.args = {
   value: 'value'
 }
 
+export const WithLabel = LightTemplate.bind({})
+WithLabel.args = {
+  theme: 'light',
+  labelText: 'This is label'
+}
+
 export const WithPlaceholder = LightTemplate.bind({})
 WithPlaceholder.args = {
   theme: 'light',

@@ -1,11 +1,12 @@
 import { ref, onMounted, watch } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, useUpdate
-} from '@/utils'
 import { fetchActions } from '@/store/constants'
-import type { AccountInfo } from '../types'
+import useApiState from './useApiState'
+import useAuthState from './useAuthState'
+import useDispatch from './useDispatch'
+import useUpdate from './useUpdate'
+import type { FullAccountInfo } from './types'
 
-const useAccountInfo = () => {
+const useFullAccountInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -23,20 +24,20 @@ const useAccountInfo = () => {
         method: 'POST',
         body
       }
-    })) as AccountInfo
+    })) as FullAccountInfo
   }
 
-  const accountInfo = ref<AccountInfo | null>(null)
+  const fullAccountInfo = ref<FullAccountInfo | null>(null)
 
   onMounted(async () => {
-    accountInfo.value = await fetchAccountInfo()
+    fullAccountInfo.value = await fetchAccountInfo()
   })
 
   watch(update, async () => {
-    accountInfo.value = await fetchAccountInfo()
+    fullAccountInfo.value = await fetchAccountInfo()
   })
 
-  return accountInfo
+  return fullAccountInfo
 }
 
-export default useAccountInfo
+export default useFullAccountInfo

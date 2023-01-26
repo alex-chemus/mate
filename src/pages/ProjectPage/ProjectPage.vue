@@ -1,19 +1,17 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
 import { Post } from '@/widgets/post'
 import { Header } from '@/widgets/header'
-import type {
-  Company, Partner, Project, Employee, AccountInfo, ProjectInfo
-} from './types'
+import { useFullAccountInfo } from '@/utils'
+import type { Company, Partner } from './types'
 import {
   ProfileCard, Subscriptions, Partners, About,
   NewPost, Projects, Employees
 } from './components'
 import ProfileLayout from './ProjectLayout.vue'
-import { useAccountInfo, useProjectInfo } from './hooks'
+import { useProjectInfo } from './hooks'
 
-const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
+//const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
 const following = ref('67')
 const subscriptions = ref<Company[]>([
@@ -31,12 +29,12 @@ const partners = ref<Partner[]>([
   { link: '/profile', id: 6 },
   { link: '/profile', id: 7 }
 ])
-const projects = ref<Project[]>([
-  {
-    name: 'FINDCREEK Mate',
-    started: '22.07.22'
-  }
-])
+// const projects = ref<Project[]>([
+//   {
+//     name: 'FINDCREEK Mate',
+//     started: '22.07.22'
+//   }
+// ])
 // const employees = ref<Employee[]>([
 //   {
 //     fullName: 'Александр Соромотин',
@@ -55,17 +53,17 @@ const projects = ref<Project[]>([
 //   }
 // ])
 
-const accountInfo = useAccountInfo()
+const fullAccountInfo = useFullAccountInfo()
 const { projectInfo, projectEmployees } = useProjectInfo()
 </script>
 
 <template>
-  <profile-layout v-if="accountInfo && projectInfo" :loading="!accountInfo || !projectInfo">
+  <profile-layout v-if="fullAccountInfo && projectInfo" :loading="!fullAccountInfo || !projectInfo">
     <template #header>
       <Header
-        :img="accountInfo.avatar.avatarCompressed"
-        :full-name="`${accountInfo.firstName} ${accountInfo.lastName}`"
-        :email="accountInfo.email"
+        :img="fullAccountInfo.avatar.avatarCompressed"
+        :full-name="`${fullAccountInfo.firstName} ${fullAccountInfo.lastName}`"
+        :email="fullAccountInfo.email"
       />
     </template>
 
@@ -97,7 +95,7 @@ const { projectInfo, projectEmployees } = useProjectInfo()
     </template>
 
     <template #new-post>
-      <new-post :img="accountInfo.avatar.avatarCompressed ?? accountInfo.avatar.avatar" />
+      <new-post :img="fullAccountInfo.avatar.avatarCompressed ?? fullAccountInfo.avatar.avatar" />
     </template>
 
     <template #post>

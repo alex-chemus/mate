@@ -32,3 +32,9 @@ export const DarkDefault = DarkTemplate.bind({})
 DarkDefault.args = {
   theme: 'dark'
 }
+
+export const WithLabel = LightTemplate.bind({})
+WithLabel.args = {
+  theme: 'light',
+  labelText: 'This is label'
+}

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/utils'
-import { ModalLayout } from '@/ui'
+import { ModalLayout } from '@/hocs'
 
 defineProps<{
   bio: string,

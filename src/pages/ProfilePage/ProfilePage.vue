@@ -1,19 +1,16 @@
 <script lang="ts" setup>
-import {
-  ref, onMounted, computed, watch
-} from 'vue'
+import { ref, computed, watch } from 'vue'
 import { Post } from '@/widgets/post'
 import { Header } from '@/widgets/header'
 import { Settings } from '@/widgets/settings'
-import type {
-  Company, Partner, Employee, AccountInfo, ProjectInfo
-} from './types'
+import { useFullAccountInfo } from '@/utils'
+import type { Partner, ProjectInfo } from './types'
 import {
-  Bio, Employees, NewPost, Partners,
-  ProfileCard, Projects, Skills, Subscriptions
+  Bio, NewPost, Partners, ProfileCard,
+  Projects, Skills
 } from './components'
 import ProfileLayout from './ProfileLayout.vue'
-import { useAccountInfo, useFetchProjectsInfo } from './hooks'
+import { useFetchProjectsInfo } from './hooks'
 
 //const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
@@ -68,57 +65,56 @@ const partners = ref<Partner[]>([
 //   }
 // })
 
-const accountInfo = useAccountInfo()
+//const accountInfo = useAccountInfo()
+const fullAccountInfo = useFullAccountInfo()
 
 const fetchProjectsInfo = useFetchProjectsInfo()
 const projectsInfo = ref<ProjectInfo[] | null>(null)
 const hasProjects = computed(() => {
-  if (!accountInfo.value) return null
-  return !!accountInfo.value.projectsMember.length
+  if (!fullAccountInfo.value) return null
+  return !!fullAccountInfo.value.projectsMember.length
 })
 
-watch(accountInfo, async () => {
-  if (!accountInfo.value || hasProjects.value === false) return
+watch(fullAccountInfo, async () => {
+  if (!fullAccountInfo.value || hasProjects.value === false) return
 
   try {
-    projectsInfo.value = await fetchProjectsInfo(accountInfo.value.projectsMember)
+    projectsInfo.value = await fetchProjectsInfo(fullAccountInfo.value.projectsMember)
   } catch (e) {
     console.log(`error in profile: ${e}`)
   }
 })
 
 const skills = computed(() => {
-  if (!accountInfo.value) return null
-  if (accountInfo.value.skills === '') return []
-  return accountInfo.value.skills.split(', ')
+  if (!fullAccountInfo.value) return null
+  if (fullAccountInfo.value.skills === '') return []
+  return fullAccountInfo.value.skills.split(', ')
 })
 </script>
 
 <template>
   <settings
-    v-if="accountInfo"
-    :full-name="`${accountInfo.firstName} ${accountInfo.lastName}`"
-    :email="accountInfo.email"
-    :img="accountInfo.avatar.avatarCompressed"
+    v-if="fullAccountInfo"
+    :full-account-info="fullAccountInfo"
   />
 
-  <profile-layout v-if="accountInfo" :loading="!accountInfo">
+  <profile-layout v-if="fullAccountInfo" :loading="!fullAccountInfo">
     <template #header>
       <Header
-        :img="accountInfo.avatar.avatarCompressed"
-        :full-name="`${accountInfo.firstName} ${accountInfo.lastName}`"
-        :email="accountInfo.email"
+        :img="fullAccountInfo.avatar.avatarCompressed"
+        :full-name="`${fullAccountInfo.firstName} ${fullAccountInfo.lastName}`"
+        :email="fullAccountInfo.email"
       />
     </template>
 
     <template #profile-card>
       <profile-card
-        :full-name="`${accountInfo.firstName} ${accountInfo.lastName}`"
-        :img="accountInfo.avatar.avatarCompressed"
+        :full-name="`${fullAccountInfo.firstName} ${fullAccountInfo.lastName}`"
+        :img="fullAccountInfo.avatar.avatarCompressed"
         :followers="followers"
         :following="following"
-        :nickname="accountInfo.textID"
-        :banner="accountInfo.profileCover"
+        :nickname="fullAccountInfo.textID"
+        :banner="fullAccountInfo.profileCover"
       />
     </template>
 
@@ -140,18 +136,18 @@ const skills = computed(() => {
 
     <template #bio>
       <Bio
-        :bio="accountInfo.bio"
-        :email="accountInfo.email"
-        :specialties="accountInfo.specialties.map(s => s.rusName)"
-        :registration-date="accountInfo.additionalData.registrationDate"
-        :phone="accountInfo.contacts.phone"
-        :city="accountInfo.address.cityRusName"
-        :skills="accountInfo.skills"
+        :bio="fullAccountInfo.bio"
+        :email="fullAccountInfo.email"
+        :specialties="fullAccountInfo.specialties.map(s => s.rusName)"
+        :registration-date="fullAccountInfo.additionalData.registrationDate"
+        :phone="fullAccountInfo.contacts.phone"
+        :city="fullAccountInfo.address.cityRusName"
+        :skills="fullAccountInfo.skills"
       />
     </template>
 
     <template #new-post>
-      <new-post :img="accountInfo.avatar.avatarCompressed" />
+      <new-post :img="fullAccountInfo.avatar.avatarCompressed" />
     </template>
 
     <template #post>
