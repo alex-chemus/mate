@@ -3,15 +3,15 @@ import { computed } from 'vue'
 import type { RootState } from '@/store/types'
 import { updateActions } from '@/store/constants'
 
-const useUpdate = () => {
+const useGlobalUpdate = () => {
   const store = useStore<RootState>()
-  const update = computed(() => store.state.update.update)
+  const globalUpdate = computed(() => store.state.update.update)
 
-  const setUpdate = () => {
+  const setGlobalUpdate = () => {
     store.commit(updateActions.SET_UPDATE)
   }
 
-  return { update, setUpdate }
+  return { globalUpdate, setGlobalUpdate }
 }
 
-export default useUpdate
+export default useGlobalUpdate

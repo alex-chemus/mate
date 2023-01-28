@@ -3,14 +3,14 @@ import { fetchActions } from '@/store/constants'
 import useApiState from './useApiState'
 import useAuthState from './useAuthState'
 import useDispatch from './useDispatch'
-import useUpdate from './useUpdate'
+import useGlobalUpdate from './useGlobalUpdate'
 import type { FullAccountInfo } from './types'
 
 const useFullAccountInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { update } = useUpdate()
+  const { globalUpdate } = useGlobalUpdate()
 
   const body = new FormData()
   body.append('token', authState.value.token as string)
@@ -33,7 +33,7 @@ const useFullAccountInfo = () => {
     fullAccountInfo.value = await fetchAccountInfo()
   })
 
-  watch(update, async () => {
+  watch(globalUpdate, async () => {
     fullAccountInfo.value = await fetchAccountInfo()
   })
 

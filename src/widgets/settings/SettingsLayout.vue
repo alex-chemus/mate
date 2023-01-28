@@ -3,9 +3,11 @@ import { defineProps, defineEmits } from 'vue'
 import { Modal } from 'ant-design-vue'
 import { ModalLayout } from '@/hocs'
 import { useTheme } from '@/utils'
+import { Tab } from './types'
 
 defineProps<{
-  visible: boolean
+  visible: boolean,
+  currentTab?: Tab
 }>()
 
 const emit = defineEmits<{
@@ -32,7 +34,12 @@ const { theme } = useTheme()
           <h2 class="title" :class="theme">
             <slot name="title" />
           </h2>
-          <slot name="main-content" />
+          <!-- <slot name="main-content" /> -->
+
+          <div v-show="currentTab === 'general'">
+            <slot name="general-settings" />
+          </div>
+
           <div class="save-button-wrapper">
             <slot name="save-button" />
           </div>

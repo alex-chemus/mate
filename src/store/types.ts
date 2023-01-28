@@ -10,7 +10,8 @@ export type ThemeModuleState = {
 }
 
 export type ApiModuleState = {
-  apiUrl: 'https://api.findcreek.com'
+  apiUrl: 'https://api.findcreek.com',
+  cloudUlr: 'https://cloud.findcreek.com'
 }
 
 export type FetchModuleState = {

@@ -1,24 +1,35 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import { useUpdate, FullAccountInfo } from '@/utils'
+import { defineProps, ref } from 'vue'
+import { FullAccountInfo } from '@/utils'
 import { GeneralSettings } from '@/widgets/generalSettings'
 import ProfileSettingsLayout from './SettingsLayout.vue'
-import { useTabs, useAccountInfo } from './hooks'
+import { useTabs, useAccountInfo, useUpdate } from './hooks'
 import {
   UserCard, Tabs, SaveButton
 } from './components'
+import { Tab } from './types'
 
 const props = defineProps<{
   fullAccountInfo?: FullAccountInfo
 }>()
 
 const accountInfo = useAccountInfo(props)
-const { setUpdate } = useUpdate()
 const { currentTab, toggleTabs, currentTitle } = useTabs()
+const updated = useUpdate(1)
+
+const localUpdate = ref(Symbol())
+const onUpdate = () => {
+  localUpdate.value = Symbol()
+}
 </script>
 
 <template>
-  <profile-settings-layout v-if="accountInfo" :visible="!!currentTab" @toggle="toggleTabs(null)">
+  <profile-settings-layout
+    v-if="accountInfo"
+    :visible="!!currentTab"
+    @toggle="toggleTabs(null)"
+    :current-tab="(currentTab as Tab | undefined)"
+  >
     <template #user-card>
       <user-card
         :full-name="`${accountInfo.firstName} ${accountInfo.lastName}`"
@@ -40,11 +51,15 @@ const { currentTab, toggleTabs, currentTitle } = useTabs()
     </template>
 
     <template #save-button>
-      <save-button @click="setUpdate()" />
+      <save-button @click="onUpdate" />
     </template>
 
-    <template #main-content v-if="currentTab === 'general'">
-      <general-settings :full-account-info="accountInfo" />
+    <template #general-settings>
+      <general-settings
+        :full-account-info="accountInfo"
+        :update="localUpdate"
+        @was-updated="updated('general')"
+      />
     </template>
   </profile-settings-layout>
 </template>

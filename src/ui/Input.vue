@@ -42,7 +42,7 @@ const focused = ref(false)
 
 .input-wrapper {
   height: 40px;
-  padding: 14px;
+  padding: 13px;
   @include flex(space-between, center);
   gap: 15px;
   border-radius: 8px;
@@ -59,7 +59,7 @@ const focused = ref(false)
 
   &.light:hover,
   &.light.focused {
-    border: 1px solid rgb(0 10 255 / .4);
+    border: 1px solid var(--accent-1);
   }
 
   &.dark {
@@ -69,7 +69,7 @@ const focused = ref(false)
 
   &.dark:hover,
   &.dark.focused {
-    border: 1px solid #55B1FF;
+    border: 1px solid var(--accent-2);
   }
 }
 
