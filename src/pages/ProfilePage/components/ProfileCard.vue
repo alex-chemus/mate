@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import { Logo } from '@/ui'
-import { useTheme } from '@/utils'
+import { useTheme, useSettings } from '@/utils'
 
 defineProps<{
   fullName: string,
@@ -13,6 +13,8 @@ defineProps<{
 }>()
 
 const { theme } = useTheme()
+
+const { openSettings } = useSettings()
 </script>
 
 <template>
@@ -59,7 +61,7 @@ const { theme } = useTheme()
         <strong>FINDCREEK</strong>
       </button>
 
-      <button class="button edit-button" :class="theme">
+      <button @click="openSettings('profile')" class="button edit-button" :class="theme">
         <span>Редактировать профиль</span>
       </button>
 

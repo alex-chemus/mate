@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { defineProps, ref } from 'vue'
 import { FullAccountInfo } from '@/utils'
-import { GeneralSettings } from '@/widgets/generalSettings'
-import ProfileSettingsLayout from './SettingsLayout.vue'
+import { GeneralSettings, ProfileSettings } from '@/widgets'
+import SettingsLayout from './SettingsLayout.vue'
 import { useTabs, useAccountInfo, useUpdate } from './hooks'
 import {
   UserCard, Tabs, SaveButton
@@ -15,7 +15,7 @@ const props = defineProps<{
 
 const accountInfo = useAccountInfo(props)
 const { currentTab, toggleTabs, currentTitle } = useTabs()
-const updated = useUpdate(1)
+const updated = useUpdate(2)
 
 const localUpdate = ref(Symbol())
 const onUpdate = () => {
@@ -24,7 +24,7 @@ const onUpdate = () => {
 </script>
 
 <template>
-  <profile-settings-layout
+  <settings-layout
     v-if="accountInfo"
     :visible="!!currentTab"
     @toggle="toggleTabs(null)"
@@ -61,7 +61,14 @@ const onUpdate = () => {
         @was-updated="updated('general')"
       />
     </template>
-  </profile-settings-layout>
+
+    <template #profile-settings>
+      <profile-settings
+        :full-account-info="accountInfo"
+        :update="localUpdate"
+      />
+    </template>
+  </settings-layout>
 </template>
 
 <style lang="scss" scoped>

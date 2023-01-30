@@ -4,7 +4,7 @@ import { FullAccountInfo } from '@/utils'
 import { Input } from '@/ui'
 import GeneralSettingsLayout from './GeneralSettingsLayout.vue'
 import { Sex, AvatarUpload } from './components'
-import { useUploadAvatar, useUploadForm } from './hooks'
+import { useUploadAvatar, useUploadGeneralSettings } from './hooks'
 
 const props = defineProps<{
   fullAccountInfo: FullAccountInfo,
@@ -17,16 +17,16 @@ const emit = defineEmits<{
 
 const { setAvatar, uploadAvatar } = useUploadAvatar()
 const {
-  uploadForm, sex, firstName, lastName,
+  uploadGeneralSettings, sex, firstName, lastName,
   patronymic, textID
-} = useUploadForm({
-  uploadAvatar
+} = useUploadGeneralSettings({
+  uploadAvatar, fullAccountInfo: props.fullAccountInfo
 })
 
 watch(
   () => props.update,
   async () => {
-    await uploadForm()
+    await uploadGeneralSettings()
     emit('wasUpdated')
   }
 )
@@ -37,8 +37,8 @@ watch(
     <template #avatar-upload>
       <avatar-upload
         :img="fullAccountInfo.avatar.avatarCompressed"
-        :full-name="`${fullAccountInfo.firstName} ${fullAccountInfo.lastName}`"
-        :text-id="fullAccountInfo.textID"
+        :full-name="`${firstName ?? fullAccountInfo.firstName} ${lastName ?? fullAccountInfo.lastName}`"
+        :text-id="textID ?? fullAccountInfo.textID"
         @upload="setAvatar"
       />
     </template>

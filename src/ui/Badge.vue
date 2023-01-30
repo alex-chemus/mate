@@ -4,7 +4,8 @@ import { useTheme } from '@/utils'
 
 const props = defineProps<{
   theme?: 'light' | 'dark',
-  borderColor?: string
+  borderColor?: string,
+  round?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -16,7 +17,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 
 <template>
   <div
-    class="badge" :class="theme"
+    class="badge" :class="[theme, { round }]"
     :style="borderColor ? {
       'border': `1px solid ${borderColor}`
     } : ''">
@@ -42,7 +43,11 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   padding: 0px 8px;
   @include flex(flex-end, center);
   gap: 3px;
-  border-radius: 100vmax;
+  border-radius: 13px;
+
+  .round {
+    border-radius: 100vmax;
+  }
 
   &.light {
     background-color: var(--light);

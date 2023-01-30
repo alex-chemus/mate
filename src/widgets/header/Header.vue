@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import { useSettings } from '@/utils'
 import HeaderLayout from './HeaderLayout.vue'
 import {
   Search, Tabs, Profile, Notifications,
   ProfilePopup, NotificationsPopup
 } from './components'
-import { useSettings, useAccountInfo } from './hooks'
+import { useAccountInfo } from './hooks'
 import type { Notice } from './types'
 
 const props = defineProps<{

@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue'
-import { Post } from '@/widgets/post'
-import { Header } from '@/widgets/header'
-import { Settings } from '@/widgets/settings'
+import { Post, Header, Settings } from '@/widgets'
 import { useFullAccountInfo } from '@/utils'
 import type { Partner, ProjectInfo } from './types'
 import {

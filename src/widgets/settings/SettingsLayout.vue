@@ -21,6 +21,7 @@ const { theme } = useTheme()
   <modal
     :visible="visible" @update:visible="payload => emit('toggle', payload)"
     centered width="1000px"
+    wrap-class-name="settings-modal"
   >
     <modal-layout @close="emit('toggle', false)">
       <section class="modal-container">
@@ -38,6 +39,10 @@ const { theme } = useTheme()
 
           <div v-show="currentTab === 'general'">
             <slot name="general-settings" />
+          </div>
+
+          <div v-show="currentTab === 'profile'">
+            <slot name="profile-settings" />
           </div>
 
           <div class="save-button-wrapper">

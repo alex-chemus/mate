@@ -2,7 +2,8 @@
 import { ref, defineProps, defineEmits } from 'vue'
 
 defineProps<{
-  multiple?: boolean
+  multiple?: boolean,
+  stretch?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -33,6 +34,7 @@ const upload = (e: DragEvent | Event) => {
     @dragleave="isDragover = false"
     @dragend="isDragover = false"
     @drop.prevent="upload"
+    :style="`${stretch ? 'width: 100%;' : ''}`"
   >
     <input
       ref="inputRef"
@@ -41,7 +43,6 @@ const upload = (e: DragEvent | Event) => {
       class="input"
       @change="upload"
     />
-
     <slot :over="isDragover" />
   </div>
   <!-- eslint-enable -->
