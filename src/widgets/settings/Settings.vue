@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, ref } from 'vue'
 import { FullAccountInfo } from '@/utils'
-import { GeneralSettings, ProfileSettings } from '@/widgets'
+import { GeneralSettings, ProfileSettings, ProjectsSettings } from '@/widgets'
 import SettingsLayout from './SettingsLayout.vue'
 import { useTabs, useAccountInfo, useUpdate } from './hooks'
 import {
@@ -68,9 +68,9 @@ const onUpdate = () => {
         :update="localUpdate"
       />
     </template>
+
+    <template #projects-settings>
+      <projects-settings />
+    </template>
   </settings-layout>
 </template>
-
-<style lang="scss" scoped>
-@import '@/assets/styles/style.scss';
-</style>

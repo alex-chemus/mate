@@ -44,8 +44,8 @@ const emit = defineEmits<{
 
     <li>
       <tab-button
-        :selected="currentTab === 'project'" color="#01CA7E"
-        @click="emit('change', 'project')"
+        :selected="currentTab === 'projects'" color="#01CA7E"
+        @click="emit('change', 'projects')"
       >
         <template #icon>
           <svg width="20" height="20" viewBox="0 0 20 20">

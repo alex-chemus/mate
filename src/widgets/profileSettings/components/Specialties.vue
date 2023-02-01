@@ -160,15 +160,15 @@ const specialtiesArray = computed(() => {
 }
 
 .specialties-container.light .ant-select-selector {
-  border: 1px solid color.change($gray-1, $alpha: .4);
-  background-color: var(--light);
-  color: var(--dark-2);
+  border: 1px solid color.change($gray-1, $alpha: .4) !important;
+  background-color: var(--light) !important;
+  color: var(--dark-2) !important;
 }
 
 .specialties-container.dark .ant-select-selector {
-  border: 1px solid color.change($gray-1, $alpha: .5);
-  background-color: #1E1F29;
-  color: var(--light);
+  border: 1px solid color.change($gray-1, $alpha: .5) !important;
+  background-color: #1E1F29 !important;
+  color: var(--light) !important;
 }
 
 .specialties-container .ant-select-arrow {

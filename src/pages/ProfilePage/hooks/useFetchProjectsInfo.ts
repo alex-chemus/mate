@@ -17,12 +17,12 @@ const useFetchProjectsInfo = () => {
     body.append('projectsIDs', projectsIds.join(', '))
 
     return (await dispatch(fetchActions.FETCH, {
-      url: `${apiState.value.apiUrl}/mate/project.getInfo/`,
+      url: `${apiState.value.apiUrl}/mate/projects.getInfo/`,
       info: {
         method: 'POST',
         body
       }
-    })) as ProjectInfo[]
+    })).response as ProjectInfo[]
   }
 }
 

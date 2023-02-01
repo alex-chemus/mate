@@ -45,6 +45,10 @@ const { theme } = useTheme()
             <slot name="profile-settings" />
           </div>
 
+          <div v-show="currentTab === 'projects'">
+            <slot name="projects-settings" />
+          </div>
+
           <div class="save-button-wrapper">
             <slot name="save-button" />
           </div>

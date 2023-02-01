@@ -11,4 +11,4 @@
 //   email: string
 // }
 
-export type Tab = 'general' | 'profile' | 'project' | 'privacy'
+export type Tab = 'general' | 'profile' | 'projects' | 'privacy'

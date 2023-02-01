@@ -28,8 +28,8 @@ const useTabs = () => {
         currentTab.value = 'privacy'
         break
 
-      case 'project':
-        currentTab.value = 'project'
+      case 'projects':
+        currentTab.value = 'projects'
         break
 
       default:
@@ -63,8 +63,8 @@ const useTabs = () => {
         currentTab.value = 'privacy'
         break
 
-      case 'project':
-        currentTab.value = 'project'
+      case 'projects':
+        currentTab.value = 'projects'
         break
 
       default:
@@ -89,7 +89,7 @@ const useTabs = () => {
       case 'profile':
         return 'Редактировать профиль'
 
-      case 'project':
+      case 'projects':
         return 'Редактировать профиль проекта'
 
       case 'privacy':

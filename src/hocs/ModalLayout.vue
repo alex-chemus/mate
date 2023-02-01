@@ -39,7 +39,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   }
 
   &.dark {
-    background-color: var(--dark-theme-color-2);
+    background-color: #1F1D2C;
   }
 }
 

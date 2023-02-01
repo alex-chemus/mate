@@ -22,7 +22,7 @@ const useProjectInfo = () => {
     body.append('projectsIDs', id)
 
     return (await dispatch(fetchActions.FETCH, {
-      url: `${apiState.value.apiUrl}/mate/project.getInfo/`,
+      url: `${apiState.value.apiUrl}/mate/projects.getInfo/`,
       info: {
         method: 'POST',
         body
