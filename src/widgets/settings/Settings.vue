@@ -3,9 +3,9 @@ import { defineProps, ref } from 'vue'
 import { FullAccountInfo } from '@/utils'
 import { GeneralSettings, ProfileSettings, ProjectsSettings } from '@/widgets'
 import SettingsLayout from './SettingsLayout.vue'
-import { useTabs, useAccountInfo, useUpdate } from './hooks'
+import { useTabs, useAccountInfo } from './hooks'
 import {
-  UserCard, Tabs, SaveButton
+  UserCard, Tabs
 } from './components'
 import { Tab } from './types'
 
@@ -15,12 +15,6 @@ const props = defineProps<{
 
 const accountInfo = useAccountInfo(props)
 const { currentTab, toggleTabs, currentTitle } = useTabs()
-const updated = useUpdate(2)
-
-const localUpdate = ref(Symbol())
-const onUpdate = () => {
-  localUpdate.value = Symbol()
-}
 </script>
 
 <template>
@@ -50,22 +44,24 @@ const onUpdate = () => {
       {{ currentTitle }}
     </template>
 
-    <template #save-button>
+    <!-- <template #save-button>
       <save-button @click="onUpdate" />
-    </template>
+    </template> -->
 
     <template #general-settings>
-      <general-settings
+      <!-- <general-settings
         :full-account-info="accountInfo"
         :update="localUpdate"
         @was-updated="updated('general')"
+      /> -->
+      <general-settings
+        :full-account-info="accountInfo"
       />
     </template>
 
     <template #profile-settings>
       <profile-settings
         :full-account-info="accountInfo"
-        :update="localUpdate"
       />
     </template>
 

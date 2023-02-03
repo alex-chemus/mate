@@ -28,6 +28,10 @@
         <slot name="date-of-birth" />
       </div>
     </div>
+
+    <div class="save-button-wrapper">
+      <slot name="save-button" />
+    </div>
   </form>
 </template>
 
@@ -53,5 +57,9 @@
 
 .input-wrapper {
   grid-column: 1 / span 2;
+}
+
+.save-button-wrapper {
+  margin-top: auto;
 }
 </style>

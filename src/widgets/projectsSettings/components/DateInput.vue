@@ -4,40 +4,34 @@ import {
 } from 'vue'
 import { useTheme } from '@/utils'
 
-const props = defineProps<{
-  type?: string,
-  value?: string,
-  placeholder?: string,
-  labelText?: string,
-  theme?: 'light' | 'dark',
-  customClass?: string
-}>()
-
 const emit = defineEmits<{
   (e: 'update:value', payload: string): void
 }>()
 
-defineExpose()
-
-const theme = props.theme ? ref(props.theme) : useTheme().theme
+const { theme } = useTheme()
 const focused = ref(false)
+const inputRef = ref<HTMLInputElement | null>(null)
 </script>
 
 <template>
   <label>
-    <p v-if="labelText" class="label" :class="theme">{{ labelText }}</p>
-    <div class="input-wrapper" :class="[theme, { focused }]">
+    <p class="label" :class="theme">Дата основания</p>
+    <button
+      class="input-wrapper" :class="[theme, { focused }]"
+      @focus="focused = true"
+      @blur="focused = false"
+      @click="inputRef?.showPicker()"
+    >
       <input
-        class="input" :class="[theme, customClass]"
-        :type="type ?? 'text'"
-        :value="value ?? ''"
-        :placeholder="placeholder ?? ''"
+        class="input" :class="theme"
+        type="date" ref="inputRef"
+        placeholder="день/месяц/год"
         @input="e => emit('update:value', (e.target as HTMLInputElement).value)"
-        @focus="focused = true"
-        @blur="focused = false"
       />
-      <slot />
-    </div>
+      <svg width="24" height="24" viewBox="0 0 24 24" :class="theme">
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-calendar-event" />
+      </svg>
+    </button>
   </label>
 </template>
 
@@ -46,6 +40,8 @@ const focused = ref(false)
 @import '@/assets/styles/style.scss';
 
 .input-wrapper {
+  width: 100%;
+  cursor: pointer;
   height: 40px;
   padding: 13px;
   @include flex(space-between, center);
@@ -79,6 +75,7 @@ const focused = ref(false)
 }
 
 .input {
+  cursor: pointer;
   flex-grow: 2;
   font-family: var(--findcreek, $findcreek);
   font-size: 13px;
@@ -97,6 +94,10 @@ const focused = ref(false)
   &.dark {
     color: var(--light, $light);
   }
+
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+  }
 }
 
 .label {
@@ -104,6 +105,16 @@ const focused = ref(false)
   font-size: 13px;
   margin: 0 0 6px 10px;
 
+  &.light {
+    color: #5c5c5c;
+  }
+
+  &.dark {
+    color: #bbb;
+  }
+}
+
+svg {
   &.light {
     color: #5c5c5c;
   }

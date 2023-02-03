@@ -1,18 +1,13 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits, watch } from 'vue'
+import { defineProps } from 'vue'
 import { FullAccountInfo } from '@/utils'
-import { Input } from '@/ui'
+import { Input, SaveButton } from '@/ui'
 import GeneralSettingsLayout from './GeneralSettingsLayout.vue'
 import { Sex, AvatarUpload } from './components'
 import { useUploadAvatar, useUploadGeneralSettings } from './hooks'
 
 const props = defineProps<{
   fullAccountInfo: FullAccountInfo,
-  update?: symbol
-}>()
-
-const emit = defineEmits<{
-  (e: 'wasUpdated'): void
 }>()
 
 const { setAvatar, uploadAvatar } = useUploadAvatar()
@@ -22,14 +17,6 @@ const {
 } = useUploadGeneralSettings({
   uploadAvatar, fullAccountInfo: props.fullAccountInfo
 })
-
-watch(
-  () => props.update,
-  async () => {
-    await uploadGeneralSettings()
-    emit('wasUpdated')
-  }
-)
 </script>
 
 <template>
@@ -86,11 +73,8 @@ watch(
       />
     </template>
 
-    <!-- <template #date-of-birth>
-      <Input
-        label-text="Дата рождения"
-        placeholder="день/месяц/год"
-      />
-    </template> -->
+    <template #save-button>
+      <save-button @click="uploadGeneralSettings()" />
+    </template>
   </general-settings-layout>
 </template>

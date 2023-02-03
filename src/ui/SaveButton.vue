@@ -1,12 +1,17 @@
 <script lang="ts" setup>
-import { defineEmits } from 'vue'
+import { defineEmits, ref, defineProps } from 'vue'
 import { useTheme } from '@/utils'
 
-const emit = defineEmits<{
-  (e: 'click'): void
+const props = defineProps<{
+  theme?: 'light' | 'dark'
 }>()
 
-const { theme } = useTheme()
+const emit = defineEmits<{
+  (e: 'click'): void,
+}>()
+
+//const { theme } = useTheme()
+const theme = props.theme ? ref(props.theme) : useTheme().theme
 </script>
 
 <template>
@@ -24,12 +29,12 @@ const { theme } = useTheme()
   width: 100%;
   @include flex(center, center);
   border-radius: 8px;
-  background-color: var(--accent-1);
-  color: var(--light);
-  font-family: var(--findcreek-bold);
-  font-weight: var(--bold);
+  background-color: var(--accent-1, $accent-1);
+  color: var(--light, $light);
+  font-family: var(--findcreek-bold, $findcreek-bold);
+  font-weight: var(--bold, $bold);
   font-size: 16px;
-  transition: var(--fast);
+  transition: var(--fast, $fast);
 
   &.light:hover,
   &.light:focus {

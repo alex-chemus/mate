@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue'
+import {
+  defineProps, defineEmits, ref, watch
+} from 'vue'
 import { Modal } from 'ant-design-vue'
 import { ModalLayout } from '@/hocs'
 import { useTheme } from '@/utils'
 import { Tab } from './types'
 
-defineProps<{
+const props = defineProps<{
   visible: boolean,
   currentTab?: Tab
 }>()
@@ -15,12 +17,17 @@ const emit = defineEmits<{
 }>()
 
 const { theme } = useTheme()
+const width = ref(1000)
+watch(() => props.currentTab, () => {
+  if (props.currentTab === 'projects') width.value = 1200
+  else width.value = 1000
+})
 </script>
 
 <template>
   <modal
     :visible="visible" @update:visible="payload => emit('toggle', payload)"
-    centered width="1000px"
+    centered :width="`${width}px`"
     wrap-class-name="settings-modal"
   >
     <modal-layout @close="emit('toggle', false)">
@@ -37,21 +44,21 @@ const { theme } = useTheme()
           </h2>
           <!-- <slot name="main-content" /> -->
 
-          <div v-show="currentTab === 'general'">
+          <div v-show="currentTab === 'general'" class="widget-wrapper">
             <slot name="general-settings" />
           </div>
 
-          <div v-show="currentTab === 'profile'">
+          <div v-show="currentTab === 'profile'" class="widget-wrapper">
             <slot name="profile-settings" />
           </div>
 
-          <div v-show="currentTab === 'projects'">
+          <div v-show="currentTab === 'projects'" class="widget-wrapper">
             <slot name="projects-settings" />
           </div>
 
-          <div class="save-button-wrapper">
+          <!-- <div class="save-button-wrapper">
             <slot name="save-button" />
-          </div>
+          </div> -->
         </section>
       </section>
     </modal-layout>
@@ -111,5 +118,11 @@ aside h6 {
   &.dark {
     color: var(--light);
   }
+}
+
+.widget-wrapper {
+  flex-grow: 2;
+  display: grid;
+  grid-area: 1fr / 1fr;
 }
 </style>

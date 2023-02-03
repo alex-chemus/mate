@@ -37,8 +37,8 @@ const useUploadGeneralSettings = ({
     if (avatarID !== null)
       body.append('avatarImage', `${avatarID}`)
 
-    if (firstName.value && lastName.value && patronymic.value &&
-      textID.value && sex.value) {
+    if (firstName.value || lastName.value || patronymic.value ||
+      textID.value || sex.value) {
       await dispatch(fetchActions.FETCH, {
         url: `${apiState.value.apiUrl}/id/account.setInfo/`,
         info: {

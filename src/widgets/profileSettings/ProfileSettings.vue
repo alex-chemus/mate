@@ -1,20 +1,15 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits, watch } from 'vue'
+import { defineProps } from 'vue'
 import { FullAccountInfo } from '@/utils'
-import { Textarea } from '@/ui'
+import { Textarea, SaveButton } from '@/ui'
 import {
   ImagesUpload, Media, Skills, Specialties
 } from './components'
 import { useUploadProfileSettings, useUploadImage, useSpecialties } from './hooks'
 import ProfileSettingsLayout from './ProfileSettingsLayout.vue'
 
-const props = defineProps<{
+defineProps<{
   fullAccountInfo: FullAccountInfo,
-  update?: symbol
-}>()
-
-const emit = defineEmits<{
-  (e: 'wasUpdated'): void
 }>()
 
 const { setAvatar, setCover, uploadImage } = useUploadImage()
@@ -22,14 +17,6 @@ const { allSpecialties, selectedSpecialties, uploadSpecialties } = useSpecialtie
 const {
   uploadProfileSettings, bio, media, skills
 } = useUploadProfileSettings({ uploadImage, uploadSpecialties })
-
-watch(
-  () => props.update,
-  async () => {
-    await uploadProfileSettings()
-    emit('wasUpdated')
-  }
-)
 </script>
 
 <template>
@@ -84,6 +71,10 @@ watch(
           else skills = [...fullAccountInfo.skills.split(', ')].filter(s => s !== r)
         }"
       />
+    </template>
+
+    <template #save-button>
+      <save-button @click="uploadProfileSettings()" />
     </template>
   </profile-settings-layout>
 </template>
