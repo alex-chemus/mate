@@ -45,7 +45,6 @@ const useTabs = () => {
       return true
     }
 
-    console.log(newRoute.query.settings)
 
     if (hasSettings && !newRoute.query.settings)
       return { path: `${route.path}`, query: { settings: 'general' } }

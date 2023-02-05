@@ -1,29 +1,29 @@
-import { useApiState, useAuthState, useDispatch } from '@/utils'
-import { fetchActions } from '@/store/constants'
-import type { ProjectInfo } from '../types'
+// import { useApiState, useAuthState, useDispatch } from '@/utils'
+// import { fetchActions } from '@/store/constants'
+// import type { ProjectInfo } from '../types'
 
-const useFetchProjectsInfo = () => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+// const useFetchProjectsInfo = () => {
+//   const apiState = useApiState()
+//   const authState = useAuthState()
+//   const dispatch = useDispatch()
 
-  const body = new FormData()
-  body.append('token', authState.value.token as string)
+//   const body = new FormData()
+//   body.append('token', authState.value.token as string)
 
-  return async (projectsIds: number[] | string[]) => {
-    if (!authState.value.token) return null
+//   return async (projectsIds: number[] | string[]) => {
+//     if (!authState.value.token) return null
 
-    console.log(projectsIds.join(', '))
-    body.append('projectsIDs', projectsIds.join(', '))
+//     console.log(projectsIds.join(', '))
+//     body.append('projectsIDs', projectsIds.join(', '))
 
-    return (await dispatch(fetchActions.FETCH, {
-      url: `${apiState.value.apiUrl}/mate/projects.getInfo/`,
-      info: {
-        method: 'POST',
-        body
-      }
-    })).response as ProjectInfo[]
-  }
-}
+//     return (await dispatch(fetchActions.FETCH, {
+//       url: `${apiState.value.apiUrl}/mate/projects.getInfo/`,
+//       info: {
+//         method: 'POST',
+//         body
+//       }
+//     })).response as ProjectInfo[]
+//   }
+// }
 
-export default useFetchProjectsInfo
+// export default useFetchProjectsInfo

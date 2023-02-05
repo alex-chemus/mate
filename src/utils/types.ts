@@ -16,8 +16,19 @@ export type FullAccountInfo = {
     lastOnlineDate: number,
     online: boolean
   },
-  projectsMember: number[],
-  projectsSubscriber: number[],
+  subscriptions: {
+    users: number[],
+    projects: number[]
+  },
+  subscriptionsNumber: number,
+  subscribers: {
+    users: number[]
+  },
+  projectsManagement: {
+    founder: number[],
+    administrator: number[],
+    editor: number[]
+  },
   contacts: {
     email: string,
     phone: string,
@@ -46,13 +57,65 @@ export type FullAccountInfo = {
     avatarShiftY: number,
     avatarScale: number
   },
-  additionalData: {
-    birthday: string,
-    banned: boolean,
-    deleted: boolean,
-    sex: 1 | 2,
-    registrationDate: string
-  }
+  // additionalData: {
+  //   birthday: string,
+  //   banned: boolean,
+  //   deleted: boolean,
+  //   sex: 1 | 2,
+  //   registrationDate: string
+  // }
+  birthday: string,
+  accountBanned: boolean,
+  accountDeleted: boolean,
+  sex: 1 | 2,
+  registrationDate: string
+}
+
+export type FullProductInfo = {
+  id: number,
+  name: string,
+  description: string,
+  image: string,
+  link: string,
+  creatorID: number | null,
+  creationDate: string,
+  lastEditor: null | number,
+  lastEditDate: string
+}
+
+export type FullProjectInfo = {
+  id: number,
+  founderID: number,
+  textID: string,
+  name: string,
+  avatar: {
+    avatar: string,
+    avatarCompressed: string,
+    avatarShiftX: number,
+    avatarShiftY: number,
+    avatarScale: number
+  },
+  profileCover: {
+    profileCover: string,
+    profileCoverCompressed: string,
+    profileCoverShiftX: number,
+    profileCoverShiftY: number,
+    profileCoverScale: number
+  },
+  slogan: string,
+  description: string,
+  contacts: {
+    findcreek: string,
+    [index: string]: string,
+  },
+  subscribers: number[],
+  subscribersNumber: number,
+  partners: number[],
+  foundationDate: string,
+  products: FullProductInfo[],
+  links: string[],
+  administrators: number[],
+  editors: number[]
 }
 
 export type FileInfo = {

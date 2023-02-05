@@ -1,8 +1,7 @@
 import { ref } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  Specialty
+  useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
 
 const useUploadProfileSettings = ({

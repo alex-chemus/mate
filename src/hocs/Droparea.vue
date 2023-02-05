@@ -17,11 +17,9 @@ const upload = (e: DragEvent | Event) => {
   if (e instanceof DragEvent) {
     if (e.dataTransfer?.files.length) {
       emit('upload', e.dataTransfer.files)
-      console.log(e.dataTransfer.files)
     }
   } else if (inputRef.value?.files?.length) {
     emit('upload', inputRef.value.files)
-    console.log(inputRef.value.files)
   }
 }
 </script>

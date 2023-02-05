@@ -68,7 +68,7 @@ const {
 
     <template #sex>
       <Sex
-        :sex="sex ?? fullAccountInfo.additionalData.sex"
+        :sex="sex ?? fullAccountInfo.sex"
         @select="payload => sex = payload"
       />
     </template>

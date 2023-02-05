@@ -66,7 +66,9 @@ const { currentTab, toggleTabs, currentTitle } = useTabs()
     </template>
 
     <template #projects-settings>
-      <projects-settings />
+      <projects-settings
+        :full-account-info="accountInfo"
+      />
     </template>
   </settings-layout>
 </template>

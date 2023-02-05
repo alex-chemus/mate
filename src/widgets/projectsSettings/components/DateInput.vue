@@ -1,8 +1,12 @@
 <script lang="ts" setup>
 import {
-  defineProps, defineEmits, defineExpose, ref
+  defineProps, defineEmits, ref
 } from 'vue'
 import { useTheme } from '@/utils'
+
+defineProps<{
+  value?: string
+}>()
 
 const emit = defineEmits<{
   (e: 'update:value', payload: string): void
@@ -23,7 +27,7 @@ const inputRef = ref<HTMLInputElement | null>(null)
       @click="inputRef?.showPicker()"
     >
       <input
-        class="input" :class="theme"
+        class="input" :class="theme" :value="value"
         type="date" ref="inputRef"
         placeholder="день/месяц/год"
         @input="e => emit('update:value', (e.target as HTMLInputElement).value)"

@@ -1,14 +1,16 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue'
 import { Post, Header, Settings } from '@/widgets'
-import { useFullAccountInfo } from '@/utils'
-import type { Partner, ProjectInfo } from './types'
+//import { useFullAccountInfo } from '@/utils'\
+import { useFullAccountInfo, useFetchFullProjectsInfo } from '@/api'
+import { FullProjectInfo } from '@/utils'
+import type { Partner } from './types'
 import {
   Bio, NewPost, Partners, ProfileCard,
   Projects, Skills
 } from './components'
 import ProfileLayout from './ProfileLayout.vue'
-import { useFetchProjectsInfo } from './hooks'
+//import { useFetchProjectsInfo } from './hooks'
 
 //const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
@@ -65,23 +67,32 @@ const partners = ref<Partner[]>([
 
 //const accountInfo = useAccountInfo()
 const fullAccountInfo = useFullAccountInfo()
-
-const fetchProjectsInfo = useFetchProjectsInfo()
-const projectsInfo = ref<ProjectInfo[] | null>(null)
-const hasProjects = computed(() => {
-  if (!fullAccountInfo.value) return null
-  return !!fullAccountInfo.value.projectsMember.length
-})
+const fullProjectsInfo = ref<FullProjectInfo[] | null>(null)
+const fetchFullProjectsInfo = useFetchFullProjectsInfo()
 
 watch(fullAccountInfo, async () => {
-  if (!fullAccountInfo.value || hasProjects.value === false) return
-
-  try {
-    projectsInfo.value = await fetchProjectsInfo(fullAccountInfo.value.projectsMember)
-  } catch (e) {
-    console.log(`error in profile: ${e}`)
-  }
+  if (!fullAccountInfo.value) return
+  fullProjectsInfo.value = await fetchFullProjectsInfo({
+    fullAccountInfo: fullAccountInfo.value
+  })
 })
+
+// const fetchProjectsInfo = useFetchProjectsInfo()
+// const projectsInfo = ref<ProjectInfo[] | null>(null)
+// const hasProjects = computed(() => {
+//   if (!fullAccountInfo.value) return null
+//   return !!fullAccountInfo.value.projectsMember.length
+// })
+
+// watch(fullAccountInfo, async () => {
+//   if (!fullAccountInfo.value || hasProjects.value === false) return
+
+//   try {
+//     projectsInfo.value = await fetchProjectsInfo(fullAccountInfo.value.projectsMember)
+//   } catch (e) {
+//     console.log(`error in profile: ${e}`)
+//   }
+// })
 
 const skills = computed(() => {
   if (!fullAccountInfo.value) return null
@@ -137,7 +148,7 @@ const skills = computed(() => {
         :bio="fullAccountInfo.bio"
         :email="fullAccountInfo.email"
         :specialties="fullAccountInfo.specialties.map(s => s.rusName)"
-        :registration-date="fullAccountInfo.additionalData.registrationDate"
+        :registration-date="fullAccountInfo.registrationDate"
         :phone="fullAccountInfo.contacts.phone"
         :city="fullAccountInfo.address.cityRusName"
         :skills="fullAccountInfo.skills"
@@ -153,7 +164,7 @@ const skills = computed(() => {
     </template>
 
     <template #projects>
-      <Projects v-if="projectsInfo" :projects="projectsInfo" />
+      <Projects v-if="fullProjectsInfo" :projects="fullProjectsInfo" />
     </template>
 
     <!-- <template #employees>

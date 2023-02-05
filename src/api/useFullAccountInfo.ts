@@ -1,10 +1,8 @@
 import { ref, onMounted, watch } from 'vue'
 import { fetchActions } from '@/store/constants'
-import useApiState from './useApiState'
-import useAuthState from './useAuthState'
-import useDispatch from './useDispatch'
-import useGlobalUpdate from './useGlobalUpdate'
-import type { FullAccountInfo } from './types'
+import {
+  useApiState, useAuthState, useDispatch, useGlobalUpdate, FullAccountInfo
+} from '@/utils'
 
 const useFullAccountInfo = () => {
   const apiState = useApiState()

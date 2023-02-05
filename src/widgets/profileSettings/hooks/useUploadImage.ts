@@ -18,7 +18,6 @@ const useUploadImage = () => {
 
   const setCover = (files: FileList) => {
     [cover.value] = files
-    console.log('setCover', cover.value)
   }
 
   const uploadImage = async (type: 'avatar' | 'cover') => {

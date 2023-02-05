@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits, computed } from 'vue'
 import { useTheme } from '@/utils'
 import { Member } from '../types'
 
-defineProps<{
+const props = defineProps<{
   member: Member
 }>()
 
@@ -12,6 +12,14 @@ const emit = defineEmits<{
 }>()
 
 const { theme } = useTheme()
+
+const getRole = computed(() => {
+  switch (props.member.role) {
+    case 'administrator': return 'Администратор'
+    case 'editor': return 'Редактор'
+    default: return 'Владелец'
+  }
+})
 </script>
 
 <template>
@@ -22,10 +30,11 @@ const { theme } = useTheme()
     <div class="name-wrapper">
       <h6 class="full-name" :class="theme">{{ member.fullName }}</h6>
       <p class="text-id" :class="theme">@{{ member.textID }}</p>
-      <p class="role" :class="theme">{{ member.role }}</p>
+      <p class="role" :class="theme">{{ getRole }}</p>
     </div>
 
     <button
+      v-if="member.role !== 'founder'"
       class="change-button" :class="theme"
       @click="emit('change-role')"
     >Изменить должность</button>

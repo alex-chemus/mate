@@ -20,6 +20,10 @@ defineProps<{
     <div v-if="currentTab === 'settings'" class="project-section">
       <slot name="images-upload" />
       <slot name="foundation-date" />
+      <slot name="slogan" />
+      <div class="save-button-wrapper">
+        <slot name="save-button" />
+      </div>
     </div>
 
     <div v-if="currentTab === 'members'" class="members-section">
@@ -27,6 +31,9 @@ defineProps<{
 
       <div class="members-container">
         <slot name="members" />
+      </div>
+      <div class="save-button-wrapper">
+        <slot name="save-button" />
       </div>
     </div>
 
@@ -73,5 +80,9 @@ defineProps<{
 .members-container {
   @include flex(flex-start, stretch, column);
   gap: 25px;
+}
+
+.save-button-wrapper {
+  margin-top: auto;
 }
 </style>

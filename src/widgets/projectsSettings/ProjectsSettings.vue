@@ -1,25 +1,38 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
+import { FullAccountInfo } from '@/utils'
+import { Input, SaveButton } from '@/ui'
 import ProjectsSettingsLayout from './ProjectsSettingsLayout.vue'
 import {
   SettingsTabs, ProjectsSlider, ImagesUpload, DateInput,
-  MemberItem, MembersSearch, RoleModal
+  MemberItem, MembersSearch, RoleModal, RoleSelect
 } from './components'
-import { useMembers } from './hooks'
-import { SettingsTab, ProjectTab, Member } from './types'
+import {
+  useMembers, useProjectsInfo, useUploadProjectSettings,
+  useUploadImage, useRoles
+} from './hooks'
+import { SettingsTab, Member } from './types'
+
+const props = defineProps<{
+  fullAccountInfo: FullAccountInfo
+}>()
+
+const { projectsInfo, currentProjectID, currentProject } = useProjectsInfo({
+  fullAccountInfo: props.fullAccountInfo
+})
 
 const currentTab = ref<SettingsTab>('settings')
-const projects = ref<ProjectTab[]>([
-  { id: 1, name: 'FINDCREEK Mate' },
-  { id: 2, name: 'FINDCREEK Cybersport' },
-  { id: 3, name: 'FINDCREEK Cybersport' },
-  { id: 4, name: 'FINDCREEK Cybersport' },
-  { id: 5, name: 'FINDCREEK Cybersport' },
-])
-const currentProjectId = ref<number>(projects.value[0].id)
 const isModalOpen = ref(false)
 const selectedMember = ref<null | Member>(null)
-const { sortedMembers, onSearch } = useMembers()
+const { sortedMembers, onSearch } = useMembers({ currentProject })
+const {
+  setAvatar, setCover, getAvatar, getCover, uploadImage
+} = useUploadImage({ currentProjectID })
+const { onSelect, updateRole } = useRoles()
+const {
+  setFoundationDate, getFoundationDate, getSlogan, setSlogan,
+  uploadProjectSettings
+} = useUploadProjectSettings({ uploadImage, currentProjectID })
 </script>
 
 <template>
@@ -33,22 +46,42 @@ const { sortedMembers, onSearch } = useMembers()
 
     <template #projects>
       <projects-slider
-        :projects="projects"
-        :current-tab-id="currentProjectId"
-        @select="p => currentProjectId = p"
+        v-if="projectsInfo && currentProjectID"
+        :projects="projectsInfo"
+        :current-tab-id="currentProjectID"
+        @select="p => currentProjectID = p"
       />
     </template>
 
     <template #images-upload>
       <images-upload
-        :avatar="''"
-        :cover="''"
-        :full-name="'TEST TEST'"
+        v-if="currentProject"
+        :avatar="getAvatar ?? currentProject.avatar.avatarCompressed ?? currentProject.avatar.avatar"
+        :cover="getCover ?? currentProject.profileCover.profileCover"
+        :full-name="currentProject.name"
+        @update-avatar="setAvatar"
+        @update-cover="setCover"
       />
     </template>
 
     <template #foundation-date>
-      <date-input />
+      <date-input
+        :value="(getFoundationDate as string | undefined)"
+        @update:value="setFoundationDate"
+      />
+    </template>
+
+    <template #slogan>
+      <Input
+        v-if="currentProject"
+        label-text="Слоган"
+        :value="getSlogan ?? currentProject.slogan"
+        @update:value="setSlogan"
+      />
+    </template>
+
+    <template #save-button>
+      <save-button @click="uploadProjectSettings" />
     </template>
 
     <template #members-search>
@@ -67,11 +100,21 @@ const { sortedMembers, onSearch } = useMembers()
 
     <template #modal>
       <role-modal
-        v-if="selectedMember"
+        v-if="selectedMember && currentProjectID"
         :visible="isModalOpen && !!selectedMember"
         :member="selectedMember"
         @toggle="p => isModalOpen = p"
-      />
+        @change-role="updateRole"
+      >
+        <role-select
+          :member="selectedMember"
+          @select="r => onSelect({
+            projectID: currentProjectID!,
+            userID: selectedMember!.findcreekID,
+            role: r
+          })"
+        />
+      </role-modal>
     </template>
   </projects-settings-layout>
 </template>

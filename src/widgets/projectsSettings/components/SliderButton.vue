@@ -1,14 +1,10 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits, onMounted } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/utils'
 
-const props = defineProps<{
+defineProps<{
   selected?: boolean
 }>()
-
-onMounted(() => {
-  console.log(props.selected)
-})
 
 const emit = defineEmits<{
   (e: 'click'): void

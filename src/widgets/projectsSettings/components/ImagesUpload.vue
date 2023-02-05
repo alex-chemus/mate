@@ -5,51 +5,38 @@ import {
 import { useTheme } from '@/utils'
 import { Droparea } from '@/hocs'
 
-const props = defineProps<{
+defineProps<{
   avatar: string,
   cover: string
   fullName: string
 }>()
 
 const emit = defineEmits<{
-  (e: 'upload-avatar', payload: FileList): void
-  (e: 'upload-cover', payload: FileList): void
+  (e: 'update-avatar', payload: FileList): void
+  (e: 'update-cover', payload: FileList): void
 }>()
 
 const { theme } = useTheme()
 
-const updatedAvatar = ref<string | null>(null)
-const updatedCover = ref<string | null>(null)
-
-const getAvatar = computed(() => {
-  return updatedAvatar.value ?? props.avatar
-})
-
-const getCover = computed(() => {
-  return updatedCover.value ?? props.cover
-})
-
-const onAvatarUpload = (e: FileList) => {
+const onAvatarUpdate = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
-  updatedAvatar.value = URL.createObjectURL(e[0])
-  emit('upload-avatar', e)
+  emit('update-avatar', e)
 }
 
-const onCoverUpload = (e: FileList) => {
+const onCoverUpdate = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
-  updatedCover.value = URL.createObjectURL(e[0])
-  emit('upload-cover', e)
+  emit('update-cover', e)
 }
 </script>
 
 <template>
   <div class="images-container">
-    <droparea @upload="onCoverUpload" :stretch="true">
+    <droparea @upload="onCoverUpdate" :stretch="true">
       <div class="cover" :class="theme" :style="`
-        background: ${ getCover && `url('${getCover}');` };
+        background: ${ cover && `url('${cover}');` };
         background-position: center;
         background-size: cover;
-        box-shadow: inset 0 0 0 100vmax ${ getCover ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' };
+        box-shadow: inset 0 0 0 100vmax ${ cover ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' };
       `">
         <svg width="30" height="30" viewBox="0 0 30 30">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-camera" />
@@ -59,13 +46,13 @@ const onCoverUpload = (e: FileList) => {
     </droparea>
 
     <div class="avatar-wrapper">
-      <droparea @upload="onAvatarUpload">
+      <droparea @upload="onAvatarUpdate">
         <div class="avatar" :class="theme" :style="`
-          background: ${ getAvatar && `url('${getAvatar}');` };
+          background: ${ avatar && `url('${avatar}');` };
           background-position: center;
           background-size: cover;
           box-shadow:
-            inset 0 0 0 100vmax ${ getAvatar ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' },
+            inset 0 0 0 100vmax ${ avatar ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' },
             0 0 9px 0 rgb(0 0 0 / .25);
         `">
           <svg width="36" height="36" viewBox="0 0 36 36">
