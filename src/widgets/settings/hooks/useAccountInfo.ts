@@ -2,34 +2,29 @@ import {
   ref, onMounted, watch, computed
 } from 'vue'
 import {
-  useApiState, useAuthState, useDispatch, useUpdate
+  useApiState, useAuthState, useDispatch, useGlobalUpdate,
+  FullAccountInfo
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
-import { AccountInfo } from '../types'
+//import { AccountInfo } from '../types'
 
 const useAccountInfo = (props: Readonly<{
-  fullName?: string,
-  email?: string,
-  img?: string
+  fullAccountInfo?: FullAccountInfo
 }>) => {
-  if (props.email && props.fullName && props.img) {
-    return {
-      getFullName: computed(() => props.fullName),
-      getEmail: computed(() => props.email),
-      getImg: computed(() => props.img)
-    }
+  if (props.fullAccountInfo) {
+    return computed(() => props.fullAccountInfo)
   }
 
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { update } = useUpdate()
+  const { globalUpdate } = useGlobalUpdate()
 
   const body = new FormData()
   body.append('token', authState.value.token as string)
 
-  const fields = ['firstName', 'lastName', 'avatar', 'email']
-  body.append('fields', fields.join(', '))
+  // const fields = ['firstName', 'lastName', 'avatar', 'email']
+  // body.append('fields', fields.join(', '))
 
   const fetchAccountInfo = async () => {
     if (!authState.value.token) return null
@@ -40,41 +35,20 @@ const useAccountInfo = (props: Readonly<{
         method: 'POST',
         body
       }
-    })) as AccountInfo
+    })) as FullAccountInfo
   }
 
-  const accountInfo = ref<AccountInfo | null>(null)
+  const accountInfo = ref<FullAccountInfo | null>(null)
 
   onMounted(async () => {
     accountInfo.value = await fetchAccountInfo()
   })
 
-  watch(update, async () => {
+  watch(globalUpdate, async () => {
     accountInfo.value = await fetchAccountInfo()
   })
 
-  const getFullName = computed(() => {
-    if (props.fullName) return props.fullName
-    return accountInfo.value
-      ? `${accountInfo.value.firstName} ${accountInfo.value.lastName}`
-      : null
-  })
-
-  const getImg = computed(() => {
-    if (props.img) return props.img
-    return accountInfo.value
-      ? accountInfo.value.avatar.avatarCompressed
-      : null
-  })
-
-  const getEmail = computed(() => {
-    if (props.email) return props.email
-    return accountInfo.value
-      ? accountInfo.value.email
-      : null
-  })
-
-  return { getFullName, getImg, getEmail }
+  return accountInfo
 }
 
 export default useAccountInfo

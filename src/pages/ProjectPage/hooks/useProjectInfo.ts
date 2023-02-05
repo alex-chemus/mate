@@ -1,7 +1,7 @@
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import {
-  useApiState, useAuthState, useDispatch, useUpdate
+  useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
 import type { ProjectInfo, Employee } from '../types'
@@ -11,7 +11,7 @@ const useProjectInfo = () => {
   const authState = useAuthState()
   const dispatch = useDispatch()
   const route = useRoute()
-  const { update } = useUpdate()
+  const { globalUpdate } = useGlobalUpdate()
 
   const fetchProjectInfo = async (id: string) => {
     if (!authState.value.token) return null
@@ -22,7 +22,7 @@ const useProjectInfo = () => {
     body.append('projectsIDs', id)
 
     return (await dispatch(fetchActions.FETCH, {
-      url: `${apiState.value.apiUrl}/mate/project.getInfo/`,
+      url: `${apiState.value.apiUrl}/mate/projects.getInfo/`,
       info: {
         method: 'POST',
         body
@@ -60,7 +60,7 @@ const useProjectInfo = () => {
     projectInfo.value = await fetchProjectInfo(route.params.id as string)
   })
 
-  watch(update, async () => {
+  watch(globalUpdate, async () => {
     projectInfo.value = await fetchProjectInfo(route.params.id as string)
   })
 

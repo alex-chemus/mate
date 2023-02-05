@@ -1,15 +1,14 @@
 import { ref, onMounted, watch } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, useUpdate
-} from '@/utils'
 import { fetchActions } from '@/store/constants'
-import type { AccountInfo } from '../types'
+import {
+  useApiState, useAuthState, useDispatch, useGlobalUpdate, FullAccountInfo
+} from '@/utils'
 
-const useAccountInfo = () => {
+const useFullAccountInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { update } = useUpdate()
+  const { globalUpdate } = useGlobalUpdate()
 
   const body = new FormData()
   body.append('token', authState.value.token as string)
@@ -23,20 +22,20 @@ const useAccountInfo = () => {
         method: 'POST',
         body
       }
-    })) as AccountInfo
+    })) as FullAccountInfo
   }
 
-  const accountInfo = ref<AccountInfo | null>(null)
+  const fullAccountInfo = ref<FullAccountInfo | null>(null)
 
   onMounted(async () => {
-    accountInfo.value = await fetchAccountInfo()
+    fullAccountInfo.value = await fetchAccountInfo()
   })
 
-  watch(update, async () => {
-    accountInfo.value = await fetchAccountInfo()
+  watch(globalUpdate, async () => {
+    fullAccountInfo.value = await fetchAccountInfo()
   })
 
-  return accountInfo
+  return fullAccountInfo
 }
 
-export default useAccountInfo
+export default useFullAccountInfo

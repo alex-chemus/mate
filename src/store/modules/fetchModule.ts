@@ -47,16 +47,16 @@ const fetchModule: Module<FetchModuleState, RootState> = {
           /* eslint-enable */
         },
         [index: string]: any
-      }
+      } | any[]
 
       const data = (await res.json()) as Data
 
-      if (data.error) {
+      if (!Array.isArray(data) && data.error) {
         commit(fetchActions.SET_ERROR, data.error)
         return null
       }
 
-      return data.response
+      return Array.isArray(data) ? data : data.response
     }
   }
 }

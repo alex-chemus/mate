@@ -9,8 +9,6 @@ const useTheme = () => {
   const theme = computed(() => state.theme.theme)
 
   const toggleTheme = () => {
-    console.log('toggle theme')
-
     if (theme.value === 'light') {
       localStorage.setItem('theme', 'dark')
       commit(themeActions.SET_THEME, 'dark')

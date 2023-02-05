@@ -2,7 +2,7 @@ import {
   ref, onMounted, watch, computed
 } from 'vue'
 import {
-  useApiState, useAuthState, useDispatch, useUpdate
+  useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
 import { AccountInfo } from '../types'
@@ -23,7 +23,7 @@ const useAccountInfo = (props: Readonly<{
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { update } = useUpdate()
+  const { globalUpdate } = useGlobalUpdate()
 
   const body = new FormData()
   body.append('token', authState.value.token as string)
@@ -49,7 +49,7 @@ const useAccountInfo = (props: Readonly<{
     accountInfo.value = await fetchAccountInfo()
   })
 
-  watch(update, async () => {
+  watch(globalUpdate, async () => {
     accountInfo.value = await fetchAccountInfo()
   })
 

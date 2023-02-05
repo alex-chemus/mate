@@ -38,6 +38,8 @@
     "arrow-body-style": "off",
     "quotes": "warn",
     "symbol-description": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "vuejs-accessibility/form-control-has-label": "off",
+    "vuejs-accessibility/label-has-for": "off"
   }
 }

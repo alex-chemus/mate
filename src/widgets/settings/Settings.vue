@@ -1,32 +1,36 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import { useUpdate } from '@/utils'
-import ProfileSettingsLayout from './SettingsLayout.vue'
-import { useAccountInfo, useTabs } from './hooks'
+import { defineProps, ref } from 'vue'
+import { FullAccountInfo } from '@/utils'
 import {
-  UserCard, Tabs, SaveButton
+  GeneralSettings, ProfileSettings, ProjectsSettings, PrivacySettings
+} from '@/widgets'
+import SettingsLayout from './SettingsLayout.vue'
+import { useTabs, useAccountInfo } from './hooks'
+import {
+  UserCard, Tabs
 } from './components'
+import { Tab } from './types'
 
 const props = defineProps<{
-  //isOpen: boolean,
-  fullName?: string,
-  email?: string,
-  img?: string
+  fullAccountInfo?: FullAccountInfo
 }>()
 
-const { setUpdate } = useUpdate()
-const { currentTab, toggleTabs } = useTabs()
-const { getFullName, getEmail, getImg } = useAccountInfo(props)
+const accountInfo = useAccountInfo(props)
+const { currentTab, toggleTabs, currentTitle } = useTabs()
 </script>
 
 <template>
-  <profile-settings-layout :visible="!!currentTab" @toggle="toggleTabs(null)">
+  <settings-layout
+    v-if="accountInfo"
+    :visible="!!currentTab"
+    @toggle="toggleTabs(null)"
+    :current-tab="(currentTab as Tab | undefined)"
+  >
     <template #user-card>
       <user-card
-        v-if="getFullName && getImg && getEmail"
-        :full-name="getFullName"
-        :img="getImg"
-        :email="getEmail"
+        :full-name="`${accountInfo.firstName} ${accountInfo.lastName}`"
+        :img="accountInfo.avatar.avatarCompressed"
+        :email="accountInfo.email"
       />
     </template>
 
@@ -38,12 +42,41 @@ const { getFullName, getEmail, getImg } = useAccountInfo(props)
       />
     </template>
 
-    <template #save-button>
-      <save-button @click="setUpdate()" />
+    <template v-if="currentTitle" #title>
+      {{ currentTitle }}
     </template>
-  </profile-settings-layout>
-</template>
 
-<style lang="scss" scoped>
-@import '@/assets/styles/style.scss';
-</style>
+    <!-- <template #save-button>
+      <save-button @click="onUpdate" />
+    </template> -->
+
+    <template #general-settings>
+      <!-- <general-settings
+        :full-account-info="accountInfo"
+        :update="localUpdate"
+        @was-updated="updated('general')"
+      /> -->
+      <general-settings
+        :full-account-info="accountInfo"
+      />
+    </template>
+
+    <template #profile-settings>
+      <profile-settings
+        :full-account-info="accountInfo"
+      />
+    </template>
+
+    <template #projects-settings>
+      <projects-settings
+        :full-account-info="accountInfo"
+      />
+    </template>
+
+    <template #privacy-settings>
+      <privacy-settings
+        :full-account-info="accountInfo"
+      />
+    </template>
+  </settings-layout>
+</template>
