@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { defineProps, ref } from 'vue'
 import { FullAccountInfo } from '@/utils'
-import { GeneralSettings, ProfileSettings, ProjectsSettings } from '@/widgets'
+import {
+  GeneralSettings, ProfileSettings, ProjectsSettings, PrivacySettings
+} from '@/widgets'
 import SettingsLayout from './SettingsLayout.vue'
 import { useTabs, useAccountInfo } from './hooks'
 import {
@@ -67,6 +69,12 @@ const { currentTab, toggleTabs, currentTitle } = useTabs()
 
     <template #projects-settings>
       <projects-settings
+        :full-account-info="accountInfo"
+      />
+    </template>
+
+    <template #privacy-settings>
+      <privacy-settings
         :full-account-info="accountInfo"
       />
     </template>

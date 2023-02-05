@@ -56,6 +56,10 @@ watch(() => props.currentTab, () => {
             <slot name="projects-settings" />
           </div>
 
+          <div v-show="currentTab === 'privacy'" class="widget-wrapper">
+            <slot name="privacy-settings" />
+          </div>
+
           <!-- <div class="save-button-wrapper">
             <slot name="save-button" />
           </div> -->

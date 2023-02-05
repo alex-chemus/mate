@@ -46,7 +46,7 @@ const getPopupContainer = () => {
 </script>
 
 <template>
-  <div class="role-container">
+  <div class="role-container" :class="theme">
     <h6 class="title" :class="theme">Выберите должность</h6>
     <Select
       :value="getValue()"
@@ -138,6 +138,12 @@ const getPopupContainer = () => {
   border: 1px solid color.change($gray-1, $alpha: .4) !important;
   background-color: var(--light) !important;
   color: var(--dark-2) !important;
+}
+
+.role-container.dark .ant-select-selector {
+  border: 1px solid color.change($gray-1, $alpha: .5) !important;
+  background-color: #1E1F29 !important;
+  color: var(--light) !important;
 }
 
 .role-dropdown {
