@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
+import PrimeVue from 'primevue/config'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import 'ant-design-vue/dist/antd.css';
+import 'ant-design-vue/dist/antd.css'
 
 // установка темы
 
@@ -25,6 +26,7 @@ if (prefers('light')) {
 надо не забыть сделать переключение в localStorage и store */
 
 createApp(App)
+  .use(PrimeVue)
   .use(store)
   .use(router)
   .mount('#app')

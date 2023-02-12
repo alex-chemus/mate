@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {
-  defineProps, defineEmits, defineExpose, ref
+  defineProps, defineEmits, watch, ref
 } from 'vue'
 import { useTheme } from '@/utils'
 
@@ -10,17 +10,38 @@ const props = defineProps<{
   placeholder?: string,
   labelText?: string,
   theme?: 'light' | 'dark',
-  customClass?: string
+  customClass?: string,
+  focused?: boolean
 }>()
 
 const emit = defineEmits<{
   (e: 'update:value', payload: string): void
+  // (e: 'focus'): void,
+  // (e: 'blur'): void
+  (e: 'update:focused', payload: boolean): void
 }>()
 
-defineExpose()
-
 const theme = props.theme ? ref(props.theme) : useTheme().theme
-const focused = ref(false)
+
+const inputRef = ref<HTMLInputElement | null>(null)
+watch(() => props.focused, () => {
+  if (!inputRef.value) return
+  if (props.focused) inputRef.value.focus()
+  else inputRef.value.blur()
+})
+//const focused = ref(false)
+
+// const onFocus = () => {
+//   console.log('[input.vue] focus')
+//   focused.value = true
+//   emit('focus')
+// }
+
+// const onBlur = () => {
+//   console.log('[input.vue] blur')
+//   focused.value = false
+//   emit('blur')
+// }
 </script>
 
 <template>
@@ -28,13 +49,14 @@ const focused = ref(false)
     <p v-if="labelText" class="label" :class="theme">{{ labelText }}</p>
     <div class="input-wrapper" :class="[theme, { focused }]">
       <input
+        ref="inputRef"
         class="input" :class="[theme, customClass]"
         :type="type ?? 'text'"
         :value="value ?? ''"
         :placeholder="placeholder ?? ''"
         @input="e => emit('update:value', (e.target as HTMLInputElement).value)"
-        @focus="focused = true"
-        @blur="focused = false"
+        @focus="emit('update:focused', true)"
+        @blur="emit('update:focused', false)"
       />
       <slot />
     </div>

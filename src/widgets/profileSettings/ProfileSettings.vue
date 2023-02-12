@@ -1,11 +1,16 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import { FullAccountInfo } from '@/utils'
-import { Textarea, SaveButton } from '@/ui'
+import { defineProps, ref, onMounted } from 'vue'
+import { FullAccountInfo, Location } from '@/utils'
 import {
-  ImagesUpload, Media, Skills, Specialties
+  Textarea, SaveButton, Input, SearchUngroupedSelect
+} from '@/ui'
+import {
+  ImagesUpload, Media, Skills, Specialties,
+  AddressSelect
 } from './components'
-import { useUploadProfileSettings, useUploadImage, useSpecialties } from './hooks'
+import {
+  useUploadProfileSettings, useUploadImage, useSpecialties, useAddress
+} from './hooks'
 import ProfileSettingsLayout from './ProfileSettingsLayout.vue'
 
 defineProps<{
@@ -15,8 +20,87 @@ defineProps<{
 const { setAvatar, setCover, uploadImage } = useUploadImage()
 const { allSpecialties, selectedSpecialties, uploadSpecialties } = useSpecialties()
 const {
+  fetchLocations, locationsLoading, allLocations, addressValue, onSelect, selectedLocation
+} = useAddress()
+const {
   uploadProfileSettings, bio, media, skills
-} = useUploadProfileSettings({ uploadImage, uploadSpecialties })
+} = useUploadProfileSettings({ uploadImage, uploadSpecialties, address: addressValue })
+
+const addressOpened = ref(false)
+const selectedAddress = ref<number | undefined>(undefined)
+// test data
+const locs = ref<Location[] | null>([
+  {
+    endpointName: 'Пермь',
+    countryID: 1,
+    cityID: 1,
+    regionID: 1
+  },
+  {
+    endpointName: 'Екат',
+    countryID: 2,
+    cityID: 2,
+    regionID: 2
+  },
+  {
+    endpointName: 'Екат1',
+    countryID: 2,
+    cityID: 2,
+    regionID: 2
+  },
+  {
+    endpointName: 'Екат2',
+    countryID: 2,
+    cityID: 2,
+    regionID: 2
+  },
+  {
+    endpointName: 'Екат3',
+    countryID: 2,
+    cityID: 2,
+    regionID: 2
+  },
+  {
+    endpointName: 'Екат4',
+    countryID: 2,
+    cityID: 2,
+    regionID: 2
+  },
+  {
+    endpointName: 'Пермь',
+    countryID: 1,
+    cityID: 1,
+    regionID: 1
+  },
+  {
+    endpointName: 'Пермь',
+    countryID: 1,
+    cityID: 1,
+    regionID: 1
+  },
+  {
+    endpointName: 'Пермь',
+    countryID: 1,
+    cityID: 1,
+    regionID: 1
+  },
+  {
+    endpointName: 'Пермь',
+    countryID: 1,
+    cityID: 1,
+    regionID: 1
+  },
+  {
+    endpointName: 'Пермь',
+    countryID: 1,
+    cityID: 1,
+    regionID: 1
+  },
+])
+// const getPopupContainer = () => {
+//   return document.querySelector('.settings-modal .ant-modal-content') as HTMLElement
+//   //return document.body
+// }
 </script>
 
 <template>
@@ -39,6 +123,27 @@ const {
         @update:value="p => bio = p"
         placeholder="О себе"
       />
+    </template>
+
+    <template #address>
+      <address-select
+        :locations="allLocations"
+        :loading="locationsLoading"
+        v-model:visible="addressOpened"
+        :selected="selectedLocation"
+        @select="onSelect"
+        @input="s => fetchLocations(s)"
+      />
+      <!-- <address-select :locations="locs" :loading="true" /> -->
+      <!-- <search-select
+        v-if="popupContainer"
+        v-model:visible="selectOpened" :data="[]"
+        :container="popupContainer" placement="bottomLeft"
+      >
+        <template #input>
+          <button @click="selectOpened = !selectOpened">click me</button>
+        </template>
+      </search-select> -->
     </template>
 
     <template #specialties>

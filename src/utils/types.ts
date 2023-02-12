@@ -146,3 +146,10 @@ export type SpecialtiesList = {
   engName: string,
   specialties: Specialty[]
 }[]
+
+export type Location = {
+  endpointName: string,
+  countryID: number,
+  regionID: number,
+  cityID: number
+}
