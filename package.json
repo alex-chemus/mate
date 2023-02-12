@@ -11,10 +11,9 @@
   },
   "dependencies": {
     "@egjs/vue3-flicking": "^4.10.5",
+    "animate.css": "^4.1.1",
     "ant-design-vue": "^3.2.15",
     "core-js": "^3.8.3",
-    "primeicons": "^6.0.1",
-    "primevue": "^3.23.0",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",

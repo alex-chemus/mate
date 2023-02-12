@@ -4,6 +4,7 @@ import {
 } from 'vue'
 import { Input, Loader } from '@/ui'
 import { useTheme, Location } from '@/utils'
+import { DropdownTransition } from '@/hocs'
 
 const props = defineProps<{
   locations: Location[] | null,
@@ -11,10 +12,6 @@ const props = defineProps<{
   visible?: boolean,
   selected?: Location
 }>()
-
-watch(() => props.loading, () => {
-  console.log('loading', props.loading)
-})
 
 const emit = defineEmits<{
   (e: 'update:visible', payload: boolean): void
@@ -68,8 +65,12 @@ const onKeyUp = (e: KeyboardEvent) => {
     focusedItem.value!--
     const dropdown = document.querySelector('.select-container .dropdown') as HTMLElement
     if (dropdown.scrollTop > focusedItem.value * 32) {
-      //console.log('up')
-      dropdown.scrollTop -= 32
+      let i = 0
+      const timer = setInterval(() => {
+        if (i === 32) clearInterval(timer)
+        dropdown.scrollTop--
+        i++
+      }, 2)
     }
     return
   }
@@ -80,10 +81,13 @@ const onKeyUp = (e: KeyboardEvent) => {
     if (focusedItem.value === props.locations.length - 1) return
     focusedItem.value!++
     const dropdown = document.querySelector('.select-container .dropdown') as HTMLElement
-    //console.log(dropdown.scrollTop + dropdown.clientHeight < (focusedItem.value + 2) * 32)
     if (dropdown.scrollTop + dropdown.clientHeight < (focusedItem.value + 1) * 32) {
-      //console.log('down')
-      dropdown.scrollTop += 32
+      let i = 0
+      const timer = setInterval(() => {
+        if (i === 32) clearInterval(timer)
+        dropdown.scrollTop++
+        i++
+      }, 2)
     }
   }
 
@@ -134,33 +138,35 @@ const isSelected = (loc: Location) => {
       placeholder="Адрес проживания" label-text="Адрес проживания"
     />
  
-    <div v-if="visible" class="dropdown" :class="theme" @click="onDropdownClick">
-      <div v-if="loading" class="loader">
-        <loader />
-      </div>
+    <dropdown-transition>
+      <div v-if="visible" class="dropdown" :class="theme" @click="onDropdownClick">
+        <div v-if="loading" class="loader">
+          <loader />
+        </div>
       
-      <ul v-else-if="getLocations && getLocations.length">
-        <li
-          v-for="loc in getLocations" :key="loc.i"
-          class="item" :class="[
-            focusedItem === loc.i ? 'focused' : '',
-            theme,
-            isSelected(loc) ? 'selected' : ''
-          ]"
-          @mouseover="focusedItem = loc.i"
-        >
-          <button class="item-button" @click="emit('select', loc)">{{ loc.endpointName }}</button>
-        </li>
-      </ul>
+        <ul v-else-if="getLocations && getLocations.length">
+          <li
+            v-for="loc in getLocations" :key="loc.i"
+            class="item" :class="[
+              focusedItem === loc.i ? 'focused' : '',
+              theme,
+              isSelected(loc) ? 'selected' : ''
+            ]"
+            @mouseover="focusedItem = loc.i"
+          >
+            <button class="item-button" @click="emit('select', loc)">{{ loc.endpointName }}</button>
+          </li>
+        </ul>
 
-      <div class="dropdown-text" :class="theme" v-else-if="getLocations && getLocations.length === 0">
-        Уфф... Ничего не найдено
-      </div>
+        <div class="dropdown-text" :class="theme" v-else-if="getLocations && getLocations.length === 0">
+          Уфф... Ничего не найдено
+        </div>
 
-      <div class="dropdown-text" :class="theme" v-else-if="getLocations === null">
-        Введите место проживания
+        <div class="dropdown-text" :class="theme" v-else-if="getLocations === null">
+          Введите место проживания
+        </div>
       </div>
-    </div>
+    </dropdown-transition>
   </div>
   <!-- eslint-enable -->
 </template>

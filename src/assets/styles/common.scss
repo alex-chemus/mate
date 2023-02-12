@@ -97,3 +97,7 @@ button {
   src: url('@/assets/fonts/Findcreek-Light.otf');
   font-weight: 300;
 }
+
+.animate__animated {
+  --animate-duration: 1s;
+}
