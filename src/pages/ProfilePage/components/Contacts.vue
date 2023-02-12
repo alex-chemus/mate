@@ -38,6 +38,7 @@ const { theme } = useTheme()
   grid-template-columns: repeat(min-content, 2);
   grid-gap: 10px;
   grid-auto-rows: 1fr;
+  grid-auto-flow: column;
 
   &.light {
     border: 1px solid color.change($gray-1, $alpha: .4);
