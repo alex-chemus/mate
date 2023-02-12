@@ -6,10 +6,13 @@ import ProfileInfo from './ProfileInfo.vue'
 
 defineProps<{
   bio: string,
-  email: string,
+  emails: {
+    id: number,
+    emailAddress: string
+  }[],
   specialties: string[],
   registrationDate: string,
-  phone: string,
+  phones: string[],
   city: string,
   skills: string
 }>()
@@ -34,10 +37,10 @@ const isOpen = ref(false)
   <modal v-model:visible="isOpen" centered width="600px">
     <profile-info
       :bio="bio"
-      :email="email"
+      :emails="emails"
       :specialties="specialties"
       :registration-date="registrationDate"
-      :phone="phone"
+      :phones="phones"
       :city="city"
       :skills="skills"
       @close="isOpen = false"

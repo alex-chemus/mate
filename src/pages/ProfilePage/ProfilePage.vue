@@ -7,7 +7,7 @@ import { FullProjectInfo } from '@/utils'
 import type { Partner } from './types'
 import {
   Bio, NewPost, Partners, ProfileCard,
-  Projects, Skills
+  Projects, Skills, Contacts
 } from './components'
 import ProfileLayout from './ProfileLayout.vue'
 //import { useFetchProjectsInfo } from './hooks'
@@ -127,6 +127,12 @@ const skills = computed(() => {
       />
     </template>
 
+    <template #contacts>
+      <contacts
+        :media="fullAccountInfo.contacts.socialNetworks"
+      />
+    </template>
+
     <template #skills>
       <Skills v-if="skills && skills" :skills="skills" />
     </template>
@@ -146,10 +152,10 @@ const skills = computed(() => {
     <template #bio>
       <Bio
         :bio="fullAccountInfo.bio"
-        :email="fullAccountInfo.email"
+        :emails="fullAccountInfo.contacts.emailAddresses"
         :specialties="fullAccountInfo.specialties.map(s => s.rusName)"
         :registration-date="fullAccountInfo.registrationDate"
-        :phone="fullAccountInfo.contacts.phone"
+        :phones="fullAccountInfo.contacts.phoneNumbers"
         :city="fullAccountInfo.address.cityRusName"
         :skills="fullAccountInfo.skills"
       />

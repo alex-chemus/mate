@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import PrimeVue from 'primevue/config'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
@@ -26,7 +25,6 @@ if (prefers('light')) {
 надо не забыть сделать переключение в localStorage и store */
 
 createApp(App)
-  .use(PrimeVue)
   .use(store)
   .use(router)
   .mount('#app')

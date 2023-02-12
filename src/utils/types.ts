@@ -1,3 +1,11 @@
+export type SocialMedia = {
+  id: number,
+  url: string,
+  service: string,
+  user: string,
+  logo?: string
+}
+
 export type FullAccountInfo = {
   findcreekID: number,
   roles: ('user' | 'admin' | 'active_person')[],
@@ -30,12 +38,12 @@ export type FullAccountInfo = {
     editor: number[]
   },
   contacts: {
-    email: string,
-    phone: string,
-    social: {
-      findcreek: string,
-      [index: string]: string
-    }
+    emailAddresses: {
+      id: number,
+      emailAddress: string
+    }[],
+    phoneNumbers: string[],
+    socialNetworks: SocialMedia[]
   },
   bio: string,
   profileCover: string,
@@ -57,13 +65,6 @@ export type FullAccountInfo = {
     avatarShiftY: number,
     avatarScale: number
   },
-  // additionalData: {
-  //   birthday: string,
-  //   banned: boolean,
-  //   deleted: boolean,
-  //   sex: 1 | 2,
-  //   registrationDate: string
-  // }
   birthday: string,
   accountBanned: boolean,
   accountDeleted: boolean,

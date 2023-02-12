@@ -5,10 +5,13 @@ import { ModalLayout } from '@/hocs'
 
 defineProps<{
   bio: string,
-  email: string,
+  emails: {
+    id: number,
+    emailAddress: string
+  }[],
   specialties: string[],
   registrationDate: string,
-  phone: string,
+  phones: string[],
   city: string,
   skills: string
 }>()
@@ -38,7 +41,7 @@ const { theme } = useTheme()
         </div>
       </li>
 
-      <li v-if="email.length" class="content-item">
+      <li v-if="emails.length" class="content-item">
         <svg
           class="icon" :class="theme"
           width="24" height="24" viewBox="0 0 24 24"
@@ -47,7 +50,10 @@ const { theme } = useTheme()
         </svg>
         <div class="content-wrapper">
           <h6 :class="theme">Электронная почта</h6>
-          <p :class="theme">{{ email }}</p>
+          <p
+            v-for="email in emails" :key="email.id"
+            :class="theme"
+          >{{ email.emailAddress }}</p>
         </div>
       </li>
 
@@ -77,7 +83,7 @@ const { theme } = useTheme()
         </div>
       </li>
 
-      <li v-if="city.length | phone.length" class="content-item">
+      <li v-if="city.length | phones.length" class="content-item">
         <svg
           class="icon" :class="theme"
           width="24" height="24" viewBox="0 0 24 24"
@@ -87,9 +93,14 @@ const { theme } = useTheme()
         <div class="content-wrapper">
           <h6 :class="theme">Личная информация</h6>
           <div class="personal-info-wrapper">
-            <template v-if="phone">
-              <p :class="theme">Номер телефона:</p>
-              <p class="colored" :class="theme">{{ phone }}</p>
+            <template v-if="phones.length">
+              <p :class="theme">Номера телефона:</p>
+              <div>
+                <p
+                  v-for="(phone, i) in phones" :key="i"
+                  class="colored" :class="theme"
+                >{{ phone }}</p>
+              </div>
             </template>
             <template v-if="city">
               <p :class="theme">Город:</p>
