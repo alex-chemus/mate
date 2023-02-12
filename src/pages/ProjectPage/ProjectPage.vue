@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { Post, Header } from '@/widgets'
-import { useFullAccountInfo } from '@/utils'
+//import { useFullAccountInfo } from '@/utils'
+import { useFullAccountInfo } from '@/api'
 import type { Company, Partner } from './types'
 import {
   ProfileCard, Subscriptions, Partners, About,

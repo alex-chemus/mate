@@ -15,9 +15,13 @@
         <slot name="bio" />
       </div>
 
-      <div class="media-wrapper">
-        <slot name="media" />
+      <div class="address-wrapper">
+        <slot name="address" />
       </div>
+
+      <!-- <div class="media-wrapper">
+        <slot name="media" />
+      </div> -->
 
       <slot name="specialties" />
       <slot name="skills" />
@@ -34,6 +38,7 @@
 
 .profile-settings-layout {
   @include flex(flex-start, stretch, column);
+  gap: 30px;
 }
 
 .fields-container {
@@ -46,8 +51,14 @@
 
 .images-wrapper,
 .bio-wrapper,
-.media-wrapper {
+.media-wrapper,
+.address-wrapper {
   grid-column: 1 / span 2;
+}
+
+.address-wrapper {
+  position: relative;
+  z-index: 2;
 }
 
 .save-button-wrapper {

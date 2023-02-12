@@ -6,7 +6,8 @@ export { default as useDispatch } from './useDispatch'
 export { default as withStoriesDecorator } from './withStoriesDecorator'
 export { default as useGlobalUpdate } from './useGlobalUpdate'
 export { default as useSettings } from './useSettings'
+export { default as useDebounce } from './useDebounce'
 export type {
   FullAccountInfo, FileInfo, Specialty, SpecialtiesList,
-  FullProductInfo, FullProjectInfo
+  FullProductInfo, FullProjectInfo, Location
 } from './types'
