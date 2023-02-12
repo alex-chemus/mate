@@ -7,7 +7,7 @@ import { FullProjectInfo } from '@/utils'
 import type { Partner } from './types'
 import {
   Bio, NewPost, Partners, ProfileCard,
-  Projects, Skills
+  Projects, Skills, Contacts
 } from './components'
 import ProfileLayout from './ProfileLayout.vue'
 //import { useFetchProjectsInfo } from './hooks'
@@ -124,6 +124,12 @@ const skills = computed(() => {
         :following="following"
         :nickname="fullAccountInfo.textID"
         :banner="fullAccountInfo.profileCover"
+      />
+    </template>
+
+    <template #contacts>
+      <contacts
+        :media="fullAccountInfo.contacts.socialNetworks"
       />
     </template>
 

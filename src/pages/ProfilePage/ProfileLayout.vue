@@ -21,6 +21,11 @@ defineProps<{
         <div>
           <slot name="profile-card" />
         </div>
+
+        <div>
+          <slot name="contacts" />
+        </div>
+
         <div>
           <slot name="skills" />
         </div>
