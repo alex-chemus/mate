@@ -19,9 +19,9 @@
         <slot name="address" />
       </div>
 
-      <!-- <div class="media-wrapper">
+      <div class="media-wrapper">
         <slot name="media" />
-      </div> -->
+      </div>
 
       <slot name="specialties" />
       <slot name="skills" />

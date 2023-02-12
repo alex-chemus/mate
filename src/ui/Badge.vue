@@ -44,6 +44,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   @include flex(flex-end, center);
   gap: 3px;
   border-radius: 13px;
+  transition: var(--fast);
 
   .round {
     border-radius: 100vmax;

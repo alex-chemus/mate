@@ -9,11 +9,12 @@ import {
   AddressSelect
 } from './components'
 import {
-  useUploadProfileSettings, useUploadImage, useSpecialties, useAddress
+  useUploadProfileSettings, useUploadImage, useSpecialties, useAddress,
+  useMedia
 } from './hooks'
 import ProfileSettingsLayout from './ProfileSettingsLayout.vue'
 
-defineProps<{
+const props = defineProps<{
   fullAccountInfo: FullAccountInfo,
 }>()
 
@@ -23,84 +24,13 @@ const {
   fetchLocations, locationsLoading, allLocations, addressValue, onSelect, selectedLocation
 } = useAddress()
 const {
-  uploadProfileSettings, bio, media, skills
+  media, onAdd, onRemove, onEdit
+} = useMedia({ fullAccountInfo: props.fullAccountInfo })
+const {
+  uploadProfileSettings, bio, skills
 } = useUploadProfileSettings({ uploadImage, uploadSpecialties, address: addressValue })
 
 const addressOpened = ref(false)
-const selectedAddress = ref<number | undefined>(undefined)
-// test data
-const locs = ref<Location[] | null>([
-  {
-    endpointName: 'Пермь',
-    countryID: 1,
-    cityID: 1,
-    regionID: 1
-  },
-  {
-    endpointName: 'Екат',
-    countryID: 2,
-    cityID: 2,
-    regionID: 2
-  },
-  {
-    endpointName: 'Екат1',
-    countryID: 2,
-    cityID: 2,
-    regionID: 2
-  },
-  {
-    endpointName: 'Екат2',
-    countryID: 2,
-    cityID: 2,
-    regionID: 2
-  },
-  {
-    endpointName: 'Екат3',
-    countryID: 2,
-    cityID: 2,
-    regionID: 2
-  },
-  {
-    endpointName: 'Екат4',
-    countryID: 2,
-    cityID: 2,
-    regionID: 2
-  },
-  {
-    endpointName: 'Пермь',
-    countryID: 1,
-    cityID: 1,
-    regionID: 1
-  },
-  {
-    endpointName: 'Пермь',
-    countryID: 1,
-    cityID: 1,
-    regionID: 1
-  },
-  {
-    endpointName: 'Пермь',
-    countryID: 1,
-    cityID: 1,
-    regionID: 1
-  },
-  {
-    endpointName: 'Пермь',
-    countryID: 1,
-    cityID: 1,
-    regionID: 1
-  },
-  {
-    endpointName: 'Пермь',
-    countryID: 1,
-    cityID: 1,
-    regionID: 1
-  },
-])
-// const getPopupContainer = () => {
-//   return document.querySelector('.settings-modal .ant-modal-content') as HTMLElement
-//   //return document.body
-// }
 </script>
 
 <template>
@@ -144,6 +74,15 @@ const locs = ref<Location[] | null>([
           <button @click="selectOpened = !selectOpened">click me</button>
         </template>
       </search-select> -->
+    </template>
+
+    <template #media>
+      <Media
+        :media="fullAccountInfo.contacts.socialNetworks"
+        @edit="onEdit"
+        @remove="onRemove"
+        @add="onAdd"
+      />
     </template>
 
     <template #specialties>
