@@ -1,9 +1,15 @@
+import { ComputedRef } from 'vue'
 import {
-  FullAccountInfo, useApiState, useAuthState, useDispatch, useGlobalUpdate
+  FullAccountInfo, useApiState, useAuthState, useDispatch, useGlobalUpdate, FullProjectInfo
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
 
-const useMedia = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo }) => {
+const useMedia = ({
+  fullAccountInfo, currentProject
+}: {
+  fullAccountInfo: FullAccountInfo,
+  currentProject: ComputedRef<FullProjectInfo | null>
+}) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -14,9 +20,11 @@ const useMedia = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo }) => 
     body.append('token', authState.value.token as string)
     body.append('type', 'socialNetwork')
     body.append('value', payload)
+    if (currentProject.value)
+      body.append('projectID', currentProject.value.id.toString())
 
     await dispatch(fetchActions.FETCH, {
-      url: `${apiState.value.apiUrl}/mate/account.addContact/`,
+      url: `${apiState.value.apiUrl}/mate/projects.addContact/`,
       info: {
         method: 'POST',
         body
@@ -31,9 +39,11 @@ const useMedia = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo }) => 
     body.append('token', authState.value.token as string)
     body.append('type', 'socialNetwork')
     body.append('id', payload.toString())
+    if (currentProject.value)
+      body.append('projectID', currentProject.value.id.toString())
 
     await dispatch(fetchActions.FETCH, {
-      url: `${apiState.value.apiUrl}/mate/account.deleteContact/`,
+      url: `${apiState.value.apiUrl}/mate/projects.deleteContact/`,
       info: {
         method: 'POST',
         body

@@ -20,6 +20,8 @@ defineProps<{
     <div v-if="currentTab === 'settings'" class="project-section">
       <slot name="images-upload" />
       <slot name="foundation-date" />
+
+      <slot name="media" />
       <slot name="slogan" />
       <div class="save-button-wrapper">
         <slot name="save-button" />

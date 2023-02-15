@@ -24,7 +24,7 @@ const {
   fetchLocations, locationsLoading, allLocations, addressValue, onSelect, selectedLocation
 } = useAddress()
 const {
-  media, onAdd, onRemove, onEdit
+  onAdd, onRemove, onEdit
 } = useMedia({ fullAccountInfo: props.fullAccountInfo })
 const {
   uploadProfileSettings, bio, skills

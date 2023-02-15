@@ -10,7 +10,7 @@ const { theme } = useTheme()
 </script>
 
 <template>
-  <section class="media-section" :class="theme">
+  <section v-if="media.length" class="media-section" :class="theme">
     <a
       v-for="mediaItem in media" :key="mediaItem.id"
       :href="mediaItem.url" :title="mediaItem.service"
