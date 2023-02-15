@@ -18,7 +18,7 @@ const { theme } = useTheme()
     >
       <img
         v-if="mediaItem.logo"
-        :src="mediaItem.url" :alt="mediaItem.service"
+        :src="mediaItem.logo" :alt="mediaItem.service"
         class="media-logo"
       />
       <div v-else class="media-logo placeholder" />

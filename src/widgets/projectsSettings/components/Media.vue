@@ -133,6 +133,7 @@ const startEditing = (item: SocialMedia) => {
 .media-item-logo {
   width: 20px;
   aspect-ratio: 1;
+  object-fit: cover;
 }
 
 .content-wrapper {
