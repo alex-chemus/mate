@@ -143,17 +143,9 @@ const { theme } = useTheme()
 
 .title {
   font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
   font-size: 14px;
   margin-bottom: 25px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 
 .content-list {
@@ -166,13 +158,7 @@ const { theme } = useTheme()
 }
 
 .icon {
-  &.light {
-    color: var(--accent-1);
-  }
-
-  &.dark {
-    color: var(--accent-2);
-  }
+  color: var(--accent);
 }
 
 .content-item {
@@ -188,35 +174,16 @@ const { theme } = useTheme()
 .content-wrapper h6,
 .skills-wrapper h6 {
   font-family: var(--findcreek-bold);
-  font-weight: var(--medium);
   font-size: 14px;
   letter-spacing: .01em;
-  margin: 0;
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 }
 
 .content-wrapper p {
-  &.light {
-    color: #5C5C5C;
-  }
+  color: var(--text-color-1);
 
-  &.dark {
-    color: var(--light);
-  }
-
-  &.colored.light {
-    color: var(--accent-1);
-  }
-
-  &.colored.dark {
-    color: var(--accent-2);
+  &.colored {
+    color: var(--accent);
   }
 }
 
@@ -255,13 +222,6 @@ const { theme } = useTheme()
   border-radius: 8px;
   border: 1px solid color.change($gray-1, $alpha: .25);
   @include flex(center, center);
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 </style>

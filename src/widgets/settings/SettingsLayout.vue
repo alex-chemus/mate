@@ -91,14 +91,7 @@ aside h6 {
   font-weight: var(--medium);
   font-size: 14px;
   margin: 0;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: var(--gray-2);
-  }
+  color: var(--text-color-1);
 }
 
 .main-section {
@@ -114,14 +107,7 @@ aside h6 {
 .title {
   font-family: var(--findcreek-medium);
   font-size: 18px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 
 .widget-wrapper {

@@ -31,14 +31,7 @@ const { theme } = useTheme()
   font-size: 14px;
   letter-spacing: -0.03em;
   transition: var(--fast);
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 
   &:hover,
   &.selected {
@@ -47,14 +40,9 @@ const { theme } = useTheme()
     box-shadow: 0 0 8px 0 rgb(0 0 0 / .1);
   }
 
-  &.light:hover,
-  &.light.selected {
-    color: var(--accent-1);
-  }
-
-  &.dark:hover,
-  &.dark.selected {
-    color: var(--accent-2);
+  &:hover,
+  &.selected {
+    color: var(--accent);
   }
 }
 </style>

@@ -162,7 +162,7 @@ defineProps<{
 .partners-section .carousel__icon {
   width: var(--vc-icn-width);
   height: var(--vc-icn-width);
-  fill: var(--local-elem-color);
+  fill: var(--text-color-2);
 }
 
 .partners-section .carousel__slide {

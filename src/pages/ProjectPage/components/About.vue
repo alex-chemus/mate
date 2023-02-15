@@ -23,21 +23,12 @@ const { theme } = useTheme()
   border-radius: 13px;
   border: 1px solid rgba(118 118 118 / .25);
   padding: 11px 19px;
-
-  &.light {
-    color: var(--dark-2);
-    background-color: var(--light);
-  }
-
-  &.dark {
-    color: var(--light);
-    background-color: var(--dark-theme-color-2);
-  }
+  color: var(--heading-color-2);
+  background-color: var(--bg-color-1);
 
   h5 {
     font-family: var(--findcreek-medium);
     font-size: 14px;
-    font-weight: var(--medium);
     letter-spacing: 1%;
     margin: 0;
     margin-bottom: 12px;

@@ -24,6 +24,6 @@ const { theme, toggleTheme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 svg {
-  color: var(--text-color, $text-color);
+  color: var(--heading-color-2, $heading-color-2);
 }
 </style>

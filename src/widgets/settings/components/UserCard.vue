@@ -82,13 +82,6 @@ const { theme } = useTheme()
   font-weight: var(--medium);
   font-size: 12px;
   letter-spacing: -0.03em;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 </style>

@@ -107,14 +107,7 @@ const startEditing = (item: SocialMedia) => {
 .add-button {
   height: 40px;
   cursor: pointer;
-
-  &.light {
-    color: var(--accent-1);
-  }
-
-  &.dark {
-    color: var(--accent-2);
-  }
+  color: var(--accent);
 }
 
 .badges-wrapper {

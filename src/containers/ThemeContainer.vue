@@ -7,12 +7,16 @@ const { theme } = useTheme()
 const dispatch = useDispatch()
 
 const changeTheme = () => {
+  const root = document.querySelector(':root') as HTMLElement
   const app = document.getElementById('app') as HTMLElement
 
-  if (theme.value === 'light')
+  if (theme.value === 'light') {
+    root.dataset.theme = 'light'
     app.className = 'light'
-  else
+  } else {
+    root.dataset.theme = 'dark'
     app.className = 'dark'
+  }
 }
 
 watch(theme, changeTheme)

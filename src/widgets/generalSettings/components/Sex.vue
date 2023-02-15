@@ -43,14 +43,7 @@ const { theme } = useTheme()
   font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 13px;
   margin: 0 0 6px 10px;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 
 ul {

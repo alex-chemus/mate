@@ -45,31 +45,16 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   gap: 3px;
   border-radius: 13px;
   transition: var(--fast);
+  color: var(--heading-color-1);
+  background-color: var(--bg-color-2);
+  border: var(--border-1);
 
-  .round {
+  &.round {
     border-radius: 100vmax;
-  }
-
-  &.light {
-    background-color: var(--light);
-    color: var(--dark-1);
-    border: 1px solid color.change($gray-1, $alpha: .4);
-  }
-
-  &.dark {
-    background-color: #1E1F29;
-    color: var(--light);
-    border: 1px solid color.change($gray-1, $alpha: .5);
   }
 }
 
 .close-button {
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 </style>

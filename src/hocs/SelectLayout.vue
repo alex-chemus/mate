@@ -77,14 +77,7 @@ const specialtiesArray = computed(() => {
   font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 13px;
   margin: 0 0 6px 10px;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 
 .specialties-list {
@@ -103,14 +96,7 @@ const specialtiesArray = computed(() => {
   font-size: 13px;
   letter-spacing: -0.02em;
   margin-right: 7px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 </style>
 
@@ -121,14 +107,13 @@ const specialtiesArray = computed(() => {
 .specialties-modal-dropdown {
   border-radius: 6px !important;
   box-shadow: 0 0 30px -4px rgb(0 0 0 / .25) !important;
+  background-color: var(--bg-color-1);
 
   &.light {
-    background-color: var(--light) !important;
     border: 1px solid #e6e6e6;
   }
 
   &.dark {
-    background-color: var(--dark-theme-color-2) !important;
     border: 1px solid #615478;
   }
 }
@@ -149,26 +134,15 @@ const specialtiesArray = computed(() => {
   box-shadow: none !important;
 }
 
-.specialties-container.light .ant-select-focused .ant-select-selector,
-.specialties-container.light .ant-select:hover .ant-select-selector {
-  border-color: var(--accent-1) !important;
+.specialties-container .ant-select-focused .ant-select-selector,
+.specialties-container .ant-select:hover .ant-select-selector {
+  border-color: var(--accent) !important;
 }
 
-.specialties-container.dark .ant-select-focused .ant-select-selector,
-.specialties-container.dark .ant-select:hover .ant-select-selector {
-  border-color: var(--accent-2) !important;
-}
-
-.specialties-container.light .ant-select-selector {
-  border: 1px solid color.change($gray-1, $alpha: .4) !important;
-  background-color: var(--light) !important;
-  color: var(--dark-2) !important;
-}
-
-.specialties-container.dark .ant-select-selector {
-  border: 1px solid color.change($gray-1, $alpha: .5) !important;
-  background-color: #1E1F29 !important;
-  color: var(--light) !important;
+.specialties-container .ant-select-selector {
+  color: var(--heading-color-2) !important;
+  background-color: var(--bg-color-2) !important;
+  border: var(--border-1) !important;
 }
 
 .specialties-container .ant-select-arrow {
@@ -200,14 +174,7 @@ const specialtiesArray = computed(() => {
   .ant-select-item-group {
     font-family: var(--noto-sans);
     font-size: 13px;
-  }
-
-  &.light .ant-select-item-group {
-    color: #5c5c5c;
-  }
-
-  &.dark .ant-select-item-group {
-    color: #bbb;
+    color: var(--text-color-1);
   }
 }
 
@@ -217,26 +184,12 @@ const specialtiesArray = computed(() => {
   line-height: 1.4em;
   letter-spacing: -0.033em;
   transition: var(--fast);
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1) !important;
 
   &.ant-select-item-option-active,
   &.ant-select-item-option-selected {
     color: var(--light) !important;
-
-    &.light {
-      background-color: var(--accent-1);
-    }
-
-    &.dark {
-      background-color: var(--accent-2);
-    }
+    background-color: var(--accent);
   }
 }
 </style>

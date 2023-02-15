@@ -90,7 +90,7 @@ h1 {
   font-weight: var(--bold);
   font-size: 58px;
   margin-bottom: 26px;
-  color: var(--text-color);
+  color: var(--heading-color-2);
 }
 
 h2 {
@@ -117,7 +117,7 @@ h3 {
   font-family: var(--findcreek-bold);
   font-weight: var(--bold);
   font-size: 20px;
-  color: var(--text-color);
+  color: var(--heading-color-2);
 }
 
 .grid-container {
@@ -156,7 +156,7 @@ h3 {
     font-weight: var(--medium);
     font-family: var(--findcreek-medium);
     margin-bottom: 16px;
-    color: var(--text-color);
+    color: var(--heading-color-2);
   }
 }
 

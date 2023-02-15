@@ -50,12 +50,8 @@ const { theme } = useTheme()
   @include flex(flex-start, center);
   gap: 13px;
 
-  &.light svg {
-    color: var(--accent-1)
-  }
-
-  &.dark svg {
-    color: var(--accent-2);
+  svg {
+    color: var(--accent);
   }
 }
 
@@ -64,27 +60,13 @@ const { theme } = useTheme()
   font-size: 15px;
   letter-spacing: -0.03em;
   margin-bottom: 3px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 
 .setting-text {
   font-family: var(--findcreek);
   font-size: 13px;
   letter-spacing: -0.03em;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 </style>

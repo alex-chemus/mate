@@ -84,6 +84,7 @@ const isOpen = ref(false)
   padding: 0 9px;
   border: 1px solid transparent;
   transition: var(--fast);
+  background-color: var(--bg-color-2);
 
   &.--round {
     padding: 0;
@@ -96,12 +97,10 @@ const isOpen = ref(false)
   }
 
   &.light {
-    background-color: #F9FBFC;
     color: #0f0f0f;
   }
 
   &.dark {
-    background-color: #333640;
     color: var(--light);
   }
 
@@ -123,12 +122,8 @@ const isOpen = ref(false)
     color: var(--light);
   }
 
-  &.light:hover {
-    border-color: var(--accent-1);
-  }
-
-  &.dark:hover {
-    border-color: var(--accent-2);
+  &:hover {
+    border-color: var(--accent);
   }
 }
 </style>

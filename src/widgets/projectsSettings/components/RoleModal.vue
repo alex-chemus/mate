@@ -92,14 +92,7 @@ const getText = computed(() => {
   font-family: var(--findcreek-bold);
   font-size: 14px;
   letter-spacing: -0.02em;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 
 .name-container {
@@ -120,28 +113,14 @@ const getText = computed(() => {
   font-size: 14px;
   letter-spacing: -0.02em;
   margin-bottom: 2px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 
 .role {
   font-family: var(--findcreek);
   font-size: 12px;
   letter-spacing: -0.02em;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 
 .warning-container {
@@ -153,14 +132,7 @@ const getText = computed(() => {
 
   svg {
     flex-shrink: 0;
-  }
-
-  &.light svg {
-    color: var(--accent-1);
-  }
-
-  &.dark svg {
-    color: var(--accent-2);
+    color: var(--accent);
   }
 
   &.light {
@@ -177,17 +149,10 @@ const getText = computed(() => {
   font-size: 12px;
   letter-spacing: -0.02em;
   line-height: 1.3em;
+  color: var(--heading-color-2);
 
   strong {
     font-family: var(--findcreek-bold);
-  }
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
   }
 }
 

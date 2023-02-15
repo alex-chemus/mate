@@ -46,14 +46,13 @@ const isCurrent = (tabName: TabName) =>
   border: 1px solid color.change($gray-1, $alpha: .25);
   border-radius: 10px;
   overflow: hidden;
+  background-color: var(--bg-color-1);
 
   &.light {
-    background-color: var(--light);
     color: #4C4F56;
   }
 
   &.dark {
-    background-color: var(--dark-theme-color-2);
     color: var(--gray-3);
   }
 }

@@ -120,20 +120,16 @@ const title = computed(() => {
   }
 }
 
-.message.light {
-  color: var(--dark-1);
+.message {
+  color: var(--heading-color-1);
+}
 
-  a {
-    color: var(--accent-1);
-  }
+.message.light a {
+  color: var(--accent-1);
 }
 
 .message.dark {
   color: var(--light);
-
-  a {
-    color: var(--light);
-  }
 }
 
 small {

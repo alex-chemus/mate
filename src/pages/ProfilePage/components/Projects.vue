@@ -69,42 +69,20 @@ const computedProjects = computed(() => {
   padding: 25px 18px;
   border: 1px solid color.change($gray-1, $alpha: .25);
   border-radius: 13px;
-
-  &.light {
-    background-color: var(--light);
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
+  background-color: var(--bg-color-1);
 }
 
 .projects-title {
   margin-bottom: 26px;
   font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--medium);
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 
   span {
     font-family: var(--noto-sans);
     font-weight: var(--bold);
     margin-left: 7px;
-  }
-
-  &.light span {
-    color: #5C5C5C;
-  }
-
-  &.dark span {
-    color: #bbb;
+    color: var(--text-color-1);
   }
 }
 
@@ -159,6 +137,8 @@ const computedProjects = computed(() => {
 }
 
 .project-wrapper {
+  color: var(--heading-color-2);
+
   h5 {
     font-family: var(--montserrat);
     font-weight: var(--bold);
@@ -168,30 +148,15 @@ const computedProjects = computed(() => {
     color: currentColor;
   }
 
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
-
   small {
     font-family: var(--findcreek);
     font-size: 13px;
     letter-spacing: -3%;
+    color: var(--text-color-1);
   }
 
   small span {
     font-family: var(--noto-sans);
-  }
-
-  &.light small {
-    color: #5C5C5C;
-  }
-
-  &.dark small {
-    color: #bbb;
   }
 }
 

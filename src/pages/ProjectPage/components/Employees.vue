@@ -42,14 +42,7 @@ const { theme } = useTheme()
   padding: 25px 18px;
   border: 1px solid color.change($gray-1, $alpha: .25);
   border-radius: 13px;
-
-  &.light {
-    background-color: var(--light);
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
+  background-color: var(--bg-color-1);
 }
 
 .employees-title {
@@ -57,27 +50,13 @@ const { theme } = useTheme()
   font-family: var(--findcreek-medium);
   font-size: 14px;
   font-weight: var(--medium);
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 
   span {
     font-family: var(--noto-sans);
     font-weight: var(--bold);
     margin-left: 7px;
-  }
-
-  &.light span {
-    color: #5C5C5C;
-  }
-
-  &.dark span {
-    color: #bbb;
+    color: var(--text-color-1);
   }
 }
 
@@ -114,32 +93,17 @@ const { theme } = useTheme()
 .employee-wrapper {
   h5 {
     font-family: var(--findcreek-bold);
-    font-weight: var(--bold);
     font-size: 14px;
     letter-spacing: -3%;
     margin: 0;
-  }
-
-  &.light h5 {
-    color: var(--dark-2);
-  }
-
-  &.dark h5 {
-    color: var(--light);
+    color: var(--heading-color-2);
   }
 
   small {
     font-family: var(--findcreek);
     font-size: 12px;
     letter-spacing: -3%;
-  }
-
-  &.light small {
-    color: #5c5c5c;
-  }
-
-  &.dark small {
-    color: #bbb;
+    color: var(--text-color-1);
   }
 }
 </style>

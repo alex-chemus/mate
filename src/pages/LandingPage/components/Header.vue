@@ -62,7 +62,7 @@ header {
     font-size: 22px;
     font-family: var(--montserrat);
     font-weight: var(--bold);
-    color: var(--text-color)
+    color: var(--heading-color-2);
   }
 
   & > *:not(:last-child) {

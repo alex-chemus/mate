@@ -21,22 +21,12 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 @import '@/assets/styles/style.scss';
 
 .loader {
-  //width: 48px;
-  //height: 48px;
-  //border: 5px solid var(--accent-1);
   border-bottom-color: transparent !important;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
-
-  &.dark {
-    border: 5px solid var(--accent-2, $accent-2);
-  }
-
-  &.light {
-    border: 5px solid var(--accent-1, $accent-1);
-  }
+  border: 5px solid var(--accent, $accent);
 }
 
 @keyframes rotation {

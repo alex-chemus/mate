@@ -42,16 +42,8 @@ const { theme } = useTheme()
   padding: 10px;
   height: 40px;
   @include flex(flex-start, stretch);
-
-  &.light {
-    background-color: var(--light);
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-    color: #bbb;
-  }
+  background-color: var(--bg-color-1);
+  color: var(--text-color-1);
 
   & > *:not(:last-child) {
     margin-right: 12px;

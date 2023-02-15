@@ -74,29 +74,16 @@ watch(() => props.focused, () => {
   gap: 15px;
   border-radius: 8px;
   transition: var(--fast, $fast);
+  background-color: var(--bg-color-2, $bg-color-2);
+  border: var(--border-1);
 
   &:focus {
     outline: none;
   }
 
-  &.light {
-    background-color: var(--light, $light);
-    border: 1px solid color.change($gray-1, $alpha: .4);
-  }
-
-  &.light:hover,
-  &.light.focused {
-    border: 1px solid var(--accent-1);
-  }
-
-  &.dark {
-    background-color: #1E1F29;
-    border: 1px solid color.change($gray-1, $alpha: .4);
-  }
-
-  &.dark:hover,
-  &.dark.focused {
-    border: 1px solid var(--accent-2);
+  &:hover,
+  &.focused {
+    border: 1px solid var(--accent);
   }
 }
 
@@ -106,18 +93,11 @@ watch(() => props.focused, () => {
   font-size: 13px;
   background-color: transparent;
   border: none;
+  color: var(--heading-color-2, $heading-color-2);
 
   &:hover,
   &:focus {
     outline: none;
-  }
-
-  &.light {
-    color: var(--dark-2, $dark-2);
-  }
-
-  &.dark {
-    color: var(--light, $light);
   }
 }
 
@@ -125,13 +105,6 @@ watch(() => props.focused, () => {
   font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 13px;
   margin: 0 0 6px 10px;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 </style>

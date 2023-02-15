@@ -90,14 +90,7 @@ defineProps<{
   padding: 15px;
   @include flex(flex-start, stretch, column);
   border-radius: 13px;
-
-  &.light {
-    background-color: var(--light);
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
+  background-color: var(--bg-color-1);
 
   & > *:not(:last-child) {
     margin-bottom: 10px;
@@ -138,14 +131,7 @@ defineProps<{
   outline: none;
   min-width: 0;
   flex-grow: 1;
-
-  &.light {
-    background-color: var(--light);
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-5);
-  }
+  background-color: var(--bg-color-1);
 }
 
 .new-button {

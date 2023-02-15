@@ -46,14 +46,7 @@ const { theme } = useTheme()
   border-radius: 13px;
   position: relative;
   overflow: hidden;
-
-  &.light {
-    background-color: var(--light);
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
+  background-color: var(--bg-color-1);
 }
 
 .date-wrapper {

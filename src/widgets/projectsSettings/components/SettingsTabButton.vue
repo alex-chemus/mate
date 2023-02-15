@@ -50,12 +50,8 @@ const name = computed(() => {
   transition: var(--fast);
   border-radius: 6px;
 
-  &.light svg {
-    color: var(--accent-1);
-  }
-
-  &.dark svg {
-    color: var(--accent-2);
+  svg {
+    color: var(--accent);
   }
 
   span {
@@ -63,14 +59,7 @@ const name = computed(() => {
     font-size: 13px;
     line-height: 1.40em;
     letter-spacing: -0.033em;
-  }
-
-  &.light span {
-    color: var(--dark-1);
-  }
-
-  &.dark span {
-    color: var(--light);
+    color: var(--heading-color-1);
   }
 
   &.selected,

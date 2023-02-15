@@ -47,17 +47,15 @@ const { theme } = useTheme()
   padding: 12px;
   list-style: none;
   margin: 0;
+  color: var(--heading-color-1);
+  background-color: var(--bg-color-1);
 
   &.light {
-    color: var(--dark-1);
-    background-color: var(--light);
     border: 1px solid #e6e6e6;
     box-shadow: 0 0 30px -4px rgba(0 0 0 / .25);
   }
 
   &.dark {
-    color: var(--light);
-    background-color: var(--dark-theme-color-2);
     border: 1px solid rgba(118 118 118 / .25);
     box-shadow: 0 0 30px 10px rgba(0 0 0 / .25);
   }
@@ -82,12 +80,8 @@ button {
     transition: var(--fast);
   }
 
-  &.light:hover svg {
-    color: var(--accent-1);
-  }
-
-  &.dark:hover svg {
-    color: var(--accent-2);
+  &:hover svg {
+    color: var(--accent);
   }
 }
 

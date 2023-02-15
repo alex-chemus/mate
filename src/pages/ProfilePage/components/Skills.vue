@@ -30,14 +30,7 @@ const { theme } = useTheme()
   padding: 23px;
   border-radius: 13px;
   border: 1px solid color.change($gray-1, $alpha: .25);
-
-  &.light {
-    background-color: var(--light);
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2)
-  }
+  background-color: var(--bg-color-1);
 }
 
 .title {
@@ -45,14 +38,7 @@ const { theme } = useTheme()
   font-size: 14px;
   font-weight: var(--medium);
   margin-bottom: 26px;
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 }
 
 .skills-list {
@@ -74,14 +60,7 @@ const { theme } = useTheme()
   font-weight: var(--medium);
   font-size: 12px;
   border-radius: 8px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 
 h6 {
@@ -89,13 +68,6 @@ h6 {
   font-family: var(--noto-sans);
   font-weight: var(--medium);
   font-size: 12px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 </style>
