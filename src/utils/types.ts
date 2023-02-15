@@ -42,7 +42,10 @@ export type FullAccountInfo = {
       id: number,
       emailAddress: string
     }[],
-    phoneNumbers: string[],
+    phoneNumbers: {
+      id: number,
+      phoneNumber: string
+    }[],
     socialNetworks: SocialMedia[]
   },
   bio: string,
@@ -105,9 +108,20 @@ export type FullProjectInfo = {
   },
   slogan: string,
   description: string,
+  // contacts: {
+  //   findcreek: string,
+  //   [index: string]: string,
+  // },
   contacts: {
-    findcreek: string,
-    [index: string]: string,
+    emailAddress: {
+      id: number,
+      emailAddress: string
+    }[],
+    phoneNumbers: {
+      phoneNumber: string,
+      id: number
+    }[],
+    socialNetworks: SocialMedia[]
   },
   subscribers: number[],
   subscribersNumber: number,

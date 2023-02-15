@@ -5,11 +5,11 @@ import { Input, SaveButton } from '@/ui'
 import ProjectsSettingsLayout from './ProjectsSettingsLayout.vue'
 import {
   SettingsTabs, ProjectsSlider, ImagesUpload, DateInput,
-  MemberItem, MembersSearch, RoleModal, RoleSelect
+  MemberItem, MembersSearch, RoleModal, RoleSelect, Media
 } from './components'
 import {
   useMembers, useProjectsInfo, useUploadProjectSettings,
-  useUploadImage, useRoles
+  useUploadImage, useRoles, useMedia
 } from './hooks'
 import { SettingsTab, Member } from './types'
 
@@ -25,6 +25,9 @@ const currentTab = ref<SettingsTab>('settings')
 const isModalOpen = ref(false)
 const selectedMember = ref<null | Member>(null)
 const { sortedMembers, onSearch } = useMembers({ currentProject })
+const {
+  onAdd, onEdit, onRemove
+} = useMedia({ currentProject, fullAccountInfo: props.fullAccountInfo })
 const {
   setAvatar, setCover, getAvatar, getCover, uploadImage
 } = useUploadImage({ currentProjectID })
@@ -68,6 +71,16 @@ const {
       <date-input
         :value="(getFoundationDate as string | undefined)"
         @update:value="setFoundationDate"
+      />
+    </template>
+
+    <template #media>
+      <media
+        v-if="currentProject"
+        :media="currentProject.contacts.socialNetworks"
+        @edit="onEdit"
+        @remove="onRemove"
+        @add="onAdd"
       />
     </template>
 

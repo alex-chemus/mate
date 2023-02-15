@@ -11,7 +11,10 @@ defineProps<{
   }[],
   specialties: string[],
   registrationDate: string,
-  phones: string[],
+  phones: {
+    id: number,
+    phoneNumber: string
+  }[],
   city: string,
   skills: string
 }>()
@@ -97,9 +100,9 @@ const { theme } = useTheme()
               <p :class="theme">Номера телефона:</p>
               <div>
                 <p
-                  v-for="(phone, i) in phones" :key="i"
+                  v-for="phone in phones" :key="phone.id"
                   class="colored" :class="theme"
-                >{{ phone }}</p>
+                >{{ phone.phoneNumber }}</p>
               </div>
             </template>
             <template v-if="city">

@@ -12,7 +12,10 @@ defineProps<{
   }[],
   specialties: string[],
   registrationDate: string,
-  phones: string[],
+  phones: {
+    id: number,
+    phoneNumber: string
+  }[],
   city: string,
   skills: string
 }>()
