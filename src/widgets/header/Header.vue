@@ -6,7 +6,7 @@ import {
   Search, Tabs, Profile, Notifications,
   ProfilePopup, NotificationsPopup
 } from './components'
-import { useAccountInfo } from './hooks'
+import { useAccountInfo, useTabs } from './hooks'
 import type { Notice } from './types'
 
 const props = defineProps<{
@@ -16,7 +16,7 @@ const props = defineProps<{
 }>()
 
 const { getImg, getFullName, getEmail } = useAccountInfo(props)
-
+const { currentTab, switchTabs } = useTabs()
 const { openSettings } = useSettings()
 
 const notices: Notice[] = [
@@ -51,7 +51,7 @@ const notices: Notice[] = [
     </template>
 
     <template #tabs>
-      <tabs />
+      <tabs :current-tab="currentTab" @switch="switchTabs" />
     </template>
 
     <template #notifications>

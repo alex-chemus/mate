@@ -23,3 +23,5 @@ export type AccountInfo = {
   },
   email: string
 }
+
+export type Tab = 'profile' | 'search-vacancies' | null

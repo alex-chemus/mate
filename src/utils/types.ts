@@ -130,7 +130,8 @@ export type FullProjectInfo = {
   products: FullProductInfo[],
   links: string[],
   administrators: number[],
-  editors: number[]
+  editors: number[],
+  themeID: number
 }
 
 export type FileInfo = {
