@@ -88,7 +88,6 @@ aside {
 aside h6 {
   //margin-left: 20px;
   font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
   font-size: 14px;
   margin: 0;
   color: var(--text-color-1);

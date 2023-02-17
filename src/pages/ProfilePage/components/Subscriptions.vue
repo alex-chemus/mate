@@ -60,7 +60,6 @@ defineProps<{
 .title {
   font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--medium);
   color: var(--heading-color-2);
 }
 

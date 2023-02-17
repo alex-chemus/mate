@@ -63,7 +63,6 @@ const { theme } = useTheme()
 
 .name {
   font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
   font-size: 16px;
   margin-bottom: 2px;
 
@@ -78,8 +77,7 @@ const { theme } = useTheme()
 
 .email {
   display: block;
-  font-family: var(--noto-sans);
-  font-weight: var(--medium);
+  font-family: var(--noto-sans-medium);
   font-size: 12px;
   letter-spacing: -0.03em;
   color: var(--text-color-1);

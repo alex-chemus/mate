@@ -73,8 +73,7 @@ const { theme } = useTheme()
 }
 
 .text {
-  font-family: var(--fincreek-medium);
-  font-weight: var(--medium);
+  font-family: var(--findcreek-medium);
   font-size: 14px;
   transition: var(--fast);
   color: var(--text-color-1);

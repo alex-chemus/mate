@@ -61,12 +61,11 @@ const projects = ref<IProject[]>([
   margin-bottom: 26px;
   font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--medium);
   color: var(--heading-color-2);
 
   span {
-    font-family: var(--noto-sans);
-    font-weight: var(--bold);
+    font-family: var(--noto-sans-bold);
+    //font-weight: var(--bold);
     margin-left: 7px;
     color: var(--text-color-1);
   }
@@ -108,8 +107,7 @@ const projects = ref<IProject[]>([
 
 .project-wrapper {
   h5 {
-    font-family: var(--montserrat);
-    font-weight: var(--bold);
+    font-family: var(--montserrat-bold);
     font-size: 14px;
     letter-spacing: -3%;
     margin: 0;

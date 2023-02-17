@@ -31,9 +31,8 @@ const emit = defineEmits<{
   background-color: transparent;
   transition: all .15s;
 
-  font-family: var(--findcreek, $findcreek);
+  font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 13px;
-  font-weight: var(--medium, $medium);
   letter-spacing: .2%;
   color: var(--accent, $accent);
 

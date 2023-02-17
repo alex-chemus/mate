@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 import { useSettings } from '@/utils'
 import HeaderLayout from './HeaderLayout.vue'
 import {
   Search, Tabs, Profile, Notifications,
-  ProfilePopup, NotificationsPopup
+  ProfilePopup, NotificationsPopup, SearchPopup
 } from './components'
 import { useAccountInfo, useTabs } from './hooks'
-import type { Notice } from './types'
+import { Notice, SearchItem } from './types'
 
 const props = defineProps<{
   img?: string,
@@ -42,12 +42,30 @@ const notices: Notice[] = [
     date: 'Час назад'
   }
 ]
+
+const searchItems: SearchItem[] = [
+  {
+    fullName: 'александр чемус',
+    textID: 'alex_chemus',
+    description: 'я работаю в проекте findcreek mate. я создатель этой платформы!',
+    id: 1,
+  },
+  {
+    fullName: 'алексей грибанов',
+    textID: 'alex_grib',
+    description: 'я работаю в проекте findcreek mate. я создатель этой платформы!',
+    id: 2
+  },
+]
+const isSearchOpen = ref(false)
 </script>
 
 <template>
   <header-layout>
     <template #search>
-      <search />
+      <search :popup-open="isSearchOpen" @toggle-popup="p => isSearchOpen = p">
+        <search-popup :search-items="searchItems" @close="isSearchOpen = false" />
+      </search>
     </template>
 
     <template #tabs>

@@ -60,8 +60,7 @@ header {
 
   span {
     font-size: 22px;
-    font-family: var(--montserrat);
-    font-weight: var(--bold);
+    font-family: var(--montserrat-bold);
     color: var(--heading-color-2);
   }
 

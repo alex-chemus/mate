@@ -25,3 +25,12 @@ export type AccountInfo = {
 }
 
 export type Tab = 'profile' | 'search-vacancies' | null
+
+export type SearchItem = {
+  avatar?: string;
+  fullName: string,
+  textID: string,
+  description: string,
+  banner?: string,
+  id: number
+}

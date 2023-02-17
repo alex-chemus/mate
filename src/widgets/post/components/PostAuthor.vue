@@ -55,7 +55,6 @@ const { theme } = useTheme()
   h5 {
     margin: 0;
     font-family: var(--findcreek-medium);
-    font-weight: var(--medium);
     font-size: 12px;
     color: var(--heading-color-2);
   }

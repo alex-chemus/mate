@@ -35,14 +35,7 @@ const { theme } = useTheme()
   @include flex(center, center);
   gap: 4px;
   transition: var(--fast);
-
-  &.light {
-    color: var(--gray-1);
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-3);
 }
 
 .notifications-button.selected {
