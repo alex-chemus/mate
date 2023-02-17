@@ -1,10 +1,11 @@
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate
+  useApiState, useAuthState, useDispatch, useGlobalUpdate,
+  FullProjectInfo
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
-import type { ProjectInfo, Employee } from '../types'
+import type { Employee } from '../types'
 
 const useProjectInfo = () => {
   const apiState = useApiState()
@@ -27,7 +28,7 @@ const useProjectInfo = () => {
         method: 'POST',
         body
       }
-    }))[0] as ProjectInfo
+    }))[0] as FullProjectInfo
   }
 
   const fetchProjectEmployees = async (ids: string) => {
@@ -53,7 +54,7 @@ const useProjectInfo = () => {
     } as Employee))
   }
 
-  const projectInfo = ref<ProjectInfo | null>(null)
+  const projectInfo = ref<FullProjectInfo | null>(null)
   const projectEmployees = ref<Employee[] | null>(null)
 
   onMounted(async () => {
@@ -66,7 +67,11 @@ const useProjectInfo = () => {
 
   watch(projectInfo, async () => {
     if (!projectInfo.value) return
-    projectEmployees.value = await fetchProjectEmployees(projectInfo.value.members.join(', '))
+    projectEmployees.value = await fetchProjectEmployees([
+      projectInfo.value.founderID,
+      ...projectInfo.value.administrators,
+      ...projectInfo.value.editors
+    ].join(', '))
   })
 
   return { projectInfo, projectEmployees }
