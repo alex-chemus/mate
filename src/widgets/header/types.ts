@@ -21,7 +21,8 @@ export type AccountInfo = {
     avatarShiftY: number,
     avatarScale: number
   },
-  email: string
+  email: string,
+  findcreekID: number
 }
 
 export type Tab = 'profile' | 'search-vacancies' | null

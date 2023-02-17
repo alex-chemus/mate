@@ -12,11 +12,14 @@ import { Notice, SearchItem } from './types'
 const props = defineProps<{
   img?: string,
   fullName?: string,
-  email?: string
+  email?: string,
+  id?: number
 }>()
 
-const { getImg, getFullName, getEmail } = useAccountInfo(props)
-const { currentTab, switchTabs } = useTabs()
+const {
+  getImg, getFullName, getEmail, getId
+} = useAccountInfo(props)
+const { currentTab, switchTabs } = useTabs(getId)
 const { openSettings } = useSettings()
 
 const notices: Notice[] = [
