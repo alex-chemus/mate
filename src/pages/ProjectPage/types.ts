@@ -17,10 +17,13 @@ export type Project = {
   started: string
 }
 
+export type Role = 'editor' | 'administrator' | 'founder'
+
 export type Employee = {
   name: string,
   avatar?: string,
-  id: number
+  id: number,
+  role: Role
 }
 
 export type AccountInfo = {

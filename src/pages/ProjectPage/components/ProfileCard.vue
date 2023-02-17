@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import { Logo } from '@/ui'
-import { useTheme } from '@/utils'
+import { useTheme, useSettings } from '@/utils'
 
 defineProps<{
   name: string,
@@ -9,10 +9,12 @@ defineProps<{
   banner?: string,
   followers: string,
   following: string,
-  nickname: string
+  nickname: string,
+  ownsProject?: boolean
 }>()
 
 const { theme } = useTheme()
+const { openSettings } = useSettings()
 </script>
 
 <template>
@@ -52,14 +54,14 @@ const { theme } = useTheme()
       <h3 class="fullname" :class="theme">{{ name }}</h3>
       <p class="nickname" :class="theme">@{{ nickname }}</p>
 
-      <button class="button logo-button" :class="theme">
+      <button v-if="ownsProject" class="button logo-button" :class="theme">
         <div class="logo">
           <logo height="19" width="15" />
         </div>
         <strong>FINDCREEK</strong>
       </button>
 
-      <button class="button edit-button" :class="theme">
+      <button v-if="ownsProject" @click="openSettings('projects')" class="button edit-button" :class="theme">
         <span>Редактировать профиль</span>
       </button>
 

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { Post, Header } from '@/widgets'
+import { ref, computed } from 'vue'
+import { Post, Header, Settings } from '@/widgets'
 //import { useFullAccountInfo } from '@/utils'
 import { useFullAccountInfo } from '@/api'
 import type { Company, Partner } from './types'
@@ -55,9 +55,21 @@ const partners = ref<Partner[]>([
 
 const fullAccountInfo = useFullAccountInfo()
 const { projectInfo, projectEmployees } = useProjectInfo()
+
+const ownsProject = computed(() => {
+  if (!fullAccountInfo.value || !projectInfo.value) return
+  // eslint-disable-next-line
+  return fullAccountInfo.value.findcreekID === projectInfo.value.founderID
+    || projectInfo.value.administrators.includes(fullAccountInfo.value.findcreekID)
+})
 </script>
 
 <template>
+  <settings
+    v-if="fullAccountInfo"
+    :full-account-info="fullAccountInfo"
+  />
+
   <profile-layout v-if="fullAccountInfo && projectInfo" :loading="!fullAccountInfo || !projectInfo">
     <template #header>
       <Header
@@ -75,6 +87,7 @@ const { projectInfo, projectEmployees } = useProjectInfo()
         :following="following"
         :nickname="projectInfo.textID"
         :banner="projectInfo.profileCover.profileCover"
+        :owns-project="ownsProject"
       />
     </template>
 

@@ -1,13 +1,34 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import { useTheme } from '@/utils'
-import type { Employee } from '../types'
+import type { Employee, Role } from '../types'
 
-defineProps<{
+const props = defineProps<{
   employees: Employee[]
 }>()
 
 const { theme } = useTheme()
+
+const convertRole = (role: Role) => {
+  switch (role) {
+    case 'editor': return 'Редактор'
+    case 'administrator': return 'Администратор'
+    default: return 'Владелец'
+  }
+}
+
+const getSortedEmployess = computed(() => {
+  return [
+    props.employees.find((e) => e.role === 'founder') as Employee,
+    ...props.employees.filter((e) => e.role === 'administrator'),
+    ...props.employees.filter((e) => e.role === 'editor')
+  ].map((e) => ({
+    name: e.name,
+    avatar: e.avatar,
+    id: e.id,
+    role: convertRole(e.role)
+  }))
+})
 </script>
 
 <template>
@@ -19,7 +40,7 @@ const { theme } = useTheme()
 
     <ul class="employees-list">
       <li
-        v-for="employee in employees" :key="employee.id"
+        v-for="employee in getSortedEmployess" :key="employee.id"
         class="employee-container" :class="theme"
       >
         <img v-if="employee.avatar" :src="employee.avatar" alt="" class="icon" />
@@ -27,6 +48,7 @@ const { theme } = useTheme()
 
         <div class="employee-wrapper" :class="theme">
           <h5>{{ employee.name }}</h5>
+          <p>{{ employee.role }}</p>
           <!-- <small>{{ employee.position }}</small> -->
         </div>
       </li>
@@ -97,7 +119,7 @@ const { theme } = useTheme()
     color: var(--heading-color-2);
   }
 
-  small {
+  p {
     font-family: var(--findcreek);
     font-size: 12px;
     letter-spacing: -3%;
