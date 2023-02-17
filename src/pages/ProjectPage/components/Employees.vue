@@ -49,12 +49,10 @@ const { theme } = useTheme()
   margin-bottom: 26px;
   font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--medium);
   color: var(--heading-color-2);
 
   span {
-    font-family: var(--noto-sans);
-    font-weight: var(--bold);
+    font-family: var(--noto-sans-bold);
     margin-left: 7px;
     color: var(--text-color-1);
   }

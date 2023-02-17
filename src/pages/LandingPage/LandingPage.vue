@@ -141,7 +141,6 @@ h3 {
   height: 50px;
   width: min-content;
   font-family: var(--findcreek-medium);
-  font-weight: var(--meduim);
   font-size: 16px;
   color: var(--gray-1);
   @include flex(center, center);
@@ -153,7 +152,6 @@ h3 {
 
   .text {
     font-size: 16px;
-    font-weight: var(--medium);
     font-family: var(--findcreek-medium);
     margin-bottom: 16px;
     color: var(--heading-color-2);

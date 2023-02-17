@@ -52,8 +52,8 @@ const { theme } = useTheme()
   color: var(--heading-color-2);
 
   span {
-    font-family: var(--noto-sans);
-    font-weight: var(--bold);
+    font-family: var(--noto-sans-bold);
+    //font-weight: var(--bold);
     margin-left: 7px;
     color: var(--text-color-1);
   }

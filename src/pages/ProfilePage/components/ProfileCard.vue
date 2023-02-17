@@ -140,8 +140,8 @@ const { openSettings } = useSettings()
   h5 {
     margin: 0;
     margin-bottom: 10px;
-    font-family: var(--noto-sans);
-    font-weight: var(--bold);
+    font-family: var(--noto-sans-bold);
+    //font-weight: var(--bold);
     font-size: 16px;
     color: var(--heading-color-2);
   }
@@ -228,9 +228,8 @@ const { openSettings } = useSettings()
   }
 
   strong {
-    font-family: var(--montserrat);
+    font-family: var(--montserrat-bold);
     font-size: 13px;
-    font-weight: var(--bold);
   }
 }
 

@@ -16,17 +16,14 @@
   --dark-theme-color-4: #353840;
   --dark-theme-color-5: #1E1F29;
 
-  // fonts
-  // --ff-ubuntu: 'Ubuntu', sans-serif;
-  --noto-sans: 'Noto Sans', sans-serif;
-  --montserrat: 'Montserrat', sans-serif;
-  // --fw-normal: 400;
-  --bold: 700;
-  --medium: 500;
   --findcreek: 'Findcreek Regular', sans-serif;
   --findcreek-medium: 'Findcreek Medium', sans-serif;
   --findcreek-bold: 'Findcreek Bold', sans-serif;
   --findcreek-light: 'Findcreek Light', sans-serif;
+  --montserrat-bold: 'Montserrat Bold', sans-serif;
+  --noto-sans-medium: 'Noto Sans Medium', sans-serif;
+  --noto-sans: 'Noto Sans', sans-serif;
+  --noto-sans-bold: 'Noto Sans Bold', sans-serif;
 
   // transitons
   --fast: all .15s ease-out;
@@ -34,14 +31,6 @@
 
   // shadows
   --popup-shadow: 0 9px 40px 0 rgba(0 0 0 / .25);
-
-  // theme-dependant colors
-  // --heading-color-1: var(--dark-1);
-  // --heading-color-2: var(--dark-2);
-  // --bg-color-1: var(--light);
-  // --bg-color-2: var(--light);
-  // --bg-color-3: #f6f6f6;
-  // --text-color-1: #5c5c5c;
 }
 
 :root[data-theme="light"] {
@@ -53,6 +42,7 @@
   --accent: var(--accent-1);
   --text-color-1: #5c5c5c;
   --text-color-2: var(--gray-1);
+  --text-color-3: var(--gray-1);
   --border-1: 1px solid rgb(118 118 118 / .4);
 }
 
@@ -65,6 +55,7 @@
   --accent: var(--accent-2);
   --text-color-1: #bbb;
   --text-color-2: var(--gray-3);
+  --text-color-3: #bbb;
   --border-1: 1px solid rgb(118 118 118 / .5);
 }
 
@@ -115,29 +106,6 @@ button {
   border: none;
   @include flex(center, center);
   cursor: pointer;
-}
-
-@font-face {
-  font-family: 'Findcreek Regular';
-  src: url('@/assets/fonts/Findcreek-Regular.otf');
-}
-
-@font-face {
-  font-family: 'Findcreek Bold';
-  src: url('@/assets/fonts/Findcreek-Bold.otf');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: 'Findcreek Medium';
-  src: url('@/assets/fonts/Findcreek-Medium.otf');
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: 'Findcreek Light';
-  src: url('@/assets/fonts/Findcreek-Light.otf');
-  font-weight: 300;
 }
 
 .animate__animated {

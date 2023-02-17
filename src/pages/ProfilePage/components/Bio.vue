@@ -71,7 +71,7 @@ const isOpen = ref(false)
   }
 
   p {
-    font-family: var(--medium);
+    font-family: var(--findcreek-medium);
     font-size: 13px;
     line-height: 160%;
     letter-spacing: -2%;

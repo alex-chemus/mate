@@ -58,7 +58,6 @@ const { theme } = useTheme()
   background-color: rgba(224 224 224 / .2);
   color: rgba(190 190 190 / .7);
   font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
   font-size: 10px;
   letter-spacing: -3%;
   position: absolute;

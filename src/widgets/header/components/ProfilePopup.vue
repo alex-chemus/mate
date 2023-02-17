@@ -102,14 +102,7 @@ small {
   font-family: var(--findcreek);
   font-weight: normal;
   font-size: 12px;
-
-  &.light {
-    color: #747279;
-  }
-
-  &.dark {
-    color: #BBBBBB;
-  }
+  color: var(--text-color-3);
 }
 
 .button {
@@ -124,7 +117,7 @@ small {
   color: var(--heading-color-2);
 
   &:hover {
-    background-color: var(--bg-color-2);
+    background-color: var(--bg-color-3);
   }
 
   &.--blue {

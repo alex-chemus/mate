@@ -36,7 +36,6 @@ const { theme } = useTheme()
 .title {
   font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--medium);
   margin-bottom: 26px;
   color: var(--heading-color-2);
 }
@@ -56,8 +55,7 @@ const { theme } = useTheme()
   padding: 0 9px;
   border: 1px solid color.change($gray-1, $alpha: .4);
   background-color: transparent;
-  font-family: var(--noto-sans);
-  font-weight: var(--medium);
+  font-family: var(--noto-sans-medium);
   font-size: 12px;
   border-radius: 8px;
   color: var(--heading-color-1);
@@ -65,8 +63,7 @@ const { theme } = useTheme()
 
 h6 {
   margin: 0;
-  font-family: var(--noto-sans);
-  font-weight: var(--medium);
+  font-family: var(--noto-sans-medium);
   font-size: 12px;
   color: var(--heading-color-1);
 }

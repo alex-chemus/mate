@@ -84,7 +84,7 @@ const isOpen = ref(false)
   padding: 0 9px;
   border: 1px solid transparent;
   transition: var(--fast);
-  background-color: var(--bg-color-2);
+  background-color: var(--bg-color-3);
 
   &.--round {
     padding: 0;
@@ -109,8 +109,8 @@ const isOpen = ref(false)
   }
 
   span {
-    font-family: var(--noto-sans);
-    font-weight: var(--bold);
+    font-family: var(--noto-sans-bold);
+    //font-weight: var(--bold);
     font-size: 11px;
   }
 

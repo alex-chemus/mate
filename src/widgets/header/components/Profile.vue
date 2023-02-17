@@ -51,7 +51,6 @@ const isOpen = ref(false)
 
   font-family: var(--findcreek-medium);
   font-size: 16px;
-  font-weight: var(--medium);
   color: var(--heading-color-2);
   background-color: var(--bg-color-1);
 
