@@ -1,33 +1,15 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useFullUsersInfo, useFetchFullProjectsInfo } from '@/api'
+import { computed, ref } from 'vue'
 import { Settings, Header, Post } from '@/widgets'
-import { FullProjectInfo } from '@/utils'
 import {
   Bio, Partners, ProfileCard,
   Projects, Skills, Contacts, NewPost
 } from './components'
-import { useIsMe } from './hooks'
+import { usePageInfo } from './hooks'
 import { Partner } from './types'
 import UserLayout from './UserLayout.vue'
 
-const route = useRoute()
-const fullUsersInfo = useFullUsersInfo([+route.params.id!])
-const fullProjectsInfo = ref<FullProjectInfo[] | null>(null)
-const fetchFullProjectsInfo = useFetchFullProjectsInfo()
-
-const { fetchAccountInfo, isMe } = useIsMe()
-
-watch(fullUsersInfo, async () => {
-  if (!fullUsersInfo.value) return
-  fetchAccountInfo()
-  fullProjectsInfo.value = await fetchFullProjectsInfo([
-    ...fullUsersInfo.value[0].projectsManagement.administrator,
-    ...fullUsersInfo.value[0].projectsManagement.editor,
-    ...fullUsersInfo.value[0].projectsManagement.founder
-  ])
-})
+const { fullUsersInfo, fullProjectsInfo, isMe } = usePageInfo()
 
 const skills = computed(() => {
   if (!fullUsersInfo.value) return null

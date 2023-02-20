@@ -1,5 +1,5 @@
 import { onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
   FullProjectInfo
@@ -11,8 +11,10 @@ const useProjectInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const route = useRoute()
   const { globalUpdate } = useGlobalUpdate()
+
+  const route = useRoute()
+  const router = useRouter()
 
   const fetchProjectInfo = async (id: string) => {
     if (!authState.value.token) return null
@@ -71,6 +73,12 @@ const useProjectInfo = () => {
 
   const projectInfo = ref<FullProjectInfo | null>(null)
   const projectEmployees = ref<Employee[] | null>(null)
+
+  router.afterEach(async (to, from) => {
+    const pattern = /project\/\d/
+    if (to.path.match(pattern) && from.path.match(pattern))
+      projectInfo.value = await fetchProjectInfo(route.params.id as string)
+  })
 
   onMounted(async () => {
     projectInfo.value = await fetchProjectInfo(route.params.id as string)

@@ -46,11 +46,11 @@ const getSortedEmployess = computed(() => {
         <img v-if="employee.avatar" :src="employee.avatar" alt="" class="icon" />
         <div v-else class="icon placeholder" />
 
-        <div class="employee-wrapper" :class="theme">
+        <router-link :to="`/user/${employee.id}`" class="employee-wrapper" :class="theme">
           <h5>{{ employee.name }}</h5>
           <p>{{ employee.role }}</p>
           <!-- <small>{{ employee.position }}</small> -->
-        </div>
+        </router-link>
       </li>
     </ul>
   </section>

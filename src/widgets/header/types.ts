@@ -1,3 +1,5 @@
+import { Specialty } from '@/utils'
+
 // временный тип, с появлением api переделаю
 export type Notice = {
   // что сделал (подписался, запрос на проект, присоединился к проекту)
@@ -27,11 +29,63 @@ export type AccountInfo = {
 
 export type Tab = 'profile' | 'search-vacancies' | null
 
-export type SearchItem = {
-  avatar?: string;
-  fullName: string,
+// export type SearchItem = {
+//   avatar?: string;
+//   fullName: string,
+//   textID: string,
+//   description: string,
+//   banner?: string,
+//   id: number
+// }
+
+type SearchUserFields = {
+  findcreekID: number,
+  firstName: string,
+  lastName: string,
+  bio: string,
+  profileCover: string,
+  specialties: Specialty[],
   textID: string,
+  avatar: {
+    avatar: string,
+    avatarCompressed: string,
+    avatarShiftX: number,
+    avatarShiftY: number,
+    avatarScale: number
+  },
+}
+
+type SearchProjectFields = {
+  name: string,
+  textID: string,
+  avatar: {
+    avatar: string,
+    avatarCompressed: string,
+    avatarShiftX: number,
+    avatarShiftY: number,
+    avatarScale: number
+  },
+  profileCover: {
+    profileCover: string,
+    profileCoverCompressed: string,
+    profileCoverShiftX: number,
+    profileCoverShiftY: number,
+    profileCoverScale: number
+  },
   description: string,
-  banner?: string,
   id: number
 }
+
+export type SearchItem = SearchUserFields | SearchProjectFields
+
+export type KeyedUserFields = SearchUserFields & {
+  searchID: number
+}
+
+export type KeyedProjectFields = SearchProjectFields & {
+  searchID: number
+}
+
+export type KeyedSearchItem = KeyedUserFields | KeyedProjectFields
+
+export type SearchFilters = 'users' | 'projects'

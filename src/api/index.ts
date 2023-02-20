@@ -1,4 +1,4 @@
 export { default as useAllSpecialties } from './useAllSpecialties'
 export { default as useFullAccountInfo } from './useFullAccountInfo'
 export { default as useFetchFullProjectsInfo } from './useFetchFullProjectsInfo'
-export { default as useFullUsersInfo } from './useFullUsersInfo'
+export { default as useFetchFullUsersInfo } from './useFetchFullUsersInfo'

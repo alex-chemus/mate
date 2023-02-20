@@ -6,8 +6,8 @@ import {
   Search, Tabs, Profile, Notifications,
   ProfilePopup, NotificationsPopup, SearchPopup
 } from './components'
-import { useAccountInfo, useTabs } from './hooks'
-import { Notice, SearchItem } from './types'
+import { useAccountInfo, useTabs, useGlobalSearch } from './hooks'
+import { Notice } from './types'
 
 const props = defineProps<{
   img?: string,
@@ -21,6 +21,9 @@ const {
 } = useAccountInfo(props)
 const { currentTab, switchTabs } = useTabs(getId)
 const { openSettings } = useSettings()
+const {
+  getSearchItems, onSearch, isLoading, filters, toggleFilters
+} = useGlobalSearch()
 
 const notices: Notice[] = [
   {
@@ -46,28 +49,24 @@ const notices: Notice[] = [
   }
 ]
 
-const searchItems: SearchItem[] = [
-  {
-    fullName: 'александр чемус',
-    textID: 'alex_chemus',
-    description: 'я работаю в проекте findcreek mate. я создатель этой платформы!',
-    id: 1,
-  },
-  {
-    fullName: 'алексей грибанов',
-    textID: 'alex_grib',
-    description: 'я работаю в проекте findcreek mate. я создатель этой платформы!',
-    id: 2
-  },
-]
 const isSearchOpen = ref(false)
 </script>
 
 <template>
   <header-layout>
     <template #search>
-      <search :popup-open="isSearchOpen" @toggle-popup="p => isSearchOpen = p">
-        <search-popup :search-items="searchItems" @close="isSearchOpen = false" />
+      <search
+        :popup-open="isSearchOpen"
+        @toggle-popup="p => isSearchOpen = p"
+        @input="onSearch"
+      >
+        <search-popup
+          :filters="filters"
+          :search-items="getSearchItems"
+          :loading="isLoading"
+          @close="isSearchOpen = false"
+          @toggle-filters="toggleFilters"
+        />
       </search>
     </template>
 
