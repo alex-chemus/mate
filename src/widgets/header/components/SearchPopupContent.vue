@@ -1,34 +1,65 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import { SearchItem } from '../types'
+import { defineProps, computed } from 'vue'
+import { KeyedSearchItem } from '../types'
+import { useTypeChecks } from '../hooks'
 
-defineProps<{
-  content: SearchItem
+const props = defineProps<{
+  content: KeyedSearchItem
 }>()
+
+const { isProject, isUser } = useTypeChecks()
+
+const getUrl = computed(() => {
+  if (isUser(props.content))
+    return `/user/${props.content.findcreekID}`
+  return `/project/${props.content.id}`
+})
 </script>
 
 <template>
   <div class="content-container">
-    <img v-if="content.banner" :src="content.banner" alt="" class="banner" />
+    <img
+      v-if="isUser(content) && (content.profileCover || content.avatar.avatar)"
+      :src="content.profileCover || content.avatar.avatar"
+      alt="" class="banner"
+    />
+    <img
+      v-else-if="isProject(content)"
+      :src="content.profileCover.profileCover
+        || content.profileCover.profileCoverCompressed
+        || content.avatar.avatar"
+      alt="" class="banner"
+    />
     <div v-else class="banner" />
 
     <div class="content-wrapper">
       <div class="avatar-wrapper">
-        <img v-if="content.avatar" :src="content.avatar" alt="" class="avatar" />
+        <img
+          v-if="content.avatar.avatarCompressed || content.avatar.avatarCompressed"
+          :src="content.avatar.avatarCompressed || content.avatar.avatarCompressed"
+          alt="" class="avatar"
+        />
         <div v-else class="avatar" />
-        <h6 class="full-name">{{ content.fullName }}</h6>
+        <h6 class="full-name">{{ isProject(content) ? content.name : `${content.firstName} ${content.lastName}` }}</h6>
         <p class="tag">@{{ content.textID }}</p>
       </div>
 
-      <p class="description">{{ content.description }}</p>
+      <p class="description">{{ isProject(content) ? content.description : content.bio }}</p>
 
-      <div class="buttons-wrapper">
-        <button class="profile-button">Перейти в профиль</button>
-        <button class="sub-button">
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
-          </svg>
-        </button>
+      <div class="bottom-wrapper">
+        <ul v-if="isUser(content)" class="specialties-list">
+          <li v-for="spec in content.specialties" :key="spec.id">
+            {{ spec.rusName }}
+          </li>
+        </ul>
+        <div class="buttons-wrapper">
+          <router-link :to="getUrl" class="profile-button">Перейти в профиль</router-link>
+          <button class="sub-button">
+            <svg width="20" height="20" viewBox="0 0 20 20">
+              <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -53,6 +84,7 @@ defineProps<{
   @include flex(flex-start, center, column);
   padding: 0 15px 15px 15px;
   flex-grow: 1;
+  width: 100%;
 }
 
 .avatar-wrapper {
@@ -95,9 +127,12 @@ defineProps<{
   line-height: 0.95em;
 }
 
-.buttons-wrapper {
+.bottom-wrapper {
   margin-top: auto;
   width: 100%;
+}
+
+.buttons-wrapper {
   @include flex(flex-start, center);
   gap: 15px;
 }
@@ -111,6 +146,7 @@ defineProps<{
   font-size: 12px;
   border: 1px solid currentColor;
   transition: var(--fast);
+  @include flex(center, center);
 
   &:hover {
     //box-shadow: 0 0 4px 0 currentColor;
@@ -130,6 +166,22 @@ defineProps<{
 
   &:hover {
     box-shadow: 0 0 4px 0 var(--accent);
+  }
+}
+
+.specialties-list {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+  list-style: none;
+  @include flex(baseline, flex-start);
+  flex-wrap: wrap;
+  gap: 14px;
+
+  li {
+    color: var(--text-color-1);
+    font-family: var(--findcreek);
+    font-size: 11px;
   }
 }
 </style>

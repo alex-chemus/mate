@@ -2,69 +2,92 @@
 import {
   defineProps, defineEmits, ref
 } from 'vue'
-import { Loader } from '@/ui'
+import { Loader, Checkbox } from '@/ui'
 import { useTheme } from '@/utils'
-import { SearchItem } from '../types'
+import { KeyedSearchItem, SearchFilters } from '../types'
 import SearchPopupContent from './SearchPopupContent.vue'
+import { useTypeChecks } from '../hooks'
 
 defineProps<{
-  searchItems?: SearchItem[]
+  searchItems?: KeyedSearchItem[],
+  loading?: boolean,
+  filters: SearchFilters[]
 }>()
 
 const emit = defineEmits<{
   (e: 'close'): void,
-  (e: 'toggle-filters'): void,
+  (e: 'toggle-filters', payload: SearchFilters): void,
 }>()
 
+const { isProject } = useTypeChecks()
 const { theme } = useTheme()
 
 const selectedItem = ref<number | null>(null)
 </script>
 
 <template>
-  <section class="search-popup" :class="theme">
-    <div v-if="searchItems" class="popup-container">
+  <section v-if="searchItems && searchItems.length" class="search-popup" :class="theme">
+    <div class="popup-container">
       <header class="header">
         <svg width="20" height="20" viewBox="0 0 20 20">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-adjustments-horizontal" />
+        </svg>
+        <checkbox
+          value="Проекты"
+          :selected="filters.includes('projects')"
+          @select="emit('toggle-filters', 'projects')"
+          width="fit-content"
+        />
+        <checkbox
+          value="Люди"
+          :selected="filters.includes('users')"
+          @select="emit('toggle-filters', 'users')"
+          width="fit-content"
+        />
+        <!-- <svg width="20" height="20" viewBox="0 0 20 20">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
         </svg>
         <p>Поиск</p>
-        <div class="line" />
-        <button @click="emit('close')">
+        <div class="line" />-->
+        <button class="close-button" @click="emit('close')">
           <svg width="20" height="20" viewBox="0 0 20 20">
             <use href="@/assets/imgs/tabler-sprite.svg#tabler-x" />
           </svg>
         </button>
-        <button @click="emit('toggle-filters')">
+        <!-- <button @click="emit('toggle-filters')">
           <svg width="20" height="20" viewBox="0 0 20 20">
             <use href="@/assets/imgs/tabler-sprite.svg#tabler-adjustments-horizontal" />
           </svg>
-        </button>
+        </button> -->
       </header>
 
       <ul class="search-results">
         <li
-          v-for="item in searchItems" :key="item.id"
-          class="search-item" :class="selectedItem === item.id ? 'selected' : ''"
+          v-for="item in searchItems" :key="item.searchID"
+          class="search-item" :class="selectedItem === item.searchID ? 'selected' : ''"
         >
-          <button @click="selectedItem = item.id">
-            <img v-if="item.avatar" :src="item.avatar" alt="" class="item-avatar" />
+          <button @click="selectedItem = item.searchID">
+            <img
+              v-if="item.avatar"
+              :src="item.avatar.avatarCompressed || item.avatar.avatar" alt=""
+              class="item-avatar"
+            />
             <div v-else class="item-avatar" />
-            <p class="full-name">{{ item.fullName }}</p>
+            <p class="full-name">{{ isProject(item) ? item.name : `${item.firstName} ${item.lastName}` }}</p>
           </button>
         </li>
       </ul>
 
       <search-popup-content
-        v-if="selectedItem"
-        :content="(searchItems.find(item => item.id === selectedItem) as SearchItem)"
+        v-if="selectedItem !== null"
+        :content="(searchItems.find(item => item.searchID === selectedItem) as KeyedSearchItem)"
       />
     </div>
-
-    <div v-else class="loader-wrapper">
-      <loader />
-    </div>
   </section>
+
+  <div v-else-if="loading" class="loader-wrapper" :class="theme">
+    <loader />
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -87,6 +110,14 @@ const selectedItem = ref<number | null>(null)
 .loader-wrapper {
   padding: 15px 0;
   @include flex(center, center);
+  width: 550px;
+  background-color: var(--bg-color-1);
+  box-shadow: var(--popup-shadow);
+  border-radius: 10px;
+
+  &.dark {
+    border: 1px solid #615478;
+  }
 }
 
 .popup-container {
@@ -116,6 +147,10 @@ const selectedItem = ref<number | null>(null)
     height: 12px;
     background-color: #d9d9d9;
   }
+}
+
+.close-button {
+  margin-left: auto;
 }
 
 .search-results {

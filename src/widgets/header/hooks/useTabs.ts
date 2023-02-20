@@ -1,23 +1,21 @@
-import { computed } from 'vue'
+import { computed, ComputedRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Tab } from '../types'
 
-const useTabs = () => {
+const useTabs = (id: ComputedRef<number | null>) => {
   const route = useRoute()
   const router = useRouter()
 
   const currentTab = computed<Tab>(() => {
-    if (route.path.startsWith('/profile')) return 'profile'
+    if (id.value && route.path.startsWith(`/user/${id.value}`)) return 'profile'
     if (route.path.startsWith('/search-projects')) return 'search-vacancies'
     return null
   })
 
   const switchTabs = (p: Tab) => {
-    console.log(p)
-
     switch (p) {
       case 'profile':
-        router.push({ path: '/profile' })
+        router.push({ path: `/user/${id.value}` })
         break;
 
       case 'search-vacancies':

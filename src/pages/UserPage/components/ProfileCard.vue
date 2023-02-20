@@ -9,22 +9,16 @@ defineProps<{
   banner?: string,
   followers: string,
   following: string,
-  nickname: string
+  nickname: string,
+  canEdit?: boolean
 }>()
 
 const { theme } = useTheme()
-
 const { openSettings } = useSettings()
 </script>
 
 <template>
   <section class="card-section" :class="theme">
-    <!-- <button class="more-button">
-      <svg width="25" height="25" viewBox="0 0 25 25">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-dots-vertical" />
-      </svg>
-    </button> -->
-
     <div class="cover-container">
       <img :src="banner ?? img" :alt="fullName" class="banner-img" />
 
@@ -37,18 +31,8 @@ const { openSettings } = useSettings()
 
     <div class="profile-container">
       <div class="content-container">
-        <!-- <div class="content-wrapper" :class="theme">
-          <h5>{{ followers }}</h5>
-          <p>Подписчиков</p>
-        </div> -->
-
         <img v-if="img" :src="img" :alt="fullName" class="avatar" />
         <div v-else class="placeholder" />
-
-        <!-- <div class="content-wrapper" :class="theme">
-          <h5>{{ following }}</h5>
-          <p>Подписок</p>
-        </div> -->
       </div>
 
       <h3 class="fullname" :class="theme">{{ fullName }}</h3>
@@ -61,11 +45,13 @@ const { openSettings } = useSettings()
         <strong>FINDCREEK</strong>
       </button>
 
-      <button @click="openSettings('profile')" class="button edit-button" :class="theme">
+      <button
+        v-if="canEdit"
+        @click="openSettings('profile')"
+        class="button edit-button" :class="theme"
+      >
         <span>Редактировать профиль</span>
       </button>
-
-      <!-- <div class="separator" /> -->
     </div>
   </section>
 </template>

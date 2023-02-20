@@ -1,34 +1,13 @@
 <script lang="ts" setup>
-import { defineProps, computed } from 'vue'
+import { defineProps } from 'vue'
 import { useTheme } from '@/utils'
-import type { Employee, Role } from '../types'
+import type { Employee } from '../types'
 
-const props = defineProps<{
+defineProps<{
   employees: Employee[]
 }>()
 
 const { theme } = useTheme()
-
-const convertRole = (role: Role) => {
-  switch (role) {
-    case 'editor': return 'Редактор'
-    case 'administrator': return 'Администратор'
-    default: return 'Владелец'
-  }
-}
-
-const getSortedEmployess = computed(() => {
-  return [
-    props.employees.find((e) => e.role === 'founder') as Employee,
-    ...props.employees.filter((e) => e.role === 'administrator'),
-    ...props.employees.filter((e) => e.role === 'editor')
-  ].map((e) => ({
-    name: e.name,
-    avatar: e.avatar,
-    id: e.id,
-    role: convertRole(e.role)
-  }))
-})
 </script>
 
 <template>
@@ -40,17 +19,16 @@ const getSortedEmployess = computed(() => {
 
     <ul class="employees-list">
       <li
-        v-for="employee in getSortedEmployess" :key="employee.id"
+        v-for="employee in employees" :key="employee.id"
         class="employee-container" :class="theme"
       >
-        <img v-if="employee.avatar" :src="employee.avatar" alt="" class="icon" />
+        <img v-if="employee.img" :src="employee.img" alt="" class="icon" />
         <div v-else class="icon placeholder" />
 
-        <router-link :to="`/user/${employee.id}`" class="employee-wrapper" :class="theme">
-          <h5>{{ employee.name }}</h5>
-          <p>{{ employee.role }}</p>
-          <!-- <small>{{ employee.position }}</small> -->
-        </router-link>
+        <div class="employee-wrapper" :class="theme">
+          <h5>{{ employee.fullName }}</h5>
+          <small>{{ employee.position }}</small>
+        </div>
       </li>
     </ul>
   </section>
@@ -75,6 +53,7 @@ const getSortedEmployess = computed(() => {
 
   span {
     font-family: var(--noto-sans-bold);
+    //font-weight: var(--bold);
     margin-left: 7px;
     color: var(--text-color-1);
   }
@@ -113,13 +92,14 @@ const getSortedEmployess = computed(() => {
 .employee-wrapper {
   h5 {
     font-family: var(--findcreek-bold);
+    font-weight: var(--bold);
     font-size: 14px;
     letter-spacing: -3%;
     margin: 0;
     color: var(--heading-color-2);
   }
 
-  p {
+  small {
     font-family: var(--findcreek);
     font-size: 12px;
     letter-spacing: -3%;

@@ -8,7 +8,8 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'toggle-popup', payload: boolean): void
+  (e: 'toggle-popup', payload: boolean): void,
+  (e: 'input', payload: string): void
 }>()
 
 const { theme } = useTheme()
@@ -28,9 +29,14 @@ const isOpen = ref(false)
       </button>
 
       <!-- eslint-disable-next-line -->
-      <input type="text" class="search-input" placeholder="Поиск" />
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Поиск"
+        @input="p => emit('input', (p.target as HTMLInputElement).value)"
+      />
 
-      <div class="separator" />
+      <!-- <div class="separator" />
 
       <button class="button">
         <svg width="20" height="20" viewBox="0 0 20 20">
@@ -42,7 +48,7 @@ const isOpen = ref(false)
         <svg width="20" height="20" viewBox="0 0 20 20">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-adjustments-horizontal" />
         </svg>
-      </button>
+      </button> -->
     </div>
 
     <template #content>
