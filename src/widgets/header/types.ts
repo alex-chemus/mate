@@ -53,6 +53,7 @@ type SearchUserFields = {
     avatarShiftY: number,
     avatarScale: number
   },
+  isSubscribed: boolean
 }
 
 type SearchProjectFields = {
@@ -73,7 +74,8 @@ type SearchProjectFields = {
     profileCoverScale: number
   },
   description: string,
-  id: number
+  id: number,
+  isSubscribed: boolean
 }
 
 export type SearchItem = SearchUserFields | SearchProjectFields

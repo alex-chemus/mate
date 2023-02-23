@@ -45,6 +45,10 @@ defineProps<{
         <div>
           <slot name="projects" />
         </div>
+
+        <div>
+          <slot name="subscriptions" />
+        </div>
       </aside>
     </main>
   </section>

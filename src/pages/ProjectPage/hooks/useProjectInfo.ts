@@ -1,4 +1,6 @@
-import { onMounted, ref, watch } from 'vue'
+import {
+  onMounted, ref, watch, Ref
+} from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
@@ -7,7 +9,7 @@ import {
 import { fetchActions } from '@/store/constants'
 import type { Employee, Role } from '../types'
 
-const useProjectInfo = () => {
+const useProjectInfo = ({ update }: { update: Ref<symbol> }) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -84,7 +86,7 @@ const useProjectInfo = () => {
     projectInfo.value = await fetchProjectInfo(route.params.id as string)
   })
 
-  watch(globalUpdate, async () => {
+  watch([globalUpdate, update], async () => {
     projectInfo.value = await fetchProjectInfo(route.params.id as string)
   })
 

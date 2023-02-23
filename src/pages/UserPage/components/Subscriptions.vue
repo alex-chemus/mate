@@ -1,41 +1,52 @@
 <script lang="ts" setup>
-import { ref, defineProps } from 'vue'
+import { defineProps, ref, computed } from 'vue'
 import { useTheme } from '@/utils'
 import { MoreButton } from '@/ui'
-import type { Company } from '../types';
+import { Subscription } from '../types'
 
 const { theme } = useTheme()
 
-defineProps<{
-  subscriptions: Company[]
+const props = defineProps<{
+  subscriptions: Subscription[]
 }>()
+
+const isLimited = ref(props.subscriptions.length > 3)
+const getSubs = computed(() => {
+  if (isLimited.value)
+    return props.subscriptions.slice(0, 3)
+  return props.subscriptions
+})
 </script>
 
 <template>
   <section class="subscriptions-section" :class="theme">
     <div class="title-wrapper" :class="theme">
       <h4 class="title" :class="theme">Подписки</h4>
-      <button class="search-button">
+      <!-- <button class="search-button">
         <svg width="25" height="25" viewBox="0 0 25 25">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
         </svg>
-      </button>
+      </button> -->
     </div>
 
     <ul class="subscriptions-list">
-      <li v-for="item in subscriptions" :key="item.id" class="item">
-        <img v-if="item.avatar" :alt="item.name" class="avatar" :class="theme" />
-        <div v-else class="avatar placeholder" :class="theme" />
+      <li v-for="item in getSubs" :key="item.id" class="item">
+        <img
+          v-if="item.avatar.avatarCompressed ?? item.avatar.avatar"
+          :src="item.avatar.avatarCompressed ?? item.avatar.avatar" :alt="item.name"
+          class="avatar" :class="theme"
+        />
+        <div v-else class="avatar" />
 
         <div class="item-content-wrapper" :class="theme">
           <h6>{{ item.name }}</h6>
-          <small>{{ item.followers }}</small>
+          <small>{{ item.subscribers.users.length }} подписчиков</small>
         </div>
       </li>
     </ul>
 
-    <div class="more-button-wrapper">
-      <more-button>Ещё</more-button>
+    <div v-if="props.subscriptions.length > 3 && isLimited" class="more-button-wrapper">
+      <more-button @click="isLimited = false">Ещё</more-button>
     </div>
   </section>
 </template>
@@ -71,9 +82,25 @@ defineProps<{
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 300px;
+  overflow-y: scroll;
+  overscroll-behavior-y: contain;
 
   & > *:not(:last-child) {
     margin-bottom: 21px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100vmax;
+    background-color: #bbb;
   }
 }
 

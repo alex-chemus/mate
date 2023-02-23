@@ -11,12 +11,15 @@ import { useTypeChecks } from '../hooks'
 defineProps<{
   searchItems?: KeyedSearchItem[],
   loading?: boolean,
-  filters: SearchFilters[]
+  filters: SearchFilters[],
+  userId: number | null
 }>()
 
 const emit = defineEmits<{
   (e: 'close'): void,
   (e: 'toggle-filters', payload: SearchFilters): void,
+  (e: 'subscribe', payload: KeyedSearchItem): void,
+  (e: 'unsubscribe', payload: KeyedSearchItem): void,
 }>()
 
 const { isProject } = useTypeChecks()
@@ -81,6 +84,9 @@ const selectedItem = ref<number | null>(null)
       <search-popup-content
         v-if="selectedItem !== null"
         :content="(searchItems.find(item => item.searchID === selectedItem) as KeyedSearchItem)"
+        :user-id="userId"
+        @subscribe="p => emit('subscribe', p)"
+        @unsubscribe="p => emit('unsubscribe', p)"
       />
     </div>
   </section>

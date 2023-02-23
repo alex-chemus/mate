@@ -6,7 +6,9 @@ import {
   Search, Tabs, Profile, Notifications,
   ProfilePopup, NotificationsPopup, SearchPopup
 } from './components'
-import { useAccountInfo, useTabs, useGlobalSearch } from './hooks'
+import {
+  useAccountInfo, useTabs, useGlobalSearch, useSubscribe
+} from './hooks'
 import { Notice } from './types'
 
 const props = defineProps<{
@@ -21,9 +23,10 @@ const {
 } = useAccountInfo(props)
 const { currentTab, switchTabs } = useTabs(getId)
 const { openSettings } = useSettings()
+const { subscribe, unsubscribe, subUpdate } = useSubscribe()
 const {
   getSearchItems, onSearch, isLoading, filters, toggleFilters
-} = useGlobalSearch()
+} = useGlobalSearch({ update: subUpdate })
 
 const notices: Notice[] = [
   {
@@ -64,8 +67,11 @@ const isSearchOpen = ref(false)
           :filters="filters"
           :search-items="getSearchItems"
           :loading="isLoading"
+          :user-id="getId"
           @close="isSearchOpen = false"
           @toggle-filters="toggleFilters"
+          @subscribe="p => subscribe(p)"
+          @unsubscribe="p => unsubscribe(p)"
         />
       </search>
     </template>

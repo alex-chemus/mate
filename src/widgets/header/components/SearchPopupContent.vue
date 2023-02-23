@@ -1,10 +1,16 @@
 <script lang="ts" setup>
-import { defineProps, computed } from 'vue'
+import { defineProps, computed, defineEmits } from 'vue'
 import { KeyedSearchItem } from '../types'
 import { useTypeChecks } from '../hooks'
 
 const props = defineProps<{
-  content: KeyedSearchItem
+  content: KeyedSearchItem,
+  userId: number | null
+}>()
+
+const emit = defineEmits<{
+  (e: 'subscribe', payload: KeyedSearchItem): void,
+  (e: 'unsubscribe', payload: KeyedSearchItem): void
 }>()
 
 const { isProject, isUser } = useTypeChecks()
@@ -54,11 +60,18 @@ const getUrl = computed(() => {
         </ul>
         <div class="buttons-wrapper">
           <router-link :to="getUrl" class="profile-button">Перейти в профиль</router-link>
-          <button class="sub-button">
-            <svg width="20" height="20" viewBox="0 0 20 20">
-              <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
-            </svg>
-          </button>
+          <template v-if="isUser(content) && userId !== content.findcreekID">
+            <button v-if="!content.isSubscribed" class="sub-button" @click="emit('subscribe', content)">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
+              </svg>
+            </button>
+            <button v-else class="sub-button" @click="emit('unsubscribe', content)">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <use href="@/assets/imgs/tabler-sprite.svg#tabler-minus" />
+              </svg>
+            </button>
+          </template>
         </div>
       </div>
     </div>

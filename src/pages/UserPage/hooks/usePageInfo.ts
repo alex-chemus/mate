@@ -1,10 +1,13 @@
-import { ref, onMounted, watch } from 'vue'
+import {
+  ref, onMounted, watch, Ref, computed
+} from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useFetchFullUsersInfo, useFetchFullProjectsInfo } from '@/api'
 import { FullProjectInfo, FullUserInfo, useGlobalUpdate } from '@/utils'
 import useIsMe from './useIsMe'
+import { Subscription } from '../types'
 
-const usePageInfo = () => {
+const usePageInfo = ({ update }: { update: Ref<symbol> }) => {
   const router = useRouter()
   const route = useRoute()
   const { globalUpdate } = useGlobalUpdate()
@@ -26,7 +29,7 @@ const usePageInfo = () => {
     fullUsersInfo.value = await fetchFullUsersInfo([+route.params.id])
   })
 
-  watch(globalUpdate, async () => {
+  watch([globalUpdate, update], async () => {
     fullUsersInfo.value = await fetchFullUsersInfo([+route.params.id])
   })
 

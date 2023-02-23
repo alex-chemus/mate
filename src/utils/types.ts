@@ -108,10 +108,6 @@ export type FullProjectInfo = {
   },
   slogan: string,
   description: string,
-  // contacts: {
-  //   findcreek: string,
-  //   [index: string]: string,
-  // },
   contacts: {
     emailAddress: {
       id: number,
@@ -131,7 +127,8 @@ export type FullProjectInfo = {
   links: string[],
   administrators: number[],
   editors: number[],
-  themeID: number
+  themeID: number,
+  isSubscribed: boolean
 }
 
 export type FullUserInfo = {
@@ -185,6 +182,7 @@ export type FullUserInfo = {
     administrator: number[],
     editor: number[]
   },
+  isSubscribed: boolean,
   firstName: string,
   lastName: string,
   patronymic: string,

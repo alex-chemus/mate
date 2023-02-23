@@ -3,13 +3,18 @@ import { computed, ref } from 'vue'
 import { Settings, Header, Post } from '@/widgets'
 import {
   Bio, Partners, ProfileCard,
-  Projects, Skills, Contacts, NewPost
+  Projects, Skills, Contacts, NewPost,
+  Subscriptions
 } from './components'
-import { usePageInfo } from './hooks'
+import { usePageInfo, useSubscribe, useSubscriptions } from './hooks'
 import { Partner } from './types'
 import UserLayout from './UserLayout.vue'
 
-const { fullUsersInfo, fullProjectsInfo, isMe } = usePageInfo()
+const { subscribe, unsubscribe, subUpdate } = useSubscribe()
+const { fullUsersInfo, fullProjectsInfo, isMe } = usePageInfo({
+  update: subUpdate
+})
+const { subscriptions } = useSubscriptions({ fullUsersInfo })
 
 const skills = computed(() => {
   if (!fullUsersInfo.value) return null
@@ -46,6 +51,9 @@ const partners = ref<Partner[]>([
         :nickname="fullUsersInfo[0].textID"
         :banner="fullUsersInfo[0].profileCover ? fullUsersInfo[0].profileCover : undefined"
         :can-edit="isMe(fullUsersInfo[0].findcreekID)"
+        :is-subscribed="fullUsersInfo[0].isSubscribed"
+        @subscribe="subscribe(fullUsersInfo![0].findcreekID)"
+        @unsubscribe="unsubscribe(fullUsersInfo![0].findcreekID)"
       />
     </template>
 
@@ -87,6 +95,13 @@ const partners = ref<Partner[]>([
 
     <template #projects>
       <Projects v-if="fullProjectsInfo" :projects="fullProjectsInfo" />
+    </template>
+
+    <template #subscriptions>
+      <Subscriptions
+        v-if="subscriptions"
+        :subscriptions="[...subscriptions, ...subscriptions]"
+      />
     </template>
   </user-layout>
 </template>

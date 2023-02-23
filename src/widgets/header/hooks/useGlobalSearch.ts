@@ -1,11 +1,13 @@
-import { ref, computed, watch } from 'vue'
+import {
+  ref, computed, watch, Ref
+} from 'vue'
 import {
   useDebounce, useApiState, useAuthState, useDispatch
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
 import { SearchItem, KeyedSearchItem, SearchFilters } from '../types'
 
-const useGlobalSearch = () => {
+const useGlobalSearch = ({ update }: { update: Ref<symbol> }) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -38,12 +40,13 @@ const useGlobalSearch = () => {
 
     body.append('usersFields', [
       'firstName', 'lastName', 'bio', 'textID',
-      'specialties', 'avatar', 'profileCover', 'findcreekID'
+      'specialties', 'avatar', 'profileCover', 'findcreekID',
+      'isSubscribed'
     ].join(', '))
 
     body.append('projectsFields', [
       'name', 'textID', 'avatar', 'profileCover',
-      'description', 'id'
+      'description', 'id', 'isSubscribed'
     ].join(', '))
 
     return (await dispatch(fetchActions.FETCH, {
@@ -63,7 +66,7 @@ const useGlobalSearch = () => {
     isLoading.value = false
   }, 1000)
 
-  watch(filters, () => {
+  watch([filters, update], () => {
     if (searchText.value === null) return
     onSearch(searchText.value)
   })
