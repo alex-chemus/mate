@@ -10,7 +10,7 @@ import { Subscription } from '../types'
 const usePageInfo = ({ update }: { update: Ref<symbol> }) => {
   const router = useRouter()
   const route = useRoute()
-  const { globalUpdate } = useGlobalUpdate()
+  const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
   const fetchFullUsersInfo = useFetchFullUsersInfo()
   const fetchFullProjectsInfo = useFetchFullProjectsInfo()
@@ -29,7 +29,7 @@ const usePageInfo = ({ update }: { update: Ref<symbol> }) => {
     fullUsersInfo.value = await fetchFullUsersInfo([+route.params.id])
   })
 
-  watch([globalUpdate, update], async () => {
+  watch([globalUpdate, update, globalAccountUpdate], async () => {
     fullUsersInfo.value = await fetchFullUsersInfo([+route.params.id])
   })
 

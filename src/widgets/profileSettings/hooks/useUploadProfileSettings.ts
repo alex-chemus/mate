@@ -19,7 +19,7 @@ const useUploadProfileSettings = ({
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { setGlobalUpdate } = useGlobalUpdate()
+  const { setGlobalAccountUpdate } = useGlobalUpdate()
 
   const bio = ref<string | null>(null)
   const media = ref<null | {[index: string]: string}>(null)
@@ -70,7 +70,7 @@ const useUploadProfileSettings = ({
       })
     }
 
-    setGlobalUpdate()
+    setGlobalAccountUpdate()
 
     return null
   }

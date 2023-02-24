@@ -13,7 +13,7 @@ const useProjectInfo = ({ update }: { update: Ref<symbol> }) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { globalUpdate } = useGlobalUpdate()
+  const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
 
   const route = useRoute()
   const router = useRouter()
@@ -86,7 +86,7 @@ const useProjectInfo = ({ update }: { update: Ref<symbol> }) => {
     projectInfo.value = await fetchProjectInfo(route.params.id as string)
   })
 
-  watch([globalUpdate, update], async () => {
+  watch([globalUpdate, update, globalProjectsUpdate], async () => {
     projectInfo.value = await fetchProjectInfo(route.params.id as string)
   })
 

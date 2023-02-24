@@ -20,7 +20,9 @@ export type FetchModuleState = {
 }
 
 export type UpdateModuleState = {
-  update: symbol
+  update: symbol,
+  accountUpdate: symbol,
+  projectsUpdate: symbol
 }
 
 export type RootState = {

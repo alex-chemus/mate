@@ -14,7 +14,7 @@ const useRoles = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { setGlobalUpdate } = useGlobalUpdate()
+  const { setGlobalProjectsUpdate } = useGlobalUpdate()
 
   const selectedRole = ref<Role | null>(null)
 
@@ -40,7 +40,7 @@ const useRoles = () => {
       }
     })
 
-    setGlobalUpdate()
+    setGlobalProjectsUpdate()
 
     return null
   }

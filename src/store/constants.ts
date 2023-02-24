@@ -17,5 +17,7 @@ export enum fetchActions {
 }
 
 export enum updateActions {
-  SET_UPDATE = 'SET_UPDATE'
+  SET_UPDATE = 'SET_UPDATE',
+  SET_ACCOUNT_UPDATE = 'SET_ACCOUNT_UPDATE',
+  SET_PROJECTS_UPDATE = 'SET_PROJECTS_UPDATE'
 }

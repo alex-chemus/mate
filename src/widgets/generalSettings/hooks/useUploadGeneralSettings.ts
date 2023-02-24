@@ -14,7 +14,7 @@ const useUploadGeneralSettings = ({
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { setGlobalUpdate } = useGlobalUpdate()
+  const { setGlobalAccountUpdate } = useGlobalUpdate()
 
   const firstName = ref<string | null>(null)
   const lastName = ref<string | null>(null)
@@ -59,7 +59,7 @@ const useUploadGeneralSettings = ({
       })
     }
 
-    setGlobalUpdate()
+    setGlobalAccountUpdate()
   }
 
   return {

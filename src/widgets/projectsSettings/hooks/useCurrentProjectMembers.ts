@@ -8,13 +8,13 @@ import {
 import { fetchActions } from '@/store/constants'
 import { Member } from '../types'
 
-const userCurrentProjectMembers = ({ currentProject }: {
+const useCurrentProjectMembers = ({ currentProject }: {
   currentProject: ComputedRef<FullProjectInfo | null>
 }) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { globalUpdate } = useGlobalUpdate()
+  const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
 
   const fetchMembers = async (usersIDs: number[]) => {
     const body = new FormData()
@@ -48,7 +48,7 @@ const userCurrentProjectMembers = ({ currentProject }: {
     [index: number]: Member[]
   }>({})
 
-  watch(globalUpdate, () => {
+  watch([globalUpdate, globalProjectsUpdate], () => {
     allMembersInfo.value = {}
   })
 
@@ -95,4 +95,4 @@ const userCurrentProjectMembers = ({ currentProject }: {
   return currentProjectMembers
 }
 
-export default userCurrentProjectMembers
+export default useCurrentProjectMembers

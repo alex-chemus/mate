@@ -11,7 +11,7 @@ const useUploadProjectSettings = ({ uploadImage, currentProjectID }: {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { setGlobalUpdate } = useGlobalUpdate()
+  const { setGlobalProjectsUpdate } = useGlobalUpdate()
 
   const allProjectsInfo = ref<{
     [index: number]: {
@@ -80,7 +80,7 @@ const useUploadProjectSettings = ({ uploadImage, currentProjectID }: {
       })
     }
 
-    setGlobalUpdate()
+    setGlobalProjectsUpdate()
   }
 
   return {

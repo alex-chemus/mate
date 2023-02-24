@@ -8,7 +8,7 @@ const useFullAccountInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { globalUpdate } = useGlobalUpdate()
+  const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
   const fetchAccountInfo = async () => {
     if (!authState.value.token) return null
@@ -31,7 +31,7 @@ const useFullAccountInfo = () => {
     fullAccountInfo.value = await fetchAccountInfo()
   })
 
-  watch(globalUpdate, async () => {
+  watch([globalUpdate, globalAccountUpdate], async () => {
     fullAccountInfo.value = await fetchAccountInfo()
   })
 

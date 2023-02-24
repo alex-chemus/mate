@@ -9,7 +9,7 @@ const useAccountInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { globalUpdate } = useGlobalUpdate()
+  const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
   const body = new FormData()
   body.append('token', authState.value.token as string)
@@ -32,7 +32,7 @@ const useAccountInfo = () => {
     accountInfo.value = await fetchAccountInfo()
   })
 
-  watch(globalUpdate, async () => {
+  watch([globalUpdate, globalAccountUpdate], async () => {
     accountInfo.value = await fetchAccountInfo()
   })
 

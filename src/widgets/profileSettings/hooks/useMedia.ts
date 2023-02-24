@@ -7,7 +7,7 @@ const useMedia = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo }) => 
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { setGlobalUpdate } = useGlobalUpdate()
+  const { setGlobalAccountUpdate } = useGlobalUpdate()
 
   const onAdd = async (payload: string, noUpdate?: boolean) => {
     const body = new FormData()
@@ -23,7 +23,7 @@ const useMedia = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo }) => 
       }
     })
 
-    if (!noUpdate) setGlobalUpdate()
+    if (!noUpdate) setGlobalAccountUpdate()
   }
 
   const onRemove = async (payload: number, noUpdate?: boolean) => {
@@ -40,14 +40,14 @@ const useMedia = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo }) => 
       }
     })
 
-    if (!noUpdate) setGlobalUpdate()
+    if (!noUpdate) setGlobalAccountUpdate()
   }
 
   const onEdit = async (payload: { id: number, link: string }) => {
     await onRemove(payload.id, true)
     await onAdd(payload.link, true)
 
-    setGlobalUpdate()
+    setGlobalAccountUpdate()
   }
 
   return {
