@@ -31,12 +31,12 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .media-section {
-  width: fit-content;
+  //width: fit-content;
   padding: 17px;
   border-radius: 20px;
   display: grid;
   grid-template-columns: repeat(min-content, 2);
-  grid-gap: 10px;
+  grid-gap: 29px;
   grid-auto-rows: 1fr;
   grid-auto-flow: column;
   background-color: var(--bg-color-1);
@@ -44,7 +44,7 @@ const { theme } = useTheme()
 }
 
 .media-item {
-  width: 70px;
+  width: 50px;
   aspect-ratio: 1;
   border-radius: 15px;
   @include flex(center, center);
@@ -58,7 +58,7 @@ const { theme } = useTheme()
 }
 
 .media-logo {
-  width: 30px;
+  width: 25px;
   aspect-ratio: 1;
   object-fit: contain;
   object-position: 50% 50%;
