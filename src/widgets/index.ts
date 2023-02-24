@@ -5,3 +5,4 @@ export { default as ProfileSettings } from './profileSettings/ProfileSettings.vu
 export { default as Settings } from './settings/Settings.vue'
 export { default as ProjectsSettings } from './projectsSettings/ProjectsSettings.vue'
 export { default as PrivacySettings } from './privacySettings/PrivacySettings.vue'
+export { default as Alert } from './alert/Alert.vue'

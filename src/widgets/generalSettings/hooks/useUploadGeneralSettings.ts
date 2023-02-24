@@ -2,7 +2,7 @@ import { ref, computed } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  FullAccountInfo
+  FullAccountInfo, useAlert
 } from '@/utils'
 
 const useUploadGeneralSettings = ({
@@ -15,6 +15,7 @@ const useUploadGeneralSettings = ({
   const authState = useAuthState()
   const dispatch = useDispatch()
   const { setGlobalAccountUpdate } = useGlobalUpdate()
+  const { setSuccessMessage } = useAlert()
 
   const firstName = ref<string | null>(null)
   const lastName = ref<string | null>(null)
@@ -60,6 +61,7 @@ const useUploadGeneralSettings = ({
     }
 
     setGlobalAccountUpdate()
+    setSuccessMessage('Сохранено')
   }
 
   return {

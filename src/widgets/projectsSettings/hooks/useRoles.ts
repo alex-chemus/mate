@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate
+  useApiState, useAuthState, useDispatch, useGlobalUpdate,
+  useAlert
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
 
@@ -15,6 +16,7 @@ const useRoles = () => {
   const authState = useAuthState()
   const dispatch = useDispatch()
   const { setGlobalProjectsUpdate } = useGlobalUpdate()
+  const { setSuccessMessage } = useAlert()
 
   const selectedRole = ref<Role | null>(null)
 
@@ -41,6 +43,7 @@ const useRoles = () => {
     })
 
     setGlobalProjectsUpdate()
+    setSuccessMessage('Должность изменена')
 
     return null
   }

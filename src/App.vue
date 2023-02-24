@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { SuperContainer } from '@/containers'
+import { Alert } from '@/widgets'
 </script>
 
 <template>
+  <alert />
   <super-container>
     <router-view />
   </super-container>

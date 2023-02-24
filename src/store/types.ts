@@ -25,10 +25,17 @@ export type UpdateModuleState = {
   projectsUpdate: symbol
 }
 
+export type AlertModuleState = {
+  update: symbol,
+  message: string | null,
+  type: null | 'danger' | 'success'
+}
+
 export type RootState = {
   auth: AuthModuleState,
   theme: ThemeModuleState,
   api: ApiModuleState,
   fetch: FetchModuleState,
-  update: UpdateModuleState
+  update: UpdateModuleState,
+  alert: AlertModuleState
 }

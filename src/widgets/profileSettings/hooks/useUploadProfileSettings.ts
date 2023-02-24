@@ -2,7 +2,7 @@ import { ref, Ref } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  Location
+  useAlert
 } from '@/utils'
 
 const useUploadProfileSettings = ({
@@ -20,6 +20,7 @@ const useUploadProfileSettings = ({
   const authState = useAuthState()
   const dispatch = useDispatch()
   const { setGlobalAccountUpdate } = useGlobalUpdate()
+  const { setSuccessMessage } = useAlert()
 
   const bio = ref<string | null>(null)
   const media = ref<null | {[index: string]: string}>(null)
@@ -71,6 +72,7 @@ const useUploadProfileSettings = ({
     }
 
     setGlobalAccountUpdate()
+    setSuccessMessage('Сохранено')
 
     return null
   }

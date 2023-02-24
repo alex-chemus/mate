@@ -157,10 +157,10 @@ small {
 }
 
 .accept {
-  color: #3BCA0B;
+  color: var(--green);
 }
 
 .decline {
-  color: #FB1F1E;
+  color: var(--red);
 }
 </style>
