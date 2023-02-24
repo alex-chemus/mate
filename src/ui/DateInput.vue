@@ -5,7 +5,8 @@ import {
 import { useTheme } from '@/utils'
 
 defineProps<{
-  value?: string
+  value?: string,
+  label?: string
 }>()
 
 const emit = defineEmits<{
@@ -19,7 +20,7 @@ const inputRef = ref<HTMLInputElement | null>(null)
 
 <template>
   <label>
-    <p class="label" :class="theme">Дата основания</p>
+    <p v-if="label" class="label" :class="theme">{{ label }}</p>
     <button
       class="input-wrapper" :class="[theme, { focused }]"
       @focus="focused = true"
