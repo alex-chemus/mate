@@ -48,6 +48,7 @@ watch(() => props.focused, () => {
   <label>
     <p v-if="labelText" class="label" :class="theme">{{ labelText }}</p>
     <div class="input-wrapper" :class="[theme, { focused }]">
+      <slot name="before" />
       <input
         ref="inputRef"
         class="input" :class="[theme, customClass]"
@@ -58,7 +59,7 @@ watch(() => props.focused, () => {
         @focus="emit('update:focused', true)"
         @blur="emit('update:focused', false)"
       />
-      <slot />
+      <slot name="after" />
     </div>
   </label>
 </template>
@@ -71,7 +72,7 @@ watch(() => props.focused, () => {
   height: 40px;
   padding: 13px;
   @include flex(space-between, center);
-  gap: 15px;
+  gap: 12px;
   border-radius: 8px;
   transition: var(--fast, $fast);
   background-color: var(--bg-color-2, $bg-color-2);

@@ -19,11 +19,13 @@ const inputValue = ref('')
 <template>
   <div class="skills-container">
     <Input label-text="Навыки" placeholder="Введите навык" v-model:value="inputValue">
-      <button class="add-button" :class="theme" @click="emit('add', inputValue)">
-        <svg width="24" height="24" viewBox="0 0 24 24">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
-        </svg>
-      </button>
+      <template #after>
+        <button class="add-button" :class="theme" @click="emit('add', inputValue)">
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
+          </svg>
+        </button>
+      </template>
     </Input>
 
     <ul class="skills-list">

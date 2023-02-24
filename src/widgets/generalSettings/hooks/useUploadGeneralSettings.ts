@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
@@ -21,6 +21,16 @@ const useUploadGeneralSettings = ({
   const patronymic = ref<string | null>(null)
   const textID = ref<string | null>(null)
   const sex = ref<1 | 2 | null>(null)
+  const birthday = ref<string | null>()
+
+  const getBirthday = computed(() => {
+    if (!birthday.value) return null
+    return birthday.value.split('.').reverse().join('-')
+  })
+
+  const setBirthday = (bd: string) => {
+    birthday.value = bd.split('-').reverse().join('.')
+  }
 
   const uploadGeneralSettings = async () => {
     const body = new FormData()
@@ -33,12 +43,13 @@ const useUploadGeneralSettings = ({
     if (patronymic.value) body.append('patronymic', patronymic.value)
     if (textID.value) body.append('textID', textID.value)
     if (sex.value) body.append('sex', `${sex.value}`)
+    if (birthday.value) body.append('birthday', birthday.value)
 
     if (avatarID !== null)
       body.append('avatarImage', `${avatarID}`)
 
     if (firstName.value || lastName.value || patronymic.value ||
-      textID.value || sex.value) {
+      textID.value || sex.value || birthday.value) {
       await dispatch(fetchActions.FETCH, {
         url: `${apiState.value.apiUrl}/id/account.setInfo/`,
         info: {
@@ -57,7 +68,9 @@ const useUploadGeneralSettings = ({
     lastName,
     patronymic,
     textID,
-    sex
+    sex,
+    getBirthday,
+    setBirthday
   }
 }
 

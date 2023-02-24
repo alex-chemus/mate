@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
 import { FullAccountInfo } from '@/utils'
-import { Input, SaveButton } from '@/ui'
+import { Input, SaveButton, DateInput } from '@/ui'
 import ProjectsSettingsLayout from './ProjectsSettingsLayout.vue'
 import {
-  SettingsTabs, ProjectsSlider, ImagesUpload, DateInput,
-  MemberItem, MembersSearch, RoleModal, RoleSelect, Media
+  SettingsTabs, ProjectsSlider, ImagesUpload, MemberItem,
+  MembersSearch, RoleModal, RoleSelect, Media
 } from './components'
 import {
   useMembers, useProjectsInfo, useUploadProjectSettings,
@@ -71,6 +71,7 @@ const {
       <date-input
         :value="(getFoundationDate as string | undefined)"
         @update:value="setFoundationDate"
+        label="Дата основания"
       />
     </template>
 

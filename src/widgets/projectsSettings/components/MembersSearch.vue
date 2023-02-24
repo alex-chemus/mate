@@ -17,11 +17,13 @@ const value = ref('')
     v-model:value="value"
     placeholder="Поиск участников..."
   >
-    <button @click="emit('search', value)" class="search-button" :class="theme">
-      <svg width="24" height="24" viewBox="0 0 24 24">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
-      </svg>
-    </button>
+    <template #after>
+      <button @click="emit('search', value)" class="search-button" :class="theme">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
+        </svg>
+      </button>
+    </template>
   </Input>
 </template>
 
