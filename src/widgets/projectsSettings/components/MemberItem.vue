@@ -95,14 +95,7 @@ const getRole = computed(() => {
 .role {
   font-family: var(--findcreek);
   font-size: 13px;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 
 .change-button {
@@ -116,14 +109,7 @@ const getRole = computed(() => {
   border: 1px solid currentColor;
   background-color: transparent;
   transition: var(--fast);
-
-  &.light {
-    color: var(--accent-1);
-  }
-
-  &.dark {
-    color: var(--accent-2);
-  }
+  color: var(--accent);
 
   &:hover,
   &:focus {

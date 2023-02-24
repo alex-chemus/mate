@@ -42,31 +42,17 @@ const theme = props.theme
   font-family: var(--findcreek, $findcreek);
   font-size: 13px;
   background-color: transparent;
+  color: var(--heading-color-2, $heading-color-2);
+  background-color: var(--bg-color-2, $bg-color-2);
+  border: var(--border-1);
 
   &:focus {
     outline: none;
   }
 
-  &.light {
-    background-color: var(--light, $light);
-    border: 1px solid color.change($gray-1, $alpha: .4);
-    color: var(--dark-2, $dark-2);
-  }
-
-  &.light:hover,
-  &.light.focused {
-    border: 1px solid var(--accent-1, $accent-1);
-  }
-
-  &.dark {
-    background-color: #1E1F29;
-    border: 1px solid color.change($gray-1, $alpha: .4);
-    color: var(--light, $light);
-  }
-
-  &.dark:hover,
-  &.dark.focused {
-    border: 1px solid var(--accent-2, $accent-2);
+  &:hover,
+  &.focused {
+    border: 1px solid var(--accent, $accent);
   }
 
   &::before {
@@ -91,13 +77,7 @@ const theme = props.theme
 }
 
 .radio-button.selected {
-  &.light {
-    color: var(--accent-1, $accent-1);
-  }
-
-  &.dark {
-    color: var(--accent-2, $accent-2);
-  }
+  color: var(--accent, $accent);
 
   &::before {
     border-color: currentColor;

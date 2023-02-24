@@ -25,8 +25,8 @@ const { openSettings } = useSettings()
       </svg>
     </button> -->
 
-    <div v-if="banner" class="cover-container">
-      <img :src="banner" :alt="fullName" class="banner-img" />
+    <div class="cover-container">
+      <img :src="banner ?? img" :alt="fullName" class="banner-img" />
 
       <button class="cover-button">
         <svg width="20" height="20" viewBox="0 0 20 20">
@@ -79,14 +79,7 @@ const { openSettings } = useSettings()
   overflow: hidden;
   border: 1px solid color.change($gray-1, $alpha: .25);
   position: relative;
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
-
-  &.light {
-    background-color: var(--light);
-  }
+  background-color: var(--bg-color-1);
 }
 
 // .more-button {
@@ -121,6 +114,9 @@ const { openSettings } = useSettings()
 }
 
 .banner-img {
+  max-height: 140px;
+  width: 100%;
+  object-fit: cover;
   border-bottom: 1px solid color.change($gray-1, $alpha: .25);
   background-color: var(--light);
 }
@@ -147,32 +143,17 @@ const { openSettings } = useSettings()
   h5 {
     margin: 0;
     margin-bottom: 10px;
-    font-family: var(--noto-sans);
-    font-weight: var(--bold);
+    font-family: var(--noto-sans-bold);
+    //font-weight: var(--bold);
     font-size: 16px;
-  }
-
-  &.light h5 {
-    color: var(--dark-2);
-  }
-
-  &.dark h5 {
-    color: var(--light);
+    color: var(--heading-color-2);
   }
 
   p {
     font-size: 12px;
     font-family: var(--findcreek-medium);
-    font-weight: var(--medium);
     margin: 0;
-  }
-
-  &.light p {
-    color: var(--gray-1);
-  }
-
-  &.dark p {
-    color: var(--gray-3);
+    color: var(--text-color-2);
   }
 }
 
@@ -194,17 +175,9 @@ const { openSettings } = useSettings()
 .fullname {
   font-family: var(--findcreek-medium);
   font-size: 16px;
-  font-weight: var(--medium);
   margin: 0;
   margin-bottom: 3px;
-
-  &.dark {
-    color: var(--light);
-  }
-
-  &.light {
-    color: var(--dark-2);
-  }
+  color: var(--heading-color-2);
 }
 
 .nickname {
@@ -212,14 +185,7 @@ const { openSettings } = useSettings()
   font-size: 12px;
   margin: 0;
   margin-bottom: 18px;
-
-  &.dark {
-    color: var(--gray-3);
-  }
-
-  &.light {
-    color: var(--gray-1);
-  }
+  color: var(--text-color-2);
 }
 
 .button {
@@ -234,12 +200,12 @@ const { openSettings } = useSettings()
     margin-bottom: 10px;
   }
 
+  strong {
+    color: var(--heading-color-2);
+  }
+
   &.light {
     border: 1px solid color.change($gray-1, $alpha: .2);
-
-    strong {
-      color: var(--dark-2)
-    }
   }
 
   &.light:hover,
@@ -249,10 +215,6 @@ const { openSettings } = useSettings()
 
   &.dark {
     border: 1px solid color.change($gray-3, $alpha: .5);
-
-    strong {
-      color: var(--light);
-    }
   }
 
   &.dark:hover,
@@ -269,9 +231,8 @@ const { openSettings } = useSettings()
   }
 
   strong {
-    font-family: var(--montserrat);
+    font-family: var(--montserrat-bold);
     font-size: 13px;
-    font-weight: var(--bold);
   }
 }
 
@@ -309,13 +270,6 @@ const { openSettings } = useSettings()
   font-family: var(--findcreek);
   font-size: 14px;
   line-height: 160%;
-
-  &.dark {
-    color: var(--light);
-  }
-
-  &.light {
-    color: var(--dark-2);
-  }
+  color: var(--heading-color-2);
 }
 </style>

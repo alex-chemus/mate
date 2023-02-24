@@ -54,42 +54,20 @@ const projects = ref<IProject[]>([
   padding: 25px 18px;
   border: 1px solid color.change($gray-1, $alpha: .25);
   border-radius: 13px;
-
-  &.light {
-    background-color: var(--light);
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
+  background-color: var(--bg-color-1);
 }
 
 .projects-title {
   margin-bottom: 26px;
   font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--medium);
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 
   span {
-    font-family: var(--noto-sans);
-    font-weight: var(--bold);
+    font-family: var(--noto-sans-bold);
+    //font-weight: var(--bold);
     margin-left: 7px;
-  }
-
-  &.light span {
-    color: #5C5C5C;
-  }
-
-  &.dark span {
-    color: #bbb;
+    color: var(--text-color-1);
   }
 }
 
@@ -129,38 +107,23 @@ const projects = ref<IProject[]>([
 
 .project-wrapper {
   h5 {
-    font-family: var(--montserrat);
-    font-weight: var(--bold);
+    font-family: var(--montserrat-bold);
     font-size: 14px;
     letter-spacing: -3%;
     margin: 0;
     color: currentColor;
   }
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 
   small {
     font-family: var(--findcreek);
     font-size: 13px;
     letter-spacing: -3%;
+    color: var(--text-color-1);
   }
 
   small span {
     font-family: var(--noto-sans);
-  }
-
-  &.light small {
-    color: #5C5C5C;
-  }
-
-  &.dark small {
-    color: #bbb;
   }
 }
 </style>

@@ -58,13 +58,15 @@ const startEditing = (item: SocialMedia) => {
           :border-color="mediaItem.id === editMediaID ? '#455DF6' : undefined"
         >
           <template #content>
-            <!-- eslint-disable-next-line -->
-            <img
-              v-if="mediaItem.logo"
-              :src="mediaItem.logo"
-              class="media-item-logo"
-            />
-            <span>{{ mediaItem.service }}</span>
+            <div class="content-wrapper">
+              <!-- eslint-disable-next-line -->
+              <img
+                v-if="mediaItem.logo"
+                :src="mediaItem.logo"
+                class="media-item-logo"
+              />
+              <span>{{ mediaItem.service }}</span>
+            </div>
           </template>
           <!-- eslint-disable-next-line -->
           <template #button v-if="editMediaID !== mediaItem.id">
@@ -105,14 +107,7 @@ const startEditing = (item: SocialMedia) => {
 .add-button {
   height: 40px;
   cursor: pointer;
-
-  &.light {
-    color: var(--accent-1);
-  }
-
-  &.dark {
-    color: var(--accent-2);
-  }
+  color: var(--accent);
 }
 
 .badges-wrapper {
@@ -126,5 +121,16 @@ const startEditing = (item: SocialMedia) => {
 
 .edit-button {
   margin-left: 20px;
+}
+
+.content-wrapper {
+  @include flex(flex-start, center);
+  gap: 8px;
+}
+
+.media-item-logo {
+  width: 20px;
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 </style>

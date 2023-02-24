@@ -1,34 +1,60 @@
 <script lang="ts" setup>
-import { useTheme } from '@/utils';
+import { ref, defineProps, defineEmits } from 'vue'
+import { Popover } from 'ant-design-vue'
+import { useTheme } from '@/utils'
+
+defineProps<{
+  popupOpen: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: 'toggle-popup', payload: boolean): void,
+  (e: 'input', payload: string): void
+}>()
 
 const { theme } = useTheme()
+const isOpen = ref(false)
 </script>
 
 <template>
-  <div class="search-wrapper" :class="theme">
-    <button class="button">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
-      </svg>
-    </button>
+  <popover
+    :visible="popupOpen" @update:visible="p => emit('toggle-popup', p)"
+    trigger="click" placement="bottomLeft"
+  >
+    <div class="search-wrapper" :class="theme">
+      <button class="button">
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
+        </svg>
+      </button>
 
-    <!-- eslint-disable-next-line -->
-    <input type="text" class="search-input" placeholder="Поиск" />
+      <!-- eslint-disable-next-line -->
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Поиск"
+        @input="p => emit('input', (p.target as HTMLInputElement).value)"
+      />
 
-    <div class="separator" />
+      <!-- <div class="separator" />
 
-    <button class="button">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-x" />
-      </svg>
-    </button>
+      <button class="button">
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-x" />
+        </svg>
+      </button>
 
-    <button class="button">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-adjustments-horizontal" />
-      </svg>
-    </button>
-  </div>
+      <button class="button">
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-adjustments-horizontal" />
+        </svg>
+      </button> -->
+    </div>
+
+    <template #content>
+      <slot />
+    </template>
+  </popover>
 </template>
 
 <style lang="scss" scoped>
@@ -42,16 +68,8 @@ const { theme } = useTheme()
   padding: 10px;
   height: 40px;
   @include flex(flex-start, stretch);
-
-  &.light {
-    background-color: var(--light);
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-    color: #bbb;
-  }
+  background-color: var(--bg-color-1);
+  color: var(--text-color-1);
 
   & > *:not(:last-child) {
     margin-right: 12px;

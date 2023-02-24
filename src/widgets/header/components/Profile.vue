@@ -51,17 +51,8 @@ const isOpen = ref(false)
 
   font-family: var(--findcreek-medium);
   font-size: 16px;
-  font-weight: var(--medium);
-
-  &.light {
-    color: var(--dark-2);
-    background-color: var(--light);
-  }
-
-  &.dark {
-    color: var(--light);
-    background-color: var(--dark-theme-color-2);
-  }
+  color: var(--heading-color-2);
+  background-color: var(--bg-color-1);
 
   & > *:not(:last-child) {
     margin-right: 10px;
@@ -85,14 +76,7 @@ const isOpen = ref(false)
 
 svg {
   transition: transform .15s linear;
-
-  &.light {
-    color: var(--gray-1);
-  }
-
-  &.dark {
-    color: var(--gray-3);
-  }
+  color: var(--text-color-2);
 
   &.open {
     transform: rotate(180deg);

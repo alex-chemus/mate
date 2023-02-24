@@ -48,41 +48,19 @@ defineProps<{
   padding: 20px 16px 12px 17px;
   border-radius: 13px;
   border: 1px solid color.change($gray-1, $alpha: .25);
-
-  &.light {
-    background-color: var(--light);
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2)
-  }
+  background-color: var(--bg-color-1);
 }
 
 .title-wrapper {
   @include flex(space-between, center);
   margin-bottom: 16px;
-
-  &.dark {
-    color: var(--gray-3);
-  }
-
-  &.light {
-    color: var(--gray-1);
-  }
+  color: var(--text-color-2);
 }
 
 .title {
   font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--medium);
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 }
 
 .search-button {
@@ -113,14 +91,7 @@ defineProps<{
   border-radius: 100vmax;
   border: 4px solid color.change($gray-1, $alpha: .3);
   object-fit: cover;
-
-  &.placeholder.light {
-    background-color: color.change($gray-1, $alpha: .3);
-  }
-
-  &.placeholder.dark {
-    background-color: var(--gray-3);
-  }
+  color: var(--text-color-2);
 }
 
 .item-content-wrapper {
@@ -129,28 +100,14 @@ defineProps<{
     margin-bottom: 1px;
     font-family: var(--noto-sans);
     font-size: 18px;
-  }
-
-  &.dark h6 {
-    color: var(--light);
-  }
-
-  &.light h6 {
-    color: var(--dark-2);
+    color: var(--heading-color-2);
   }
 
   small {
     margin: 0;
     font-family: var(--noto-sans);
     font-size: 14px;
-  }
-
-  &.dark small {
-    color: var(--gray-3);
-  }
-
-  &.light small {
-    color: var(--gray-1);
+    color: var(--text-color-2);
   }
 }
 

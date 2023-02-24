@@ -31,18 +31,10 @@ const emit = defineEmits<{
   background-color: transparent;
   transition: all .15s;
 
-  font-family: var(--findcreek, $findcreek);
+  font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 13px;
-  font-weight: var(--medium, $medium);
   letter-spacing: .2%;
-
-  &.light {
-    color: var(--accent-1, $accent-1);
-  }
-
-  &.dark {
-    color: var(--accent-2, $accent-2);
-  }
+  color: var(--accent, $accent);
 
   &.light:hover {
     box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);

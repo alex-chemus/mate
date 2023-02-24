@@ -95,7 +95,7 @@ const { theme } = useTheme()
 .search-button {
   height: 40px;
   aspect-ratio: 1;
-  color: var(--text-color);
+  color: var(--heading-color-2);
 }
 
 .content-container {
@@ -126,15 +126,7 @@ const { theme } = useTheme()
 .content-wrapper h4 {
   font-family: var(--findcreek-bold);
   font-size: 16px;
-  font-weight: var(--bold);
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 }
 
 .badge {
@@ -156,7 +148,7 @@ const { theme } = useTheme()
 .content-wrapper p {
   font-family: var(--findcreek);
   font-size: 13px;
-  color: var(--text-color);
+  color: var(--heading-color-2);
 }
 
 .user-wrapper {
@@ -173,7 +165,7 @@ const { theme } = useTheme()
     margin-left: 6px;
     font-family: var(--findcreek);
     font-size: 13px;
-    color: var(--text-color)
+    color: var(--heading-color-2);
   }
 
   .border {
@@ -205,7 +197,6 @@ const { theme } = useTheme()
     font-size: 13px;
     font-family: var(--findcreek-medium);
     color: var(--gray-1);
-    font-weight: var(--medium);
   }
 }
 
@@ -227,7 +218,6 @@ const { theme } = useTheme()
 .date {
   font-family: var(--findcreek-medium);
   font-size: 13px;
-  font-weight: var(--medium);
   color: var(--gray-1);
 }
 </style>

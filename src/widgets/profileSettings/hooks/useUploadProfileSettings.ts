@@ -60,7 +60,7 @@ const useUploadProfileSettings = ({
 
     if (uploadSpecialties) await uploadSpecialties()
 
-    if (bio.value || media.value || skills.value || address.value) {
+    if (bio.value || media.value || skills.value || address.value || coverID) {
       await dispatch(fetchActions.FETCH, {
         url: `${apiState.value.apiUrl}/mate/account.setInfo/`,
         info: {

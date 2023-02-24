@@ -72,7 +72,7 @@ const { theme } = useTheme()
   h2 {
     margin-bottom: 20px;
     text-align: center;
-    color: var(--text-color);
+    color: var(--heading-color-2);
     font-family: var(--findcreek-bold);
     font-size: 24px;
     font-weight: var(--bold);
@@ -82,7 +82,7 @@ const { theme } = useTheme()
     text-align: center;
     font-size: 16px;
     font-family: var(--findcreek);
-    color: var(--text-color);
+    color: var(--heading-color-2);
   }
 }
 

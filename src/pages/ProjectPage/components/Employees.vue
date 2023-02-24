@@ -1,13 +1,34 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import { useTheme } from '@/utils'
-import type { Employee } from '../types'
+import type { Employee, Role } from '../types'
 
-defineProps<{
+const props = defineProps<{
   employees: Employee[]
 }>()
 
 const { theme } = useTheme()
+
+const convertRole = (role: Role) => {
+  switch (role) {
+    case 'editor': return 'Редактор'
+    case 'administrator': return 'Администратор'
+    default: return 'Владелец'
+  }
+}
+
+const getSortedEmployess = computed(() => {
+  return [
+    props.employees.find((e) => e.role === 'founder') as Employee,
+    ...props.employees.filter((e) => e.role === 'administrator'),
+    ...props.employees.filter((e) => e.role === 'editor')
+  ].map((e) => ({
+    name: e.name,
+    avatar: e.avatar,
+    id: e.id,
+    role: convertRole(e.role)
+  }))
+})
 </script>
 
 <template>
@@ -19,16 +40,17 @@ const { theme } = useTheme()
 
     <ul class="employees-list">
       <li
-        v-for="employee in employees" :key="employee.id"
+        v-for="employee in getSortedEmployess" :key="employee.id"
         class="employee-container" :class="theme"
       >
         <img v-if="employee.avatar" :src="employee.avatar" alt="" class="icon" />
         <div v-else class="icon placeholder" />
 
-        <div class="employee-wrapper" :class="theme">
+        <router-link :to="`/user/${employee.id}`" class="employee-wrapper" :class="theme">
           <h5>{{ employee.name }}</h5>
+          <p>{{ employee.role }}</p>
           <!-- <small>{{ employee.position }}</small> -->
-        </div>
+        </router-link>
       </li>
     </ul>
   </section>
@@ -42,42 +64,19 @@ const { theme } = useTheme()
   padding: 25px 18px;
   border: 1px solid color.change($gray-1, $alpha: .25);
   border-radius: 13px;
-
-  &.light {
-    background-color: var(--light);
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
+  background-color: var(--bg-color-1);
 }
 
 .employees-title {
   margin-bottom: 26px;
   font-family: var(--findcreek-medium);
   font-size: 14px;
-  font-weight: var(--medium);
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 
   span {
-    font-family: var(--noto-sans);
-    font-weight: var(--bold);
+    font-family: var(--noto-sans-bold);
     margin-left: 7px;
-  }
-
-  &.light span {
-    color: #5C5C5C;
-  }
-
-  &.dark span {
-    color: #bbb;
+    color: var(--text-color-1);
   }
 }
 
@@ -114,32 +113,17 @@ const { theme } = useTheme()
 .employee-wrapper {
   h5 {
     font-family: var(--findcreek-bold);
-    font-weight: var(--bold);
     font-size: 14px;
     letter-spacing: -3%;
     margin: 0;
+    color: var(--heading-color-2);
   }
 
-  &.light h5 {
-    color: var(--dark-2);
-  }
-
-  &.dark h5 {
-    color: var(--light);
-  }
-
-  small {
+  p {
     font-family: var(--findcreek);
     font-size: 12px;
     letter-spacing: -3%;
-  }
-
-  &.light small {
-    color: #5c5c5c;
-  }
-
-  &.dark small {
-    color: #bbb;
+    color: var(--text-color-1);
   }
 }
 </style>

@@ -12,12 +12,20 @@ const useProjectsInfo = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo
   const fetchFullProjectsInfo = useFetchFullProjectsInfo()
 
   onMounted(async () => {
-    projectsInfo.value = await fetchFullProjectsInfo({ fullAccountInfo })
+    projectsInfo.value = await fetchFullProjectsInfo([
+      ...fullAccountInfo.projectsManagement.administrator,
+      ...fullAccountInfo.projectsManagement.editor,
+      ...fullAccountInfo.projectsManagement.founder
+    ])
     currentProjectID.value = projectsInfo.value[0].id
   })
 
   watch(globalUpdate, async () => {
-    projectsInfo.value = await fetchFullProjectsInfo({ fullAccountInfo })
+    projectsInfo.value = await fetchFullProjectsInfo([
+      ...fullAccountInfo.projectsManagement.administrator,
+      ...fullAccountInfo.projectsManagement.editor,
+      ...fullAccountInfo.projectsManagement.founder
+    ])
   })
 
   const currentProject = computed(() => {

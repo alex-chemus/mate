@@ -43,23 +43,11 @@ const inputValue = ref('')
 
 .add-button {
   transition: var(--fast);
+  color: var(--text-color-1);
 
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.light:hover,
-  &.light:focus {
-    color: var(--accent-1);
-  }
-
-  &.dark {
-    color: #bbb;
-  }
-
-  &.dark:hover,
-  &.dark:focus {
-    color: var(--accent-2);
+  &:hover,
+  &:focus {
+    color: var(--accent);
   }
 }
 
@@ -78,18 +66,10 @@ const inputValue = ref('')
 }
 
 .badge-text {
-  font-family: var(--noto-sans);
-  font-weight: var(--medium);
+  font-family: var(--noto-sans-medium);
   font-size: 13px;
   letter-spacing: -0.02em;
   margin-right: 7px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 </style>

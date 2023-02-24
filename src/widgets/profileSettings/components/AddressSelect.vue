@@ -192,14 +192,7 @@ const isSelected = (loc: Location) => {
   width: 100%;
   max-height: 150px;
   overflow-y: scroll;
-
-  &.light {
-    background-color: white;
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
+  background-color: var(--bg-color-1);
 
   &::-webkit-scrollbar {
     width: 0;
@@ -218,31 +211,15 @@ ul {
   padding: 0 4px;
   @include flex(flex-start, center);
   transition: var(--fast);
+  color: var(--heading-color-2);
 
-  &.light {
-    color: #212121;
+  &.focused,
+  &.selected {
+    background-color: var(--bg-color-2);
   }
 
-  &.dark {
-    color: var(--light);
-  }
-
-  &.light.focused,
-  &.light.selected {
-    background-color: #f6f6f6;
-  }
-
-  &.dark.focused,
-  &.dark.selected {
-    background-color: #333640;
-  }
-
-  &.light.selected {
-    color: var(--accent-1);
-  }
-
-  &.dark.selected {
-    color: var(--accent-2);
+  &.selected {
+    color: var(--accent);
   }
 }
 
@@ -258,14 +235,7 @@ ul {
   font-family: var(--findcreek);
   font-size: 15px;
   letter-spacing: -0.01em;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 
 .loader {

@@ -9,5 +9,6 @@ export { default as useSettings } from './useSettings'
 export { default as useDebounce } from './useDebounce'
 export type {
   FullAccountInfo, FileInfo, Specialty, SpecialtiesList,
-  FullProductInfo, FullProjectInfo, Location, SocialMedia
+  FullProductInfo, FullProjectInfo, Location, SocialMedia,
+  FullUserInfo
 } from './types'

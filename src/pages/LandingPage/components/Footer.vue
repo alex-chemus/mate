@@ -49,7 +49,6 @@ footer {
 .copyright {
   font-size: 12px;
   font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
   text-decoration: none;
   color: inherit;
 

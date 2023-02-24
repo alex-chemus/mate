@@ -100,14 +100,7 @@ const onCoverUpload = (e: FileList) => {
   color: var(--light);
   @include flex(center, center);
   gap: 9px;
-
-  &.light {
-    border: 1px dashed var(--light);
-  }
-
-  &.dark {
-    border: 1px dashed var(--dark-theme-color-2);
-  }
+  border: 1px dashed var(--bg-color-1);
 }
 
 .avatar {
@@ -139,13 +132,6 @@ const onCoverUpload = (e: FileList) => {
   font-family: var(--findcreek-medium);
   margin: 0;
   margin-bottom: 20px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 </style>

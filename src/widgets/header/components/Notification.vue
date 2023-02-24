@@ -108,11 +108,11 @@ const title = computed(() => {
   max-width: 100%;
 
   strong {
-    font-weight: var(--medium);
+    font-family: var(--findcreek-medium);
   }
 
   a {
-    font-weight: var(--medium);
+    font-family: var(--findcreek-medium);
   }
 
   a:focus, a:hover {
@@ -120,34 +120,23 @@ const title = computed(() => {
   }
 }
 
-.message.light {
-  color: var(--dark-1);
+.message {
+  color: var(--heading-color-1);
+}
 
-  a {
-    color: var(--accent-1);
-  }
+.message.light a {
+  color: var(--accent-1);
 }
 
 .message.dark {
   color: var(--light);
-
-  a {
-    color: var(--light);
-  }
 }
 
 small {
   font-family: var(--findcreek);
   font-size: 12px;
   text-align: left;
-
-  &.light {
-    color: var(--gray-1);
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-3);
 }
 
 .buttons {

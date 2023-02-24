@@ -38,11 +38,10 @@ input {
   padding: 0 16px;
   font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 16px;
-  font-weight: var(--medium, $medium);
   border: 1px solid color.change($gray-1, $alpha: .4);
   transition: .15s ease-out;
   outline: none;
-  color: var(--text-color, $text-color);
+  color: var(--heading-color-2, $heading-color-2);
 
   &:focus {
     border-color: var(--accent-2, $accent-2);

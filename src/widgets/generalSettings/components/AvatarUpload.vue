@@ -73,23 +73,10 @@ const onUpload = (e: FileList) => {
   font-size: 20px;
   margin: 0;
   margin-bottom: 0;
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 }
 
 .text-id {
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 </style>

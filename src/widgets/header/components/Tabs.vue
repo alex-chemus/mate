@@ -1,22 +1,24 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/utils'
+import { Tab } from '../types'
+
+defineProps<{
+  currentTab: Tab
+}>()
+
+const emit = defineEmits<{
+  (e: 'switch', payload: Tab): void
+}>()
 
 const { theme } = useTheme()
-
-type TabName = 'profile' | 'feed'
-
-const currentTabName = ref<TabName>('profile')
-
-const isCurrent = (tabName: TabName) =>
-  tabName === currentTabName.value ? 'current' : ''
 </script>
 
 <template>
   <div class="tabs-wrapper" :class="theme">
     <button class="tab"
-      :class="isCurrent('profile')"
-      @click="currentTabName = 'profile'"
+      :class="currentTab === 'profile' ? 'current' : ''"
+      @click="emit('switch', 'profile')"
     >
       <svg width="30" height="30" viewBox="0 0 30 30">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-user-circle" />
@@ -24,8 +26,8 @@ const isCurrent = (tabName: TabName) =>
     </button>
 
     <button class="tab"
-      :class="isCurrent('feed')"
-      @click="currentTabName = 'feed'"
+      :class="currentTab === 'search-vacancies' ? 'current' : ''"
+      @click="emit('switch', 'search-vacancies')"
     >
       <svg width="30" height="30" viewBox="0 0 30 30">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-list-search" />
@@ -46,36 +48,36 @@ const isCurrent = (tabName: TabName) =>
   border: 1px solid color.change($gray-1, $alpha: .25);
   border-radius: 10px;
   overflow: hidden;
+  background-color: var(--bg-color-1);
 
   &.light {
-    background-color: var(--light);
     color: #4C4F56;
   }
 
   &.dark {
-    background-color: var(--dark-theme-color-2);
     color: var(--gray-3);
   }
 }
 
 .tab {
   color: currentColor;
+  position: relative;
+  transition: var(--fast);
 
+  &:hover,
   &.current {
-    color: var(--local-text-color);
-    background-color: var(--local-bg-color);
-  }
-}
-
-.tabs-wrapper {
-  &.dark .tab.current {
-    color: var(--light);
-    background-color: #788AB2;
+    color: var(--accent);
   }
 
-  &.light .tab.current {
-    color: var(--accent-1);
-    background-color: color.change($accent-1, $alpha: .15);
+  &.current:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: var(--accent);
   }
 }
 </style>

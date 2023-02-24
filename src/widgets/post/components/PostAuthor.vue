@@ -55,16 +55,8 @@ const { theme } = useTheme()
   h5 {
     margin: 0;
     font-family: var(--findcreek-medium);
-    font-weight: var(--medium);
     font-size: 12px;
-  }
-
-  &.light h5 {
-    color: var(--dark-2);
-  }
-
-  &.dark h5 {
-    color: var(--light);
+    color: var(--heading-color-2);
   }
 
   small {
@@ -72,14 +64,7 @@ const { theme } = useTheme()
     font-family: var(--noto-sans);
     font-size: 10px;
     margin-bottom: 4px;
-  }
-
-  &.light small {
-    color: #5c5c5c;
-  }
-
-  &.dark small {
-    color: #bbbbbb;
+    color: var(--text-color-1);
   }
 }
 </style>

@@ -41,23 +41,14 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   font-family: var(--findcreek, $findcreek);
   font-size: 13px;
   width: 100%;
-
-  &.light {
-    color: var(--dark-2, $dark-2);
-    background-color: var(--light, $light);
-    border: 1px solid color.change($gray-1, $alpha: .4);
-  }
+  color: var(--heading-color-2, $heading-color-2);
+  background-color: var(--bg-color-2, $bg-color-2);
+  border: var(--border-1);
 
   &.light:hover,
   &.light:focus {
     border: 1px solid var(--accent-1, $accent-1);
     outline: none;
-  }
-
-  &.dark {
-    color: var(--light, $light);
-    background-color: #1E1F29;
-    border: 1px solid color.change($gray-1, $alpha: .4);
   }
 
   &.dark:hover,
@@ -71,13 +62,6 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 13px;
   margin: 0 0 6px 10px;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 </style>

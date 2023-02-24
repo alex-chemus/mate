@@ -35,24 +35,11 @@ const { theme } = useTheme()
   @include flex(center, center);
   gap: 4px;
   transition: var(--fast);
-
-  &.light {
-    color: var(--gray-1);
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-3);
 }
 
 .notifications-button.selected {
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 
 .notifications-button.selected,
@@ -85,7 +72,6 @@ const { theme } = useTheme()
   font-family: var(--findcreek-medium);
   font-size: 12px;
   line-height: 1em;
-  font-weight: var(--medium);
   letter-spacing: .04em;
 
   &.light {

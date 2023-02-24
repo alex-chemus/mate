@@ -11,15 +11,10 @@ const useFullProjectsInfo = () => {
 
   //const fullProjectsInfo = ref<FullProjectInfo[] | null>(null)
 
-  const fetchFullProjectsInfo = async ({ fullAccountInfo }: {
-    fullAccountInfo: FullAccountInfo
-  }) => {
+  const fetchFullProjectsInfo = async (projectsIDs: number[]) => {
     const body = new FormData()
     body.append('token', authState.value.token as string)
-    body.append('projectsIDs', [
-      ...fullAccountInfo.projectsManagement.administrator,
-      ...fullAccountInfo.projectsManagement.founder,
-    ].join(', '))
+    body.append('projectsIDs', projectsIDs.join(', '))
 
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projects.getInfo/`,

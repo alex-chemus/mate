@@ -64,16 +64,8 @@ const img = ref<string | null>()
   border: 1px solid color.change($gray-1, $alpha: .5);
   @include flex(flex-start, center);
   flex-grow: 1;
-
-  &.light {
-    background-color: transparent;
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    background-color: var(--dark-theme-color-5);
-    color: #bbb;
-  }
+  background-color: var(--bg-color-2);
+  color: var(--text-color-1);
 }
 
 .comment-input {
@@ -93,12 +85,6 @@ const img = ref<string | null>()
 }
 
 .send-button {
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 </style>

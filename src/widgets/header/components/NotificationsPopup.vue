@@ -65,14 +65,10 @@ const sortedNotifications = computed(() => {
   box-shadow: var(--popup-shadow);
   width: 440px;
   overflow: hidden;
-
-  &.light {
-    background-color: var(--light);
-  }
+  background-color: var(--bg-color-1);
 
   &.dark {
     border: 1px solid #615478;
-    background-color: var(--dark-theme-color-2);
   }
 }
 
@@ -97,14 +93,7 @@ const sortedNotifications = computed(() => {
     font-size: 22px;
     letter-spacing: -3.5%;
     margin: 0;
-  }
-
-  &.light h5 {
-    color: var(--dark-1);
-  }
-
-  &.dark h5 {
-    color: var(--light);
+    color: var(--heading-color-1);
   }
 
   a {

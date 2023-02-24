@@ -77,14 +77,7 @@ const getPopupContainer = () => {
   margin-right: 13px;
   font-family: var(--findcreek-medium);
   font-size: 13px;
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1);
 }
 </style>
 
@@ -96,14 +89,13 @@ const getPopupContainer = () => {
   border-radius: 6px !important;
   box-shadow: 0 0 30px -4px rgb(0 0 0 / .25) !important;
   z-index: 2;
+  background-color: var(--bg-color-1) !important;
 
   &.light {
-    background-color: var(--light) !important;
     border: 1px solid #e6e6e6;
   }
 
   &.dark {
-    background-color: var(--dark-theme-color-2) !important;
     border: 1px solid #615478;
   }
 }
@@ -122,42 +114,20 @@ const getPopupContainer = () => {
 
 .role-container .ant-select-focused .ant-select-selector {
   box-shadow: none !important;
+  border-color: var(--accent) !important;
 }
 
-.role-container.light .ant-select-focused .ant-select-selector,
-.role-container.light .ant-select:hover .ant-select-selector {
-  border-color: var(--accent-1) !important;
-}
-
-.role-container.dark .ant-select-focused .ant-select-selector,
-.role-container.dark .ant-select:hover .ant-select-selector {
-  border-color: var(--accent-2) !important;
-}
-
-.role-container.light .ant-select-selector {
-  border: 1px solid color.change($gray-1, $alpha: .4) !important;
-  background-color: var(--light) !important;
-  color: var(--dark-2) !important;
-}
-
-.role-container.dark .ant-select-selector {
-  border: 1px solid color.change($gray-1, $alpha: .5) !important;
-  background-color: #1E1F29 !important;
-  color: var(--light) !important;
+.role-container .ant-select-selector {
+  color: var(--heading-color-2) !important;
+  background-color: var(--bg-color-2) !important;
+  border: var(--border-1) !important;
 }
 
 .role-dropdown {
   .ant-select-item-group {
     font-family: var(--noto-sans);
     font-size: 13px;
-  }
-
-  &.light .ant-select-item-group {
-    color: #5c5c5c;
-  }
-
-  &.dark .ant-select-item-group {
-    color: #bbb;
+    color: var(--text-color-1);
   }
 }
 
@@ -167,26 +137,12 @@ const getPopupContainer = () => {
   line-height: 1.4em;
   letter-spacing: -0.033em;
   transition: var(--fast);
-
-  &.light {
-    color: var(--dark-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-1) !important;
 
   &.ant-select-item-option-active,
   &.ant-select-item-option-selected {
     color: var(--light) !important;
-
-    &.light {
-      background-color: var(--accent-1);
-    }
-
-    &.dark {
-      background-color: var(--accent-2);
-    }
+    background-color: var(--accent);
   }
 }
 </style>

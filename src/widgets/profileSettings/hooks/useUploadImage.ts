@@ -34,13 +34,15 @@ const useUploadImage = () => {
       body.append('files', cover.value)
     }
 
-    return ((await dispatch(fetchActions.FETCH, {
+    const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.cloudUlr}/methods/cloud.uploadFiles/`,
       info: {
         method: 'POST',
         body
       }
-    })) as FileInfo[])[0].fileID
+    })) as FileInfo[]
+
+    return res[0].fileID
   }
 
   return { setAvatar, setCover, uploadImage }

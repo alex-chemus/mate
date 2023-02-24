@@ -60,9 +60,8 @@ header {
 
   span {
     font-size: 22px;
-    font-family: var(--montserrat);
-    font-weight: var(--bold);
-    color: var(--text-color)
+    font-family: var(--montserrat-bold);
+    color: var(--heading-color-2);
   }
 
   & > *:not(:last-child) {

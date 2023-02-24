@@ -40,14 +40,12 @@ defineProps<{
   max-width: 100%;
 
   &.dark {
-    --local-elem-color: var(--gray-3);
     --local-bg-color: #424242;
     --local-border: 1px solid color.change($light, $alpha: .6);
     --local-gradient: linear-gradient(90deg, transparent 0%, rgba(44 46 57 / .6) 66.15%);
   }
 
   &.light {
-    --local-elem-color: var(--gray-1);
     --local-bg-color: var(--light);
     --local-border: 1px solid color.change($gray-1, $alpha: .5);
     --local-gradient: linear-gradient(90deg, transparent 0%, rgba(246, 246, 246, 0.4) 66.15%);
@@ -57,7 +55,6 @@ defineProps<{
 .title {
   font-family: var(--findcreek-bold);
   font-size: 16px;
-  font-weight: var(--bold);
   margin-bottom: 15px;
 
   &.light {

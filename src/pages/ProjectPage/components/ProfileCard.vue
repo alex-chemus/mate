@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import { Logo } from '@/ui'
-import { useTheme } from '@/utils'
+import { useTheme, useSettings } from '@/utils'
 
 defineProps<{
   name: string,
@@ -9,10 +9,18 @@ defineProps<{
   banner?: string,
   followers: string,
   following: string,
-  nickname: string
+  nickname: string,
+  ownsProject?: boolean,
+  isSubscribed?: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: 'subscribe'): void,
+  (e: 'unsubscribe'): void
 }>()
 
 const { theme } = useTheme()
+const { openSettings } = useSettings()
 </script>
 
 <template>
@@ -52,14 +60,17 @@ const { theme } = useTheme()
       <h3 class="fullname" :class="theme">{{ name }}</h3>
       <p class="nickname" :class="theme">@{{ nickname }}</p>
 
-      <button class="button logo-button" :class="theme">
+      <button
+        v-if="!ownsProject" class="button logo-button" :class="theme"
+        @click="isSubscribed ? emit('unsubscribe') : emit('subscribe')"
+      >
         <div class="logo">
           <logo height="19" width="15" />
         </div>
-        <strong>FINDCREEK</strong>
+        <strong>{{ isSubscribed ? 'Отписаться' : 'Подписаться' }}</strong>
       </button>
 
-      <button class="button edit-button" :class="theme">
+      <button v-if="ownsProject" @click="openSettings('projects')" class="button edit-button" :class="theme">
         <span>Редактировать профиль</span>
       </button>
 
@@ -77,14 +88,7 @@ const { theme } = useTheme()
   overflow: hidden;
   border: 1px solid color.change($gray-1, $alpha: .25);
   position: relative;
-
-  &.dark {
-    background-color: var(--dark-theme-color-2);
-  }
-
-  &.light {
-    background-color: var(--light);
-  }
+  background-color: var(--bg-color-1);
 }
 
 // .more-button {
@@ -148,32 +152,17 @@ const { theme } = useTheme()
   h5 {
     margin: 0;
     margin-bottom: 10px;
-    font-family: var(--noto-sans);
-    font-weight: var(--bold);
+    font-family: var(--noto-sans-bold);
+    //font-weight: var(--bold);
     font-size: 16px;
-  }
-
-  &.light h5 {
-    color: var(--dark-2);
-  }
-
-  &.dark h5 {
-    color: var(--light);
+    color: var(--heading-color-2);
   }
 
   p {
     font-size: 12px;
     font-family: var(--findcreek-medium);
-    font-weight: var(--medium);
     margin: 0;
-  }
-
-  &.light p {
-    color: var(--gray-1);
-  }
-
-  &.dark p {
-    color: var(--gray-3);
+    color: var(--text-color-2);
   }
 }
 
@@ -195,17 +184,9 @@ const { theme } = useTheme()
 .fullname {
   font-family: var(--findcreek-medium);
   font-size: 16px;
-  font-weight: var(--medium);
   margin: 0;
   margin-bottom: 3px;
-
-  &.dark {
-    color: var(--light);
-  }
-
-  &.light {
-    color: var(--dark-2);
-  }
+  color: var(--heading-color-2);
 }
 
 .nickname {
@@ -213,14 +194,7 @@ const { theme } = useTheme()
   font-size: 12px;
   margin: 0;
   margin-bottom: 18px;
-
-  &.dark {
-    color: var(--gray-3);
-  }
-
-  &.light {
-    color: var(--gray-1);
-  }
+  color: var(--text-color-2);
 }
 
 .button {
@@ -235,12 +209,12 @@ const { theme } = useTheme()
     margin-bottom: 10px;
   }
 
+  strong {
+    color: var(--heading-color-2);
+  }
+
   &.light {
     border: 1px solid color.change($gray-1, $alpha: .2);
-
-    strong {
-      color: var(--dark-2)
-    }
   }
 
   &.light:hover,
@@ -250,10 +224,6 @@ const { theme } = useTheme()
 
   &.dark {
     border: 1px solid color.change($gray-3, $alpha: .5);
-
-    strong {
-      color: var(--light);
-    }
   }
 
   &.dark:hover,
@@ -270,9 +240,8 @@ const { theme } = useTheme()
   }
 
   strong {
-    font-family: var(--montserrat);
+    font-family: var(--montserrat-bold);
     font-size: 13px;
-    font-weight: var(--bold);
   }
 }
 
@@ -311,13 +280,6 @@ const { theme } = useTheme()
   font-family: var(--findcreek);
   font-size: 14px;
   line-height: 160%;
-
-  &.dark {
-    color: var(--light);
-  }
-
-  &.light {
-    color: var(--dark-2);
-  }
+  color: var(--heading-color-2);
 }
 </style>

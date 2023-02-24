@@ -1,23 +1,32 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 import { useSettings } from '@/utils'
 import HeaderLayout from './HeaderLayout.vue'
 import {
   Search, Tabs, Profile, Notifications,
-  ProfilePopup, NotificationsPopup
+  ProfilePopup, NotificationsPopup, SearchPopup
 } from './components'
-import { useAccountInfo } from './hooks'
-import type { Notice } from './types'
+import {
+  useAccountInfo, useTabs, useGlobalSearch, useSubscribe
+} from './hooks'
+import { Notice } from './types'
 
 const props = defineProps<{
   img?: string,
   fullName?: string,
-  email?: string
+  email?: string,
+  id?: number
 }>()
 
-const { getImg, getFullName, getEmail } = useAccountInfo(props)
-
+const {
+  getImg, getFullName, getEmail, getId
+} = useAccountInfo(props)
+const { currentTab, switchTabs } = useTabs(getId)
 const { openSettings } = useSettings()
+const { subscribe, unsubscribe, subUpdate } = useSubscribe()
+const {
+  getSearchItems, onSearch, isLoading, filters, toggleFilters
+} = useGlobalSearch({ update: subUpdate })
 
 const notices: Notice[] = [
   {
@@ -42,16 +51,33 @@ const notices: Notice[] = [
     date: 'Час назад'
   }
 ]
+
+const isSearchOpen = ref(false)
 </script>
 
 <template>
   <header-layout>
     <template #search>
-      <search />
+      <search
+        :popup-open="isSearchOpen"
+        @toggle-popup="p => isSearchOpen = p"
+        @input="onSearch"
+      >
+        <search-popup
+          :filters="filters"
+          :search-items="getSearchItems"
+          :loading="isLoading"
+          :user-id="getId"
+          @close="isSearchOpen = false"
+          @toggle-filters="toggleFilters"
+          @subscribe="p => subscribe(p)"
+          @unsubscribe="p => unsubscribe(p)"
+        />
+      </search>
     </template>
 
     <template #tabs>
-      <tabs />
+      <tabs :current-tab="currentTab" @switch="switchTabs" />
     </template>
 
     <template #notifications>

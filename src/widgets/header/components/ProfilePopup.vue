@@ -67,15 +67,14 @@ const { theme, toggleTheme } = useTheme()
   justify-content: start;
   align-items: stretch;
   grid-gap: 13px;
+  background-color: var(--bg-color-1);
 
   &.light {
     border: 1px solid color.change($gray-1, $alpha: .4);
-    background-color: var(--light);
   }
 
   &.dark {
     border: 1px solid #615478;
-    background-color: var(--dark-theme-color-2);
   }
 }
 
@@ -94,31 +93,16 @@ const { theme, toggleTheme } = useTheme()
 
 h6 {
   font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
   font-size: 16px;
   margin: 0;
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 }
 
 small {
   font-family: var(--findcreek);
   font-weight: normal;
   font-size: 12px;
-
-  &.light {
-    color: #747279;
-  }
-
-  &.dark {
-    color: #BBBBBB;
-  }
+  color: var(--text-color-3);
 }
 
 .button {
@@ -130,21 +114,10 @@ small {
   align-items: center;
   place-items: start;
   grid-gap: 12px;
+  color: var(--heading-color-2);
 
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
-
-  &.light:hover {
-    background-color: #f6f6f6;
-  }
-
-  &.dark:hover {
-    background-color: #333640;
+  &:hover {
+    background-color: var(--bg-color-3);
   }
 
   &.--blue {
@@ -180,28 +153,12 @@ small {
   border: 1px solid currentColor;
   font-family: var(--findcreek-medium);
   font-size: 12px;
-  font-weight: var(--medium);
   transition: var(--fast);
-
-  &.light {
-    color: var(--accent-1);
-  }
-
-  &.dark {
-    color: var(--accent-2);
-  }
+  color: var(--accent);
 
   &:hover {
     color: var(--light);
-  }
-
-  &.light:hover {
-    background-color: var(--accent-1);
-    border: none;
-  }
-
-  &.dark:hover {
-    background-color: var(--accent-2);
+    background-color: var(--accent);
     border: none;
   }
 }

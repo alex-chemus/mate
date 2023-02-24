@@ -36,14 +36,7 @@ const computedText = computed(() => {
   font-size: 13px;
   line-height: 140%;
   letter-spacing: -3.3%;
-
-  &.light {
-    color: var(--dark-2);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
+  color: var(--heading-color-2);
 }
 
 .more-button {
@@ -52,13 +45,6 @@ const computedText = computed(() => {
   font-size: 13px;
   line-height: 140%;
   letter-spacing: -3.3%;
-
-  &.light {
-    color: var(--accent-1);
-  }
-
-  &.dark {
-    color: var(--accent-2);
-  }
+  color: var(--accent);
 }
 </style>

@@ -31,13 +31,6 @@ const value = ref('')
 .search-button {
   transition: var(--fast);
   cursor: pointer;
-
-  &.light {
-    color: #5c5c5c;
-  }
-
-  &.dark {
-    color: #bbb;
-  }
+  color: var(--text-color-1);
 }
 </style>
