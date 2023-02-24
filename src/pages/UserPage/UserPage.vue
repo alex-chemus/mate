@@ -100,7 +100,7 @@ const partners = ref<Partner[]>([
     <template #subscriptions>
       <Subscriptions
         v-if="subscriptions"
-        :subscriptions="[...subscriptions, ...subscriptions]"
+        :subscriptions="subscriptions"
       />
     </template>
   </user-layout>
