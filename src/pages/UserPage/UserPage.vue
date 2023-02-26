@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { Settings, Header, Post } from '@/widgets'
+import {
+  Settings, Header, Post, PostEditor
+} from '@/widgets'
 import {
   Bio, Partners, ProfileCard,
   Projects, Skills, Contacts, NewPost,

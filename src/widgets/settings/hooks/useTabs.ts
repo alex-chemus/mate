@@ -37,7 +37,7 @@ const useTabs = () => {
     }
   })
 
-  onBeforeRouteUpdate((newRoute, _) => {
+  onBeforeRouteUpdate((newRoute) => {
     const hasSettings = Object.keys(newRoute.query).includes('settings')
 
     if (!hasSettings) {

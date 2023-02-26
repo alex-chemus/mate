@@ -8,6 +8,7 @@ export { default as useGlobalUpdate } from './useGlobalUpdate'
 export { default as useSettings } from './useSettings'
 export { default as useDebounce } from './useDebounce'
 export { default as useAlert } from './useAlert'
+export { default as usePostEditor } from './usePostEditor'
 export type {
   FullAccountInfo, FileInfo, Specialty, SpecialtiesList,
   FullProductInfo, FullProjectInfo, Location, SocialMedia,

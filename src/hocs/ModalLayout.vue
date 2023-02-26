@@ -16,7 +16,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 <template>
   <section class="modal" :class="theme">
     <button @click="emit('close')" class="close-button">
-      <svg width="35" height="35" viewBox="0 0 35 35">
+      <svg width="30" height="30" viewBox="0 0 30 30">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-x" />
       </svg>
     </button>
