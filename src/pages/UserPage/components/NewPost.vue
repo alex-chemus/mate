@@ -2,11 +2,11 @@
 import { defineProps } from 'vue'
 import { useTheme } from '@/utils'
 
-const { theme } = useTheme()
-
 defineProps<{
   img?: string
 }>()
+
+const { theme } = useTheme()
 </script>
 
 <template>

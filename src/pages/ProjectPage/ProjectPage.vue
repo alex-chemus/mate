@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { Post, Header, Settings } from '@/widgets'
+import {
+  Post, Header, Settings, PostEditor
+} from '@/widgets'
 //import { useFullAccountInfo } from '@/utils'
 import { useFullAccountInfo } from '@/api'
 import type { Company, Partner } from './types'
@@ -71,6 +73,13 @@ const ownsProject = computed(() => {
   <settings
     v-if="fullAccountInfo"
     :full-account-info="fullAccountInfo"
+  />
+
+  <post-editor
+    v-if="projectInfo"
+    type="project"
+    :id="projectInfo.id"
+    :img="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar"
   />
 
   <profile-layout v-if="fullAccountInfo && projectInfo" :loading="!fullAccountInfo || !projectInfo">
