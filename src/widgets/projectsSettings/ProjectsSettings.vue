@@ -24,7 +24,7 @@ const { projectsInfo, currentProjectID, currentProject } = useProjectsInfo({
 const currentTab = ref<SettingsTab>('settings')
 const isModalOpen = ref(false)
 const selectedMember = ref<null | Member>(null)
-const { sortedMembers, onSearch } = useMembers({ currentProject })
+const { getMembers, onSearch } = useMembers({ currentProject })
 const {
   onAdd, onEdit, onRemove
 } = useMedia({ currentProject, fullAccountInfo: props.fullAccountInfo })
@@ -104,7 +104,7 @@ const {
 
     <template #members>
       <member-item
-        v-for="(member, i) in sortedMembers" :key="i"
+        v-for="(member, i) in getMembers" :key="i"
         :member="member" @change-role="() => {
           selectedMember = member
           isModalOpen = true

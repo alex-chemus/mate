@@ -5,12 +5,21 @@ export type SettingsTab = 'settings' | 'members'
 //   name: string
 // }
 
+export type Role = 'founder' | 'administrator' | 'editor' | 'user'
+
 export type Member = {
-  avatar?: string,
-  fullName: string,
+  avatar: {
+    avatar: string,
+    avatarCompressed: string,
+    avatarShiftX: number,
+    avatarShiftY: number,
+    avatarScale: number
+  }
+  firstName: string,
+  lastName: string,
   textID: string,
   findcreekID: number,
-  role: 'founder' | 'administrator' | 'editor'
+  role: Role
 }
 
 export type ProjectMembers = {

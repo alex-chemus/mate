@@ -17,18 +17,19 @@ const getRole = computed(() => {
   switch (props.member.role) {
     case 'administrator': return 'Администратор'
     case 'editor': return 'Редактор'
-    default: return 'Владелец'
+    case 'founder': return 'Владелец'
+    default: return 'Подписчик'
   }
 })
 </script>
 
 <template>
   <div class="member-item">
-    <img v-if="member.avatar" class="avatar" :src="member.avatar" alt="" />
+    <img v-if="member.avatar" class="avatar" :src="member.avatar.avatarCompressed ?? member.avatar.avatar" alt="" />
     <div v-else class="avatar" />
 
     <div class="name-wrapper">
-      <h6 class="full-name" :class="theme">{{ member.fullName }}</h6>
+      <h6 class="full-name" :class="theme">{{ member.firstName }} {{ member.lastName }}</h6>
       <p class="text-id" :class="theme">@{{ member.textID }}</p>
       <p class="role" :class="theme">{{ getRole }}</p>
     </div>

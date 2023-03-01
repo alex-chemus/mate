@@ -27,6 +27,9 @@ const emit = defineEmits<{
         <div class="content-container">
           <slot name="title" />
           <slot name="description" />
+          <slot name="file-input" />
+          <slot name="files" />
+          <slot name="submit-button" />
         </div>
       </section>
     </modal-layout>

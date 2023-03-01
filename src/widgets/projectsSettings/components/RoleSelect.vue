@@ -10,12 +10,12 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'select', payload: 'administrator' | 'editor'): void
+  (e: 'select', payload: 'administrator' | 'editor' | 'user'): void
 }>()
 
 const { theme } = useTheme()
 
-const value = ref<'administrator' | 'editor' | null>(null)
+const value = ref<'administrator' | 'editor' | 'user' | null>(null)
 const onSelect = (e: SelectValue) => {
   switch (e as number) {
     case 1:
@@ -26,17 +26,29 @@ const onSelect = (e: SelectValue) => {
       emit('select', 'editor')
       value.value = 'editor'
       break
+    case 3:
+      emit('select', 'user')
+      value.value = 'user'
+      break
     default: break
   }
 }
 
 const getValue = () => {
-  switch (value.value) {
+  if (value.value) {
+    switch (value.value) {
+      case 'administrator': return 'Администратор'
+      case 'editor': return 'Редактор'
+      case 'user': return 'Подписчик'
+      default: return 'Подписчик'
+    }
+  }
+
+  switch (props.member.role) {
     case 'administrator': return 'Администратор'
     case 'editor': return 'Редактор'
-    default:
-      if (props.member.role === 'administrator') return 'Администратор'
-      return 'Редактор'
+    case 'user': return 'Подписчик'
+    default: return 'Подписчик'
   }
 }
 
@@ -65,6 +77,11 @@ const getPopupContainer = () => {
         :class="['role-option', theme].join(' ')"
         title="Редактор"
       >Редактор</SelectOption>
+      <SelectOption
+        :key="3"
+        :class="['role-option', theme].join(' ')"
+        title="Подписчик"
+      >Подписчик</SelectOption>
     </Select>
   </div>
 </template>
@@ -142,7 +159,7 @@ const getPopupContainer = () => {
   &.ant-select-item-option-active,
   &.ant-select-item-option-selected {
     color: var(--light) !important;
-    background-color: var(--accent);
+    background-color: var(--accent) !important;
   }
 }
 </style>

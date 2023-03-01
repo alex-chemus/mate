@@ -66,6 +66,18 @@ const {
         v-model:value="description"
       />
     </template>
+
+    <template #file-input>
+      <files-field @upload="addFiles" />
+    </template>
+
+    <template #files>
+      <files-list :files="getFiles" @remove="removeFiles" />
+    </template>
+
+    <template #submit-button>
+      <button @click="uploadPost">Опубликовать</button>
+    </template>
   </post-editor-layout>
 </template>
 
