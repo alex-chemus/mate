@@ -1,17 +1,19 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { Popover } from 'ant-design-vue'
+import { Popover } from '@/hocs'
 
 const isOpen = ref(false)
 </script>
 
 <template>
-  <popover v-model:visible="isOpen" trigger="click" placement="bottomRight">
-    <button class="bell-button">
-      <svg width="30" height="30" viewBox="0 0 30 30">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-bell" />
-      </svg>
-    </button>
+  <popover v-model:visible="isOpen" placement="bottom-left">
+    <template #button>
+      <button class="bell-button" @click="isOpen = !isOpen">
+        <svg width="30" height="30" viewBox="0 0 30 30">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-bell" />
+        </svg>
+      </button>
+    </template>
 
     <template #content>
       <slot />

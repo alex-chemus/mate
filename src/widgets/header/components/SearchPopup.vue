@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {
-  defineProps, defineEmits, ref
+  defineProps, defineEmits, ref, computed
 } from 'vue'
 import { Loader, Checkbox } from '@/ui'
 import { useTheme } from '@/utils'
@@ -8,7 +8,7 @@ import { KeyedSearchItem, SearchFilters } from '../types'
 import SearchPopupContent from './SearchPopupContent.vue'
 import { useTypeChecks } from '../hooks'
 
-defineProps<{
+const props = defineProps<{
   searchItems?: KeyedSearchItem[],
   loading?: boolean,
   filters: SearchFilters[],
@@ -26,11 +26,12 @@ const { isProject } = useTypeChecks()
 const { theme } = useTheme()
 
 const selectedItem = ref<number | null>(null)
+const notFound = computed(() => props.searchItems && props.searchItems.length === 0)
 </script>
 
 <template>
-  <section v-if="searchItems && searchItems.length" class="search-popup" :class="theme">
-    <div class="popup-container">
+  <section v-if="searchItems" class="search-popup" :class="theme">
+    <div class="popup-container" :class="{ 'not-found': notFound }">
       <header class="header">
         <svg width="20" height="20" viewBox="0 0 20 20">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-adjustments-horizontal" />
@@ -47,47 +48,41 @@ const selectedItem = ref<number | null>(null)
           @select="emit('toggle-filters', 'users')"
           width="fit-content"
         />
-        <!-- <svg width="20" height="20" viewBox="0 0 20 20">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
-        </svg>
-        <p>Поиск</p>
-        <div class="line" />-->
         <button class="close-button" @click="emit('close')">
           <svg width="20" height="20" viewBox="0 0 20 20">
             <use href="@/assets/imgs/tabler-sprite.svg#tabler-x" />
           </svg>
         </button>
-        <!-- <button @click="emit('toggle-filters')">
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <use href="@/assets/imgs/tabler-sprite.svg#tabler-adjustments-horizontal" />
-          </svg>
-        </button> -->
       </header>
 
-      <ul class="search-results">
-        <li
-          v-for="item in searchItems" :key="item.searchID"
-          class="search-item" :class="selectedItem === item.searchID ? 'selected' : ''"
-        >
-          <button @click="selectedItem = item.searchID">
-            <img
-              v-if="item.avatar"
-              :src="item.avatar.avatarCompressed || item.avatar.avatar" alt=""
-              class="item-avatar"
-            />
-            <div v-else class="item-avatar" />
-            <p class="full-name">{{ isProject(item) ? item.name : `${item.firstName} ${item.lastName}` }}</p>
-          </button>
-        </li>
-      </ul>
+      <template v-if="searchItems.length">
+        <ul class="search-results">
+          <li
+            v-for="item in searchItems" :key="item.searchID"
+            class="search-item" :class="selectedItem === item.searchID ? 'selected' : ''"
+          >
+            <button @click="selectedItem = item.searchID">
+              <img
+                v-if="item.avatar"
+                :src="item.avatar.avatarCompressed || item.avatar.avatar" alt=""
+                class="item-avatar"
+              />
+              <div v-else class="item-avatar" />
+              <p class="full-name">{{ isProject(item) ? item.name : `${item.firstName} ${item.lastName}` }}</p>
+            </button>
+          </li>
+        </ul>
 
-      <search-popup-content
-        v-if="selectedItem !== null"
-        :content="(searchItems.find(item => item.searchID === selectedItem) as KeyedSearchItem)"
-        :user-id="userId"
-        @subscribe="p => emit('subscribe', p)"
-        @unsubscribe="p => emit('unsubscribe', p)"
-      />
+        <search-popup-content
+          v-if="selectedItem !== null"
+          :content="(searchItems.find(item => item.searchID === selectedItem) as KeyedSearchItem)"
+          :user-id="userId"
+          @subscribe="p => emit('subscribe', p)"
+          @unsubscribe="p => emit('unsubscribe', p)"
+        />
+      </template>
+
+      <div v-else class="nothing-found">Уфф.. Ничего не найдено</div>
     </div>
   </section>
 
@@ -131,6 +126,10 @@ const selectedItem = ref<number | null>(null)
   grid-template-columns: 230px 1fr;
   grid-template-rows: min-content 1fr;
   height: 100%;
+
+  &.not-found {
+    grid-template-columns: 1fr;
+  }
 }
 
 .header {
@@ -198,5 +197,13 @@ const selectedItem = ref<number | null>(null)
   font-family: var(--findcreek);
   font-size: 11px;
   color: var(--heading-color-2)
+}
+
+.nothing-found {
+  font-family: var(--findcreek);
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--heading-color-1);
+  @include flex(center, center);
 }
 </style>
