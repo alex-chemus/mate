@@ -26,7 +26,8 @@ const getRole = computed(() => {
   switch (props.member.role) {
     case 'administrator': return 'Администратор'
     case 'editor': return 'Редактор'
-    default: return 'Владелец'
+    case 'founder': return 'Владелец'
+    default: return 'Подписчик'
   }
 })
 
@@ -34,7 +35,8 @@ const getText = computed(() => {
   switch (props.member.role) {
     case 'administrator': return 'Пользователь может управлять проектом как владелец, но не может его удалить.'
     case 'editor': return 'Пользователь может управлять новостями проекта.'
-    default: return 'Пользователь может управлять проектом и удалить его.'
+    case 'founder': return 'Пользователь может управлять проектом и удалить его.'
+    default: return ''
   }
 })
 </script>
@@ -51,10 +53,10 @@ const getText = computed(() => {
         <h5 class="main-title" :class="theme">Редактировать должность</h5>
 
         <div class="name-container">
-          <img v-if="member.avatar" class="avatar" :src="member.avatar" alt="" />
+          <img v-if="member.avatar" class="avatar" :src="member.avatar.avatarCompressed ?? member.avatar.avatar" alt="" />
           <div v-else class="avatar" />
           <div class="name-wrapper">
-            <h6 class="name-title" :class="theme">{{ member.fullName }}</h6>
+            <h6 class="name-title" :class="theme">{{ member.firstName }} {{ member.lastName }}</h6>
             <p class="role" :class="theme">{{ getRole }}</p>
           </div>
         </div>

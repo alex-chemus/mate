@@ -1,3 +1,7 @@
+export type ExcludeProperties<T, U> = {
+  [Property in Exclude<keyof T, U>]: T[Property]
+}
+
 export type SocialMedia = {
   id: number,
   url: string,
@@ -108,10 +112,6 @@ export type FullProjectInfo = {
   },
   slogan: string,
   description: string,
-  // contacts: {
-  //   findcreek: string,
-  //   [index: string]: string,
-  // },
   contacts: {
     emailAddress: {
       id: number,
@@ -131,7 +131,78 @@ export type FullProjectInfo = {
   links: string[],
   administrators: number[],
   editors: number[],
-  themeID: number
+  themeID: number,
+  isSubscribed: boolean
+}
+
+export type FullUserInfo = {
+  findcreekID: number,
+  roles: string[],
+  address: {
+    countryID: number,
+    countryRusName: string,
+    countryEngName: string,
+    regionID: number,
+    regionRusName: string,
+    regionEngName: string,
+    cityID: number,
+    cityRusName: string,
+    cityEngName: string,
+  },
+  online: {
+    lastOnlineDate: number,
+    online: boolean
+  },
+  contacts: {
+    emailAddresses: {
+      id: number,
+      emailAddress: string
+    }[],
+    phoneNumbers: {
+      id: number,
+      phoneNumber: string
+    }[],
+    socialNetworks: SocialMedia[]
+  },
+  bio: string,
+  profileCover: string,
+  specialties: {
+    id: number,
+    rusName: string,
+    engName: string
+  }[],
+  skills: string,
+  subscriptions: {
+    users: number[],
+    projects: number[],
+  },
+  subscriptionsNumber: number,
+  subscribers: {
+    users: number[]
+  },
+  subscribersNumber: number,
+  projectsManagement: {
+    founder: number[],
+    administrator: number[],
+    editor: number[]
+  },
+  isSubscribed: boolean,
+  firstName: string,
+  lastName: string,
+  patronymic: string,
+  textID: string,
+  avatar: {
+    avatar: string,
+    avatarCompressed: string,
+    avatarShiftX: number,
+    avatarShiftY: number,
+    avatarScale: number
+  },
+  birthday: string,
+  accountBanned: boolean,
+  accountDeleted: boolean,
+  sex: 1 | 2,
+  registrationDate: string
 }
 
 export type FileInfo = {

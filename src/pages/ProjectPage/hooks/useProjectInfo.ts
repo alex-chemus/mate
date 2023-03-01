@@ -1,5 +1,7 @@
-import { onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import {
+  onMounted, ref, watch, Ref
+} from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
   FullProjectInfo
@@ -7,12 +9,14 @@ import {
 import { fetchActions } from '@/store/constants'
 import type { Employee, Role } from '../types'
 
-const useProjectInfo = () => {
+const useProjectInfo = ({ update }: { update: Ref<symbol> }) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
+  const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
+
   const route = useRoute()
-  const { globalUpdate } = useGlobalUpdate()
+  const router = useRouter()
 
   const fetchProjectInfo = async (id: string) => {
     if (!authState.value.token) return null
@@ -72,11 +76,17 @@ const useProjectInfo = () => {
   const projectInfo = ref<FullProjectInfo | null>(null)
   const projectEmployees = ref<Employee[] | null>(null)
 
+  router.afterEach(async (to, from) => {
+    const pattern = /project\/\d/
+    if (to.path.match(pattern) && from.path.match(pattern))
+      projectInfo.value = await fetchProjectInfo(route.params.id as string)
+  })
+
   onMounted(async () => {
     projectInfo.value = await fetchProjectInfo(route.params.id as string)
   })
 
-  watch(globalUpdate, async () => {
+  watch([globalUpdate, update, globalProjectsUpdate], async () => {
     projectInfo.value = await fetchProjectInfo(route.params.id as string)
   })
 

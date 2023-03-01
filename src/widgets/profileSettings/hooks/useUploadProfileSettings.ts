@@ -2,7 +2,7 @@ import { ref, Ref } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  Location
+  useAlert
 } from '@/utils'
 
 const useUploadProfileSettings = ({
@@ -19,7 +19,8 @@ const useUploadProfileSettings = ({
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { setGlobalUpdate } = useGlobalUpdate()
+  const { setGlobalAccountUpdate } = useGlobalUpdate()
+  const { setSuccessMessage } = useAlert()
 
   const bio = ref<string | null>(null)
   const media = ref<null | {[index: string]: string}>(null)
@@ -60,7 +61,7 @@ const useUploadProfileSettings = ({
 
     if (uploadSpecialties) await uploadSpecialties()
 
-    if (bio.value || media.value || skills.value || address.value) {
+    if (bio.value || media.value || skills.value || address.value || coverID) {
       await dispatch(fetchActions.FETCH, {
         url: `${apiState.value.apiUrl}/mate/account.setInfo/`,
         info: {
@@ -70,7 +71,8 @@ const useUploadProfileSettings = ({
       })
     }
 
-    setGlobalUpdate()
+    setGlobalAccountUpdate()
+    setSuccessMessage('Сохранено')
 
     return null
   }

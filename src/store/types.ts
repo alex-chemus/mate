@@ -20,7 +20,15 @@ export type FetchModuleState = {
 }
 
 export type UpdateModuleState = {
-  update: symbol
+  update: symbol,
+  accountUpdate: symbol,
+  projectsUpdate: symbol
+}
+
+export type AlertModuleState = {
+  update: symbol,
+  message: string | null,
+  type: null | 'danger' | 'success'
 }
 
 export type RootState = {
@@ -28,5 +36,6 @@ export type RootState = {
   theme: ThemeModuleState,
   api: ApiModuleState,
   fetch: FetchModuleState,
-  update: UpdateModuleState
+  update: UpdateModuleState,
+  alert: AlertModuleState
 }

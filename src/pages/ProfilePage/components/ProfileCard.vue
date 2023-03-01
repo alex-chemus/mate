@@ -25,8 +25,8 @@ const { openSettings } = useSettings()
       </svg>
     </button> -->
 
-    <div v-if="banner" class="cover-container">
-      <img :src="banner" :alt="fullName" class="banner-img" />
+    <div class="cover-container">
+      <img :src="banner ?? img" :alt="fullName" class="banner-img" />
 
       <button class="cover-button">
         <svg width="20" height="20" viewBox="0 0 20 20">
@@ -114,6 +114,9 @@ const { openSettings } = useSettings()
 }
 
 .banner-img {
+  max-height: 140px;
+  width: 100%;
+  object-fit: cover;
   border-bottom: 1px solid color.change($gray-1, $alpha: .25);
   background-color: var(--light);
 }

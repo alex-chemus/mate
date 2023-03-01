@@ -1,7 +1,8 @@
 import { ref, computed, Ref } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate
+  useApiState, useAuthState, useDispatch, useGlobalUpdate,
+  useAlert
 } from '@/utils'
 
 const useUploadProjectSettings = ({ uploadImage, currentProjectID }: {
@@ -11,7 +12,8 @@ const useUploadProjectSettings = ({ uploadImage, currentProjectID }: {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { setGlobalUpdate } = useGlobalUpdate()
+  const { setGlobalProjectsUpdate } = useGlobalUpdate()
+  const { setSuccessMessage } = useAlert()
 
   const allProjectsInfo = ref<{
     [index: number]: {
@@ -80,7 +82,8 @@ const useUploadProjectSettings = ({ uploadImage, currentProjectID }: {
       })
     }
 
-    setGlobalUpdate()
+    setGlobalProjectsUpdate()
+    setSuccessMessage('Сохранено')
   }
 
   return {

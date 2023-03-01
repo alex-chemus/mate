@@ -3,18 +3,18 @@ import {
 } from 'vue'
 import {
   useApiState, useAuthState, useDispatch, FullProjectInfo,
-  useGlobalUpdate
+  useGlobalUpdate, FullUserInfo, ExcludeProperties
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
-import { Member } from '../types'
+import { Member, Role } from '../types'
 
-const userCurrentProjectMembers = ({ currentProject }: {
+const useCurrentProjectMembers = ({ currentProject }: {
   currentProject: ComputedRef<FullProjectInfo | null>
 }) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { globalUpdate } = useGlobalUpdate()
+  const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
 
   const fetchMembers = async (usersIDs: number[]) => {
     const body = new FormData()
@@ -23,32 +23,28 @@ const userCurrentProjectMembers = ({ currentProject }: {
     body.append('usersIDs', usersIDs.join(', '))
     body.append('fields', 'firstName, lastName, textID, avatar')
 
+    // return (await dispatch(fetchActions.FETCH, {
+    //   url: `${apiState.value.apiUrl}/mate/users.getInfo/`,
+    //   info: {
+    //     method: 'POST',
+    //     body
+    //   }
+    // })) as FullUserInfo[]
+
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/users.getInfo/`,
       info: {
         method: 'POST',
         body
       }
-    })) as {
-      findcreekID: number,
-      firstName: string,
-      lastName: string,
-      textID: string,
-      avatar: {
-        avatar: string,
-        avatarCompressed: string,
-        avatarShiftX: number,
-        avatarShiftY: number,
-        avatarScale: number
-      }
-    }[]
+    })) as ExcludeProperties<Member, 'role'>[]
   }
 
   const allMembersInfo = ref<{
     [index: number]: Member[]
   }>({})
 
-  watch(globalUpdate, () => {
+  watch([globalUpdate, globalProjectsUpdate], () => {
     allMembersInfo.value = {}
   })
 
@@ -57,7 +53,7 @@ const userCurrentProjectMembers = ({ currentProject }: {
     if (currentProject.value.administrators.includes(id)) return 'administrator'
     if (currentProject.value.editors.includes(id)) return 'editor'
     if (currentProject.value.founderID === id) return 'founder'
-    return null
+    return 'user'
   }
 
   watch(currentProject, async () => {
@@ -70,15 +66,20 @@ const userCurrentProjectMembers = ({ currentProject }: {
         currentProject.value.founderID
       ])
 
-      allMembersInfo.value[currentProject.value.id] = res.map((m) => {
-        return {
-          avatar: m.avatar.avatarCompressed,
-          fullName: `${m.firstName} ${m.lastName}`,
-          textID: m.textID,
-          role: getRoleById(m.findcreekID)!,
-          findcreekID: m.findcreekID
-        }
-      })
+      //allMembersInfo.value[currentProject.value.id] = res
+      //   allMembersInfo.value[currentProject.value.id] = res.map((m) => {
+      //     return {
+      //       avatar: m.avatar.avatarCompressed ?? m.avatar.avatar,
+      //       fullName: `${m.firstName} ${m.lastName}`,
+      //       textID: m.textID,
+      //       role: getRoleById(m.findcreekID)!,
+      //       findcreekID: m.findcreekID
+      //     }
+      //   })
+      allMembersInfo.value[currentProject.value.id] = res.map((m) => ({
+        ...m,
+        role: getRoleById(m.findcreekID)!
+      }))
     }
 
     return null
@@ -95,4 +96,4 @@ const userCurrentProjectMembers = ({ currentProject }: {
   return currentProjectMembers
 }
 
-export default userCurrentProjectMembers
+export default useCurrentProjectMembers

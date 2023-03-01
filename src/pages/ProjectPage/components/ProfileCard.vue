@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import { Logo } from '@/ui'
 import { useTheme, useSettings } from '@/utils'
 
@@ -10,7 +10,13 @@ defineProps<{
   followers: string,
   following: string,
   nickname: string,
-  ownsProject?: boolean
+  ownsProject?: boolean,
+  isSubscribed?: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: 'subscribe'): void,
+  (e: 'unsubscribe'): void
 }>()
 
 const { theme } = useTheme()
@@ -54,11 +60,14 @@ const { openSettings } = useSettings()
       <h3 class="fullname" :class="theme">{{ name }}</h3>
       <p class="nickname" :class="theme">@{{ nickname }}</p>
 
-      <button v-if="ownsProject" class="button logo-button" :class="theme">
+      <button
+        v-if="!ownsProject" class="button logo-button" :class="theme"
+        @click="isSubscribed ? emit('unsubscribe') : emit('subscribe')"
+      >
         <div class="logo">
           <logo height="19" width="15" />
         </div>
-        <strong>FINDCREEK</strong>
+        <strong>{{ isSubscribed ? 'Отписаться' : 'Подписаться' }}</strong>
       </button>
 
       <button v-if="ownsProject" @click="openSettings('projects')" class="button edit-button" :class="theme">

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import { FullAccountInfo } from '@/utils'
-import { Input, SaveButton } from '@/ui'
+import { Input, SaveButton, DateInput } from '@/ui'
 import GeneralSettingsLayout from './GeneralSettingsLayout.vue'
-import { Sex, AvatarUpload } from './components'
+import { Sex, AvatarUpload, TextIdInput } from './components'
 import { useUploadAvatar, useUploadGeneralSettings } from './hooks'
 
 const props = defineProps<{
@@ -13,7 +13,7 @@ const props = defineProps<{
 const { setAvatar, uploadAvatar } = useUploadAvatar()
 const {
   uploadGeneralSettings, sex, firstName, lastName,
-  patronymic, textID
+  patronymic, textID, getBirthday, setBirthday
 } = useUploadGeneralSettings({
   uploadAvatar, fullAccountInfo: props.fullAccountInfo
 })
@@ -58,9 +58,19 @@ const {
     </template>
 
     <template #text-id>
-      <Input
-        label-text="Имя пользователя"
-        placeholder="Имя пользователя"
+      <!-- <Input
+        label-text="Имя страницы"
+        placeholder="Имя страницы"
+        :value="textID ?? fullAccountInfo.textID"
+        @update:value="p => textID = p"
+      >
+        <template #before>
+          <svg width="16" height="16" viewBox="0 0 16 16">
+            <use href="@/assets/imgs/tabler-sprite.svg#tabler-at" />
+          </svg>
+        </template>
+      </Input> -->
+      <text-id-input
         :value="textID ?? fullAccountInfo.textID"
         @update:value="p => textID = p"
       />
@@ -70,6 +80,14 @@ const {
       <Sex
         :sex="sex ?? fullAccountInfo.sex"
         @select="payload => sex = payload"
+      />
+    </template>
+
+    <template #date-of-birth>
+      <date-input
+        :value="getBirthday ?? fullAccountInfo.birthday.split('.').reverse().join('-')"
+        @update:value="p => setBirthday(p)"
+        label="Дата рождения"
       />
     </template>
 

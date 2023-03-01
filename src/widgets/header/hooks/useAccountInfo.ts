@@ -10,25 +10,27 @@ import { AccountInfo } from '../types'
 const useAccountInfo = (props: Readonly<{
   fullName?: string,
   email?: string,
-  img?: string
+  img?: string,
+  id?: number
 }>) => {
-  if (props.email && props.fullName && props.img) {
+  if (props.email && props.fullName && props.img && props.id) {
     return {
       getFullName: computed(() => props.fullName),
       getEmail: computed(() => props.email),
-      getImg: computed(() => props.img)
+      getImg: computed(() => props.img),
+      getId: computed(() => (props.id as number | null))
     }
   }
 
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { globalUpdate } = useGlobalUpdate()
+  const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
   const body = new FormData()
   body.append('token', authState.value.token as string)
 
-  const fields = ['firstName', 'lastName', 'avatar', 'email']
+  const fields = ['firstName', 'lastName', 'avatar', 'email', 'findcreekID']
   body.append('fields', fields.join(', '))
 
   const fetchAccountInfo = async () => {
@@ -49,7 +51,7 @@ const useAccountInfo = (props: Readonly<{
     accountInfo.value = await fetchAccountInfo()
   })
 
-  watch(globalUpdate, async () => {
+  watch([globalUpdate, globalAccountUpdate], async () => {
     accountInfo.value = await fetchAccountInfo()
   })
 
@@ -74,7 +76,16 @@ const useAccountInfo = (props: Readonly<{
       : null
   })
 
-  return { getFullName, getImg, getEmail }
+  const getId = computed(() => {
+    if (props.id) return props.id
+    return accountInfo.value
+      ? accountInfo.value.findcreekID
+      : null
+  })
+
+  return {
+    getFullName, getImg, getEmail, getId
+  }
 }
 
 export default useAccountInfo

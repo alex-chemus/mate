@@ -7,17 +7,25 @@ import { useFetchFullProjectsInfo } from '@/api'
 const useProjectsInfo = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo }) => {
   const projectsInfo = ref<FullProjectInfo[] | null>(null)
   const currentProjectID = ref<number | null>(null)
-  const { globalUpdate } = useGlobalUpdate()
+  const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
 
   const fetchFullProjectsInfo = useFetchFullProjectsInfo()
 
   onMounted(async () => {
-    projectsInfo.value = await fetchFullProjectsInfo({ fullAccountInfo })
+    projectsInfo.value = await fetchFullProjectsInfo([
+      ...fullAccountInfo.projectsManagement.administrator,
+      ...fullAccountInfo.projectsManagement.editor,
+      ...fullAccountInfo.projectsManagement.founder
+    ])
     currentProjectID.value = projectsInfo.value[0].id
   })
 
-  watch(globalUpdate, async () => {
-    projectsInfo.value = await fetchFullProjectsInfo({ fullAccountInfo })
+  watch([globalUpdate, globalProjectsUpdate], async () => {
+    projectsInfo.value = await fetchFullProjectsInfo([
+      ...fullAccountInfo.projectsManagement.administrator,
+      ...fullAccountInfo.projectsManagement.editor,
+      ...fullAccountInfo.projectsManagement.founder
+    ])
   })
 
   const currentProject = computed(() => {

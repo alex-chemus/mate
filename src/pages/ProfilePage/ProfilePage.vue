@@ -72,9 +72,11 @@ const fetchFullProjectsInfo = useFetchFullProjectsInfo()
 
 watch(fullAccountInfo, async () => {
   if (!fullAccountInfo.value) return
-  fullProjectsInfo.value = await fetchFullProjectsInfo({
-    fullAccountInfo: fullAccountInfo.value
-  })
+  fullProjectsInfo.value = await fetchFullProjectsInfo([
+    ...fullAccountInfo.value.projectsManagement.administrator,
+    ...fullAccountInfo.value.projectsManagement.editor,
+    ...fullAccountInfo.value.projectsManagement.founder
+  ])
 })
 
 // const fetchProjectsInfo = useFetchProjectsInfo()

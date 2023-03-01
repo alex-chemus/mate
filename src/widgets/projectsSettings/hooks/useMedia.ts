@@ -13,7 +13,7 @@ const useMedia = ({
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { setGlobalUpdate } = useGlobalUpdate()
+  const { setGlobalProjectsUpdate } = useGlobalUpdate()
 
   const onAdd = async (payload: string, noUpdate?: boolean) => {
     const body = new FormData()
@@ -31,7 +31,7 @@ const useMedia = ({
       }
     })
 
-    if (!noUpdate) setGlobalUpdate()
+    if (!noUpdate) setGlobalProjectsUpdate()
   }
 
   const onRemove = async (payload: number, noUpdate?: boolean) => {
@@ -50,14 +50,14 @@ const useMedia = ({
       }
     })
 
-    if (!noUpdate) setGlobalUpdate()
+    if (!noUpdate) setGlobalProjectsUpdate()
   }
 
   const onEdit = async (payload: { id: number, link: string }) => {
     await onRemove(payload.id, true)
     await onAdd(payload.link, true)
 
-    setGlobalUpdate()
+    setGlobalProjectsUpdate()
   }
 
   return {

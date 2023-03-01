@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { Post, Header, Settings } from '@/widgets'
+import {
+  Post, Header, Settings, PostEditor
+} from '@/widgets'
 //import { useFullAccountInfo } from '@/utils'
 import { useFullAccountInfo } from '@/api'
 import type { Company, Partner } from './types'
@@ -9,7 +11,7 @@ import {
   NewPost, Projects, Employees
 } from './components'
 import ProfileLayout from './ProjectLayout.vue'
-import { useProjectInfo } from './hooks'
+import { useProjectInfo, useSubscribe } from './hooks'
 
 //const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
@@ -54,7 +56,10 @@ const partners = ref<Partner[]>([
 // ])
 
 const fullAccountInfo = useFullAccountInfo()
-const { projectInfo, projectEmployees } = useProjectInfo()
+const { subscribe, unsubscribe, subUpdate } = useSubscribe()
+const { projectInfo, projectEmployees } = useProjectInfo({
+  update: subUpdate
+})
 
 const ownsProject = computed(() => {
   if (!fullAccountInfo.value || !projectInfo.value) return
@@ -68,6 +73,13 @@ const ownsProject = computed(() => {
   <settings
     v-if="fullAccountInfo"
     :full-account-info="fullAccountInfo"
+  />
+
+  <post-editor
+    v-if="projectInfo"
+    type="project"
+    :id="projectInfo.id"
+    :img="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar"
   />
 
   <profile-layout v-if="fullAccountInfo && projectInfo" :loading="!fullAccountInfo || !projectInfo">
@@ -88,6 +100,9 @@ const ownsProject = computed(() => {
         :nickname="projectInfo.textID"
         :banner="projectInfo.profileCover.profileCover"
         :owns-project="ownsProject"
+        :is-subscribed="projectInfo.isSubscribed"
+        @subscribe="subscribe(projectInfo!.id)"
+        @unsubscribe="unsubscribe(projectInfo!.id)"
       />
     </template>
 

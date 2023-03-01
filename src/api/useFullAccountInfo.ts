@@ -8,13 +8,13 @@ const useFullAccountInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { globalUpdate } = useGlobalUpdate()
-
-  const body = new FormData()
-  body.append('token', authState.value.token as string)
+  const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
   const fetchAccountInfo = async () => {
     if (!authState.value.token) return null
+
+    const body = new FormData()
+    body.append('token', authState.value.token as string)
 
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/account.getInfo/`,
@@ -31,7 +31,7 @@ const useFullAccountInfo = () => {
     fullAccountInfo.value = await fetchAccountInfo()
   })
 
-  watch(globalUpdate, async () => {
+  watch([globalUpdate, globalAccountUpdate], async () => {
     fullAccountInfo.value = await fetchAccountInfo()
   })
 
