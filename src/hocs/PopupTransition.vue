@@ -1,5 +1,5 @@
 <template>
-  <transition name="dropdown">
+  <transition name="popup">
     <slot />
   </transition>
 </template>
@@ -7,8 +7,8 @@
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
 
-.dropdown-enter-from,
-.dropdown-leave-to {
+.popup-enter-from,
+.popup-leave-to {
   transform: scale(.9);
   opacity: 0;
 
@@ -18,8 +18,8 @@
   }
 }
 
-.dropdown-enter-active,
-.dropdown-leave-active {
+.popup-enter-active,
+.popup-leave-active {
   transition: var(--fast);
 
   @media (prefers-reduced-motion: reduce) {

@@ -165,6 +165,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
   @include flex(flex-start, stretch, column);
   gap: 6px;
   border-right: 0.5px solid color.change($gray-1, $alpha: .25);
+  @include scrollbar;
 }
 
 .search-item {

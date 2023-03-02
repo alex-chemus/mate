@@ -2,8 +2,7 @@
 import {
   defineProps, defineEmits, ref, watch
 } from 'vue'
-import { Modal } from 'ant-design-vue'
-import { ModalLayout } from '@/hocs'
+import { ModalLayout, Modal } from '@/hocs'
 import { useTheme } from '@/utils'
 import { Tab } from './types'
 
@@ -27,8 +26,7 @@ watch(() => props.currentTab, () => {
 <template>
   <modal
     :visible="visible" @update:visible="payload => emit('toggle', payload)"
-    centered :width="`${width}px`"
-    wrap-class-name="settings-modal"
+    :width="width"
   >
     <modal-layout @close="emit('toggle', false)">
       <section class="modal-container">

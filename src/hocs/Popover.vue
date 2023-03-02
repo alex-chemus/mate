@@ -2,7 +2,7 @@
 import {
   defineProps, defineEmits, onMounted, onBeforeUnmount, ref
 } from 'vue'
-import DropdownTransition from './DropdownTransition.vue'
+import PopupTransition from './PopupTransition.vue'
 
 const props = defineProps<{
   visible: boolean,
@@ -102,9 +102,9 @@ const getPosition = () => {
         class="popover" :class="placement"
         :style="getPosition() ?? ''"
       >
-        <dropdown-transition>
+        <popup-transition>
           <slot v-if="visible" name="content" />
-        </dropdown-transition>
+        </popup-transition>
       </div>
     </teleport>
   </div>

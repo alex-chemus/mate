@@ -4,7 +4,7 @@ import {
 } from 'vue'
 import { Input, Loader } from '@/ui'
 import { useTheme, Location } from '@/utils'
-import { DropdownTransition } from '@/hocs'
+import { PopupTransition } from '@/hocs'
 
 const props = defineProps<{
   locations: Location[] | null,
@@ -138,7 +138,7 @@ const isSelected = (loc: Location) => {
       placeholder="Адрес проживания" label-text="Адрес проживания"
     />
  
-    <dropdown-transition>
+    <popup-transition>
       <div v-if="visible" class="dropdown" :class="theme" @click="onDropdownClick">
         <div v-if="loading" class="loader">
           <loader />
@@ -166,7 +166,7 @@ const isSelected = (loc: Location) => {
           Введите место проживания
         </div>
       </div>
-    </dropdown-transition>
+    </popup-transition>
   </div>
   <!-- eslint-enable -->
 </template>

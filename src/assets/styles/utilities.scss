@@ -42,3 +42,21 @@ $sm: 480px;
   max-width: 1310px;
   margin: 0 auto;
 }
+
+@mixin scrollbar {
+  overflow-y: scroll;
+  overscroll-behavior-y: contain;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100vmax;
+    background-color: #bbb;
+  }
+}

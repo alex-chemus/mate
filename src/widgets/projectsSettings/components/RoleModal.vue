@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
-import { Modal } from 'ant-design-vue'
-import { ModalLayout } from '@/hocs'
+import { ModalLayout, Modal } from '@/hocs'
 import { useTheme } from '@/utils'
 import { SaveButton } from '@/ui'
 import { Member } from '../types'
@@ -44,9 +43,7 @@ const getText = computed(() => {
 <template>
   <modal
     :visible="visible" @update:visible="p => emit('toggle', p)"
-    centered width="470px"
-    wrap-class-name="role-modal"
-    :get-container="getContainer"
+    width="470" :z-index-factor="1"
   >
     <modal-layout @close="emit('toggle', false)">
       <div class="modal-section">
