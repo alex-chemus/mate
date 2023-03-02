@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue'
+import {
+  defineProps, defineEmits, onMounted, onBeforeUnmount
+} from 'vue'
 import PopupTransition from './PopupTransition.vue'
 import BackdropTransition from './BackdropTransition.vue'
 
-defineProps<{
+const props = defineProps<{
   visible: boolean,
   width?: number | string,
   zIndexFactor?: number
@@ -12,6 +14,19 @@ defineProps<{
 const emit = defineEmits<{
   (e: 'update:visible', payload: boolean): void
 }>()
+
+const onEsc = (e: KeyboardEvent) => {
+  if (props.visible && e.key === 'Escape')
+    emit('update:visible', false)
+}
+
+onMounted(() => {
+  document.addEventListener('keyup', onEsc)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('keyup', onEsc)
+})
 </script>
 
 <template>
