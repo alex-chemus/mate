@@ -8,7 +8,8 @@ import { Tab } from './types'
 
 const props = defineProps<{
   visible: boolean,
-  currentTab?: Tab
+  currentTab?: Tab,
+  hasProjects: boolean
 }>()
 
 const emit = defineEmits<{
@@ -50,9 +51,11 @@ watch(() => props.currentTab, () => {
             <slot name="profile-settings" />
           </div>
 
-          <div v-show="currentTab === 'projects'" class="widget-wrapper">
-            <slot name="projects-settings" />
-          </div>
+          <template v-if="hasProjects">
+            <div v-show="currentTab === 'projects'" class="widget-wrapper">
+              <slot name="projects-settings" />
+            </div>
+          </template>
 
           <div v-show="currentTab === 'privacy'" class="widget-wrapper">
             <slot name="privacy-settings" />

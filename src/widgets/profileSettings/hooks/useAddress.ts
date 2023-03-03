@@ -2,7 +2,7 @@ import { ref, computed, watch } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useDebounce,
-  Location
+  Location, ExcludeProperties
 } from '@/utils'
 
 const useAddress = () => {
@@ -10,11 +10,7 @@ const useAddress = () => {
   const authState = useAuthState()
   const dispatch = useDispatch()
 
-  const addressValue = ref<{
-    countryID: number,
-    regionID: number,
-    cityID: number
-  } | null>(null)
+  const addressValue = ref<ExcludeProperties<Location, 'endpointName'> | null>(null)
   const allLocations = ref<Location[] | null>(null)
   const selectedLocation = ref<Location | undefined>()
 

@@ -3,8 +3,9 @@ import { defineProps, defineEmits } from 'vue'
 import type { Tab } from '../types'
 import TabButton from './TabButton.vue'
 
-defineProps<{
-  currentTab: Tab
+const props = defineProps<{
+  currentTab: Tab,
+  hasProjects: boolean
 }>()
 
 const emit = defineEmits<{
@@ -42,7 +43,7 @@ const emit = defineEmits<{
       </tab-button>
     </li>
 
-    <li>
+    <li v-if="hasProjects">
       <tab-button
         :selected="currentTab === 'projects'" color="#01CA7E"
         @click="emit('change', 'projects')"

@@ -36,11 +36,13 @@ const usePageInfo = ({ update }: { update: Ref<symbol> }) => {
   watch(fullUsersInfo, async () => {
     if (!fullUsersInfo.value) return
     fetchAccountInfo()
-    fullProjectsInfo.value = await fetchFullProjectsInfo([
+    const projects = [
       ...fullUsersInfo.value[0].projectsManagement.administrator,
       ...fullUsersInfo.value[0].projectsManagement.editor,
       ...fullUsersInfo.value[0].projectsManagement.founder
-    ])
+    ]
+    if (projects.length)
+      fullProjectsInfo.value = await fetchFullProjectsInfo(projects)
   })
 
   return { fullUsersInfo, fullProjectsInfo, isMe }

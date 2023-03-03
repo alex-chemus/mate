@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { defineProps, ref, onMounted } from 'vue'
+import {
+  defineProps, ref, onMounted, computed
+} from 'vue'
 import { FullAccountInfo, Location } from '@/utils'
 import {
   Textarea, SaveButton, Input, SearchUngroupedSelect
@@ -31,6 +33,18 @@ const {
 } = useUploadProfileSettings({ uploadImage, uploadSpecialties, address: addressValue })
 
 const addressOpened = ref(false)
+const getAddress = computed(() => {
+  const hasCity = props.fullAccountInfo.address.cityID !== 0
+  const hasRegion = props.fullAccountInfo.address.regionID !== 0
+  const hasCountry = props.fullAccountInfo.address.countryID !== 0
+  if (hasCity || hasRegion || hasCountry)
+    return [
+      props.fullAccountInfo.address.cityRusName,
+      props.fullAccountInfo.address.regionRusName,
+      props.fullAccountInfo.address.countryRusName
+    ].join(', ')
+  return ''
+})
 </script>
 
 <template>
@@ -61,6 +75,7 @@ const addressOpened = ref(false)
         :loading="locationsLoading"
         v-model:visible="addressOpened"
         :selected="selectedLocation"
+        :address="getAddress"
         @select="onSelect"
         @input="s => fetchLocations(s)"
       />

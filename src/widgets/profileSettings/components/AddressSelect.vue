@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 import {
-  defineProps, defineEmits, onMounted, onBeforeUnmount, computed, ref, watch
+  defineProps, defineEmits, computed, ref
 } from 'vue'
-import { Input, Loader } from '@/ui'
-import { useTheme, Location } from '@/utils'
-import { PopupTransition } from '@/hocs'
+import { Location } from '@/utils'
+import { Select } from '@/hocs'
 
 const props = defineProps<{
   locations: Location[] | null,
   loading?: boolean,
   visible?: boolean,
-  selected?: Location
+  selected?: Location,
+  address?: string
 }>()
 
 const emit = defineEmits<{
@@ -19,118 +19,43 @@ const emit = defineEmits<{
   (e: 'input', payload: string): void
 }>()
 
-const { theme } = useTheme()
-
-const focusedItem = ref<number | null>(null)
-
-const closeTimeout = ref<ReturnType<typeof setTimeout> | null>(null)
-const onDropdownClick = () => {
-  if (closeTimeout.value) clearTimeout(closeTimeout.value)
-}
-const onFocusChange = (p: boolean) => {
-  closeTimeout.value = setTimeout(() => {
-    emit('update:visible', p)
-    if (!p) focusedItem.value = null
-  }, 100)
-}
-
-const handleDropdownClicks = (e: MouseEvent) => {
-  if (!props.visible) return
-  const target = e.target as HTMLElement
-  const dropdown = document.querySelector('.select-container .dropdown')
-  if (!dropdown?.contains(target)) {
-    emit('update:visible', false)
-    focusedItem.value = null
-  }
-}
-
-const onKeyDown = (e: KeyboardEvent) => {
-  if (props.visible && e.key === 'ArrowUp') {
-    e.preventDefault()
-  }
-  if (props.visible && e.key === 'ArrowDown') e.preventDefault()
-}
-
-const onKeyUp = (e: KeyboardEvent) => {
-  if (!props.visible) return
-
-  if (focusedItem.value === null) {
-    focusedItem.value = 0
-    return
-  }
-
-  if (e.key === 'ArrowUp') {
-    e.preventDefault()
-    if (focusedItem.value === 0 && props.locations) return
-    focusedItem.value!--
-    const dropdown = document.querySelector('.select-container .dropdown') as HTMLElement
-    if (dropdown.scrollTop > focusedItem.value * 32) {
-      let i = 0
-      const timer = setInterval(() => {
-        if (i === 32) clearInterval(timer)
-        dropdown.scrollTop--
-        i++
-      }, 2)
-    }
-    return
-  }
-
-  if (e.key === 'ArrowDown') {
-    e.preventDefault()
-    if (!props.locations) return
-    if (focusedItem.value === props.locations.length - 1) return
-    focusedItem.value!++
-    const dropdown = document.querySelector('.select-container .dropdown') as HTMLElement
-    if (dropdown.scrollTop + dropdown.clientHeight < (focusedItem.value + 1) * 32) {
-      let i = 0
-      const timer = setInterval(() => {
-        if (i === 32) clearInterval(timer)
-        dropdown.scrollTop++
-        i++
-      }, 2)
-    }
-  }
-
-  if (e.key === 'Enter') {
-    if (focusedItem.value && props.locations)
-      emit('select', props.locations[focusedItem.value])
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('click', handleDropdownClicks)
-  document.addEventListener('keyup', onKeyUp)
-  document.addEventListener('keydown', onKeyDown)
-})
-
-onBeforeUnmount(() => {
-  document.removeEventListener('click', handleDropdownClicks)
-  document.removeEventListener('keyup', onKeyUp)
-  document.removeEventListener('keydown', onKeyDown)
-})
-
-const inputValue = ref<string | undefined>()
-watch(inputValue, () => {
-  if (typeof inputValue.value === 'string') emit('input', inputValue.value)
-})
-
 const getLocations = computed(() => {
   if (!props.locations) return null
-  return props.locations.map((l, i) => ({ ...l, i }))
+  return props.locations.map((loc, i) => ({
+    id: i,
+    value: loc.endpointName
+  }))
 })
 
-const isSelected = (loc: Location) => {
-  const hasSelected = !!props.selected
-  const cityID = loc.cityID === props.selected?.cityID
-  const regionID = loc.regionID === props.selected?.regionID
-  const countryID = loc.countryID === props.selected?.countryID
-  return hasSelected && cityID && regionID && countryID
+const inputValue = ref(props.address ?? '')
+const onInput = (s: string) => {
+  inputValue.value = s
+  emit('input', s)
+}
+
+const selected = ref<number | undefined>()
+const onSelect = (i: number) => {
+  selected.value = i
+  if (props.locations) {
+    inputValue.value = props.locations[i].endpointName
+    emit('select', props.locations[i])
+  }
 }
 </script>
 
 <template>
+  <Select
+    :items="getLocations"
+    :selected="selected"
+    :loading="loading"
+    :visible="visible"
+    :input-value="inputValue"
+    @update:visible="p => emit('update:visible', p)"
+    @update:input-value="onInput"
+    @select="onSelect"
+  />
   <!-- eslint-disable -->
-  <div class="select-container">
+  <!-- <div class="select-container">
     <Input
       :value="selected?.endpointName ?? inputValue"
       @update:value="p => inputValue = p"
@@ -167,7 +92,7 @@ const isSelected = (loc: Location) => {
         </div>
       </div>
     </popup-transition>
-  </div>
+  </div> -->
   <!-- eslint-enable -->
 </template>
 

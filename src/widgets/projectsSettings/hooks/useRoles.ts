@@ -8,7 +8,7 @@ import { fetchActions } from '@/store/constants'
 type Role = {
   projectID: number,
   userID: number,
-  role: 'editor' | 'administrator'
+  role: 'editor' | 'administrator' | 'user'
 }
 
 const useRoles = () => {
