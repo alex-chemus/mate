@@ -160,6 +160,7 @@ const getUrl = computed(() => {
   border: 1px solid currentColor;
   transition: var(--fast);
   @include flex(center, center);
+  text-decoration: none;
 
   &:hover {
     //box-shadow: 0 0 4px 0 currentColor;

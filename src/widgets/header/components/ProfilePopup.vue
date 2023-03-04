@@ -110,11 +110,12 @@ small {
   padding: 4px 6px;
   transition: var(--fast);
   display: grid;
-  grid-template-columns: min-content minmax(0, 1fr) min-content;
-  align-items: center;
-  place-items: start;
-  grid-gap: 12px;
+  @include flex(flex-start, center);
+  gap: 12px;
   color: var(--heading-color-2);
+  font-family: var(--findcreek);
+  font-weight: normal;
+  font-size: 12px;
 
   &:hover {
     background-color: var(--bg-color-3);

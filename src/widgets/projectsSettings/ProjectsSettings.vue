@@ -21,8 +21,6 @@ const { projectsInfo, currentProjectID, currentProject } = useProjectsInfo({
   fullAccountInfo: props.fullAccountInfo
 })
 
-console.log('mount project settings')
-
 const currentTab = ref<SettingsTab>('settings')
 const isModalOpen = ref(false)
 const selectedMember = ref<null | Member>(null)

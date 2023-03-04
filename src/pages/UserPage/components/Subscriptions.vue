@@ -87,9 +87,9 @@ const getSubs = computed(() => {
   // overscroll-behavior-y: contain;
   @include scrollbar;
 
-  // & > *:not(:last-child) {
-  //   margin-bottom: 21px;
-  // }
+  & > *:not(:last-child) {
+    margin-bottom: 21px;
+  }
 
   // &::-webkit-scrollbar {
   //   width: 5px;

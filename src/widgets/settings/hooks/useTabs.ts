@@ -24,8 +24,6 @@ const useTabs = ({ accountInfo }: { accountInfo: ReturnType<typeof useAccountInf
   })
 
   const hasProjects = computed(() => projects.value.length > 0)
-  console.log('has projects', hasProjects.value)
-  console.log(projects.value)
 
   onMounted(() => {
     const hasSettings = Object.keys(route.query).includes('settings')
