@@ -1,5 +1,17 @@
+<script lang="ts" setup>
+import { defineProps } from 'vue'
+
+defineProps<{
+  group?: boolean
+}>()
+</script>
+
 <template>
-  <transition name="popup">
+  <transition-group v-if="group" name="popup">
+    <slot />
+  </transition-group>
+
+  <transition v-else name="popup">
     <slot />
   </transition>
 </template>

@@ -1,5 +1,7 @@
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
-import { ref, onMounted, computed } from 'vue'
+import {
+  ref, onMounted, computed, watch
+} from 'vue'
 import { Tab } from '../types'
 import useAccountInfo from './useAccountInfo'
 
@@ -13,8 +15,17 @@ const useTabs = ({ accountInfo }: { accountInfo: ReturnType<typeof useAccountInf
     ...accountInfo.value.projectsManagement.founder
   ] : [])
 
+  watch(accountInfo, () => {
+    projects.value = accountInfo.value ? [
+      ...accountInfo.value.projectsManagement.administrator,
+      ...accountInfo.value.projectsManagement.editor,
+      ...accountInfo.value.projectsManagement.founder
+    ] : []
+  })
+
   const hasProjects = computed(() => projects.value.length > 0)
   console.log('has projects', hasProjects.value)
+  console.log(projects.value)
 
   onMounted(() => {
     const hasSettings = Object.keys(route.query).includes('settings')

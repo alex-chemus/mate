@@ -1,11 +1,7 @@
 <script lang="ts" setup>
-import {
-  defineProps, ref, onMounted, computed
-} from 'vue'
-import { FullAccountInfo, Location } from '@/utils'
-import {
-  Textarea, SaveButton, Input, SearchUngroupedSelect
-} from '@/ui'
+import { defineProps, ref, computed } from 'vue'
+import { FullAccountInfo } from '@/utils'
+import { Textarea, SaveButton } from '@/ui'
 import {
   ImagesUpload, Media, Skills, Specialties,
   AddressSelect
@@ -79,16 +75,6 @@ const getAddress = computed(() => {
         @select="onSelect"
         @input="s => fetchLocations(s)"
       />
-      <!-- <address-select :locations="locs" :loading="true" /> -->
-      <!-- <search-select
-        v-if="popupContainer"
-        v-model:visible="selectOpened" :data="[]"
-        :container="popupContainer" placement="bottomLeft"
-      >
-        <template #input>
-          <button @click="selectOpened = !selectOpened">click me</button>
-        </template>
-      </search-select> -->
     </template>
 
     <template #media>
@@ -108,7 +94,7 @@ const getAddress = computed(() => {
         @select="id => {
           if (!selectedSpecialties)
             selectedSpecialties = [...fullAccountInfo.specialties.map((s) => s.id), id]
-          else
+          else if (!selectedSpecialties.includes(id))
             selectedSpecialties.push(id)
         }"
         @remove="id => {
