@@ -2,14 +2,14 @@
 import {
   defineProps, defineEmits, ref, watch
 } from 'vue'
-import { Modal } from 'ant-design-vue'
-import { ModalLayout } from '@/hocs'
+import { ModalLayout, Modal } from '@/hocs'
 import { useTheme } from '@/utils'
 import { Tab } from './types'
 
 const props = defineProps<{
   visible: boolean,
-  currentTab?: Tab
+  currentTab?: Tab,
+  hasProjects: boolean
 }>()
 
 const emit = defineEmits<{
@@ -27,8 +27,7 @@ watch(() => props.currentTab, () => {
 <template>
   <modal
     :visible="visible" @update:visible="payload => emit('toggle', payload)"
-    centered :width="`${width}px`"
-    wrap-class-name="settings-modal"
+    :width="width"
   >
     <modal-layout @close="emit('toggle', false)">
       <section class="modal-container">
@@ -52,9 +51,11 @@ watch(() => props.currentTab, () => {
             <slot name="profile-settings" />
           </div>
 
-          <div v-show="currentTab === 'projects'" class="widget-wrapper">
-            <slot name="projects-settings" />
-          </div>
+          <template v-if="hasProjects">
+            <div v-show="currentTab === 'projects'" class="widget-wrapper">
+              <slot name="projects-settings" />
+            </div>
+          </template>
 
           <div v-show="currentTab === 'privacy'" class="widget-wrapper">
             <slot name="privacy-settings" />

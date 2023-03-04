@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { Modal } from 'ant-design-vue'
-import { ModalLayout } from '@/hocs'
+import { ModalLayout, Modal } from '@/hocs'
 
 defineProps<{
   visible: boolean,
@@ -16,8 +15,7 @@ const emit = defineEmits<{
 <template>
   <modal
     :visible="visible" @update:visible="payload => emit('toggle', payload)"
-    centered width="1000px"
-    wrap-class-name="post-editor-modal"
+    width="1000"
   >
     <modal-layout @close="emit('toggle', false)">
       <section class="post-editor">

@@ -105,6 +105,9 @@ const sortedNotifications = computed(() => {
     @include flex(center, center);
     color: var(--light);
     transition: var(--fast);
+    text-decoration: none;
+    font-family: var(--findcreek-medium);
+    font-size: 13px;
   }
 
   a:focus, a:hover {

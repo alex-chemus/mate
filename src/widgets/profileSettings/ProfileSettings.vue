@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import { defineProps, ref, onMounted } from 'vue'
-import { FullAccountInfo, Location } from '@/utils'
-import {
-  Textarea, SaveButton, Input, SearchUngroupedSelect
-} from '@/ui'
+import { defineProps, ref, computed } from 'vue'
+import { FullAccountInfo } from '@/utils'
+import { Textarea, SaveButton } from '@/ui'
 import {
   ImagesUpload, Media, Skills, Specialties,
   AddressSelect
@@ -31,6 +29,18 @@ const {
 } = useUploadProfileSettings({ uploadImage, uploadSpecialties, address: addressValue })
 
 const addressOpened = ref(false)
+const getAddress = computed(() => {
+  const hasCity = props.fullAccountInfo.address.cityID !== 0
+  const hasRegion = props.fullAccountInfo.address.regionID !== 0
+  const hasCountry = props.fullAccountInfo.address.countryID !== 0
+  if (hasCity || hasRegion || hasCountry)
+    return [
+      props.fullAccountInfo.address.cityRusName,
+      props.fullAccountInfo.address.regionRusName,
+      props.fullAccountInfo.address.countryRusName
+    ].join(', ')
+  return ''
+})
 </script>
 
 <template>
@@ -61,19 +71,10 @@ const addressOpened = ref(false)
         :loading="locationsLoading"
         v-model:visible="addressOpened"
         :selected="selectedLocation"
+        :address="getAddress"
         @select="onSelect"
         @input="s => fetchLocations(s)"
       />
-      <!-- <address-select :locations="locs" :loading="true" /> -->
-      <!-- <search-select
-        v-if="popupContainer"
-        v-model:visible="selectOpened" :data="[]"
-        :container="popupContainer" placement="bottomLeft"
-      >
-        <template #input>
-          <button @click="selectOpened = !selectOpened">click me</button>
-        </template>
-      </search-select> -->
     </template>
 
     <template #media>
@@ -93,7 +94,7 @@ const addressOpened = ref(false)
         @select="id => {
           if (!selectedSpecialties)
             selectedSpecialties = [...fullAccountInfo.specialties.map((s) => s.id), id]
-          else
+          else if (!selectedSpecialties.includes(id))
             selectedSpecialties.push(id)
         }"
         @remove="id => {

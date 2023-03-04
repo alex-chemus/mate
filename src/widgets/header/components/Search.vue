@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, defineProps, defineEmits } from 'vue'
-import { Popover } from 'ant-design-vue'
+import { Popover } from '@/hocs'
 import { useTheme } from '@/utils'
 
 defineProps<{
@@ -9,47 +9,35 @@ defineProps<{
 
 const emit = defineEmits<{
   (e: 'toggle-popup', payload: boolean): void,
-  (e: 'input', payload: string): void
+  (e: 'input', payload: string): void,
 }>()
 
 const { theme } = useTheme()
-const isOpen = ref(false)
 </script>
 
 <template>
   <popover
     :visible="popupOpen" @update:visible="p => emit('toggle-popup', p)"
-    trigger="click" placement="bottomLeft"
+    placement="bottom-right"
   >
-    <div class="search-wrapper" :class="theme">
-      <button class="button">
-        <svg width="20" height="20" viewBox="0 0 20 20">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
-        </svg>
-      </button>
+    <template #button>
+      <div class="search-wrapper" :class="theme">
+        <button class="button">
+          <svg width="20" height="20" viewBox="0 0 20 20">
+            <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
+          </svg>
+        </button>
 
-      <!-- eslint-disable-next-line -->
-      <input
-        type="text"
-        class="search-input"
-        placeholder="Поиск"
-        @input="p => emit('input', (p.target as HTMLInputElement).value)"
-      />
-
-      <!-- <div class="separator" />
-
-      <button class="button">
-        <svg width="20" height="20" viewBox="0 0 20 20">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-x" />
-        </svg>
-      </button>
-
-      <button class="button">
-        <svg width="20" height="20" viewBox="0 0 20 20">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-adjustments-horizontal" />
-        </svg>
-      </button> -->
-    </div>
+        <!-- eslint-disable-next-line -->
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Поиск"
+          @input="p => emit('input', (p.target as HTMLInputElement).value)"
+          @focus="emit('toggle-popup', true)"
+        />
+      </div>
+    </template>
 
     <template #content>
       <slot />

@@ -83,25 +83,26 @@ const getSubs = computed(() => {
   padding: 0;
   margin: 0;
   max-height: 300px;
-  overflow-y: scroll;
-  overscroll-behavior-y: contain;
+  // overflow-y: scroll;
+  // overscroll-behavior-y: contain;
+  @include scrollbar;
 
   & > *:not(:last-child) {
     margin-bottom: 21px;
   }
 
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
+  // &::-webkit-scrollbar {
+  //   width: 5px;
+  // }
 
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
+  // &::-webkit-scrollbar-track {
+  //   background-color: transparent;
+  // }
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: 100vmax;
-    background-color: #bbb;
-  }
+  // &::-webkit-scrollbar-thumb {
+  //   border-radius: 100vmax;
+  //   background-color: #bbb;
+  // }
 }
 
 .item {

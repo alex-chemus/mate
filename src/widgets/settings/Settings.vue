@@ -16,13 +16,16 @@ const props = defineProps<{
 }>()
 
 const accountInfo = useAccountInfo(props)
-const { currentTab, toggleTabs, currentTitle } = useTabs()
+const {
+  currentTab, toggleTabs, currentTitle, hasProjects
+} = useTabs({ accountInfo })
 </script>
 
 <template>
   <settings-layout
     v-if="accountInfo"
     :visible="!!currentTab"
+    :has-projects="hasProjects"
     @toggle="toggleTabs(null)"
     :current-tab="(currentTab as Tab | undefined)"
   >
@@ -38,6 +41,7 @@ const { currentTab, toggleTabs, currentTitle } = useTabs()
       <tabs
         v-if="currentTab"
         :current-tab="currentTab"
+        :has-projects="hasProjects"
         @change="toggleTabs"
       />
     </template>

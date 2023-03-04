@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits, ref } from 'vue'
-import { Select, SelectOption } from 'ant-design-vue'
-import { SelectValue } from 'ant-design-vue/lib/select'
+import {
+  defineProps, defineEmits, ref, computed
+} from 'vue'
 import { useTheme } from '@/utils'
+import { Select } from '@/ui'
 import { Member } from '../types'
 
 const props = defineProps<{
@@ -16,8 +17,16 @@ const emit = defineEmits<{
 const { theme } = useTheme()
 
 const value = ref<'administrator' | 'editor' | 'user' | null>(null)
-const onSelect = (e: SelectValue) => {
-  switch (e as number) {
+const isOpen = ref(false)
+
+const values = ref([
+  { id: 1, key: 'administrator', value: 'Администратор' },
+  { id: 2, key: 'editor', value: 'Редактор' },
+  { id: 3, key: 'user', value: 'Пользователь' }
+])
+
+const onSelect = (n: number) => {
+  switch (n) {
     case 1:
       emit('select', 'administrator')
       value.value = 'administrator'
@@ -34,55 +43,25 @@ const onSelect = (e: SelectValue) => {
   }
 }
 
-const getValue = () => {
-  if (value.value) {
-    switch (value.value) {
-      case 'administrator': return 'Администратор'
-      case 'editor': return 'Редактор'
-      case 'user': return 'Подписчик'
-      default: return 'Подписчик'
-    }
-  }
-
-  switch (props.member.role) {
-    case 'administrator': return 'Администратор'
-    case 'editor': return 'Редактор'
-    case 'user': return 'Подписчик'
-    default: return 'Подписчик'
-  }
-}
-
-const getPopupContainer = () => {
-  return document.querySelector('.role-modal .role-container') as HTMLElement
-}
+const getText = computed(() => {
+  if (value.value)
+    return values.value.find((i) => i.key === value.value)?.value
+  return values.value.find((i) => i.key === props.member.role)?.value
+})
 </script>
 
 <template>
   <div class="role-container" :class="theme">
     <h6 class="title" :class="theme">Выберите должность</h6>
     <Select
-      :value="getValue()"
-      @update:value="onSelect" :show-arrow="false"
-      :get-popup-container="getPopupContainer"
-      :dropdown-class-name="['role-dropdown', theme].join(' ')"
-      placeholder="Выберите должность"
-    >
-      <SelectOption
-        :key="1"
-        :class="['role-option', theme].join(' ')"
-        title="Администратор"
-      >Администратор</SelectOption>
-      <SelectOption
-        :key="2"
-        :class="['role-option', theme].join(' ')"
-        title="Редактор"
-      >Редактор</SelectOption>
-      <SelectOption
-        :key="3"
-        :class="['role-option', theme].join(' ')"
-        title="Подписчик"
-      >Подписчик</SelectOption>
-    </Select>
+      :items="values.map((i) => ({ id: i.id, value: i.value }))"
+      v-model:visible="isOpen"
+      :selected="values.find((i) => i.key === value)?.id"
+      :placeholder="getText"
+      :z-index-factor="3"
+      width="button"
+      @select="onSelect"
+    />
   </div>
 </template>
 

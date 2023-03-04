@@ -115,6 +115,14 @@ const title = computed(() => {
     font-family: var(--findcreek-medium);
   }
 
+  &.light a {
+    color: var(--accent-1);
+  }
+
+  &.dark a {
+    color: var(--light);
+  }
+
   a:focus, a:hover {
     text-decoration: underline;
   }

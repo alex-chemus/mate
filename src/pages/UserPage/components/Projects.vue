@@ -99,6 +99,7 @@ const computedProjects = computed(() => {
   border-radius: 15px;
   @include flex(flex-start, center);
   transition: var(--fast);
+  text-decoration: none;
 
   &.light {
     border-top: 1px solid color.change($gray-1, $alpha: .25);

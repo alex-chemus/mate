@@ -1,11 +1,29 @@
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
-import { ref, onMounted, computed } from 'vue'
+import {
+  ref, onMounted, computed, watch
+} from 'vue'
 import { Tab } from '../types'
+import useAccountInfo from './useAccountInfo'
 
-const useTabs = () => {
+const useTabs = ({ accountInfo }: { accountInfo: ReturnType<typeof useAccountInfo> }) => {
   const route = useRoute()
   const router = useRouter()
   const currentTab = ref<Tab | null>(null)
+  const projects = ref(accountInfo.value ? [
+    ...accountInfo.value.projectsManagement.administrator,
+    ...accountInfo.value.projectsManagement.editor,
+    ...accountInfo.value.projectsManagement.founder
+  ] : [])
+
+  watch(accountInfo, () => {
+    projects.value = accountInfo.value ? [
+      ...accountInfo.value.projectsManagement.administrator,
+      ...accountInfo.value.projectsManagement.editor,
+      ...accountInfo.value.projectsManagement.founder
+    ] : []
+  })
+
+  const hasProjects = computed(() => projects.value.length > 0)
 
   onMounted(() => {
     const hasSettings = Object.keys(route.query).includes('settings')
@@ -15,25 +33,44 @@ const useTabs = () => {
     if (hasSettings && !route.query.settings)
       router.push({ path: `${route.path}`, query: { settings: 'general' } })
 
-    switch (route.query.settings) {
-      case 'general':
-        currentTab.value = 'general'
-        break
+    if (hasProjects.value) {
+      switch (route.query.settings) {
+        case 'general':
+          currentTab.value = 'general'
+          break
 
-      case 'profile':
-        currentTab.value = 'profile'
-        break
+        case 'profile':
+          currentTab.value = 'profile'
+          break
 
-      case 'privacy':
-        currentTab.value = 'privacy'
-        break
+        case 'privacy':
+          currentTab.value = 'privacy'
+          break
 
-      case 'projects':
-        currentTab.value = 'projects'
-        break
+        case 'projects':
+          currentTab.value = 'projects'
+          break
 
-      default:
-        currentTab.value = null
+        default:
+          currentTab.value = null
+      }
+    } else {
+      switch (route.query.settings) {
+        case 'general':
+          currentTab.value = 'general'
+          break
+
+        case 'profile':
+          currentTab.value = 'profile'
+          break
+
+        case 'privacy':
+          currentTab.value = 'privacy'
+          break
+
+        default:
+          currentTab.value = null
+      }
     }
   })
 
@@ -49,25 +86,44 @@ const useTabs = () => {
     if (hasSettings && !newRoute.query.settings)
       return { path: `${route.path}`, query: { settings: 'general' } }
 
-    switch (newRoute.query.settings) {
-      case 'general':
-        currentTab.value = 'general'
-        break
+    if (hasProjects.value) {
+      switch (newRoute.query.settings) {
+        case 'general':
+          currentTab.value = 'general'
+          break
 
-      case 'profile':
-        currentTab.value = 'profile'
-        break
+        case 'profile':
+          currentTab.value = 'profile'
+          break
 
-      case 'privacy':
-        currentTab.value = 'privacy'
-        break
+        case 'privacy':
+          currentTab.value = 'privacy'
+          break
 
-      case 'projects':
-        currentTab.value = 'projects'
-        break
+        case 'projects':
+          currentTab.value = 'projects'
+          break
 
-      default:
-        currentTab.value = null
+        default:
+          currentTab.value = null
+      }
+    } else {
+      switch (newRoute.query.settings) {
+        case 'general':
+          currentTab.value = 'general'
+          break
+
+        case 'profile':
+          currentTab.value = 'profile'
+          break
+
+        case 'privacy':
+          currentTab.value = 'privacy'
+          break
+
+        default:
+          currentTab.value = null
+      }
     }
 
     return true
@@ -99,7 +155,9 @@ const useTabs = () => {
     }
   })
 
-  return { currentTab, toggleTabs, currentTitle }
+  return {
+    currentTab, toggleTabs, currentTitle, hasProjects
+  }
 }
 
 export default useTabs

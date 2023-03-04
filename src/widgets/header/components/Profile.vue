@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
-import { Popover } from 'ant-design-vue'
+import { Popover } from '@/hocs'
 import { useTheme } from '@/utils'
 
 defineProps<{
@@ -15,18 +15,20 @@ const isOpen = ref(false)
 </script>
 
 <template>
-  <popover v-model:visible="isOpen" trigger="click" placement="bottomRight">
-    <button class="popup-button" :class="theme">
-      <img v-if="img" :src="img" alt="" class="avatar" />
-      <div v-else class="placeholder" />
-      <span>{{ fullName }}</span>
-      <svg
-        :class="[theme, { 'open': isOpen }]"
-        width="20" height="20" viewBox="0 0 20 20"
-      >
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-chevron-down" />
-      </svg>
-    </button>
+  <popover v-model:visible="isOpen" placement="bottom-left">
+    <template #button>
+      <button class="popup-button" :class="theme" @click="isOpen = !isOpen">
+        <img v-if="img" :src="img" alt="" class="avatar" />
+        <div v-else class="placeholder" />
+        <span>{{ fullName }}</span>
+        <svg
+          :class="[theme, { 'open': isOpen }]"
+          width="20" height="20" viewBox="0 0 20 20"
+        >
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-chevron-down" />
+        </svg>
+      </button>
+    </template>
 
     <template #content>
       <!-- <profile-popup

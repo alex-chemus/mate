@@ -31,7 +31,9 @@ const useSubscriptions = (
 
   watch(fullUsersInfo, async () => {
     if (!fullUsersInfo.value) return
-    subscriptions.value = await fetchSubscriptions(fullUsersInfo.value[0].subscriptions.projects)
+    const subs = fullUsersInfo.value[0].subscriptions.projects
+    if (subs.length === 0) subscriptions.value = []
+    else subscriptions.value = await fetchSubscriptions(subs)
   })
 
   return { subscriptions }

@@ -1,58 +1,38 @@
 <script lang="ts" setup>
 import {
-  defineProps, defineEmits, watch, ref, defineExpose
+  defineProps, defineEmits, ref, defineExpose
 } from 'vue'
 import { useTheme } from '@/utils'
 
 const props = defineProps<{
-  type?: string,
-  value?: string,
-  placeholder?: string,
+  text: string,
   labelText?: string,
   theme?: 'light' | 'dark',
   customClass?: string,
   focused?: boolean,
-  disabled?: boolean
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:value', payload: string): void
-  // (e: 'focus'): void,
-  // (e: 'blur'): void
   (e: 'update:focused', payload: boolean): void
 }>()
 
 const theme = props.theme ? ref(props.theme) : useTheme().theme
 
-const inputRef = ref<HTMLInputElement | null>(null)
-watch(() => props.focused, () => {
-  if (!inputRef.value) return
-  if (props.focused) inputRef.value.focus()
-  else inputRef.value.blur()
-})
-
-const containerRref = ref<HTMLElement | null>(null)
-defineExpose({ inputRef: containerRref })
+const containerRef = ref<HTMLElement | null>(null)
+defineExpose({ buttonRef: containerRef })
 </script>
 
 <template>
   <label ref="containerRef">
     <p v-if="labelText" class="label" :class="theme">{{ labelText }}</p>
-    <div class="input-wrapper" :class="[theme, { focused }]">
+    <button
+      class="button" :class="[theme, { focused }]"
+      @focus="emit('update:focused', true)"
+    >
       <slot name="before" />
-      <input
-        ref="inputRef"
-        class="input" :class="[theme, customClass]"
-        :disabled="disabled"
-        :type="type ?? 'text'"
-        :value="value ?? ''"
-        :placeholder="placeholder ?? ''"
-        @input="e => emit('update:value', (e.target as HTMLInputElement).value)"
-        @focus="emit('update:focused', true)"
-        @blur="emit('update:focused', false)"
-      />
+      <span class="text">{{ text }}</span>
       <slot name="after" />
-    </div>
+    </button>
   </label>
 </template>
 
@@ -60,8 +40,9 @@ defineExpose({ inputRef: containerRref })
 @use 'sass:color';
 @import '@/assets/styles/style.scss';
 
-.input-wrapper {
+.button {
   height: 40px;
+  width: 100%;
   padding: 13px;
   @include flex(space-between, center);
   gap: 12px;
@@ -80,7 +61,8 @@ defineExpose({ inputRef: containerRref })
   }
 }
 
-.input {
+.text {
+  text-align: left;
   flex-grow: 2;
   font-family: var(--findcreek, $findcreek);
   font-size: 13px;

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, ref } from 'vue'
 import { useTheme } from '@/utils'
-import { Popover } from 'ant-design-vue'
+import { Popover } from '@/hocs'
 import PostPopupLayout from './PostPopupLayout.vue'
 
 const { theme } = useTheme()
@@ -52,12 +52,14 @@ const isOpen = ref(false)
       <span>Поделиться</span>
     </button>
 
-    <popover v-model:visible="isOpen" trigger="click" placement="bottomRight">
-      <button :class="theme" class="button --round">
-        <svg width="20" height="20" viewBox="0 0 20 20">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-dots-vertical" />
-        </svg>
-      </button>
+    <popover v-model:visible="isOpen" trigger="click" placement="top-left">
+      <template #button>
+        <button :class="theme" class="button --round" @click="isOpen = !isOpen">
+          <svg width="20" height="20" viewBox="0 0 20 20">
+            <use href="@/assets/imgs/tabler-sprite.svg#tabler-dots-vertical" />
+          </svg>
+        </button>
+      </template>
 
       <template #content>
         <post-popup-layout />

@@ -32,8 +32,6 @@ const useUploadPost = ({
 
     body.append('files', files[0].fileInfo) // по временной схеме
 
-    console.log('upload files', files[0])
-
     const res = await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.cloudUlr}/methods/cloud.uploadFiles/`,
       info: {
@@ -57,8 +55,6 @@ const useUploadPost = ({
       const fileIDs = await uploadFiles(getFiles.value)
       body.append('media', fileIDs.join(', '))
     }
-
-    console.log('upload post')
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.create/`,

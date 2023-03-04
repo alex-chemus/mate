@@ -97,6 +97,7 @@ const { openPostEditor } = usePostEditor()
   gap: 13px;
   border-radius: 13px;
   background-color: var(--bg-color-1);
+  color: var(--heading-color-2);
 
   // & > *:not(:last-child) {
   //   margin-bottom: 10px;
