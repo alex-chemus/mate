@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {
-  defineProps, defineEmits, watch, ref
+  defineProps, defineEmits, watch, ref, defineExpose
 } from 'vue'
 import { useTheme } from '@/utils'
 
@@ -30,23 +30,13 @@ watch(() => props.focused, () => {
   if (props.focused) inputRef.value.focus()
   else inputRef.value.blur()
 })
-//const focused = ref(false)
 
-// const onFocus = () => {
-//   console.log('[input.vue] focus')
-//   focused.value = true
-//   emit('focus')
-// }
-
-// const onBlur = () => {
-//   console.log('[input.vue] blur')
-//   focused.value = false
-//   emit('blur')
-// }
+const containerRref = ref<HTMLElement | null>(null)
+defineExpose({ inputRef: containerRref })
 </script>
 
 <template>
-  <label>
+  <label ref="containerRef">
     <p v-if="labelText" class="label" :class="theme">{{ labelText }}</p>
     <div class="input-wrapper" :class="[theme, { focused }]">
       <slot name="before" />

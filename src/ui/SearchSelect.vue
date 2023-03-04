@@ -35,6 +35,8 @@ watch(
   }
 )
 
+const inputRef = ref<HTMLDivElement | null>(null)
+
 const closeTimeout = ref<ReturnType<typeof setTimeout> | null>(null)
 const onDropdownClick = () => {
   if (closeTimeout.value) clearTimeout(closeTimeout.value)
@@ -130,6 +132,7 @@ onBeforeUnmount(() => {
       @update:value="p => emit('update:inputValue', p)"
       @update:focused="onFocusChange"
       :placeholder="placeholder" :label-text="labelText"
+      ref="inputRef"
     />
  
     <popup-transition>

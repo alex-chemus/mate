@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {
-  defineProps, defineEmits, ref
+  defineProps, defineEmits, ref, defineExpose
 } from 'vue'
 import { useTheme } from '@/utils'
 
@@ -13,36 +13,17 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  // (e: 'focus'): void,
-  // (e: 'blur'): void
   (e: 'update:focused', payload: boolean): void
 }>()
 
 const theme = props.theme ? ref(props.theme) : useTheme().theme
 
-// const button = ref<HTMLInputElement | null>(null)
-// watch(() => props.focused, () => {
-//   if (!inputRef.value) return
-//   if (props.focused) inputRef.value.focus()
-//   else inputRef.value.blur()
-// })
-//const focused = ref(false)
-
-// const onFocus = () => {
-//   console.log('[input.vue] focus')
-//   focused.value = true
-//   emit('focus')
-// }
-
-// const onBlur = () => {
-//   console.log('[input.vue] blur')
-//   focused.value = false
-//   emit('blur')
-// }
+const containerRef = ref<HTMLElement | null>(null)
+defineExpose({ buttonRef: containerRef })
 </script>
 
 <template>
-  <label>
+  <label ref="containerRef">
     <p v-if="labelText" class="label" :class="theme">{{ labelText }}</p>
     <button
       class="button" :class="[theme, { focused }]"
