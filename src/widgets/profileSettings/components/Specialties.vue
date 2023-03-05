@@ -2,8 +2,9 @@
 import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
-import { Specialty, SpecialtiesList, useTheme } from '@/utils'
+import { useTheme } from '@/utils'
 import { Badge, GroupedSelect } from '@/ui'
+import { Specialty, SpecialtiesList } from '@/types';
 
 const props = defineProps<{
   allSpecialties: SpecialtiesList

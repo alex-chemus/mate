@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import {
-  defineProps, defineEmits, computed, ref
-} from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/utils'
 import { Droparea } from '@/hocs'
 

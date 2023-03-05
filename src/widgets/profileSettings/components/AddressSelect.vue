@@ -2,7 +2,7 @@
 import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
-import { Location } from '@/utils'
+import { Location } from '@/types'
 import { SearchSelect } from '@/ui'
 
 const props = defineProps<{

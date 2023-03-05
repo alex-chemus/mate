@@ -1,6 +1,3 @@
-<script lang="ts" setup>
-</script>
-
 <template>
   <form
     action="" @submit="e => e.preventDefault()"

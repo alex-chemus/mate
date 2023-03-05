@@ -1,7 +1,8 @@
 import {
   ref, onMounted, computed, watch
 } from 'vue'
-import { FullAccountInfo, FullProjectInfo, useGlobalUpdate } from '@/utils'
+import { useGlobalUpdate } from '@/utils'
+import { FullAccountInfo, FullProjectInfo } from '@/types'
 import { useFetchFullProjectsInfo } from '@/api'
 
 const useProjectsInfo = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo }) => {

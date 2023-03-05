@@ -1,8 +1,7 @@
 import { ref } from 'vue'
 import { fetchActions } from '@/store/constants'
-import {
-  useApiState, useAuthState, useDispatch, FileInfo
-} from '@/utils'
+import { useApiState, useAuthState, useDispatch } from '@/utils'
+import { FileInfo } from '@/types'
 
 const useUploadAvatar = () => {
   const apiState = useApiState()

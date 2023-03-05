@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import { Popover } from '@/hocs'
 import { useTheme } from '@/utils'
 

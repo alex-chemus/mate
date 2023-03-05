@@ -1,4 +1,4 @@
-import { Specialty } from '@/utils'
+import { Specialty } from '@/types'
 
 // временный тип, с появлением api переделаю
 export type Notice = {
@@ -27,7 +27,7 @@ export type AccountInfo = {
   findcreekID: number
 }
 
-export type Tab = 'profile' | 'search-vacancies' | null
+export type Tab = 'profile' | 'vacancies' | null
 
 // export type SearchItem = {
 //   avatar?: string;

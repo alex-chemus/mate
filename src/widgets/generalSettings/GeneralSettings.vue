@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { FullAccountInfo } from '@/utils'
+import { FullAccountInfo } from '@/types'
 import { Input, SaveButton, DateInput } from '@/ui'
 import GeneralSettingsLayout from './GeneralSettingsLayout.vue'
 import { Sex, AvatarUpload, TextIdInput } from './components'

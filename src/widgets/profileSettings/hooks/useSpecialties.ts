@@ -1,7 +1,5 @@
 import { ref } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, Specialty
-} from '@/utils'
+import { useApiState, useAuthState, useDispatch } from '@/utils'
 import { useAllSpecialties } from '@/api'
 import { fetchActions } from '@/store/constants'
 

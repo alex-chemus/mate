@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { defineProps, ref } from 'vue'
-import { FullAccountInfo } from '@/utils'
+import { defineProps } from 'vue'
+import { FullAccountInfo } from '@/types'
 import {
   GeneralSettings, ProfileSettings, ProjectsSettings, PrivacySettings
 } from '@/widgets'

@@ -2,11 +2,10 @@ import {
   ref, onMounted, watch, computed
 } from 'vue'
 import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  FullAccountInfo
+  useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
+import { FullAccountInfo } from '@/types'
 import { fetchActions } from '@/store/constants'
-//import { AccountInfo } from '../types'
 
 const useAccountInfo = (props: Readonly<{
   fullAccountInfo?: FullAccountInfo

@@ -1,15 +1,11 @@
 import { fetchActions } from '@/store/constants'
-import {
-  useApiState, useAuthState, useDispatch, FullProjectInfo,
-  FullAccountInfo
-} from '@/utils'
+import { useApiState, useAuthState, useDispatch } from '@/utils'
+import { FullProjectInfo } from '@/types'
 
 const useFullProjectsInfo = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-
-  //const fullProjectsInfo = ref<FullProjectInfo[] | null>(null)
 
   const fetchFullProjectsInfo = async (projectsIDs: number[]) => {
     const body = new FormData()
@@ -24,14 +20,6 @@ const useFullProjectsInfo = () => {
       }
     })) as FullProjectInfo[]
   }
-
-  // onMounted(async () => {
-  //   fullProjectsInfo.value = await fetchFullProjectsInfo()
-  // })
-
-  // watch(globalUpdate, async () => {
-  //   fullProjectsInfo.value = await fetchFullProjectsInfo()
-  // })
 
   return fetchFullProjectsInfo
 }

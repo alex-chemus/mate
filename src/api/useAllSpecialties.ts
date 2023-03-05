@@ -1,8 +1,9 @@
 import { ref, onMounted } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
-  useApiState, useAuthState, useDispatch, SpecialtiesList
+  useApiState, useAuthState, useDispatch
 } from '@/utils'
+import { SpecialtiesList } from '@/types'
 
 const useAllSpecialties = () => {
   const apiState = useApiState()

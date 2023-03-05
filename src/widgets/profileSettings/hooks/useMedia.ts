@@ -1,7 +1,8 @@
 import {
-  FullAccountInfo, useApiState, useAuthState, useDispatch, useGlobalUpdate
+  useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
+import { FullAccountInfo } from '@/types'
 
 const useMedia = ({ fullAccountInfo }: { fullAccountInfo: FullAccountInfo }) => {
   const apiState = useApiState()

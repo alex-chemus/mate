@@ -12,7 +12,6 @@ const useFetchSubscribe = () => {
     if (type === 'user') body.append('userID', id.toString())
     else body.append('projectID', id.toString())
 
-    //body.append('userID', userID.toString())
     const reqType = type === 'user' ? 'users' : 'projects'
 
     await dispatch(fetchActions.FETCH, {
@@ -30,7 +29,6 @@ const useFetchSubscribe = () => {
     if (type === 'user') body.append('userID', id.toString())
     else body.append('projectID', id.toString())
 
-    //body.append('userID', userID.toString())
     const reqType = type === 'user' ? 'users' : 'projects'
 
     await dispatch(fetchActions.FETCH, {

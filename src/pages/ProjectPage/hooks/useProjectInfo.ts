@@ -4,9 +4,9 @@ import {
 import { useRoute, useRouter } from 'vue-router'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  FullProjectInfo
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
+import { FullProjectInfo } from '@/types'
 import type { Employee, Role } from '../types'
 
 const useProjectInfo = ({ update }: { update: Ref<symbol> }) => {

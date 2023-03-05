@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, ref } from 'vue'
-import { SocialMedia, useTheme } from '@/utils'
+import { useTheme } from '@/utils'
+import { SocialMedia } from '@/types'
 import { Input, Badge } from '@/ui'
 
 defineProps<{

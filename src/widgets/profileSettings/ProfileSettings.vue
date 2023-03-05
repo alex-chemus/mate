@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, ref, computed } from 'vue'
-import { FullAccountInfo } from '@/utils'
+import { FullAccountInfo } from '@/types'
 import { Textarea, SaveButton } from '@/ui'
 import {
   ImagesUpload, Media, Skills, Specialties,

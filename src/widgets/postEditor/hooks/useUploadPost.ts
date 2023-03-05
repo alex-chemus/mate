@@ -1,8 +1,9 @@
 import { ComputedRef, ref, computed } from 'vue'
 import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate, FileInfo
+  useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
+import { FileInfo } from '@/types'
 import { IFile } from '../types'
 
 const useUploadPost = ({

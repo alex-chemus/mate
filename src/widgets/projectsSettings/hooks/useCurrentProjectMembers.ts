@@ -2,11 +2,11 @@ import {
   ComputedRef, watch, ref, computed
 } from 'vue'
 import {
-  useApiState, useAuthState, useDispatch, FullProjectInfo,
-  useGlobalUpdate, FullUserInfo, ExcludeProperties
+  useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
+import { ExcludeProperties, FullProjectInfo } from '@/types'
 import { fetchActions } from '@/store/constants'
-import { Member, Role } from '../types'
+import { Member } from '../types'
 
 const useCurrentProjectMembers = ({ currentProject }: {
   currentProject: ComputedRef<FullProjectInfo | null>

@@ -1,7 +1,6 @@
-import {
-  useApiState, useAuthState, useDispatch, FullUserInfo
-} from '@/utils'
+import { useApiState, useAuthState, useDispatch } from '@/utils'
 import { fetchActions } from '@/store/constants'
+import { FullUserInfo } from '@/types'
 
 const useFetchFullUsersInfo = () => {
   const apiState = useApiState()

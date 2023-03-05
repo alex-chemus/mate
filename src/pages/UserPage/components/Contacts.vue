@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { SocialMedia, useTheme } from '@/utils'
+import { useTheme } from '@/utils'
+import { SocialMedia } from '@/types'
 
 defineProps<{
   media: SocialMedia[]

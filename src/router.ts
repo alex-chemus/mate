@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import {
   FeaturesPage, LandingPage, PricePage, MainPage,
   LoginPage, ErrorPage, Notifications,
-  ProjectPage, SearchVacanciesPage, UserPage
+  ProjectPage, VacanciesPage, UserPage
 } from '@/pages'
 
 const routes: Array<RouteRecordRaw> = [
@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/notifications', component: Notifications },
   { path: '/project/:id', component: ProjectPage },
   { path: '/project/:id/settings', component: ProjectPage },
-  { path: '/search-vacancies', component: SearchVacanciesPage },
+  { path: '/vacancies', component: VacanciesPage },
   { path: '/user/:id', component: UserPage },
 ]
 

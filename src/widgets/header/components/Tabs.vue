@@ -26,8 +26,8 @@ const { theme } = useTheme()
     </button>
 
     <button class="tab"
-      :class="currentTab === 'search-vacancies' ? 'current' : ''"
-      @click="emit('switch', 'search-vacancies')"
+      :class="currentTab === 'vacancies' ? 'current' : ''"
+      @click="emit('switch', 'vacancies')"
     >
       <svg width="30" height="30" viewBox="0 0 30 30">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-list-search" />

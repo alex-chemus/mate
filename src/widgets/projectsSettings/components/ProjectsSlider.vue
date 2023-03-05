@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
 import Flicking from '@egjs/vue3-flicking'
-//import { ProjectTab } from '../types'
-import { FullProjectInfo } from '@/utils'
+import { FullProjectInfo } from '@/types'
 import SliderButton from './SliderButton.vue'
 import '@/assets/styles/carousel.css'
 
