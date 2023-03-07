@@ -1,38 +1,46 @@
 <script lang="ts" setup>
 import { Input } from '@/ui'
+import { Header } from '@/widgets';
 import { useThemes, useVacancies } from './hooks'
+import { Filters, CardsContainer } from './components'
+import VacanciesPageLayout from './VacanciesPageLayout.vue'
 
 const { themes, selectedTheme } = useThemes()
 const {
-  vacancies, onType, nextPage, prevPage
+  vacancies, onType, nextPage, prevPage, isLoading, projectsInfo
 } = useVacancies({ selectedTheme })
 </script>
 
 <template>
-  <ul v-if="themes">
-    <li v-for="theme in themes" :key="theme.id">
-      <button @click="selectedTheme = theme">
-        {{ theme.title }}
-      </button>
-    </li>
+  <vacancies-page-layout :loading="isLoading">
+    <template #header>
+      <Header />
+    </template>
 
-    <!-- <p v-if="themes.find((t) => t.id === selectedTheme?.id)">
-      {{ themes.find((t) => t.id === selectedTheme?.id)!.title }}
-    </p> -->
+    <template #filters>
+      <filters
+        :selected-theme="selectedTheme"
+        :themes="themes"
+        @select-theme="p => selectedTheme = p"
+        @input="onType"
+      />
+    </template>
 
-    <Input
-      @update:value="onType"
-    />
-
-    <div v-if="vacancies">
-      <p v-for="vacancy in vacancies" :key="vacancy.id">
-        {{ vacancy.title }}
-      </p>
-    </div>
-
-    <button @click="prevPage">back</button>
-    <button @click="nextPage">next</button>
-  </ul>
+    <template v-if="projectsInfo && projectsInfo.find((p) => p.id)" #cards>
+      <!-- <div v-if="vacancies">
+        <p v-for="vacancy in vacancies" :key="vacancy.id">
+          {{ vacancy.title }}
+        </p>
+      </div> -->
+      <!-- <card
+        v-for="vacancy in vacancies" :key="vacancy.id"
+      /> -->
+      <cards-container
+        :vacancies="vacancies"
+        :projects-info="projectsInfo"
+      />
+    </template>
+  </vacancies-page-layout>
 </template>
 
 <style lang="scss" scoped>

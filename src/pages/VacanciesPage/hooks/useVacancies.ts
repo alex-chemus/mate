@@ -4,7 +4,8 @@ import {
 import {
   useApiState, useAuthState, useDebounce, useDispatch
 } from '@/utils'
-import { FullVacancyInfo } from '@/types'
+import { useFetchFullProjectsInfo } from '@/api'
+import { FullProjectInfo, FullVacancyInfo } from '@/types'
 import { fetchActions } from '@/store/constants'
 import { Theme } from '../types'
 
@@ -17,12 +18,14 @@ const useVacancies = (
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
+  const fetchFullProjectsInfo = useFetchFullProjectsInfo()
 
   const searchText = ref<string | null>(null)
   const limit = ref({ from: 0, amount: 20 })
   const vacancies = ref<FullVacancyInfo[] | null>(null)
   const isLoading = ref(false)
   const isLastPage = ref(false)
+  const projectsInfo = ref<FullProjectInfo[] | null>(null)
 
   const fetchVacancies = async () => {
     isLoading.value = true
@@ -56,6 +59,12 @@ const useVacancies = (
     fetchVacancies()
   })
 
+  watch(vacancies, async () => {
+    if (vacancies.value === null) return
+    const projectsIDs = [...new Set(vacancies.value.map((v) => v.projectID))]
+    projectsInfo.value = await fetchFullProjectsInfo(projectsIDs)
+  })
+
   const { debounced: debouncedFetch } = useDebounce(fetchVacancies, 1500)
   const onType = (s: string) => {
     searchText.value = s
@@ -82,7 +91,7 @@ const useVacancies = (
   }
 
   return {
-    vacancies, onType, isLoading, nextPage, prevPage
+    vacancies, onType, isLoading, nextPage, prevPage, projectsInfo
   }
 }
 
