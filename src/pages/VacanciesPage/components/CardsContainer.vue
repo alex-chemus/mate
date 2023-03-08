@@ -1,11 +1,15 @@
 <script lang="ts" setup>
-import { defineProps, computed } from 'vue'
+import { defineProps, defineEmits, computed } from 'vue'
 import { FullVacancyInfo, FullProjectInfo } from '@/types'
 import Card from './Card.vue'
 
 const props = defineProps<{
   vacancies: FullVacancyInfo[] | null,
   projectsInfo: FullProjectInfo[] | null
+}>()
+
+const emit = defineEmits<{
+  (e: 'toggle-like', payload: { id: number, value: boolean }): void
 }>()
 
 const getInfo = computed(() => {
@@ -27,9 +31,11 @@ const getInfo = computed(() => {
 </script>
 
 <template>
-  <card
+  <!-- <card
     v-for="vacancy in getInfo" :key="vacancy.vacancy.id"
     :vacancy="vacancy.vacancy"
     :project-info="vacancy.project"
-  />
+    @toggle-like="p => emit('toggle-like', { id: vacancy.vacancy.id, value: p })"
+  /> -->
+  <slot :info="getInfo" />
 </template>

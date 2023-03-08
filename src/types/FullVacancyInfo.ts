@@ -26,7 +26,7 @@ export type FullVacancyInfo = {
     },
     unixDate: number
   },
-  isLikes: false,
+  isLiked: false,
   themeName: string,
   isViewed: boolean
 }

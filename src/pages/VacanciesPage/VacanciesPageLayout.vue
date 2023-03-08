@@ -21,7 +21,7 @@ defineProps<{
         <slot name="filters" />
       </div>
 
-      <div v-if="!loading" class="card-wrapper" :class="{ 'open': isOpen }">
+      <div v-if="!loading" class="cards-wrapper" :class="{ 'open': isOpen }">
         <slot name="cards" />
       </div>
 
@@ -51,6 +51,7 @@ defineProps<{
   grid-gap: 40px 68px;
   //grid-auto-flow: column;
   margin-top: 40px;
+  padding: 25px 38px 63px;
 
   background-color: var(--bg-color-1);
   border-radius: 13px;
@@ -63,8 +64,12 @@ defineProps<{
 }
 
 .cards-wrapper {
+  @include flex(space-around, stretch);
+  gap: 20px;
+  grid-column: 1 / span 2;
+
   &.open {
-    grid-column: 1 / span 2;
+    grid-column: 1 / span 1;
   }
 }
 </style>

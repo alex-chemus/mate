@@ -10,9 +10,10 @@ import { fetchActions } from '@/store/constants'
 import { Theme } from '../types'
 
 const useVacancies = (
-  { selectedTheme }:
+  { selectedTheme, update }:
   {
-    selectedTheme: Ref<Theme | null>
+    selectedTheme: Ref<Theme | null>,
+    update?: Ref<symbol | null> | Ref<symbol | null>[]
   }
 ) => {
   const apiState = useApiState()
@@ -27,8 +28,8 @@ const useVacancies = (
   const isLastPage = ref(false)
   const projectsInfo = ref<FullProjectInfo[] | null>(null)
 
-  const fetchVacancies = async () => {
-    isLoading.value = true
+  const fetchVacancies = async (shouldNotSetLoading?: boolean) => {
+    if (!shouldNotSetLoading) isLoading.value = true
 
     const body = new FormData()
     body.append('token', authState.value.token as string)
@@ -50,10 +51,11 @@ const useVacancies = (
     if (vacancies.value.length < limit.value.amount)
       isLastPage.value = true
 
-    isLoading.value = false
+    if (!shouldNotSetLoading) isLoading.value = false
   }
 
   onMounted(fetchVacancies)
+  if (update) watch(update, () => fetchVacancies(true))
   watch(selectedTheme, () => {
     limit.value = { from: 0, amount: 20 }
     fetchVacancies()
@@ -62,7 +64,8 @@ const useVacancies = (
   watch(vacancies, async () => {
     if (vacancies.value === null) return
     const projectsIDs = [...new Set(vacancies.value.map((v) => v.projectID))]
-    projectsInfo.value = await fetchFullProjectsInfo(projectsIDs)
+    if (projectsIDs.length > 0)
+      projectsInfo.value = await fetchFullProjectsInfo(projectsIDs)
   })
 
   const { debounced: debouncedFetch } = useDebounce(fetchVacancies, 1500)

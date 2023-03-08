@@ -49,7 +49,6 @@ const { theme } = useTheme()
 
 .filters-section {
   @include flex(space-between, center);
-  padding: 25px 38px;
 }
 
 .themes-list {

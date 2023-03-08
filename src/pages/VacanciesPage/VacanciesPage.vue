@@ -1,14 +1,17 @@
 <script lang="ts" setup>
-import { Input } from '@/ui'
 import { Header } from '@/widgets';
-import { useThemes, useVacancies } from './hooks'
-import { Filters, CardsContainer } from './components'
+import {
+  useThemes, useVacancies, useLike, useView
+} from './hooks'
+import { Filters, CardsContainer, Card } from './components'
 import VacanciesPageLayout from './VacanciesPageLayout.vue'
 
 const { themes, selectedTheme } = useThemes()
+const { toggleLike, likeUpdate } = useLike()
+const { view, viewUpdate } = useView()
 const {
   vacancies, onType, nextPage, prevPage, isLoading, projectsInfo
-} = useVacancies({ selectedTheme })
+} = useVacancies({ selectedTheme, update: [likeUpdate, viewUpdate] })
 </script>
 
 <template>
@@ -35,10 +38,25 @@ const {
       <!-- <card
         v-for="vacancy in vacancies" :key="vacancy.id"
       /> -->
+      <!-- <cards-container
+        :vacancies="vacancies"
+        :projects-info="projectsInfo"
+        @toggle-like="toggleLike"
+      /> -->
+
       <cards-container
         :vacancies="vacancies"
         :projects-info="projectsInfo"
-      />
+        v-slot="{ info }"
+      >
+        <card
+          v-for="vacancy in info" :key="vacancy.vacancy.id"
+          :vacancy="vacancy.vacancy"
+          :project-info="vacancy.project"
+          @toggle-like="p => toggleLike({ id: vacancy.vacancy.id, value: p })"
+          @view="view(vacancy.vacancy)"
+        />
+      </cards-container>
     </template>
   </vacancies-page-layout>
 </template>
