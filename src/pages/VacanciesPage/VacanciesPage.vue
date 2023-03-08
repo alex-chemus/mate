@@ -3,14 +3,16 @@ import { Header } from '@/widgets';
 import {
   useThemes, useVacancies, useLike, useView
 } from './hooks'
-import { Filters, CardsContainer, Card } from './components'
+import {
+  Filters, CardsContainer, Card, Pagination
+} from './components'
 import VacanciesPageLayout from './VacanciesPageLayout.vue'
 
 const { themes, selectedTheme } = useThemes()
 const { toggleLike, likeUpdate } = useLike()
 const { view, viewUpdate } = useView()
 const {
-  vacancies, onType, nextPage, prevPage, isLoading, projectsInfo
+  vacancies, onType, nextPage, prevPage, isLoading, projectsInfo, isFirstPage, isLastPage
 } = useVacancies({ selectedTheme, update: [likeUpdate, viewUpdate] })
 </script>
 
@@ -57,6 +59,15 @@ const {
           @view="view(vacancy.vacancy)"
         />
       </cards-container>
+    </template>
+
+    <template #pagination>
+      <pagination
+        :is-first-page="isFirstPage"
+        :is-last-page="isLastPage"
+        @prev="prevPage"
+        @next="nextPage"
+      />
     </template>
   </vacancies-page-layout>
 </template>

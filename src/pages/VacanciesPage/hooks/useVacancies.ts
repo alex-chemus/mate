@@ -1,5 +1,5 @@
 import {
-  onMounted, Ref, ref, watch
+  onMounted, Ref, ref, watch, computed
 } from 'vue'
 import {
   useApiState, useAuthState, useDebounce, useDispatch
@@ -93,8 +93,10 @@ const useVacancies = (
     fetchVacancies()
   }
 
+  const isFirstPage = computed(() => limit.value.from === 0)
+
   return {
-    vacancies, onType, isLoading, nextPage, prevPage, projectsInfo
+    vacancies, onType, isLoading, nextPage, prevPage, projectsInfo, isLastPage, isFirstPage
   }
 }
 

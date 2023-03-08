@@ -69,6 +69,7 @@ const getDate = computed(() => {
   border: var(--border-2);
   padding: 19px;
   width: 478px;
+  //height: 174px;
   @include flex(flex-start, stretch, column);
   gap: 11px;
 }

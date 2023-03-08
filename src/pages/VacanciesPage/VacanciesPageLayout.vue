@@ -26,6 +26,10 @@ defineProps<{
       </div>
 
       <slot v-if="isOpen" name="vacancy" />
+
+      <div class="pagination-wrapper">
+        <slot name="pagination" />
+      </div>
     </main>
   </section>
 </template>
@@ -36,7 +40,10 @@ defineProps<{
 
 .main-section {
   @include container;
-  padding-top: 50px;
+  padding: 50px 0;
+  min-height: 100vh;
+  @include flex(flex-start, stretch, column);
+  gap: 40px;
 
   &.--loading {
     @include flex(center, center);
@@ -47,11 +54,13 @@ defineProps<{
 .main-container {
   display: grid;
   grid-template-columns: min-content 1fr;
-  grid-template-columns: min-content;
+  grid-template-rows: min-content min-content;
+  //grid-template-columns: min-content;
   grid-gap: 40px 68px;
   //grid-auto-flow: column;
-  margin-top: 40px;
+  //margin-top: 40px;
   padding: 25px 38px 63px;
+  flex-grow: 2;
 
   background-color: var(--bg-color-1);
   border-radius: 13px;
@@ -65,11 +74,18 @@ defineProps<{
 
 .cards-wrapper {
   @include flex(space-around, stretch);
+  //align-content: flex-start;
+  flex-wrap: wrap;
   gap: 20px;
   grid-column: 1 / span 2;
 
   &.open {
     grid-column: 1 / span 1;
   }
+}
+
+.pagination-wrapper {
+  grid-column: 1 / span 2;
+  align-self: end;
 }
 </style>
