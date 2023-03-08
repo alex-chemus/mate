@@ -96,7 +96,14 @@ const useVacancies = (
   const isFirstPage = computed(() => limit.value.from === 0)
 
   return {
-    vacancies, onType, isLoading, nextPage, prevPage, projectsInfo, isLastPage, isFirstPage
+    vacancies,
+    onType,
+    isLoading,
+    nextPage,
+    prevPage,
+    projectsInfo,
+    isLastPage,
+    isFirstPage
   }
 }
 

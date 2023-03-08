@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { useTheme } from '@/utils'
 import { Input } from '@/ui'
 import { Theme } from '../types'
 
@@ -13,8 +12,6 @@ const emit = defineEmits<{
   (e: 'select-theme', payload: Theme): void,
   (e: 'input', payload: string): void
 }>()
-
-const { theme } = useTheme()
 </script>
 
 <template>
@@ -35,7 +32,7 @@ const { theme } = useTheme()
         @update:value="p => emit('input', p)"
       >
         <template #after>
-          <svg width="24" height="24" viewBox="0 0 24 24">
+          <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24">
             <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
           </svg>
         </template>
@@ -79,5 +76,9 @@ const { theme } = useTheme()
 
 .input-wrapper {
   width: 430px;
+}
+
+.search-icon {
+  color: var(--heading-color-2);
 }
 </style>

@@ -4,12 +4,14 @@ import { FullProjectInfo, FullVacancyInfo } from '@/types'
 
 const props = defineProps<{
   vacancy: FullVacancyInfo,
-  projectInfo: FullProjectInfo
+  projectInfo: FullProjectInfo,
+  isCurrent?: boolean
 }>()
 
 const emit = defineEmits<{
   (e: 'toggle-like', payload: boolean): void,
-  (e: 'view', payload: number): void
+  (e: 'view', payload: number): void,
+  (e: 'close'): void
 }>()
 
 const getDate = computed(() => {
@@ -18,10 +20,15 @@ const getDate = computed(() => {
     arr[0], arr[1].slice(0, 5)
   ].join(' ')
 })
+
+const getButtonValue = computed(() => {
+  if (props.isCurrent) return 'Закрыть'
+  return props.vacancy.isViewed ? 'Посмотрено' : 'Посмотреть'
+})
 </script>
 
 <template>
-  <article class="card-vacancy">
+  <article class="card-vacancy" :class="{ 'current': isCurrent }">
     <div class="top-container">
       <div class="project">
         <img
@@ -53,9 +60,9 @@ const getDate = computed(() => {
 
       <button
         class="view-button" :class="vacancy.isViewed ? 'viewed' : ''"
-        @click="emit('view', vacancy.id)"
+        @click="isCurrent ? emit('close') :emit('view', vacancy.id)"
       >
-        {{ vacancy.isViewed ? 'Посмотрено' : 'Посмотреть' }}
+        {{ getButtonValue }}
       </button>
     </div>
   </article>
@@ -69,9 +76,15 @@ const getDate = computed(() => {
   border: var(--border-2);
   padding: 19px;
   width: 478px;
-  //height: 174px;
+  //height: 175px;
+  height: 190px;
   @include flex(flex-start, stretch, column);
   gap: 11px;
+
+  &.current {
+    border: 1px solid var(--accent);
+    background-color: rgb(190 224 255 / .2);
+  }
 }
 
 .top-container {
@@ -88,11 +101,6 @@ const getDate = computed(() => {
   aspect-ratio: 1;
   border-radius: 7px;
 }
-
-// .project-container {
-//   @include flex(flex-start, stretch, column);
-//   gap: 4px;
-// }
 
 .project-wrapper {
   @include flex(flex-start, flex-start, column);
@@ -162,6 +170,7 @@ const getDate = computed(() => {
 .date {
   grid-row: 2;
   font-family: var(--findcreek);
+  color: var(--text-color-1);
   font-size: 13px;
   letter-spacing: -0.03em;
 }
@@ -171,22 +180,23 @@ const getDate = computed(() => {
   border-radius: 5px;
   height: 28px;
   width: 100px;
-  color: var(--accent);
-  border: 1px solid var(--accent);
+  border: 1px solid transparent;
   font-family: var(--findcreek-medium);
   font-size: 12px;
   letter-spacing: .01em;
   transition: var(--fast);
+  color: var(--light);
+  background-color: var(--accent);
 
-  &:not(.viewed):hover,
-  &:not(.viewed):focus {
-    box-shadow: 0 0 4px 0 currentColor;
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 4px var(--accent);
   }
 
   &.viewed {
-    color: var(--light);
-    border-color: transparent;
-    background-color: var(--accent);
+    background-color: transparent;
+    color: var(--accent);
+    border-color: currentColor;
   }
 }
 </style>

@@ -21,8 +21,10 @@ defineProps<{
         <slot name="filters" />
       </div>
 
-      <div v-if="!loading" class="cards-wrapper" :class="{ 'open': isOpen }">
-        <slot name="cards" />
+      <div class="cards-container" :class="{ 'open': isOpen }">
+        <div v-if="!loading" class="cards-wrapper" :class="{ 'open': isOpen }">
+          <slot name="cards" />
+        </div>
       </div>
 
       <slot v-if="isOpen" name="vacancy" />
@@ -54,7 +56,7 @@ defineProps<{
 .main-container {
   display: grid;
   grid-template-columns: min-content 1fr;
-  grid-template-rows: min-content min-content;
+  grid-template-rows: min-content 1fr;
   //grid-template-columns: min-content;
   grid-gap: 40px 68px;
   //grid-auto-flow: column;
@@ -72,15 +74,26 @@ defineProps<{
   grid-column: 1 / span 2;
 }
 
+.cards-container {
+  grid-column: 1 / span 2;
+
+  &.open {
+    grid-column: 1 / span 1;
+  }
+}
+
 .cards-wrapper {
   @include flex(space-around, stretch);
   //align-content: flex-start;
   flex-wrap: wrap;
   gap: 20px;
-  grid-column: 1 / span 2;
+  height: 100%;
+  // grid-column: 1 / span 2;
 
   &.open {
-    grid-column: 1 / span 1;
+    // grid-column: 1 / span 1;
+    justify-content: flex-start;
+    flex-direction: column;
   }
 }
 
