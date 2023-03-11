@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { ModalLayout, Modal } from '@/hocs'
+import { ModalLayout, Modal, Droparea } from '@/hocs'
+import { UploadPopup } from './components'
 
 defineProps<{
   visible: boolean,
@@ -8,7 +9,8 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'toggle', payload: boolean): void
+  (e: 'toggle', payload: boolean): void,
+  (e: 'upload', payload: FileList): void
 }>()
 </script>
 
@@ -18,18 +20,27 @@ const emit = defineEmits<{
     width="1000"
   >
     <modal-layout @close="emit('toggle', false)">
-      <section class="post-editor">
-        <img v-if="img" :src="img" alt="" class="icon" />
-        <div v-else class="icon" />
+      <droparea
+        v-slot="{ over }"
+        @upload="p => emit('upload', p)"
+        :stretch="true"
+        :disable-click="true"
+      >
+        <section class="post-editor">
+          <img v-if="img" :src="img" alt="" class="icon" />
+          <div v-else class="icon" />
 
-        <div class="content-container">
-          <slot name="title" />
-          <slot name="description" />
-          <slot name="file-input" />
-          <slot name="files" />
-          <slot name="submit-button" />
-        </div>
-      </section>
+          <div class="content-container">
+            <slot name="title" />
+            <slot name="description" />
+            <!-- <slot name="file-input" /> -->
+            <slot name="files" />
+            <slot name="submit-button" />
+          </div>
+
+          <upload-popup :visible="over" />
+        </section>
+      </droparea>
     </modal-layout>
   </modal>
 </template>
@@ -42,6 +53,7 @@ const emit = defineEmits<{
   grid-template-columns: 30px 1fr 30px;
   grid-gap: 11px;
   grid-auto-flow: column;
+  position: relative;
 }
 
 .icon {

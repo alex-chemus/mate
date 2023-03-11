@@ -111,6 +111,8 @@ const getSortedEmployess = computed(() => {
 }
 
 .employee-wrapper {
+  text-decoration: none;
+
   h5 {
     font-family: var(--findcreek-bold);
     font-size: 14px;

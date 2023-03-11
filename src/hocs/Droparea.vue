@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { ref, defineProps, defineEmits } from 'vue'
+import { useDebounce } from '@/utils'
 
-defineProps<{
+const props = defineProps<{
   multiple?: boolean,
-  stretch?: boolean
+  stretch?: boolean,
+  disableClick?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -13,26 +15,40 @@ const emit = defineEmits<{
 const inputRef = ref<HTMLInputElement | null>(null)
 const isDragover = ref(false)
 
+const { debounced: removeDragover } = useDebounce(() => {
+  isDragover.value = false
+}, 100)
+
 const upload = (e: DragEvent | Event) => {
   if (e instanceof DragEvent) {
     if (e.dataTransfer?.files.length) {
       emit('upload', e.dataTransfer.files)
+      removeDragover()
     }
   } else if (inputRef.value?.files?.length) {
     emit('upload', inputRef.value.files)
+    removeDragover()
   }
+}
+
+const onClick = () => {
+  if (!props.disableClick) inputRef.value?.click()
 }
 </script>
 
 <template>
   <!-- eslint-disable -->
   <div class="droparea"
-    @click="inputRef?.click()"
+    @click="onClick"
     @dragover.prevent="isDragover = true"
-    @dragleave="isDragover = false"
-    @dragend="isDragover = false"
+    @dragleave="removeDragover"
+
+    @dragend="removeDragover"
     @drop.prevent="upload"
-    :style="`${stretch ? 'width: 100%;' : ''}`"
+    :style="[
+      stretch ? 'width: 100%;' : '',
+      disableClick ? '' : 'cursor: pointer;'
+    ]"
   >
     <input
       ref="inputRef"
@@ -51,7 +67,7 @@ const upload = (e: DragEvent | Event) => {
 
 .droparea {
   width: fit-content;
-  cursor: pointer;
+  //cursor: pointer;
 }
 
 .input {

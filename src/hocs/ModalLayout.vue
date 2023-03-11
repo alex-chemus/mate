@@ -3,7 +3,8 @@ import { defineEmits, defineProps, ref } from 'vue'
 import { useTheme } from '@/utils'
 
 const props = defineProps<{
-  theme?: 'light' | 'dark'
+  theme?: 'light' | 'dark',
+  style?: string
 }>()
 
 const emit = defineEmits<{

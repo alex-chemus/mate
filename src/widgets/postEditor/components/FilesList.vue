@@ -4,7 +4,8 @@ import { IFile } from '../types'
 import FileCard from './FileCard.vue'
 
 defineProps<{
-  files: IFile[] | null
+  files: IFile[] | null,
+  uploading?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -15,7 +16,11 @@ const emit = defineEmits<{
 <template>
   <ul v-if="files && files.length" class="files-list">
     <li v-for="file in files" :key="file.id">
-      <file-card :file="file" @remove="p => emit('remove', [p])" />
+      <file-card
+        :uploading="uploading"
+        :file="file"
+        @remove="p => emit('remove', [p])"
+      />
     </li>
   </ul>
 </template>
@@ -27,7 +32,7 @@ const emit = defineEmits<{
   margin: 0;
   padding: 0;
   list-style: none;
-  @include flex(flex-start, center);
+  @include flex(flex-start, flex-start, column);
   gap: 10px;
 }
 </style>

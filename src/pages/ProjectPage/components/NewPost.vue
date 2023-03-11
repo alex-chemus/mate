@@ -98,6 +98,8 @@ const { openPostEditor } = usePostEditor()
   border-radius: 13px;
   background-color: var(--bg-color-1);
   color: var(--heading-color-2);
+  font-family: var(--findcreek);
+  font-size: 13px;
 
   // & > *:not(:last-child) {
   //   margin-bottom: 10px;

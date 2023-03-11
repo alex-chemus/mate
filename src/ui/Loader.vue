@@ -4,6 +4,7 @@ import { useTheme } from '@/utils'
 
 const props = defineProps<{
   size?: number,
+  borderWidth?: number
   theme?: 'light' | 'dark'
 }>()
 
@@ -13,7 +14,11 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 <template>
   <div
     class="loader" :class="theme"
-    :style="`width: ${size || 48}px; height: ${size || 48}px`"
+    :style="`
+      width: ${size || 48}px;
+      height: ${size || 48}px;
+      border-width: ${borderWidth || 5}px;
+    `"
   />
 </template>
 

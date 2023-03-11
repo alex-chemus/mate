@@ -1,13 +1,13 @@
 import { ComputedRef, ref, computed } from 'vue'
 import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate
+  useApiState, useAuthState, useDispatch, useGlobalUpdate, useAlert
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
 import { FileInfo } from '@/types'
 import { IFile } from '../types'
 
 const useUploadPost = ({
-  type, id, getFiles
+  id, getFiles
 }: {
   type: 'user' | 'project'
   id: number,
@@ -17,6 +17,7 @@ const useUploadPost = ({
   const authState = useAuthState()
   const dispatch = useDispatch()
   const { setGlobalProjectsUpdate } = useGlobalUpdate()
+  const { setSuccessMessage } = useAlert()
 
   const title = ref<string | null>(null)
   const getTitle = computed(() => title.value)
@@ -26,8 +27,10 @@ const useUploadPost = ({
   }
 
   const description = ref<string | undefined>(undefined)
+  const uploadingFiles = ref(false)
 
   const uploadFiles = async (files: IFile[]) => {
+    uploadingFiles.value = true
     const body = new FormData()
     body.append('token', authState.value.token as string)
 
@@ -41,6 +44,7 @@ const useUploadPost = ({
       }
     }) as FileInfo[]
 
+    uploadingFiles.value = false
     return res.map((f) => f.fileID)
   }
 
@@ -66,10 +70,11 @@ const useUploadPost = ({
     })
 
     setGlobalProjectsUpdate()
+    setSuccessMessage('Опубликовано')
   }
 
   return {
-    setTitle, getTitle, description, uploadPost
+    setTitle, getTitle, description, uploadPost, uploadingFiles
   }
 }
 

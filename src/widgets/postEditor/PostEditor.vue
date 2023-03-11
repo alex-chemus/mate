@@ -2,7 +2,7 @@
 import { defineProps } from 'vue'
 import { usePostEditor } from '@/utils'
 import { Input, Textarea } from '@/ui'
-import { FilesField, FilesList } from './components'
+import { FilesList, SubmitButton } from './components'
 import { useFiles, useUploadPost } from './hooks'
 import PostEditorLayout from './PostEditorLayout.vue'
 
@@ -21,7 +21,7 @@ const {
 } = usePostEditor()
 
 const {
-  setTitle, getTitle, description, uploadPost
+  setTitle, getTitle, description, uploadPost, uploadingFiles
 } = useUploadPost({
   type: props.type,
   id: props.id,
@@ -33,27 +33,13 @@ const {
   <post-editor-layout
     :visible="isOpen"
     @toggle="p => p ? openPostEditor() : closePostEditor()"
+    @upload="addFiles"
     :img="img"
   >
-    <!-- <Input
-      label-text="Что у вас случилось?"
-      placeholder="Что у вас случилось?"
-      :value="getTitle ?? ''"
-      @update:value="setTitle"
-    />
-    <Textarea
-      label-text="лмао боттом текст"
-      placeholder="лмао боттом текст"
-      v-model:value="description"
-    />
-    <files-field @upload="addFiles" />
-    <files-list :files="getFiles" @remove="removeFiles" />
-    <button @click="uploadPost">Опубликовать</button> -->
-
     <template #title>
       <Input
-        label-text="Что у вас случилось?"
-        placeholder="Что у вас случилось?"
+        label-text="Заголовок"
+        placeholder="Заголовок"
         :value="getTitle ?? ''"
         @update:value="setTitle"
       />
@@ -61,22 +47,22 @@ const {
 
     <template #description>
       <Textarea
-        label-text="лмао боттом текст"
-        placeholder="лмао боттом текст"
+        label-text="Описание"
+        placeholder="Описание"
         v-model:value="description"
       />
     </template>
 
-    <template #file-input>
-      <files-field @upload="addFiles" />
-    </template>
-
     <template #files>
-      <files-list :files="getFiles" @remove="removeFiles" />
+      <files-list
+        :files="getFiles"
+        @remove="removeFiles"
+        :uploading="uploadingFiles"
+      />
     </template>
 
     <template #submit-button>
-      <button @click="uploadPost">Опубликовать</button>
+      <submit-button @click="uploadPost" />
     </template>
   </post-editor-layout>
 </template>
