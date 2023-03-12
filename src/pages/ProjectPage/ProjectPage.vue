@@ -11,7 +11,7 @@ import {
   NewPost, Projects, Employees
 } from './components'
 import ProfileLayout from './ProjectLayout.vue'
-import { useProjectInfo, useSubscribe } from './hooks'
+import { useProjectInfo, useSubscribe, usePosts } from './hooks'
 
 //const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
@@ -60,6 +60,7 @@ const { subscribe, unsubscribe, subUpdate } = useSubscribe()
 const { projectInfo, projectEmployees } = useProjectInfo({
   update: subUpdate
 })
+const { posts, next, prev } = usePosts({ projectInfo })
 
 const ownsProject = computed(() => {
   if (!fullAccountInfo.value || !projectInfo.value) return
@@ -126,8 +127,11 @@ const ownsProject = computed(() => {
       <new-post :img="fullAccountInfo.avatar.avatarCompressed ?? fullAccountInfo.avatar.avatar" />
     </template>
 
-    <template #post>
-      <Post />
+    <template #posts v-if="posts">
+      <Post
+        v-for="post in posts" :key="post.date.unixTime"
+        :post-info="post"
+      />
     </template>
 
     <template #projects>

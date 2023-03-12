@@ -34,7 +34,9 @@ defineProps<{
         <div class="new-post-wrapper">
           <slot name="new-post" />
         </div>
-        <slot name="post" />
+        <div class="posts-wrapper">
+          <slot name="posts" />
+        </div>
       </section>
 
       <aside class="project-aside">
@@ -87,5 +89,10 @@ aside {
 
 .bio-wrapper {
   margin-bottom: 23px;
+}
+
+.posts-wrapper {
+  @include flex(flex-start, stretch, column);
+  gap: 25px;
 }
 </style>

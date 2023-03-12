@@ -2,23 +2,23 @@
 import { defineProps } from 'vue'
 import { useTheme } from '@/utils'
 
-defineProps<{
-  img?: string,
-  date: string,
-}>()
+// defineProps<{
+//   img?: string,
+//   date: string,
+// }>()
 
 const { theme } = useTheme()
 </script>
 
 <template>
   <article class="post-section" :class="theme">
-    <div class="date-wrapper">{{ date }}</div>
+    <!-- <img v-if="img" :src="img" alt="" class="image" />
+    <div v-else class="image placeholder" /> -->
+    <div class="post-banner">
+      <slot name="banner" />
+    </div>
 
-    <img v-if="img" :src="img" alt="" class="image" />
-    <div v-else class="image placeholder" />
-
-    <div class="post-container">
-      <!--<p class="text" :class="theme">{{ text }}</p>-->
+    <!-- <div class="post-container">
       <div class="text">
         <slot name="text" />
       </div>
@@ -34,7 +34,7 @@ const { theme } = useTheme()
       <div class="comment-container">
         <slot name="comment" />
       </div>
-    </div>
+    </div> -->
   </article>
 </template>
 
@@ -47,6 +47,7 @@ const { theme } = useTheme()
   position: relative;
   overflow: hidden;
   background-color: var(--bg-color-1);
+  border: 1px solid magenta;
 }
 
 .date-wrapper {

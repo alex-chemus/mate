@@ -1,32 +1,48 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, defineProps, computed } from 'vue'
+import { FullPostInfo } from '@/types'
 import PostLayout from './PostLayout.vue'
 import {
-  PostAuthor, PostButtons, PostComment, PostText
+  PostAuthor, PostButtons, PostComment, PostText, PostGallery
 } from './components'
 
-interface IAuthor {
-  img?: string,
-  fullname: string,
-  nickname: string
-}
+const props = defineProps<{
+  postInfo: FullPostInfo
+}>()
 
-const date = ref('Сегодня в 12:22')
-const img = ref<string | undefined>(undefined)
-const text = ref('Я обожаю это признавать, поэтому напишу это здесь! Долгие месяцы мы трудились над одной целью, которая могла помочь всем без ислючения, и мы это сделали! В связи с тем, что продукт FINDCREEK Mate вышел в свет, нам предложили переехать заграницу. Это моя мечта детства, поэтому с огромной радостью вам сообщаю, что компания FINDCREEK переезжает в главный офис в Объединённых Арабских Эмиратах. Желаю всем своим подписчикам огромного счастья и денег!Ну а я пошёл собирать свои вещи. Много вещей...')
-const author = ref<IAuthor>({
-  fullname: 'Александр Соромотин',
-  nickname: 'alexandersoromotin'
+// interface IAuthor {
+//   img?: string,
+//   fullname: string,
+//   nickname: string
+// }
+
+// const date = ref('Сегодня в 12:22')
+// const img = ref<string | undefined>(undefined)
+// const text = ref('Я обожаю это признавать, поэтому напишу это здесь! Долгие месяцы мы трудились над одной целью, которая могла помочь всем без ислючения, и мы это сделали! В связи с тем, что продукт FINDCREEK Mate вышел в свет, нам предложили переехать заграницу. Это моя мечта детства, поэтому с огромной радостью вам сообщаю, что компания FINDCREEK переезжает в главный офис в Объединённых Арабских Эмиратах. Желаю всем своим подписчикам огромного счастья и денег!Ну а я пошёл собирать свои вещи. Много вещей...')
+// const author = ref<IAuthor>({
+//   fullname: 'Александр Соромотин',
+//   nickname: 'alexandersoromotin'
+// })
+// const postLikes = ref('5,6 тыч.')
+// const postDislikes = ref('1,2 тыч.')
+// const comments = ref('1 тыс.')
+// const reaction = ref<0 | 1 | -1>(1)
+
+const getImages = computed(() => {
+  const images = props.postInfo.media.filter((f) => f.additionalData.fileType === 'image')
+  return images
 })
-const postLikes = ref('5,6 тыч.')
-const postDislikes = ref('1,2 тыч.')
-const comments = ref('1 тыс.')
-const reaction = ref<0 | 1 | -1>(1)
 </script>
 
 <template>
-  <post-layout :img="img" :date="date">
-    <template #text>
+  <post-layout>
+    <template #banner>
+      <post-gallery
+        :images="getImages"
+      />
+    </template>
+
+    <!-- <template #text>
       <post-text :text="text" />
     </template>
 
@@ -42,7 +58,7 @@ const reaction = ref<0 | 1 | -1>(1)
         :reaction="reaction"
         @like="reaction = 1"
       />
-    </template>
+    </template> -->
 
     <template #comment>
       <post-comment />
