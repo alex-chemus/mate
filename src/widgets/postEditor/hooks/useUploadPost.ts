@@ -27,25 +27,35 @@ const useUploadPost = ({
   }
 
   const description = ref<string | undefined>(undefined)
-  const uploadingFiles = ref(false)
+  const uploadingFile = ref<number | null>(null)
 
-  const uploadFiles = async (files: IFile[]) => {
-    uploadingFiles.value = true
+  const uploadFile = async (file: IFile) => {
+    uploadingFile.value = file.id
+
     const body = new FormData()
     body.append('token', authState.value.token as string)
+    body.append('files', file.fileInfo)
 
-    body.append('files', files[0].fileInfo) // по временной схеме
-
-    const res = await dispatch(fetchActions.FETCH, {
+    const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.cloudUlr}/methods/cloud.uploadFiles/`,
-      info: {
-        method: 'POST',
-        body
-      }
-    }) as FileInfo[]
+      info: { method: 'POST', body }
+    })) as FileInfo[]
 
-    uploadingFiles.value = false
-    return res.map((f) => f.fileID)
+    uploadingFile.value = null
+    return res[0]
+  }
+
+  const uploadFiles = async (files: IFile[]) => {
+    const res: number[] = []
+
+    /* eslint-disable */
+    for (const file of files) {
+      const fileInfo = await uploadFile(file)
+      res.push(fileInfo.fileID)
+    }
+    /* eslint-enable */
+
+    return res
   }
 
   const uploadPost = async () => {
@@ -74,7 +84,7 @@ const useUploadPost = ({
   }
 
   return {
-    setTitle, getTitle, description, uploadPost, uploadingFiles
+    setTitle, getTitle, description, uploadPost, uploadingFile
   }
 }
 

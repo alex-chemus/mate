@@ -1,52 +1,76 @@
 <script lang="ts" setup>
-import { ref, defineProps, computed } from 'vue'
-import { FullPostInfo } from '@/types'
+import { defineEmits, defineProps, computed } from 'vue'
+import { FullPostInfo, FullProjectInfo, FullUserInfo } from '@/types'
 import PostLayout from './PostLayout.vue'
+import { useDate, useLikes } from './hooks'
 import {
-  PostAuthor, PostButtons, PostComment, PostText, PostGallery
+  PostAuthor, PostButtons, PostComment, PostText, PostGallery, PostHeader
 } from './components'
 
 const props = defineProps<{
-  postInfo: FullPostInfo
+  postInfo: FullPostInfo,
+  authorInfo: FullUserInfo,
+  projectInfo: FullProjectInfo
 }>()
 
-// interface IAuthor {
-//   img?: string,
-//   fullname: string,
-//   nickname: string
-// }
+const emit = defineEmits<{
+  (e: 'reload', id: number): void
+}>()
 
-// const date = ref('Сегодня в 12:22')
-// const img = ref<string | undefined>(undefined)
-// const text = ref('Я обожаю это признавать, поэтому напишу это здесь! Долгие месяцы мы трудились над одной целью, которая могла помочь всем без ислючения, и мы это сделали! В связи с тем, что продукт FINDCREEK Mate вышел в свет, нам предложили переехать заграницу. Это моя мечта детства, поэтому с огромной радостью вам сообщаю, что компания FINDCREEK переезжает в главный офис в Объединённых Арабских Эмиратах. Желаю всем своим подписчикам огромного счастья и денег!Ну а я пошёл собирать свои вещи. Много вещей...')
-// const author = ref<IAuthor>({
-//   fullname: 'Александр Соромотин',
-//   nickname: 'alexandersoromotin'
-// })
-// const postLikes = ref('5,6 тыч.')
-// const postDislikes = ref('1,2 тыч.')
-// const comments = ref('1 тыс.')
-// const reaction = ref<0 | 1 | -1>(1)
+const { like, dislike } = useLikes({
+  onUpdate: () => emit('reload', props.postInfo.id)
+})
+
+const date = useDate({
+  timestamp: computed(() => props.postInfo.date.unixTime * 1000)
+})
 
 const getImages = computed(() => {
   const images = props.postInfo.media.filter((f) => f.additionalData.fileType === 'image')
   return images
 })
+
+const getReaction = computed(() => {
+  if (props.postInfo.isLiked) return 1
+  if (props.postInfo.isDisliked) return -1
+  return 0
+})
 </script>
 
 <template>
   <post-layout>
-    <template #banner>
+    <template #header>
+      <post-header
+        :title="postInfo.title"
+        :author="`${authorInfo.firstName} ${authorInfo.lastName}`"
+        :avatar="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar"
+        :author-id="authorInfo.findcreekID"
+        :text-id="projectInfo.textID"
+        :date-string="date"
+      />
+    </template>
+
+    <template #text>
+      <post-text :text="postInfo.description" />
+    </template>
+
+    <template #gallery>
       <post-gallery
         :images="getImages"
       />
     </template>
 
-    <!-- <template #text>
-      <post-text :text="text" />
+    <template #buttons>
+      <post-buttons
+        :likes="postInfo.likesNumber"
+        :dislikes="postInfo.dislikesNumber"
+        :reaction="getReaction"
+        @like="like(postInfo.id, postInfo.isLiked, postInfo.isDisliked)"
+        @dislike="dislike(postInfo.id, postInfo.isLiked, postInfo.isDisliked)"
+      />
     </template>
 
-    <template #author>
+    <!-- <template #author>
       <post-author :author="author" />
     </template>
 

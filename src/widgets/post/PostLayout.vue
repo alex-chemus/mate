@@ -14,9 +14,9 @@ const { theme } = useTheme()
   <article class="post-section" :class="theme">
     <!-- <img v-if="img" :src="img" alt="" class="image" />
     <div v-else class="image placeholder" /> -->
-    <div class="post-banner">
+    <!-- <div class="post-banner">
       <slot name="banner" />
-    </div>
+    </div> -->
 
     <!-- <div class="post-container">
       <div class="text">
@@ -35,6 +35,11 @@ const { theme } = useTheme()
         <slot name="comment" />
       </div>
     </div> -->
+
+    <slot name="header" />
+    <slot name="gallery" />
+    <slot name="text" />
+    <slot name="buttons" />
   </article>
 </template>
 
@@ -47,7 +52,9 @@ const { theme } = useTheme()
   position: relative;
   overflow: hidden;
   background-color: var(--bg-color-1);
-  border: 1px solid magenta;
+  @include flex(flex-start, stretch, column);
+  gap: 15px;
+  padding: 15px;
 }
 
 .date-wrapper {

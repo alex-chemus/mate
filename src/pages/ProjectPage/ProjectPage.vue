@@ -8,7 +8,7 @@ import { useFullAccountInfo } from '@/api'
 import type { Company, Partner } from './types'
 import {
   ProfileCard, Subscriptions, Partners, About,
-  NewPost, Projects, Employees
+  NewPost, Projects, Employees, PostsObserver
 } from './components'
 import ProfileLayout from './ProjectLayout.vue'
 import { useProjectInfo, useSubscribe, usePosts } from './hooks'
@@ -31,36 +31,15 @@ const partners = ref<Partner[]>([
   { link: '/profile', id: 6 },
   { link: '/profile', id: 7 }
 ])
-// const projects = ref<Project[]>([
-//   {
-//     name: 'FINDCREEK Mate',
-//     started: '22.07.22'
-//   }
-// ])
-// const employees = ref<Employee[]>([
-//   {
-//     fullName: 'Александр Соромотин',
-//     position: 'Бэкенд разработчик',
-//     id: 0
-//   },
-//   {
-//     fullName: 'Алексей Грибанов',
-//     position: 'Мобильный разработчик',
-//     id: 1
-//   },
-//   {
-//     fullName: 'Александр Чемус',
-//     position: 'Фронтенд разработчик',
-//     id: 2
-//   }
-// ])
 
 const fullAccountInfo = useFullAccountInfo()
 const { subscribe, unsubscribe, subUpdate } = useSubscribe()
 const { projectInfo, projectEmployees } = useProjectInfo({
   update: subUpdate
 })
-const { posts, next, prev } = usePosts({ projectInfo })
+const {
+  posts, authors, next, prev, updatePost
+} = usePosts({ projectInfo })
 
 const ownsProject = computed(() => {
   if (!fullAccountInfo.value || !projectInfo.value) return
@@ -127,11 +106,18 @@ const ownsProject = computed(() => {
       <new-post :img="fullAccountInfo.avatar.avatarCompressed ?? fullAccountInfo.avatar.avatar" />
     </template>
 
-    <template #posts v-if="posts">
+    <template #posts v-if="posts && authors">
       <Post
         v-for="post in posts" :key="post.date.unixTime"
         :post-info="post"
+        :project-info="projectInfo"
+        :author-info="authors!.find((i) => i.postID === post.id)!.author"
+        @reload="updatePost"
       />
+    </template>
+
+    <template #posts-observer v-if="posts && authors">
+      <posts-observer @intersect="next()" />
     </template>
 
     <template #projects>

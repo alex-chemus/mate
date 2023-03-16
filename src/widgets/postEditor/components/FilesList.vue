@@ -5,7 +5,7 @@ import FileCard from './FileCard.vue'
 
 defineProps<{
   files: IFile[] | null,
-  uploading?: boolean
+  uploadingFile: number | null
 }>()
 
 const emit = defineEmits<{
@@ -17,7 +17,7 @@ const emit = defineEmits<{
   <ul v-if="files && files.length" class="files-list">
     <li v-for="file in files" :key="file.id">
       <file-card
-        :uploading="uploading"
+        :uploading="uploadingFile === file.id"
         :file="file"
         @remove="p => emit('remove', [p])"
       />

@@ -1,9 +1,10 @@
 import { Ref, ref, watch } from 'vue'
-import { FullProjectInfo, FullPostInfo } from '@/types'
+import { FullProjectInfo, FullPostInfo, FullUserInfo } from '@/types'
 import {
   useApiState, useAuthState, useDispatch,
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
+import { useFetchFullUsersInfo } from '@/api'
 
 const usePosts = (
   { projectInfo, update }:
@@ -17,12 +18,17 @@ const usePosts = (
   const dispatch = useDispatch()
 
   const posts = ref<FullPostInfo[] | null>(null)
-  const limit = ref({ from: 0, amount: 20 })
+  const authors = ref<{
+    author: FullUserInfo,
+    postID: number
+  }[] | null>(null)
+
+  const limit = ref({ from: 0, amount: 10 })
   const resetLimit = () => {
-    limit.value = { from: 0, amount: 20 }
+    limit.value = { from: 0, amount: 10 }
   }
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (shouldntReset?: boolean) => {
     if (projectInfo.value === null) return
 
     const body = new FormData()
@@ -31,24 +37,57 @@ const usePosts = (
     body.append('projectID', projectInfo.value.id.toString())
     body.append('limit', `${limit.value.from},${limit.value.amount}`)
 
-    posts.value = (await dispatch(fetchActions.FETCH, {
+    const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.getProjectPosts/`,
       info: { method: 'POST', body }
     })) as FullPostInfo[]
+
+    if (shouldntReset && posts.value) posts.value = [...posts.value, ...res]
+    else posts.value = res
   }
 
   watch(projectInfo, () => {
     resetLimit()
     fetchPosts()
   })
-  if (update) watch(update, fetchPosts)
+  if (update) watch(update, () => fetchPosts)
+
+  const fetchFullUsersInfo = useFetchFullUsersInfo()
+  watch(posts, async () => {
+    if (posts.value === null) return
+    const IDs = posts.value.map((p) => p.authorID)
+    const users = await fetchFullUsersInfo(IDs)
+    authors.value = posts.value.map((p) => {
+      return {
+        postID: p.id,
+        author: users.find((u) => u.findcreekID === p.authorID)!
+      }
+    })
+  })
+
+  const updatePost = async (id: number) => {
+    if (posts.value === null) return
+
+    const body = new FormData()
+    body.append('token', authState.value.token as string)
+    body.append('postsIDs', id.toString())
+
+    const res = (await dispatch(fetchActions.FETCH, {
+      url: `${apiState.value.apiUrl}/mate/projectPosts.getInfo/`,
+      info: { method: 'POST', body }
+    })) as FullPostInfo[]
+
+    posts.value = posts.value.map((p) => p.id === id ? res[0] : p)
+  }
+
 
   const next = () => {
-    if (posts.value && posts.value.length < limit.value.amount) return
+    if (posts.value && posts.value.length < limit.value.from + limit.value.amount) return
     limit.value = {
       from: limit.value.from + limit.value.amount,
       amount: limit.value.amount
     }
+    fetchPosts(true)
   }
 
   const prev = () => {
@@ -57,9 +96,12 @@ const usePosts = (
       from: Math.max(0, limit.value.from - limit.value.amount),
       amount: limit.value.amount
     }
+    fetchPosts(true)
   }
 
-  return { posts, next, prev }
+  return {
+    posts, authors, next, prev, updatePost
+  }
 }
 
 export default usePosts

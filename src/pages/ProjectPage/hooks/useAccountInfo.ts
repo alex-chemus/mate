@@ -11,11 +11,9 @@ const useAccountInfo = () => {
   const dispatch = useDispatch()
   const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
-  const body = new FormData()
-  body.append('token', authState.value.token as string)
-
   const fetchAccountInfo = async () => {
-    if (!authState.value.token) return null
+    const body = new FormData()
+    body.append('token', authState.value.token as string)
 
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/account.getInfo/`,

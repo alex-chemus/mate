@@ -12,26 +12,29 @@ const isClipped = ref(true)
 const shouldClip = ref(props.text.length > 400)
 const computedText = computed(() => {
   return isClipped.value && shouldClip.value
-    ? props.text.slice(0, 201)
+    ? `${props.text.slice(0, 201)}...`
     : props.text
 })
 </script>
 
 <template>
-  <p class="text" :class="theme">{{ computedText }}</p>
-  <button
-    v-if="shouldClip && isClipped"
-    @click="isClipped = false"
-    class="more-button" :class="theme"
-  >
-    Читать далее
-  </button>
+  <div class="text-wrapper">
+    <p class="text" :class="theme">{{ computedText }}</p>
+    <button
+      v-if="shouldClip && isClipped"
+      @click="isClipped = false"
+      class="more-button" :class="theme"
+    >
+      Читать далее
+    </button>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
 
 .text {
+  display: inline;
   font-family: var(--findcreek);
   font-size: 13px;
   line-height: 140%;

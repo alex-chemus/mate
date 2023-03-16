@@ -7,14 +7,13 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <button @click="emit('click')">Опубликовать</button>
+  <button class="submit-button" @click="emit('click')">Опубликовать</button>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
 
-button {
-  //margin: 0 auto;
+.submit-button {
   width: min(250px, 100%);
   height: 30px;
   border-radius: 5px;

@@ -44,6 +44,8 @@ const getClass = computed(() => {
 .gallery {
   height: 380px;
   width: 100%;
+  border-radius: 13px;
+  overflow: hidden;
 
   &:not(.slider) {
     display: grid;

@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits, ref } from 'vue'
+import {
+  defineProps, defineEmits, ref, computed
+} from 'vue'
 import { useTheme } from '@/utils'
 import { Popover } from '@/hocs'
 import PostPopupLayout from './PostPopupLayout.vue'
@@ -7,9 +9,9 @@ import PostPopupLayout from './PostPopupLayout.vue'
 const { theme } = useTheme()
 
 const props = defineProps<{
-  likes: string,
-  dislikes: string,
-  comments: string,
+  likes: number,
+  dislikes: number,
+  // comments: string,
   reaction: 0 | 1 | -1
 }>()
 
@@ -20,32 +22,60 @@ const emit = defineEmits<{
 }>()
 
 const isOpen = ref(false)
+
+const getLikes = computed(() => {
+  if (props.likes < 1_000) return props.likes.toString()
+
+  if (props.likes < 1_000_000) {
+    const a = Math.floor(props.likes / 1_000)
+    const b = +props.likes.toString().split('').reverse()[2]
+    return `${a},${b}K`
+  }
+
+  const a = Math.floor(props.likes / 1_000_000)
+  const b = +props.likes.toString().split('').reverse()[5]
+  return `${a},${b}M`
+})
+
+const getDislikes = computed(() => {
+  if (props.dislikes < 1_000) return props.dislikes.toString()
+
+  if (props.dislikes < 1_000_000) {
+    const a = Math.floor(props.dislikes / 1_000)
+    const b = +props.dislikes.toString().split('').reverse()[2]
+    return `${a},${b}K`
+  }
+
+  const a = Math.floor(props.dislikes / 1_000_000)
+  const b = +props.dislikes.toString().split('').reverse()[5]
+  return `${a},${b}M`
+})
 </script>
 
 <template>
   <div class="buttons-container">
-    <button @click="emit('like')" :class="theme" class="button">
+    <button @click="emit('like')" :class="[theme, { 'active': reaction === 1 }]" class="button">
       <svg width="20" height="20" viewBox="0 0 20 20">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-thumb-up" />
       </svg>
-      <span>{{ props.likes }}</span>
+      <span>{{ getLikes }}</span>
     </button>
 
-    <button @click="emit('dislike')" :class="theme" class="button">
+    <button @click="emit('dislike')" :class="[theme, { 'active': reaction === -1 }]" class="button">
       <svg width="20" height="20" viewBox="0 0 20 20">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-thumb-down" />
       </svg>
-      <span>{{ props.dislikes }}</span>
+      <span>{{ getDislikes }}</span>
     </button>
 
-    <button @click="emit('comment')" :class="theme" class="button --offset">
+    <!-- <button @click="emit('comment')" :class="theme" class="button --offset">
       <svg width="20" height="20" viewBox="0 0 20 20">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-messages" />
       </svg>
       <span>{{ props.comments }}</span>
-    </button>
+    </button> -->
 
-    <button :class="theme" class="button">
+    <!-- <button :class="theme" class="button">
       <svg width="20" height="20" viewBox="0 0 20 20">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-screen-share" />
       </svg>
@@ -64,7 +94,7 @@ const isOpen = ref(false)
       <template #content>
         <post-popup-layout />
       </template>
-    </popover>
+    </popover> -->
   </div>
 </template>
 
@@ -98,6 +128,10 @@ const isOpen = ref(false)
     margin-right: auto;
   }
 
+  &.active {
+    color: var(--accent) !important;
+  }
+
   &.light {
     color: #0f0f0f;
   }
@@ -112,7 +146,6 @@ const isOpen = ref(false)
 
   span {
     font-family: var(--noto-sans-bold);
-    //font-weight: var(--bold);
     font-size: 11px;
   }
 

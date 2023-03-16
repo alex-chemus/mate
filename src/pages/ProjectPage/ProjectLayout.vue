@@ -36,6 +36,7 @@ defineProps<{
         </div>
         <div class="posts-wrapper">
           <slot name="posts" />
+          <slot name="posts-observer" />
         </div>
       </section>
 

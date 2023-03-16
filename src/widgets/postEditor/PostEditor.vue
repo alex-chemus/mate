@@ -21,7 +21,7 @@ const {
 } = usePostEditor()
 
 const {
-  setTitle, getTitle, description, uploadPost, uploadingFiles
+  setTitle, getTitle, description, uploadPost, uploadingFile
 } = useUploadPost({
   type: props.type,
   id: props.id,
@@ -57,7 +57,7 @@ const {
       <files-list
         :files="getFiles"
         @remove="removeFiles"
-        :uploading="uploadingFiles"
+        :uploading-file="uploadingFile"
       />
     </template>
 
