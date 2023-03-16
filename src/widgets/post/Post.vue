@@ -4,7 +4,7 @@ import { FullPostInfo, FullProjectInfo, FullUserInfo } from '@/types'
 import PostLayout from './PostLayout.vue'
 import { useDate, useLikes } from './hooks'
 import {
-  PostAuthor, PostButtons, PostComment, PostText, PostGallery, PostHeader
+  PostButtons, PostComment, PostText, PostGallery, PostHeader
 } from './components'
 
 const props = defineProps<{
