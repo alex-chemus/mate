@@ -38,7 +38,7 @@ const { projectInfo, projectEmployees } = useProjectInfo({
   update: subUpdate
 })
 const {
-  posts, authors, next, prev, updatePost
+  getPosts, authors, next, prev, updatePost
 } = usePosts({ projectInfo })
 
 const ownsProject = computed(() => {
@@ -106,9 +106,9 @@ const ownsProject = computed(() => {
       <new-post :img="fullAccountInfo.avatar.avatarCompressed ?? fullAccountInfo.avatar.avatar" />
     </template>
 
-    <template #posts v-if="posts && authors">
+    <template #posts v-if="getPosts && authors">
       <Post
-        v-for="post in posts" :key="post.date.unixTime"
+        v-for="post in getPosts" :key="post.date.unixTime"
         :post-info="post"
         :project-info="projectInfo"
         :author-info="authors!.find((i) => i.postID === post.id)!.author"
@@ -116,7 +116,7 @@ const ownsProject = computed(() => {
       />
     </template>
 
-    <template #posts-observer v-if="posts && authors">
+    <template #posts-observer v-if="getPosts && authors">
       <posts-observer @intersect="next()" />
     </template>
 

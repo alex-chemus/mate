@@ -1,4 +1,6 @@
-import { Ref, ref, watch } from 'vue'
+import {
+  Ref, ref, watch, computed
+} from 'vue'
 import { FullProjectInfo, FullPostInfo, FullUserInfo } from '@/types'
 import {
   useApiState, useAuthState, useDispatch,
@@ -18,6 +20,13 @@ const usePosts = (
   const dispatch = useDispatch()
 
   const posts = ref<FullPostInfo[] | null>(null)
+  const getPosts = computed(() => {
+    return posts.value
+    // return posts.value !== null
+    //   ? posts.value.reverse()
+    //   : null
+  })
+
   const authors = ref<{
     author: FullUserInfo,
     postID: number
@@ -111,7 +120,7 @@ const usePosts = (
   }
 
   return {
-    posts, authors, next, prev, updatePost
+    getPosts, authors, next, prev, updatePost
   }
 }
 
