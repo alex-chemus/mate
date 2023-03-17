@@ -1,10 +1,14 @@
 <script lang="ts" setup>
-import { defineProps, computed } from 'vue'
+import { defineProps, defineEmits, computed } from 'vue'
 import { FileInfo } from '@/types'
 import PostSlider from './PostSlider.vue'
 
 const props = defineProps<{
   images: FileInfo[]
+}>()
+
+const emit = defineEmits<{
+  (e: 'image-click', payload: { file: FileInfo, i: number }): void
 }>()
 
 const getClass = computed(() => {
@@ -27,10 +31,12 @@ const getClass = computed(() => {
 
 <template>
   <div v-if="getClass !== 'none' && getClass !== 'slider'" class="gallery" :class="getClass">
+    <!-- eslint-disable-next-line -->
     <img
       v-for="(img, i) in images" :key="i"
       :src="img.additionalData.urlToFile" :alt="img.fileName"
       class="image"
+      @click="emit('image-click', { file: img, i })"
     />
   </div>
   <div class="gallery slider" v-if="getClass === 'slider'">
@@ -151,5 +157,6 @@ const getClass = computed(() => {
   min-height: 0;
   min-width: 0;
   object-fit: cover;
+  cursor: pointer;
 }
 </style>

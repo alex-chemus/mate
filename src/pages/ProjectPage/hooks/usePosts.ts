@@ -23,9 +23,9 @@ const usePosts = (
     postID: number
   }[] | null>(null)
 
-  const limit = ref({ from: 0, amount: 10 })
+  const limit = ref({ from: 0, amount: 20 })
   const resetLimit = () => {
-    limit.value = { from: 0, amount: 10 }
+    limit.value = { from: 0, amount: 20 }
   }
 
   const fetchPosts = async (shouldntReset?: boolean) => {
@@ -77,7 +77,18 @@ const usePosts = (
       info: { method: 'POST', body }
     })) as FullPostInfo[]
 
-    posts.value = posts.value.map((p) => p.id === id ? res[0] : p)
+    //posts.value = posts.value.map((p) => p.id === id ? res[0] : p)
+    // бинарный поиск
+    let low = 0
+    let high = posts.value.length - 1
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2)
+      const guess = posts.value[mid]
+      if (guess.id === id) posts.value[mid] = res[0] // eslint-disable-line
+      if (guess.id > id) high = mid - 1
+      else low = mid + 1
+    }
   }
 
 

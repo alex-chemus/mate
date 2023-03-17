@@ -59,8 +59,8 @@ onBeforeUnmount(() => {
   position: fixed;
   //z-index: 1000;
   width: max-content;
-  max-width: 100vw;
-  max-height: 100vh;
+  max-width: 90vw;
+  max-height: 90vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

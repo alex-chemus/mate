@@ -1,10 +1,14 @@
 <script lang="ts" setup>
-import { defineEmits, defineProps, computed } from 'vue'
-import { FullPostInfo, FullProjectInfo, FullUserInfo } from '@/types'
-import PostLayout from './PostLayout.vue'
-import { useDate, useLikes } from './hooks'
 import {
-  PostButtons, PostComment, PostText, PostGallery, PostHeader
+  defineEmits, defineProps, computed, ref
+} from 'vue'
+import {
+  FullPostInfo, FullProjectInfo, FullUserInfo, FileInfo
+} from '@/types'
+import PostLayout from './PostLayout.vue'
+import { useDate, useLikes, useViewer } from './hooks'
+import {
+  PostButtons, PostComment, PostText, PostGallery, PostHeader, ImageViewer
 } from './components'
 
 const props = defineProps<{
@@ -30,6 +34,8 @@ const getImages = computed(() => {
   return images
 })
 
+const { viewImage, nextImage, prevImage } = useViewer({ getImages })
+
 const getReaction = computed(() => {
   if (props.postInfo.isLiked) return 1
   if (props.postInfo.isDisliked) return -1
@@ -38,6 +44,14 @@ const getReaction = computed(() => {
 </script>
 
 <template>
+  <image-viewer
+    :src="viewImage && viewImage.file.additionalData.urlToFile"
+    :i="viewImage && viewImage.i"
+    @close="viewImage = null"
+    @prev="prevImage"
+    @next="nextImage"
+  />
+
   <post-layout>
     <template #header>
       <post-header
@@ -57,6 +71,7 @@ const getReaction = computed(() => {
     <template #gallery>
       <post-gallery
         :images="getImages"
+        @image-click="p => viewImage = p"
       />
     </template>
 
