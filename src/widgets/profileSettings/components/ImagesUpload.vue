@@ -82,8 +82,6 @@ const onCoverUpload = (e: FileList) => {
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
 
-.images-container {}
-
 .cover,
 .avatar {
   width: 100px;
@@ -130,6 +128,7 @@ const onCoverUpload = (e: FileList) => {
 .name {
   font-size: 16px;
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   margin: 0;
   margin-bottom: 20px;
   color: var(--heading-color-1);

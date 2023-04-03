@@ -68,6 +68,7 @@ const getRole = computed(() => {
 
 .full-name {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 13px;
   margin: 0;
 

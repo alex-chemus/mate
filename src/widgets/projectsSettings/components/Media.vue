@@ -122,6 +122,7 @@ const startEditing = (item: SocialMedia) => {
 
 .edit-button {
   margin-left: 20px;
+  color: var(--text-color-1);
 }
 
 .media-item-logo {
@@ -133,5 +134,11 @@ const startEditing = (item: SocialMedia) => {
 .content-wrapper {
   @include flex(flex-start, center);
   gap: 8px;
+
+  span {
+    font-family: var(--findcreek-medium);
+    font-size: 13px;
+    color: var(--heading-color-1);
+  }
 }
 </style>

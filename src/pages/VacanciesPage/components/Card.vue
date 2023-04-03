@@ -74,6 +74,7 @@ const getButtonValue = computed(() => {
 .card-vacancy {
   border-radius: 8px;
   border: var(--border-2);
+  background-color: var(--bg-color-2);
   padding: 19px;
   width: 478px;
   //height: 175px;

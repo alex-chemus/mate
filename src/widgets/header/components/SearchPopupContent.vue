@@ -119,6 +119,7 @@ const getUrl = computed(() => {
 
 .full-name {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 16px;
   color: var(--heading-color-2);
   margin: 0;

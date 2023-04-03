@@ -156,6 +156,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
 
 .close-button {
   margin-left: auto;
+  color: var(--text-color-1);
 }
 
 .search-results {

@@ -106,6 +106,7 @@ aside h6 {
 
 .title {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 18px;
   color: var(--heading-color-1);
 }

@@ -109,6 +109,7 @@ const getText = computed(() => {
 
 .name-title {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 14px;
   letter-spacing: -0.02em;
   margin-bottom: 2px;

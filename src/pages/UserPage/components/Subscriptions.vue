@@ -70,6 +70,7 @@ const getSubs = computed(() => {
 
 .title {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 14px;
   color: var(--heading-color-2);
 }
@@ -109,7 +110,7 @@ const getSubs = computed(() => {
   @include flex(flex-start, center);
 
   & > *:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 11px;
   }
 }
 
@@ -127,14 +128,15 @@ const getSubs = computed(() => {
     margin: 0;
     margin-bottom: 1px;
     font-family: var(--noto-sans);
-    font-size: 18px;
+    font-weight: normal;
+    font-size: 13px;
     color: var(--heading-color-2);
   }
 
   small {
     margin: 0;
     font-family: var(--noto-sans);
-    font-size: 14px;
+    font-size: 12px;
     color: var(--text-color-2);
   }
 }

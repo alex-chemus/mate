@@ -143,6 +143,7 @@ const { theme } = useTheme()
 
 .title {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 14px;
   margin-bottom: 25px;
   color: var(--heading-color-1);
@@ -181,6 +182,9 @@ const { theme } = useTheme()
 
 .content-wrapper p {
   color: var(--text-color-1);
+  font-family: var(--findcreek);
+  font-size: 13px;
+  line-height: 1.6em;
 
   &.colored {
     color: var(--accent);
@@ -223,5 +227,7 @@ const { theme } = useTheme()
   border: 1px solid color.change($gray-1, $alpha: .25);
   @include flex(center, center);
   color: var(--heading-color-1);
+  font-family: var(--noto-sans-medium);
+  font-size: 12px;
 }
 </style>

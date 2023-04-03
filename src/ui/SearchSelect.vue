@@ -226,6 +226,10 @@ ul {
   color: inherit;
   outline: none;
   border: none;
+
+  font-family: var(--findcreek);
+  font-size: 12px;
+  color: var(--heading-color-1);
 }
 
 .dropdown-text {

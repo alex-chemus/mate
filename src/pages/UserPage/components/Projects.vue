@@ -75,6 +75,7 @@ const computedProjects = computed(() => {
 .projects-title {
   margin-bottom: 26px;
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 14px;
   color: var(--heading-color-2);
 

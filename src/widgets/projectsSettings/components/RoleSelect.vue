@@ -71,7 +71,9 @@ const getText = computed(() => {
 .title {
   margin-left: 3px;
   margin-right: 13px;
+  margin-bottom: 13px;
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 13px;
   color: var(--heading-color-1);
 }

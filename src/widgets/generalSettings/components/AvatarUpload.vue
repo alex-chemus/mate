@@ -70,13 +70,16 @@ const onUpload = (e: FileList) => {
 
 .name {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 20px;
   margin: 0;
-  margin-bottom: 0;
+  margin-bottom: 5px;
   color: var(--heading-color-2);
 }
 
 .text-id {
   color: var(--text-color-1);
+  font-family: var(--noto-sans);
+  font-size: 14px;
 }
 </style>

@@ -93,6 +93,7 @@ const { theme, toggleTheme } = useTheme()
 
 h6 {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 16px;
   margin: 0;
   color: var(--heading-color-2);

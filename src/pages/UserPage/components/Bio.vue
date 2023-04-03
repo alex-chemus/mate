@@ -63,6 +63,7 @@ const isOpen = ref(false)
 
   h5 {
     font-family: var(--findcreek-medium);
+    font-weight: var(--medium);
     font-size: 14px;
     letter-spacing: 1%;
     margin: 0;

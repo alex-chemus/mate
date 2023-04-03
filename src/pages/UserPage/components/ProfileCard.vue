@@ -169,6 +169,7 @@ const { openSettings } = useSettings()
 
 .fullname {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 16px;
   margin: 0;
   margin-bottom: 3px;

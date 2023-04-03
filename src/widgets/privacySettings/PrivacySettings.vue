@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { useTheme, FullAccountInfo } from '@/utils'
+import { useTheme } from '@/utils'
+import { FullAccountInfo } from '@/types'
 
 defineProps<{
   fullAccountInfo: FullAccountInfo
@@ -57,6 +58,7 @@ const { theme } = useTheme()
 
 .setting-title {
   font-family: var(--findcreek-medium);
+  font-weight: var(--medium);
   font-size: 15px;
   letter-spacing: -0.03em;
   margin-bottom: 3px;
