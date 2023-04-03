@@ -1,29 +1,33 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { useTheme } from '@/utils'
+import { useTheme, usePostEditor } from '@/utils'
 
 defineProps<{
   img?: string
 }>()
 
 const { theme } = useTheme()
+const { openPostEditor } = usePostEditor()
 </script>
 
 <template>
-  <section class="new-post-section" :class="theme">
-    <div class="content-wrapper --align-start">
+  <button class="new-post" :class="theme" @click="openPostEditor">
+    <img v-if="img" :src="img" alt="" class="icon" :class="theme" />
+    <div v-else class="icon" :class="theme" />
+    <span>Расскажите, что произошло...</span>
+
+    <!-- <div class="content-wrapper --align-start">
       <img v-if="img" :src="img" alt="" class="icon" :class="theme" />
       <div v-else class="icon placeholder" :class="theme" />
-      <!-- eslint-disable -->
+      <button>Расскажите, что произошло...</button>
       <input
         type="text" placeholder="Расскажите, что произошло..."
         class="input" :class="theme"
       />
-      <!-- eslint-enable -->
-    </div>
+    </div> -->
 
-    <div class="content-wrapper">
-      <button class="new-button" :class="theme">
+    <!-- <div class="content-wrapper">
+      <button class="new-button" :class="theme" @click="openPostEditor()">
         <svg width="20" height="20" viewBox="0 0 20 20">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
         </svg>
@@ -77,24 +81,29 @@ const { theme } = useTheme()
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-clock-hour-4" />
         </svg>
       </button>
-    </div>
-  </section>
+    </div> -->
+  </button>
 </template>
 
 <style lang="scss" scoped>
 @use 'sass:color';
 @import '@/assets/styles/style.scss';
 
-.new-post-section {
+.new-post {
   border: 1px solid color.change($gray-1, $alpha: .25);
   padding: 15px;
-  @include flex(flex-start, stretch, column);
+  width: 100%;
+  @include flex(flex-start, center);
+  gap: 13px;
   border-radius: 13px;
   background-color: var(--bg-color-1);
+  color: var(--heading-color-2);
+  font-family: var(--findcreek);
+  font-size: 13px;
 
-  & > *:not(:last-child) {
-    margin-bottom: 10px;
-  }
+  // & > *:not(:last-child) {
+  //   margin-bottom: 10px;
+  // }
 }
 
 .content-wrapper {
@@ -131,7 +140,7 @@ const { theme } = useTheme()
   outline: none;
   min-width: 0;
   flex-grow: 1;
-  background-color: var(--bg-color-2);
+  background-color: var(--bg-color-1);
 }
 
 .new-button {

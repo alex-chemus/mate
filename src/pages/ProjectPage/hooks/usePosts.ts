@@ -1,7 +1,7 @@
 import {
   Ref, ref, watch, computed
 } from 'vue'
-import { FullProjectInfo, FullPostInfo, FullUserInfo } from '@/types'
+import { FullProjectInfo, FullProjectPostInfo, FullUserInfo } from '@/types'
 import {
   useApiState, useAuthState, useDispatch,
 } from '@/utils'
@@ -19,7 +19,7 @@ const usePosts = (
   const authState = useAuthState()
   const dispatch = useDispatch()
 
-  const posts = ref<FullPostInfo[] | null>(null)
+  const posts = ref<FullProjectPostInfo[] | null>(null)
   const getPosts = computed(() => {
     return posts.value
     // return posts.value !== null
@@ -49,7 +49,7 @@ const usePosts = (
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.getProjectPosts/`,
       info: { method: 'POST', body }
-    })) as FullPostInfo[]
+    })) as FullProjectPostInfo[]
 
     if (shouldntReset && posts.value) posts.value = [...posts.value, ...res]
     else posts.value = res
@@ -84,7 +84,7 @@ const usePosts = (
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.getInfo/`,
       info: { method: 'POST', body }
-    })) as FullPostInfo[]
+    })) as FullProjectPostInfo[]
 
     //posts.value = posts.value.map((p) => p.id === id ? res[0] : p)
     // бинарный поиск

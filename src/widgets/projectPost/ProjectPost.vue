@@ -3,16 +3,16 @@ import {
   defineEmits, defineProps, computed, ref
 } from 'vue'
 import {
-  FullPostInfo, FullProjectInfo, FullUserInfo, FileInfo
+  FullProjectPostInfo, FullProjectInfo, FullUserInfo, FileInfo
 } from '@/types'
-import PostLayout from './PostLayout.vue'
+import ProjectPostLayout from './ProjectPostLayout.vue'
 import { useDate, useLikes, useViewer } from './hooks'
 import {
   PostButtons, PostComment, PostText, PostGallery, PostHeader, ImageViewer
 } from './components'
 
 const props = defineProps<{
-  postInfo: FullPostInfo,
+  postInfo: FullProjectPostInfo,
   authorInfo: FullUserInfo,
   projectInfo: FullProjectInfo
 }>()
@@ -52,7 +52,7 @@ const getReaction = computed(() => {
     @next="nextImage"
   />
 
-  <post-layout>
+  <project-post-layout>
     <template #header>
       <post-header
         :title="postInfo.title"
@@ -102,5 +102,5 @@ const getReaction = computed(() => {
     <template #comment>
       <post-comment />
     </template>
-  </post-layout>
+  </project-post-layout>
 </template>

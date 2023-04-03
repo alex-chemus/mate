@@ -1,22 +1,22 @@
 import { ComputedRef, ref, computed } from 'vue'
 import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate, useAlert
+  useApiState, useAuthState, useDispatch, useAlert
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
 import { FileInfo } from '@/types'
 import { IFile } from '../types'
 
 const useUploadPost = ({
-  id, getFiles
+  id, getFiles, type, onAdd
 }: {
   type: 'user' | 'project'
-  id: number,
-  getFiles: ComputedRef<IFile[] | null>
+  id?: number,
+  getFiles: ComputedRef<IFile[] | null>,
+  onAdd: () => void
 }) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
-  const { setGlobalProjectsUpdate } = useGlobalUpdate()
   const { setSuccessMessage } = useAlert()
 
   const title = ref<string | null>(null)
@@ -64,22 +64,28 @@ const useUploadPost = ({
 
     if (title.value) body.append('title', title.value)
     if (description.value) body.append('description', description.value)
-    if (id) body.append('projectID', id.toString())
+    if (id && type === 'project') body.append('projectID', id.toString())
 
     if (getFiles.value) {
       const fileIDs = await uploadFiles(getFiles.value)
       body.append('media', fileIDs.join(', '))
     }
 
-    await dispatch(fetchActions.FETCH, {
-      url: `${apiState.value.apiUrl}/mate/projectPosts.create/`,
-      info: {
-        method: 'POST',
-        body
-      }
-    })
+    if (type === 'project') {
+      await dispatch(fetchActions.FETCH, {
+        url: `${apiState.value.apiUrl}/mate/projectPosts.create/`,
+        info: { method: 'POST', body }
+      })
+      //setGlobalProjectsUpdate()
+    } else {
+      await dispatch(fetchActions.FETCH, {
+        url: `${apiState.value.apiUrl}/mate/userPosts.create/`,
+        info: { method: 'POST', body }
+      })
+      //setGlobalAccountUpdate()
+    }
 
-    setGlobalProjectsUpdate()
+    onAdd()
     setSuccessMessage('Опубликовано')
   }
 

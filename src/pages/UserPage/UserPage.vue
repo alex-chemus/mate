@@ -1,14 +1,16 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import {
-  Settings, Header, Post, PostEditor
+  Settings, Header, PostEditor, UserPost
 } from '@/widgets'
 import {
   Bio, Partners, ProfileCard,
   Projects, Skills, Contacts, NewPost,
-  Subscriptions
+  Subscriptions, PostsObserver
 } from './components'
-import { usePageInfo, useSubscribe, useSubscriptions } from './hooks'
+import {
+  usePageInfo, useSubscribe, useSubscriptions, usePosts
+} from './hooks'
 import { Partner } from './types'
 import UserLayout from './UserLayout.vue'
 
@@ -17,6 +19,9 @@ const { fullUsersInfo, fullProjectsInfo, isMe } = usePageInfo({
   update: subUpdate
 })
 const { subscriptions } = useSubscriptions({ fullUsersInfo })
+const { posts, next, updatePost } = usePosts({
+  userInfo: computed(() => fullUsersInfo.value ? fullUsersInfo.value[0] : null)
+})
 
 const skills = computed(() => {
   if (!fullUsersInfo.value) return null
@@ -38,6 +43,12 @@ const partners = ref<Partner[]>([
 
 <template>
   <settings />
+
+  <post-editor
+    v-if="fullUsersInfo && isMe(fullUsersInfo[0].findcreekID)"
+    :img="fullUsersInfo[0].avatar.avatarCompressed ?? fullUsersInfo[0].avatar.avatar"
+    type="user"
+  />
 
   <user-layout v-if="fullUsersInfo" :loading="!fullUsersInfo">
     <template #header>
@@ -87,12 +98,28 @@ const partners = ref<Partner[]>([
 
     <template #new-post>
       <new-post
-        :img="fullUsersInfo[0].avatar.avatarCompressed"
+        :img="fullUsersInfo[0].avatar.avatarCompressed ?? fullUsersInfo[0].avatar.avatar"
+      />
+      <!-- <post-editor
+        v-if="isMe(fullUsersInfo[0].findcreekID)"
+        type="user" :img="fullUsersInfo[0].avatar.avatarCompressed ?? fullUsersInfo[0].avatar.avatar" /> -->
+    </template>
+
+    <!-- <template #post>
+      <post />
+    </template> -->
+
+    <template #posts v-if="posts">
+      <user-post
+        v-for="post in posts" :key="post.date.unixTime"
+        :post-info="post"
+        :author-info="fullUsersInfo[0]"
+        @reload="updatePost"
       />
     </template>
 
-    <template #post>
-      <post />
+    <template #posts-observer>
+      <posts-observer @intersect="next()" />
     </template>
 
     <template #projects>

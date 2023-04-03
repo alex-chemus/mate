@@ -1,8 +1,7 @@
 import { FileInfo } from './FileInfo'
 
-export type FullPostInfo = {
+export type FullUserPostInfo = {
   id: number,
-  projectID: number,
   authorID: number,
   title: string,
   description: string,
@@ -17,7 +16,6 @@ export type FullPostInfo = {
     timeZone: string
   },
   lastEditingInfo: {
-    userID: number,
     date: {
       date: string,
       unixTime: number,

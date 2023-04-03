@@ -37,8 +37,8 @@ const { theme } = useTheme()
     </div> -->
 
     <slot name="header" />
-    <slot name="gallery" />
     <slot name="text" />
+    <slot name="gallery" />
     <slot name="buttons" />
   </article>
 </template>

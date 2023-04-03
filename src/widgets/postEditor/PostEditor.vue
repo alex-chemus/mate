@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import { usePostEditor } from '@/utils'
 import { Input, Textarea } from '@/ui'
 import { FilesList, SubmitButton } from './components'
@@ -8,8 +8,12 @@ import PostEditorLayout from './PostEditorLayout.vue'
 
 const props = defineProps<{
   type: 'user' | 'project',
-  id: number,
+  id?: number,
   img?: string
+}>()
+
+const emit = defineEmits<{
+  (e: 'add'): void
 }>()
 
 const {
@@ -25,7 +29,8 @@ const {
 } = useUploadPost({
   type: props.type,
   id: props.id,
-  getFiles
+  getFiles,
+  onAdd: () => emit('add')
 })
 </script>
 

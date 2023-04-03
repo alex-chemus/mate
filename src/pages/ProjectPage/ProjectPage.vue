@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import {
-  Post, Header, Settings, PostEditor
+  ProjectPost, Header, Settings, PostEditor
 } from '@/widgets'
 //import { useFullAccountInfo } from '@/utils'
 import { useFullAccountInfo } from '@/api'
@@ -37,9 +37,14 @@ const { subscribe, unsubscribe, subUpdate } = useSubscribe()
 const { projectInfo, projectEmployees } = useProjectInfo({
   update: subUpdate
 })
+
+const postUpdate = ref<symbol | null>(null)
+const setPostUpdate = () => {
+  postUpdate.value = Symbol()
+}
 const {
-  getPosts, authors, next, prev, updatePost
-} = usePosts({ projectInfo })
+  getPosts, authors, next, updatePost
+} = usePosts({ projectInfo, update: postUpdate })
 
 const ownsProject = computed(() => {
   if (!fullAccountInfo.value || !projectInfo.value) return
@@ -60,6 +65,7 @@ const ownsProject = computed(() => {
     type="project"
     :id="projectInfo.id"
     :img="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar"
+    @add="setPostUpdate"
   />
 
   <profile-layout v-if="fullAccountInfo && projectInfo" :loading="!fullAccountInfo || !projectInfo">
@@ -107,7 +113,7 @@ const ownsProject = computed(() => {
     </template>
 
     <template #posts v-if="getPosts && authors">
-      <Post
+      <project-post
         v-for="post in getPosts" :key="post.date.unixTime"
         :post-info="post"
         :project-info="projectInfo"
