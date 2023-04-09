@@ -33,6 +33,15 @@ const { theme } = useTheme()
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-list-search" />
       </svg>
     </button>
+
+    <button class="tab"
+      :class="currentTab === 'projects' ? 'current' : ''"
+      @click="emit('switch', 'projects')"
+    >
+      <svg width="30" height="30" viewBox="0 0 30 30">
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-briefcase" />
+      </svg>
+    </button>
   </div>
 </template>
 

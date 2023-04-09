@@ -27,7 +27,7 @@ export type AccountInfo = {
   findcreekID: number
 }
 
-export type Tab = 'profile' | 'vacancies' | null
+export type Tab = 'profile' | 'vacancies' | 'projects' | null
 
 // export type SearchItem = {
 //   avatar?: string;
