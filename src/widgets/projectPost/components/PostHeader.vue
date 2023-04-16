@@ -57,17 +57,12 @@ header {
 }
 
 .title {
-  font-family: var(--findcreek-medium);
-  font-size: 13px;
-  color: var(--heading-color-2);
+  @include findcreek-medium(13px, var(--heading-color-2));
   margin: 0;
-  font-weight: 500;
 }
 
 .author {
-  font-family: var(--findcreek);
-  font-size: 11px;
-  color: var(--text-color-1);
+  @include findcreek(11px, var(--text-color-1));
   letter-spacing: -0.025em;
 
   a {
@@ -87,10 +82,8 @@ header {
   height: 20px;
   padding: 0 10px;
   @include flex(center, center);
-  font-family: var(--findcreek);
-  font-size: 11px;
+  @include findcreek(11px, var(--text-color-1));
   letter-spacing: -0.03em;
-  color: var(--text-color-1);
   border-radius: 100vmax;
 }
 </style>

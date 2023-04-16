@@ -68,10 +68,8 @@ const inputValue = ref('')
 }
 
 .badge-text {
-  font-family: var(--noto-sans-medium);
-  font-size: 13px;
+  @include noto-sans-medium(13px, var(--heading-color-1));
   letter-spacing: -0.02em;
   margin-right: 7px;
-  color: var(--heading-color-1);
 }
 </style>

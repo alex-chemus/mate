@@ -136,9 +136,7 @@ const startEditing = (item: SocialMedia) => {
   gap: 8px;
 
   span {
-    font-family: var(--findcreek-medium);
-    font-size: 13px;
-    color: var(--heading-color-1);
+    @include findcreek-medium(13px, var(--heading-color-1));
   }
 }
 </style>

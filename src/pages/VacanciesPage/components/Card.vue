@@ -108,18 +108,13 @@ const getButtonValue = computed(() => {
   gap: 4px;
 
   h6 {
-    color: var(--heading-color-2);
-    font-family: var(--findcreek-medium);
-    font-weight: 500;
+    @include findcreek-medium(14px, var(--heading-color-2));
     margin: 0;
-    font-size: 14px;
   }
 
   p {
     margin: 0;
-    color: var(--heading-color-2);
-    font-family: var(--findcreek);
-    font-size: 12.5px;
+    @include findcreek(12.5px, var(--heading-color-2));
   }
 }
 
@@ -152,16 +147,11 @@ const getButtonValue = computed(() => {
 }
 
 .theme {
-  font-family: var(--findcreek-medium);
-  font-size: 10px;
-  color: var(--text-color-1);
+  @include findcreek-medium(10px, var(--text-color-1));
 }
 
 .title {
-  font-family: var(--findcreek-medium);
-  font-size: 16px;
-  color: var(--heading-color-2);
-
+  @include findcreek-medium(16px, var(--heading-color-2));
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -170,9 +160,7 @@ const getButtonValue = computed(() => {
 
 .date {
   grid-row: 2;
-  font-family: var(--findcreek);
-  color: var(--text-color-1);
-  font-size: 13px;
+  @include findcreek(13px, var(--text-color-1));
   letter-spacing: -0.03em;
 }
 
@@ -182,11 +170,9 @@ const getButtonValue = computed(() => {
   height: 28px;
   width: 100px;
   border: 1px solid transparent;
-  font-family: var(--findcreek-medium);
-  font-size: 12px;
+  @include findcreek-medium(12px, var(--light));
   letter-spacing: .01em;
   transition: var(--fast);
-  color: var(--light);
   background-color: var(--accent);
 
   &:hover,

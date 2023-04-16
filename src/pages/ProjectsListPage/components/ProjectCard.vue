@@ -93,16 +93,11 @@ const getSubsTitle = computed(() => {
   h6 {
     margin: 0;
     margin-bottom: 1px;
-    font-family: var(--findcreek-medium);
-    font-weight: var(--medium);
-    color: var(--heading-color-2);
-    font-size: 13px;
+    @include findcreek-medium(13px, var(--heading-color-2));
   }
 
   p {
-    font-family: var(--noto-sans);
-    color: var(--text-color-1);
-    font-size: 11px;
+    @include noto-sans(11px, var(--text-color-1));
   }
 }
 

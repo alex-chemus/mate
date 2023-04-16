@@ -86,17 +86,12 @@ main {
 }
 
 h1 {
-  font-family: var(--findcreek-bold);
-  font-weight: var(--bold);
-  font-size: 58px;
+  @include findcreek-bold(58px, var(--heading-color-2));
   margin-bottom: 26px;
-  color: var(--heading-color-2);
 }
 
 h2 {
-  font-family: var(--findcreek-bold);
-  font-weight: var(--bold);
-  font-size: 20px;
+  @include findcreek-bold(20px);
   margin-bottom: 64px;
   margin-bottom: 13px;
 
@@ -114,10 +109,7 @@ h2 {
 }
 
 h3 {
-  font-family: var(--findcreek-bold);
-  font-weight: var(--bold);
-  font-size: 20px;
-  color: var(--heading-color-2);
+  @include findcreek-bold(20px, var(--heading-color-2));
 }
 
 .grid-container {
@@ -140,9 +132,7 @@ h3 {
 .div-separator {
   height: 50px;
   width: min-content;
-  font-family: var(--findcreek-medium);
-  font-size: 16px;
-  color: var(--gray-1);
+  @include findcreek-medium(16px, var(--gray-1));
   @include flex(center, center);
   margin: 0 auto;
 }
@@ -151,10 +141,8 @@ h3 {
   margin-top: 57px;
 
   .text {
-    font-size: 16px;
-    font-family: var(--findcreek-medium);
+    @include findcreek-medium(16px, var(--heading-color-2));
     margin-bottom: 16px;
-    color: var(--heading-color-2);
   }
 }
 

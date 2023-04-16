@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue'
-import { Post, Header, Settings } from '@/widgets'
+//import { Post, Header, Settings } from '@/widgets'
 //import { useFullAccountInfo } from '@/utils'\
 import { useFullAccountInfo, useFetchFullProjectsInfo } from '@/api'
-import { FullProjectInfo } from '@/utils'
+import { FullProjectInfo } from '@/types'
 import type { Partner } from './types'
 import {
   Bio, NewPost, Partners, ProfileCard,

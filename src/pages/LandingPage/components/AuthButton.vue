@@ -45,9 +45,7 @@ if (props.textAccent) cls.value.push('text-accent')
   @include flex(flex-start, center);
   padding: 0 13px;
   cursor: pointer;
-
-  font-family: var(--findcreek-medium, $findcreek-medium);
-  font-size: 16px;
+  @include findcreek-medium(16px);
 }
 
 .centered {

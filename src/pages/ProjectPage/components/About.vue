@@ -27,17 +27,14 @@ const { theme } = useTheme()
   background-color: var(--bg-color-1);
 
   h5 {
-    font-family: var(--findcreek-medium);
-    font-size: 14px;
+    @include findcreek-medium(14px, currentColor);
     letter-spacing: 1%;
     margin: 0;
     margin-bottom: 12px;
-    color: currentColor;
   }
 
   p {
-    font-family: var(--findcreek-medium);
-    font-size: 13px;
+    @include findcreek-medium(13px);
     line-height: 160%;
     letter-spacing: -2%;
   }

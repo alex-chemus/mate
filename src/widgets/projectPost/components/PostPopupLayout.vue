@@ -70,11 +70,9 @@ li {
 }
 
 button {
-  font-family: var(--findcreek);
-  font-size: 13px;
+  @include findcreek(13px, inherit);
   line-height: 140%;
   letter-spacing: -3.3%;
-  color: inherit;
 
   svg {
     transition: var(--fast);

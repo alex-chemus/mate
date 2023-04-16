@@ -92,18 +92,12 @@ const { theme, toggleTheme } = useTheme()
 }
 
 h6 {
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
-  font-size: 16px;
+  @include findcreek-medium(16px, var(--heading-color-2));
   margin: 0;
-  color: var(--heading-color-2);
 }
 
 small {
-  font-family: var(--findcreek);
-  font-weight: normal;
-  font-size: 12px;
-  color: var(--text-color-3);
+  @include findcreek(12px, var(--text-color-3));
 }
 
 .button {
@@ -113,10 +107,7 @@ small {
   display: grid;
   @include flex(flex-start, center);
   gap: 12px;
-  color: var(--heading-color-2);
-  font-family: var(--findcreek);
-  font-weight: normal;
-  font-size: 12px;
+  @include findcreek(12px, var(--heading-color-2));
 
   &:hover {
     background-color: var(--bg-color-3);
@@ -153,10 +144,8 @@ small {
   border-radius: 8px;
   @include flex(center, center);
   border: 1px solid currentColor;
-  font-family: var(--findcreek-medium);
-  font-size: 12px;
+  @include findcreek-medium(12px, var(--accent));
   transition: var(--fast);
-  color: var(--accent);
 
   &:hover {
     color: var(--light);

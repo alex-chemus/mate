@@ -76,10 +76,8 @@ const onCoverUpdate = (e: FileList) => {
   height: 100px;
   width: 100%;
   border-radius: 13px;
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
+  @include findcreek-medium(14px, var(--light));
   letter-spacing: -0.03em;
-  color: var(--light);
   @include flex(center, center);
   gap: 9px;
   border: 1px dashed var(--bg-color-1);
@@ -110,11 +108,8 @@ const onCoverUpdate = (e: FileList) => {
 }
 
 .name {
-  font-size: 16px;
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
+  @include findcreek-medium(16px, var(--heading-color-1));
   margin: 0;
   margin-bottom: 20px;
-  color: var(--heading-color-1);
 }
 </style>

@@ -43,10 +43,7 @@ header {
 }
 
 .nav-link {
-  font-family: var(--findcreek-bold);
-  font-size: 20px;
-  font-weight: var(--bold);
-  color: rgb(145 152 165 / .8);
+  @include findcreek-bold(20px, rgb(145 152 165 / .8));
   text-decoration: none;
 }
 
@@ -59,9 +56,7 @@ header {
   text-decoration: none;
 
   span {
-    font-size: 22px;
-    font-family: var(--montserrat-bold);
-    color: var(--heading-color-2);
+    @include montserrat-bold(22px, var(--heading-color-2));
   }
 
   & > *:not(:last-child) {

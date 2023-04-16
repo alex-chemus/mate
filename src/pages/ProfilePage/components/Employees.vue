@@ -47,15 +47,11 @@ const { theme } = useTheme()
 
 .employees-title {
   margin-bottom: 26px;
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
-  color: var(--heading-color-2);
+  @include findcreek-medium(14px, var(--heading-color-2));
 
   span {
-    font-family: var(--noto-sans-bold);
-    //font-weight: var(--bold);
+    @include noto-sans-bold(inherit, var(--text-color-1));
     margin-left: 7px;
-    color: var(--text-color-1);
   }
 }
 
@@ -91,19 +87,14 @@ const { theme } = useTheme()
 
 .employee-wrapper {
   h5 {
-    font-family: var(--findcreek-bold);
-    font-weight: var(--bold);
-    font-size: 14px;
+    @include findcreek-medium(14px var(--heading-color-2));
     letter-spacing: -3%;
     margin: 0;
-    color: var(--heading-color-2);
   }
 
   small {
-    font-family: var(--findcreek);
-    font-size: 12px;
+    @include findcreek(12px, var(--text-color-1));
     letter-spacing: -3%;
-    color: var(--text-color-1);
   }
 }
 </style>

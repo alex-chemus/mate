@@ -67,9 +67,7 @@ const getRole = computed(() => {
 }
 
 .full-name {
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
-  font-size: 13px;
+  @include findcreek-medium(13px);
   margin: 0;
 
   &.light {
@@ -82,8 +80,7 @@ const getRole = computed(() => {
 }
 
 .text-id {
-  font-family: var(--findcreek);
-  font-size: 12px;
+  @include findcreek(12px);
 
   &.light {
     color: rgb(50 50 50 / .5);
@@ -95,9 +92,7 @@ const getRole = computed(() => {
 }
 
 .role {
-  font-family: var(--findcreek);
-  font-size: 13px;
-  color: var(--text-color-1);
+  @include findcreek(13px);
 }
 
 .change-button {
@@ -106,12 +101,10 @@ const getRole = computed(() => {
   padding: 0 12px;
   @include flex(center, center);
   border-radius: 100vmax;
-  font-family: var(--findcreek-medium);
-  font-size: 12px;
+  @include findcreek(12px, var(--accent));
   border: 1px solid currentColor;
   background-color: transparent;
   transition: var(--fast);
-  color: var(--accent);
 
   &:hover,
   &:focus {

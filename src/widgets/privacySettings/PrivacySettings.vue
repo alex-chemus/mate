@@ -57,18 +57,13 @@ const { theme } = useTheme()
 }
 
 .setting-title {
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
-  font-size: 15px;
+  @include findcreek-medium(15px, var(--heading-color-1));
   letter-spacing: -0.03em;
   margin-bottom: 3px;
-  color: var(--heading-color-1);
 }
 
 .setting-text {
-  font-family: var(--findcreek);
-  font-size: 13px;
+  @include findcreek(13px, var(--text-color-1));
   letter-spacing: -0.03em;
-  color: var(--text-color-1);
 }
 </style>

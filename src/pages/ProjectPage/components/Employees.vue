@@ -69,14 +69,10 @@ const getSortedEmployess = computed(() => {
 
 .employees-title {
   margin-bottom: 26px;
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
-  color: var(--heading-color-2);
+  @include findcreek-medium(14px, var(--heading-color-2));
 
   span {
-    font-family: var(--noto-sans-bold);
-    margin-left: 7px;
-    color: var(--text-color-1);
+    @include noto-sans-bold(inherit, var(--text-color-1));
   }
 }
 
@@ -114,18 +110,14 @@ const getSortedEmployess = computed(() => {
   text-decoration: none;
 
   h5 {
-    font-family: var(--findcreek-bold);
-    font-size: 14px;
+    @include findcreek-bold(14px, var(--heading-color-2));
     letter-spacing: -3%;
     margin: 0;
-    color: var(--heading-color-2);
   }
 
   p {
-    font-family: var(--findcreek);
-    font-size: 12px;
+    @include findcreek(12px, var(--text-color-1));
     letter-spacing: -3%;
-    color: var(--text-color-1);
   }
 }
 </style>

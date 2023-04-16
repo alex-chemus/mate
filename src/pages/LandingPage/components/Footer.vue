@@ -47,10 +47,8 @@ footer {
 
 .links-wrapper a,
 .copyright {
-  font-size: 12px;
-  font-family: var(--findcreek-medium);
+  @include findcreek-medium(12px, inherit);
   text-decoration: none;
-  color: inherit;
 
   &.light {
     color: color.change($gray-1, $alpha: .8);

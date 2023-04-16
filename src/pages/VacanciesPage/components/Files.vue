@@ -56,8 +56,7 @@ defineProps<{
 
   p {
     text-align: left;
-    font-family: var(--findcreek);
-    font-size: 12px;
+    @include findcreek(12px);
     letter-spacing: -0.03em;
     display: -webkit-box;
     -webkit-line-clamp: 2;

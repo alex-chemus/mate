@@ -55,9 +55,7 @@ defineProps<{
 }
 
 .title {
-  font-family: var(--findcreek-bold);
-  font-size: 16px;
-  font-weight: var(--bold);
+  @include findcreek-bold(16px);
   margin-bottom: 15px;
 
   &.light {

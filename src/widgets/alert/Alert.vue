@@ -64,9 +64,7 @@ const close = () => {
   padding: 0 15px;
   @include flex(flex-start, center);
   gap: 15px;
-  color: var(--heading-color-2);
-  font-family: var(--findcreek);
-  font-size: 15px;
+  @include findcreek(15px, var(--heading-color-2));
   position: absolute;
   top: 20px;
   left: 50%;

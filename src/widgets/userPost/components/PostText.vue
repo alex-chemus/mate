@@ -35,19 +35,15 @@ const computedText = computed(() => {
 
 .text {
   display: inline;
-  font-family: var(--findcreek);
-  font-size: 13px;
+  @include findcreek(13px, var(--heading-color-2));
   line-height: 140%;
   letter-spacing: -3.3%;
-  color: var(--heading-color-2);
 }
 
 .more-button {
   display: inline;
-  font-family: var(--findcreek);
-  font-size: 13px;
+  @include findcreek(13px, var(--accent));
   line-height: 140%;
   letter-spacing: -3.3%;
-  color: var(--accent);
 }
 </style>

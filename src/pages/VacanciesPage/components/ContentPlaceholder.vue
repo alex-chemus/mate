@@ -20,9 +20,6 @@ defineProps<{
 .placeholder {
   height: 100%;
   @include flex(center, center);
-
-  font-family: var(--findcreek-medium);
-  font-size: 16px;
-  color: var(--heading-color-1);
+  @include findcreek-medium(16px, var(--heading-color-1));
 }
 </style>

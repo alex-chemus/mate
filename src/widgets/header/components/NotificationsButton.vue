@@ -59,8 +59,7 @@ const { theme } = useTheme()
 }
 
 .text {
-  font-family: var(--findcreek);
-  font-size: 14px;
+  @include findcreek(14px);
   letter-spacing: -1.5%;
 }
 
@@ -69,8 +68,7 @@ const { theme } = useTheme()
   height: 20px;
   aspect-ratio: 1;
   @include flex(center, center);
-  font-family: var(--findcreek-medium);
-  font-size: 12px;
+  @include findcreek-medium(12px);
   line-height: 1em;
   letter-spacing: .04em;
 

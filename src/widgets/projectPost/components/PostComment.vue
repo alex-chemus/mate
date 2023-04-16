@@ -74,9 +74,7 @@ const img = ref<string | null>()
   outline: none;
   border: none;
   margin-right: 10px;
-  color: inherit;
-  font-family: var(--findcreek);
-  font-size: 14px;
+  @include findcreek(14px, inherit);
   background-color: transparent;
 }
 

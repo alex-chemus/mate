@@ -27,11 +27,9 @@ const { theme } = useTheme()
   padding: 0 18px;
   @include flex(center, center);
   border: 1px solid transparent;
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
+  @include findcreek(14px, var(--text-color-1));
   letter-spacing: -0.03em;
   transition: var(--fast);
-  color: var(--text-color-1);
 
   &:hover,
   &.selected {

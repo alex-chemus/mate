@@ -69,9 +69,7 @@ const { theme } = useTheme()
 }
 
 .search-input {
-  font-family: var(--findcreek);
-  font-size: 14px;
-  color: currentColor;
+  @include findcreek(14px, currentColor);
   background-color: transparent;
   border: none;
   outline: none;

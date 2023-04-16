@@ -88,10 +88,8 @@ const getText = computed(() => {
 }
 
 .main-title {
-  font-family: var(--findcreek-bold);
-  font-size: 14px;
+  @include findcreek-bold(14px, var(--heading-color-1));
   letter-spacing: -0.02em;
-  color: var(--heading-color-1);
 }
 
 .name-container {
@@ -108,19 +106,14 @@ const getText = computed(() => {
 }
 
 .name-title {
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
-  font-size: 14px;
+  @include findcreek-medium(14px, var(--heading-color-1));
   letter-spacing: -0.02em;
   margin-bottom: 2px;
-  color: var(--heading-color-1);
 }
 
 .role {
-  font-family: var(--findcreek);
-  font-size: 12px;
+  @include findcreek(12px, var(--text-color-1));
   letter-spacing: -0.02em;
-  color: var(--text-color-1);
 }
 
 .warning-container {
@@ -145,11 +138,9 @@ const getText = computed(() => {
 }
 
 .warning-text {
-  font-family: var(--findcreek);
-  font-size: 12px;
+  @include findcreek(12px, var(--heading-color-2));
   letter-spacing: -0.02em;
   line-height: 1.3em;
-  color: var(--heading-color-2);
 
   strong {
     font-family: var(--findcreek-bold);

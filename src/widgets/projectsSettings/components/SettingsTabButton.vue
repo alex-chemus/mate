@@ -55,11 +55,9 @@ const name = computed(() => {
   }
 
   span {
-    font-family: var(--findcreek);
-    font-size: 13px;
+    @include findcreek(13px, var(--heading-color-1));
     line-height: 1.40em;
     letter-spacing: -0.033em;
-    color: var(--heading-color-1);
   }
 
   &.selected,

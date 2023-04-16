@@ -17,12 +17,10 @@ const emit = defineEmits<{
   width: min(250px, 100%);
   height: 30px;
   border-radius: 5px;
-  color: var(--accent);
   border: 1px solid currentColor;
   background-color: transparent;
   transition: var(--fast);
-  font-family: var(--findcreek);
-  font-size: 12px;
+  @include findcreek(12px, var(--accent));
   letter-spacing: -0.05em;
 
   &:hover,

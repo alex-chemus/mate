@@ -103,27 +103,20 @@ const getDate = computed(() => {
   gap: 4px;
 
   h6 {
-    color: var(--heading-color-2);
-    font-family: var(--findcreek-medium);
-    font-weight: 500;
+    @include findcreek-medium(14px, var(--heading-color-2));
     margin: 0;
-    font-size: 14px;
   }
 
   p {
     margin: 0;
-    color: var(--heading-color-2);
-    font-family: var(--findcreek);
-    font-size: 12.5px;
+    @include findcreek-medium(12.5px, var(--heading-color-2));
   }
 }
 
 .date {
   margin-left: 25px;
   margin-right: auto;
-  font-family: var(--findcreek);
-  font-size: 13px;
-  color: var(--text-color-1);
+  @include findcreek(13px, var(--text-color-1));
   letter-spacing: -0.03em;
 }
 
@@ -146,10 +139,7 @@ const getDate = computed(() => {
 }
 
 .title {
-  font-family: var(--findcreek-medium);
-  font-weight: 500;
-  font-size: 20px;
-  color: var(--heading-color-2);
+  @include findcreek-medium(20px, var(--heading-color-2));
   margin: 0;
 }
 
@@ -158,10 +148,8 @@ const getDate = computed(() => {
   gap: 12px;
 
   p {
-    font-family: var(--findcreek-medium);
-    font-size: 14px;
+    @include findcreek-medium(14px, var(--heading-color-1));
     letter-spacing: -0.03em;
-    color: var(--heading-color-1);
   }
 }
 
@@ -178,19 +166,15 @@ const getDate = computed(() => {
   padding: 0 8px;
   @include flex(center, center);
   background-color: var(--accent);
-  color: var(--light);
-  font-family: var(--findcreek-medium);
-  font-size: 11px;
+  @include findcreek-medium(11px, var(--light));
   border-radius: 100vmax;
   margin: 26px 0 18px;
 }
 
 .text {
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
+  @include findcreek-medium(14px, var(--text-color-1));
   letter-spacing: -0.02em;
   line-height: 1.4em;
-  color: var(--text-color-1);
   margin-bottom: 30px;
 }
 

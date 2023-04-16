@@ -279,10 +279,8 @@ ul {
   }
 
   &.title {
-    color: var(--text-color-1);
     margin-left: 10px;
-    font-size: 13px;
-    font-family: var(--findcreek);
+    @include findcreek(13px, var(--text-color-1));
   }
 }
 
@@ -292,17 +290,12 @@ ul {
   color: inherit;
   outline: none;
   border: none;
-
-  font-family: var(--findcreek);
-  font-size: 12px;
-  color: var(--heading-color-1);
+  @include findcreek(12px, var(--heading-color-1));
 }
 
 .dropdown-text {
-  font-family: var(--findcreek);
-  font-size: 15px;
+  @include findcreek(15px, var(--heading-color-1));
   letter-spacing: -0.01em;
-  color: var(--heading-color-1);
 }
 
 .loader {

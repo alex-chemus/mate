@@ -97,13 +97,7 @@ const { openPostEditor } = usePostEditor()
   gap: 13px;
   border-radius: 13px;
   background-color: var(--bg-color-1);
-  color: var(--heading-color-2);
-  font-family: var(--findcreek);
-  font-size: 13px;
-
-  // & > *:not(:last-child) {
-  //   margin-bottom: 10px;
-  // }
+  @include findcreek(13px, var(--heading-color-2));
 }
 
 .content-wrapper {
@@ -133,9 +127,7 @@ const { openPostEditor } = usePostEditor()
   height: 40px;
   padding: 0 15px;
   border-radius: 8px;
-  font-family: var(--findcreek);
-  font-size: 14px;
-  color: var(--gray-1);
+  @include findcreek(14px, var(--gray-1));
   border: 1px solid color.change($gray-1, $alpha: .5);
   outline: none;
   min-width: 0;
@@ -150,8 +142,7 @@ const { openPostEditor } = usePostEditor()
   padding-left: 3px;
   padding-right: 13px;
   border: 1px solid color.change($gray-1, $alpha: .7);
-  font-family: var(--findcreek);
-  font-size: 12px;
+  @include findcreek(12px);
 
   &.light {
     color: color.change($gray-1, $alpha: .7);

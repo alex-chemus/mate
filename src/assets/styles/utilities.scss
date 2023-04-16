@@ -60,3 +60,59 @@ $sm: 480px;
     background-color: #bbb;
   }
 }
+
+@mixin findcreek($fz, $color: initial) {
+  font-family: var(--findcreek);
+  font-size: $fz;
+  font-weight: normal;
+  color: $color;
+}
+
+@mixin findcreek-medium($fz, $color: initial) {
+  font-family: var(--findcreek-medium);
+  font-weight: 500;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin findcreek-bold($fz, $color: initial) {
+  font-family: var(--findcreek-bold);
+  font-weight: 700;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin findcreek-light($fz, $color: initial) {
+  font-family: var(--findcreek-light);
+  font-weight: 300;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin montserrat-bold($fz, $color: initial) {
+  font-family: var(--montserrat-bold);
+  font-weight: 700;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin noto-sans($fz, $color: initial) {
+  font-family: var(--noto-sans);
+  font-weight: normal;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin noto-sans-medium($fz, $color: initial) {
+  font-family: var(--noto-sans-medium);
+  font-weight: 500;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin noto-sans-bold($fz, $color: initial) {
+  font-family: var(--noto-sans-bold);
+  font-weight: 700;
+  font-size: $fz;
+  color: $color;
+}

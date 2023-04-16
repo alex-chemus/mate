@@ -72,10 +72,7 @@ const getText = computed(() => {
   margin-left: 3px;
   margin-right: 13px;
   margin-bottom: 13px;
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
-  font-size: 13px;
-  color: var(--heading-color-1);
+  @include findcreek-medium(13px, var(--heading-color-1));
 }
 </style>
 
@@ -123,9 +120,7 @@ const getText = computed(() => {
 
 .role-dropdown {
   .ant-select-item-group {
-    font-family: var(--noto-sans);
-    font-size: 13px;
-    color: var(--text-color-1);
+    @include noto-sans(13px, var(--text-color-1));
   }
 }
 

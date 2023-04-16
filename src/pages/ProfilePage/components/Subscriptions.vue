@@ -58,9 +58,7 @@ defineProps<{
 }
 
 .title {
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
-  color: var(--heading-color-2);
+  @include findcreek-medium(14px, var(--heading-color-2));
 }
 
 .search-button {
@@ -98,16 +96,12 @@ defineProps<{
   h6 {
     margin: 0;
     margin-bottom: 1px;
-    font-family: var(--noto-sans);
-    font-size: 18px;
-    color: var(--heading-color-2);
+    @include noto-sans(18px, var(--heading-color-2));
   }
 
   small {
     margin: 0;
-    font-family: var(--noto-sans);
-    font-size: 14px;
-    color: var(--text-color-2);
+    @include noto-sans(14px, var(--text-color-2));
   }
 }
 

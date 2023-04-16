@@ -59,15 +59,10 @@ const projects = ref<IProject[]>([
 
 .projects-title {
   margin-bottom: 26px;
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
-  color: var(--heading-color-2);
+  @include findcreek-medium(14px, var(--heading-color-2));
 
   span {
-    font-family: var(--noto-sans-bold);
-    //font-weight: var(--bold);
-    margin-left: 7px;
-    color: var(--text-color-1);
+    @include noto-sans-bold(inherit, var(--text-color-1));
   }
 }
 
@@ -107,19 +102,15 @@ const projects = ref<IProject[]>([
 
 .project-wrapper {
   h5 {
-    font-family: var(--montserrat-bold);
-    font-size: 14px;
+    @include montserrat-bold(14px, currentColor);
     letter-spacing: -3%;
     margin: 0;
-    color: currentColor;
   }
   color: var(--heading-color-2);
 
   small {
-    font-family: var(--findcreek);
-    font-size: 13px;
+    @include findcreek(13px, var(--text-color-1));
     letter-spacing: -3%;
-    color: var(--text-color-1);
   }
 
   small span {

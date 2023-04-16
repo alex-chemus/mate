@@ -142,8 +142,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
   grid-column: 1 / span 2;
 
   p {
-    font-family: var(--findcreek);
-    font-size: 14px;
+    @include findcreek(14px);
     margin-right: auto;
   }
 
@@ -196,16 +195,12 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
 }
 
 .full-name {
-  font-family: var(--findcreek);
-  font-size: 11px;
-  color: var(--heading-color-2)
+  @include findcreek(11px, var(--heading-color-1));
 }
 
 .nothing-found {
-  font-family: var(--findcreek);
-  font-size: 15px;
+  @include findcreek(15px, var(--heading-color-1));
   letter-spacing: -0.01em;
-  color: var(--heading-color-1);
   @include flex(center, center);
 }
 </style>

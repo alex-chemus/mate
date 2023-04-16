@@ -89,11 +89,9 @@ const sortedNotifications = computed(() => {
   margin-bottom: 25px;
 
   h5 {
-    font-family: var(--findcreek);
-    font-size: 22px;
+    @include findcreek(22px, var(--heading-color-1));
     letter-spacing: -3.5%;
     margin: 0;
-    color: var(--heading-color-1);
   }
 
   a {
@@ -103,11 +101,9 @@ const sortedNotifications = computed(() => {
     border-radius: 100vmax;
     background-color: var(--accent-1);
     @include flex(center, center);
-    color: var(--light);
     transition: var(--fast);
     text-decoration: none;
-    font-family: var(--findcreek-medium);
-    font-size: 13px;
+    @include findcreek-medium(13px, var(--light));
   }
 
   a:focus, a:hover {

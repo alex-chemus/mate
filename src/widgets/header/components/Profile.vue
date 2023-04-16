@@ -50,10 +50,7 @@ const isOpen = ref(false)
   padding: 5px;
   border-radius: 10px;
   border: 1px solid color.change($gray-1, $alpha: .25);
-
-  font-family: var(--findcreek-medium);
-  font-size: 16px;
-  color: var(--heading-color-2);
+  @include findcreek-medium(16px, var(--heading-color-2));
   background-color: var(--bg-color-1);
 
   & > *:not(:last-child) {

@@ -64,9 +64,7 @@ const { theme } = useTheme()
   @include flex(center, center);
   border-radius: 10px;
   background-color: rgba(224 224 224 / .2);
-  color: rgba(190 190 190 / .7);
-  font-family: var(--findcreek-medium);
-  font-size: 10px;
+  @include findcreek-medium(10px, rgba(190 190 190 / .7));
   letter-spacing: -3%;
   position: absolute;
   top: 14px;

@@ -87,11 +87,8 @@ aside {
 }
 
 aside h6 {
-  //margin-left: 20px;
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
+  @include findcreek-medium(14px, var(--text-color-1));
   margin: 0;
-  color: var(--text-color-1);
 }
 
 .main-section {
@@ -105,10 +102,7 @@ aside h6 {
 }
 
 .title {
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
-  font-size: 18px;
-  color: var(--heading-color-1);
+  @include findcreek-medium(18px, var(--heading-color-1));
 }
 
 .widget-wrapper {

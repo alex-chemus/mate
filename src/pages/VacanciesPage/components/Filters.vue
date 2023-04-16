@@ -57,10 +57,8 @@ const emit = defineEmits<{
 }
 
 .filter-button {
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
+  @include findcreek-medium(14px, var(--text-color-1));
   letter-spacing: -0.03em;
-  color: var(--text-color-1);
   height: 30px;
   padding: 0 18px;
   border-radius: 6px;

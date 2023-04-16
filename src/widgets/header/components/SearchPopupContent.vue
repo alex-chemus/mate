@@ -118,25 +118,18 @@ const getUrl = computed(() => {
 }
 
 .full-name {
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
-  font-size: 16px;
-  color: var(--heading-color-2);
+  @include findcreek-medium(16px, var(--heading-color-2));
   margin: 0;
 }
 
 .tag {
-  font-family: var(--findcreek);
-  font-size: 13px;
-  color: var(--text-color-1);
+  @include findcreek(13px, var(--text-color-1));
   margin-top: -2px;
 }
 
 .description {
-  font-family: var(--findcreek);
-  font-size: 13px;
+  @include findcreek(13px, var(--text-color-1));
   margin: 0 auto;
-  color: var(--text-color-1);
   text-align: center;
   line-height: 0.95em;
 }
@@ -153,18 +146,15 @@ const getUrl = computed(() => {
 
 .profile-button {
   flex-grow: 1;
-  color: var(--accent);
   height: 30px;
   border-radius: 5px;
-  font-family: var(--findcreek);
-  font-size: 12px;
+  @include findcreek(12px, var(--accent));
   border: 1px solid currentColor;
   transition: var(--fast);
   @include flex(center, center);
   text-decoration: none;
 
   &:hover {
-    //box-shadow: 0 0 4px 0 currentColor;
     border-color: transparent;
     background-color: var(--accent);
     color: var(--light);
@@ -194,9 +184,7 @@ const getUrl = computed(() => {
   gap: 14px;
 
   li {
-    color: var(--text-color-1);
-    font-family: var(--findcreek);
-    font-size: 11px;
+    @include findcreek(11px, var(--text-color-1));
   }
 }
 </style>

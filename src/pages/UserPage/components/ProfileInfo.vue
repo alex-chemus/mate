@@ -142,11 +142,8 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .title {
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
-  font-size: 14px;
+  @include findcreek-medium(14px, var(--heading-color-1));
   margin-bottom: 25px;
-  color: var(--heading-color-1);
 }
 
 .content-list {
@@ -174,16 +171,12 @@ const { theme } = useTheme()
 
 .content-wrapper h6,
 .skills-wrapper h6 {
-  font-family: var(--findcreek-bold);
-  font-size: 14px;
+  @include findcreek-bold(14px, var(--heading-color-2));
   letter-spacing: .01em;
-  color: var(--heading-color-2);
 }
 
 .content-wrapper p {
-  color: var(--text-color-1);
-  font-family: var(--findcreek);
-  font-size: 13px;
+  @include findcreek(13px, var(--text-color-1));
   line-height: 1.6em;
 
   &.colored {
@@ -226,8 +219,6 @@ const { theme } = useTheme()
   border-radius: 8px;
   border: 1px solid color.change($gray-1, $alpha: .25);
   @include flex(center, center);
-  color: var(--heading-color-1);
-  font-family: var(--noto-sans-medium);
-  font-size: 12px;
+  @include noto-sans-medium(12px, var(--heading-color-1))
 }
 </style>

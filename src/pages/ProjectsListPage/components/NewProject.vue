@@ -31,8 +31,6 @@
 }
 
 p {
-  font-family: var(--findcreek-medium);
-  font-weight: var(--medium);
-  font-size: 16px;
+  @include findcreek-medium(16px);
 }
 </style>

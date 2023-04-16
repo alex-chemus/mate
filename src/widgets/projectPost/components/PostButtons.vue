@@ -145,8 +145,7 @@ const getDislikes = computed(() => {
   }
 
   span {
-    font-family: var(--noto-sans-bold);
-    font-size: 11px;
+    @include noto-sans-bold(11px);
   }
 
   &.light span {

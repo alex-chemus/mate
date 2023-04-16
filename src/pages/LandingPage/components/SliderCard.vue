@@ -124,9 +124,7 @@ const { theme } = useTheme()
 }
 
 .content-wrapper h4 {
-  font-family: var(--findcreek-bold);
-  font-size: 16px;
-  color: var(--heading-color-2);
+  @include findcreek-bold(16px, var(--heading-color-2));
 }
 
 .badge {
@@ -146,9 +144,7 @@ const { theme } = useTheme()
 }
 
 .content-wrapper p {
-  font-family: var(--findcreek);
-  font-size: 13px;
-  color: var(--heading-color-2);
+  @include findcreek(13px, var(--heading-color-2));
 }
 
 .user-wrapper {
@@ -163,9 +159,7 @@ const { theme } = useTheme()
   h5 {
     margin: 0;
     margin-left: 6px;
-    font-family: var(--findcreek);
-    font-size: 13px;
-    color: var(--heading-color-2);
+    @include findcreek(13px, var(--heading-color-2));
   }
 
   .border {
@@ -194,9 +188,7 @@ const { theme } = useTheme()
   }
 
   span {
-    font-size: 13px;
-    font-family: var(--findcreek-medium);
-    color: var(--gray-1);
+    @include findcreek-medium(13px, var(--gray-1));
   }
 }
 
@@ -216,8 +208,6 @@ const { theme } = useTheme()
 }
 
 .date {
-  font-family: var(--findcreek-medium);
-  font-size: 13px;
-  color: var(--gray-1);
+  @include findcreek-medium(13px, var(--gray-1));
 }
 </style>

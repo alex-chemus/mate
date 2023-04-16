@@ -56,11 +56,8 @@ header {
 }
 
 .author {
-  font-family: var(--findcreek-medium);
-  font-size: 13px;
-  color: var(--heading-color-2);
+  @include findcreek-medium(13px, var(--heading-color-2));
   margin: 0;
-  font-weight: 500;
 
   a {
     text-decoration: none;
@@ -69,10 +66,8 @@ header {
 }
 
 .text-id {
-    font-family: var(--findcreek);
-    color: var(--heading-color-2);
-    font-size: 11px;
-    letter-spacing: -0.025em;
+  @include findcreek(11px, var(--heading-color-2));
+  letter-spacing: -0.025em;
 }
 
 // .author {

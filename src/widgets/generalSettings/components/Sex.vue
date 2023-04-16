@@ -42,8 +42,8 @@ const { theme } = useTheme()
 .sex {
   font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 13px;
-  margin: 0 0 6px 10px;
   color: var(--text-color-1);
+  margin: 0 0 6px 10px;
 }
 
 ul {

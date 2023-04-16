@@ -141,10 +141,8 @@ const title = computed(() => {
 }
 
 small {
-  font-family: var(--findcreek);
-  font-size: 12px;
+  @include findcreek(12px, var(--text-color-3));
   text-align: left;
-  color: var(--text-color-3);
 }
 
 .buttons {

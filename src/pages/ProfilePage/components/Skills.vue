@@ -34,10 +34,8 @@ const { theme } = useTheme()
 }
 
 .title {
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
+  @include findcreek-medium(14px, var(--heading-color-2));
   margin-bottom: 26px;
-  color: var(--heading-color-2);
 }
 
 .skills-list {
@@ -55,16 +53,12 @@ const { theme } = useTheme()
   padding: 0 9px;
   border: 1px solid color.change($gray-1, $alpha: .4);
   background-color: transparent;
-  font-family: var(--noto-sans-medium);
-  font-size: 12px;
+  @include noto-sans-medium(12px, var(--heading-color-1));
   border-radius: 8px;
-  color: var(--heading-color-1);
 }
 
 h6 {
   margin: 0;
-  font-family: var(--noto-sans-medium);
-  font-size: 12px;
-  color: var(--heading-color-1);
+  @include noto-sans-medium(12px, var(--heading-color-1));
 }
 </style>

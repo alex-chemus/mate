@@ -75,10 +75,8 @@ const getSrc = computed(() => {
 }
 
 .file-name {
-  font-family: var(--findcreek-medium);
-  font-size: 14px;
+  @include findcreek-medium(14px, var(--heading-color-2));
   letter-spacing: -0.01em;
-  color: var(--heading-color-2);
 }
 
 .remove-button {
