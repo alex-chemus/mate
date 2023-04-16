@@ -1,0 +1,8 @@
+export { default as NextButton } from './NextButton.vue'
+export { default as PrevButton } from './PrevButton.vue'
+export { default as FinishButton } from './FinishButton.vue'
+export { default as Pagination } from './Pagination.vue'
+export { default as FirstPage } from './FirstPage.vue'
+export { default as SecondPage } from './SecondPage.vue'
+export { default as FinalPage } from './FinalPage.vue'
+export { default as TransitionContainer } from './TransitionContainer.vue'

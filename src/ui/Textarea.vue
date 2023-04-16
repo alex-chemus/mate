@@ -6,7 +6,8 @@ const props = defineProps<{
   value?: string,
   placeholder?: string,
   labelText?: string,
-  theme?: 'light' | 'dark'
+  theme?: 'light' | 'dark',
+  rows?: number
 }>()
 
 const emit = defineEmits<{
@@ -24,7 +25,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
       :value="value ?? ''"
       :placeholder="placeholder ?? ''"
       @input="e => emit('update:value', (e.target as HTMLTextAreaElement).value)"
-      rows="6"
+      :rows="`${rows ?? 6}`"
     />
   </label>
 </template>
