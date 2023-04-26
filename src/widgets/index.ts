@@ -8,3 +8,4 @@ export { default as PrivacySettings } from './privacySettings/PrivacySettings.vu
 export { default as Alert } from './alert/Alert.vue'
 export { default as PostEditor } from './postEditor/PostEditor.vue'
 export { default as UserPost } from './userPost/UserPost.vue'
+export { default as VacancyEditor } from './vacancyEditor/VacancyEditor.vue'

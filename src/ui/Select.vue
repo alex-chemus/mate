@@ -18,6 +18,7 @@ const props = defineProps<{
   labelText?: string,
   placeholder?: string,
   zIndexFactor?: number,
+  defaultText?: string,
   width?: 'auto' | 'button'
 }>()
 
@@ -178,7 +179,7 @@ const getStyle = () => {
     <input-button
       :value="getValue" :disabled="true"
       @update:focused="onFocusChange"
-      :text="placeholder ?? ''" :label-text="labelText"
+      :text="getValue ?? placeholder ?? ''" :label-text="labelText"
       ref="buttonRef"
     />
     
@@ -224,7 +225,7 @@ const getStyle = () => {
             v-else-if="items === null"
             :key="4"
           >
-            Введите место проживания
+            {{ defaultText ?? '' }}
           </div>
         </popup-transition>
       </div>

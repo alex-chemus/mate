@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import {
-  ProjectPost, Header, Settings, PostEditor
+  ProjectPost, Header, Settings, PostEditor, VacancyEditor
 } from '@/widgets'
 //import { useFullAccountInfo } from '@/utils'
 import { useFullAccountInfo } from '@/api'
@@ -67,6 +67,8 @@ const ownsProject = computed(() => {
     :img="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar"
     @add="setPostUpdate"
   />
+
+  <vacancy-editor v-if="projectInfo" :full-project-info="projectInfo" />
 
   <profile-layout v-if="fullAccountInfo && projectInfo" :loading="!fullAccountInfo || !projectInfo">
     <template #header>
