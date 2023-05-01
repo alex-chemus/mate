@@ -27,3 +27,7 @@ export enum alertActions {
   SET_DANGER_MESSAGE = 'SET_DANGER_MESSAGE',
   SET_SUCCESS_MESSAGE = 'SET_SUCCESS_MESSAGE'
 }
+
+export enum userActions {
+  SET_ID = 'SET_ID'
+}

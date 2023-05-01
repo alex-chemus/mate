@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { SocialMedia, useTheme } from '@/utils'
+import { useTheme } from '@/utils'
 
 defineProps<{
-  media: SocialMedia[]
+  media: any[]
 }>()
 
 const { theme } = useTheme()

@@ -86,18 +86,22 @@ const usePosts = (
       info: { method: 'POST', body }
     })) as FullProjectPostInfo[]
 
-    //posts.value = posts.value.map((p) => p.id === id ? res[0] : p)
-    // бинарный поиск
-    let low = 0
-    let high = posts.value.length - 1
+    posts.value = posts.value.map((p) => p.id === id ? res[0] : p)
+    // бинарный поиск ps.s херня полная, надо переделать
+    // let low = 0
+    // let high = posts.value.length - 1
 
-    while (low <= high) {
-      const mid = Math.floor((low + high) / 2)
-      const guess = posts.value[mid]
-      if (guess.id === id) posts.value[mid] = res[0] // eslint-disable-line
-      if (guess.id > id) high = mid - 1
-      else low = mid + 1
-    }
+    // while (low <= high) {
+    //   console.log('searching post')
+    //   const mid = Math.floor((low + high) / 2)
+    //   const guess = posts.value[mid]
+    //   if (guess.id === id) {
+    //     posts.value[mid] = res[0] // eslint-disable-line
+    //     console.log(mid)
+    //   }
+    //   if (guess.id > id) high = mid - 1
+    //   else low = mid + 1
+    // }
   }
 
 

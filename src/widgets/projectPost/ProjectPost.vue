@@ -1,14 +1,17 @@
 <script lang="ts" setup>
 import {
-  defineEmits, defineProps, computed, ref
+  defineEmits, defineProps, computed
 } from 'vue'
 import {
-  FullProjectPostInfo, FullProjectInfo, FullUserInfo, FileInfo
+  FullProjectPostInfo, FullProjectInfo, FullUserInfo
 } from '@/types'
 import ProjectPostLayout from './ProjectPostLayout.vue'
-import { useDate, useLikes, useViewer } from './hooks'
 import {
-  PostButtons, PostComment, PostText, PostGallery, PostHeader, ImageViewer
+  useDate, useLikes, useViewer, useComments, useCommentLikes
+} from './hooks'
+import {
+  PostButtons, CommentEditor, PostText, PostGallery,
+  PostHeader, ImageViewer, Comment
 } from './components'
 
 const props = defineProps<{
@@ -40,6 +43,16 @@ const getReaction = computed(() => {
   if (props.postInfo.isLiked) return 1
   if (props.postInfo.isDisliked) return -1
   return 0
+})
+
+const {
+  commentsInfo, commentsUpdate, addComment, editComment
+} = useComments({
+  postID: props.postInfo.id
+})
+
+const { likeComment, dislikeComment } = useCommentLikes({
+  onUpdate: () => { commentsUpdate.value = Symbol() }
 })
 </script>
 
@@ -99,8 +112,21 @@ const getReaction = computed(() => {
       />
     </template> -->
 
-    <template #comment>
-      <post-comment />
+    <template #comment-editor>
+      <comment-editor
+        @submit="p => addComment({ text: p })"
+      />
+    </template>
+
+    <template #comments v-if="commentsInfo">
+      <comment
+        v-for="comment in commentsInfo" :key="comment.id"
+        :comment-info="comment"
+        @new-reply="p => addComment({ text: p.text, commentID: p.id })"
+        @like="likeComment"
+        @dislike="dislikeComment"
+        @edit-comment="p => editComment({ text: p.text, commentID: p.id })"
+      />
     </template>
   </project-post-layout>
 </template>

@@ -31,11 +31,16 @@ export type AlertModuleState = {
   type: null | 'danger' | 'success'
 }
 
+export type UserModuleState = {
+  id: number | null
+}
+
 export type RootState = {
   auth: AuthModuleState,
   theme: ThemeModuleState,
   api: ApiModuleState,
   fetch: FetchModuleState,
   update: UpdateModuleState,
-  alert: AlertModuleState
+  alert: AlertModuleState,
+  user: UserModuleState
 }

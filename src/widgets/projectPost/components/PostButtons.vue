@@ -5,6 +5,8 @@ import {
 import { useTheme } from '@/utils'
 import { Popover } from '@/hocs'
 import PostPopupLayout from './PostPopupLayout.vue'
+import LikeSvg from './LikeSvg.vue'
+import DislikeSvg from './DislikeSvg.vue'
 
 const { theme } = useTheme()
 
@@ -55,16 +57,12 @@ const getDislikes = computed(() => {
 <template>
   <div class="buttons-container">
     <button @click="emit('like')" :class="[theme, { 'active': reaction === 1 }]" class="button">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-thumb-up" />
-      </svg>
+      <like-svg :active="reaction === 1" />
       <span>{{ getLikes }}</span>
     </button>
 
     <button @click="emit('dislike')" :class="[theme, { 'active': reaction === -1 }]" class="button">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-thumb-down" />
-      </svg>
+      <dislike-svg :active="reaction === -1" />
       <span>{{ getDislikes }}</span>
     </button>
 
@@ -117,6 +115,7 @@ const getDislikes = computed(() => {
   border: 1px solid transparent;
   transition: var(--fast);
   background-color: var(--bg-color-3);
+  color: var(--text-color-1);
 
   &.--round {
     padding: 0;
@@ -128,16 +127,8 @@ const getDislikes = computed(() => {
     margin-right: auto;
   }
 
-  &.active {
-    color: var(--accent) !important;
-  }
-
-  &.light {
-    color: #0f0f0f;
-  }
-
-  &.dark {
-    color: var(--light);
+  &.active .fill-path {
+    fill: url('#gradient-fill');
   }
 
   & > *:not(:last-child) {
