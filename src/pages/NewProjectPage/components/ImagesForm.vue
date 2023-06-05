@@ -23,13 +23,13 @@ const updatedCover = ref<string | null>(null)
 //   return updatedCover.value ?? props.cover
 // })
 
-const onAvatarUpload = (e: FileList) => {
+const emitUploadAvatar = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
   updatedAvatar.value = URL.createObjectURL(e[0])
   emit('upload-avatar', e)
 }
 
-const onCoverUpload = (e: FileList) => {
+const emitUploadCover = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
   updatedCover.value = URL.createObjectURL(e[0])
   emit('upload-cover', e)
@@ -38,7 +38,7 @@ const onCoverUpload = (e: FileList) => {
 
 <template>
   <div class="images-container">
-    <droparea @upload="onCoverUpload" :stretch="true">
+    <droparea @upload="emitUploadCover" :stretch="true">
       <div class="cover" :class="theme" :style="`
         background: ${ updatedCover ? updatedCover : 'var(--gray-1)' };
         background-position: center;
@@ -53,7 +53,7 @@ const onCoverUpload = (e: FileList) => {
     </droparea>
 
     <div class="avatar-wrapper">
-      <droparea @upload="onAvatarUpload">
+      <droparea @upload="emitUploadAvatar">
         <div class="avatar" :class="theme" :style="`
           background: ${ updatedAvatar ? updatedAvatar : 'var(--gray-1)' };
           background-position: center;

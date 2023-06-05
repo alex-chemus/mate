@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-const useProjectInfo = () => {
+const useProject = () => {
   const name = ref<string | null>(null)
   const nametag = ref<string | null>(null)
   const theme = ref<number | null>(null)
@@ -11,4 +11,4 @@ const useProjectInfo = () => {
   }
 }
 
-export default useProjectInfo
+export default useProject

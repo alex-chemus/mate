@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { defineEmits } from 'vue'
 import { Textarea } from '@/ui'
-import ImagesUpload from './ImagesUpload.vue'
+import ImagesForm from './ImagesForm.vue'
 
 const emit = defineEmits<{
-  (e: 'update:description', payload: string): void,
-  (e: 'upload-avatar', payload: FileList): void,
-  (e: 'upload-cover', payload: FileList): void
+  (e: 'update:description', description: string): void,
+  (e: 'upload-avatar', files: FileList): void,
+  (e: 'upload-cover', files: FileList): void
 }>()
 </script>
 
@@ -16,9 +16,9 @@ const emit = defineEmits<{
     <p class="text">Позже всю информацию можно будет изменить</p>
 
     <div class="images-container">
-      <images-upload
-        @upload-avatar="p => emit('upload-avatar', p)"
-        @upload-cover="p => emit('upload-cover', p)"
+      <images-form
+        @upload-avatar="files => emit('upload-avatar', files)"
+        @upload-cover="files => emit('upload-cover', files)"
       />
     </div>
 
@@ -26,7 +26,7 @@ const emit = defineEmits<{
       label-text="О проекте"
       placeholder="О проекте"
       :rows="3"
-      @update:value="p => emit('update:description', p)"
+      @update:value="value => emit('update:description', value)"
     />
   </div>
 </template>

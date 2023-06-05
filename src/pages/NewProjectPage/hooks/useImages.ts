@@ -3,7 +3,7 @@ import { fetchActions } from '@/store/constants'
 import { useApiState, useAuthState, useDispatch } from '@/utils'
 import { FileInfo } from '@/types'
 
-const useUploadImage = () => {
+const useUpload = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -47,4 +47,4 @@ const useUploadImage = () => {
   return { setAvatar, setCover, uploadImage }
 }
 
-export default useUploadImage
+export default useUpload

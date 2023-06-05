@@ -3,18 +3,18 @@ import { ref } from 'vue'
 import { Header } from '@/widgets'
 import {
   NextButton, PrevButton, FinishButton, Pagination,
-  TransitionContainer, FirstPage, SecondPage, FinalPage
+  withTransition, FirstWidget, SecondWidget, FinalWidget
 } from './components'
-import { useProjectInfo, useThemes, useUploadImage } from './hooks'
+import { useProject, useThemes, useImages } from './hooks'
 import NewProjectLayout from './NewProjectLayout.vue'
 
 const currentPage = ref<1 | 2 | 3>(1)
 
 const themes = useThemes()
-const { setAvatar, setCover } = useUploadImage()
+const { setAvatar, setCover } = useImages()
 const {
   name, nametag, theme, description
-} = useProjectInfo()
+} = useProject()
 </script>
 
 <template>
@@ -24,21 +24,21 @@ const {
     </template>
 
     <template #content>
-      <transition-container :current-page="currentPage">
-        <first-page
+      <with-transition :current-page="currentPage">
+        <first-widget
           v-if="currentPage === 1"
           :name="name"
           :nametag="nametag"
           :themes="themes ?? []"
         />
-        <second-page
+        <second-widget
           v-if="currentPage === 2"
           @upload-avatar="setAvatar"
           @upload-cover="setCover"
           @update:description="p => description = p"
         />
-        <final-page v-if="currentPage === 3" />
-      </transition-container>
+        <final-widget v-if="currentPage === 3" />
+      </with-transition>
     </template>
 
     <template #pagination>

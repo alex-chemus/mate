@@ -12,13 +12,13 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:name', payload: string | null): void,
-  (e: 'update:nametag', payload: string | null): void,
-  (e: 'select-theme', id: number): void
+  (e: 'update:name', name: string | null): void,
+  (e: 'update:nametag', nametag: string | null): void,
+  (e: 'select-theme', themeID: number): void
 }>()
 
 const getThemes = computed(() => {
-  return props.themes.map((t) => ({ id: t.id, value: t.title }))
+  return props.themes.map(theme => ({ id: theme.id, value: theme.title }))
 })
 </script>
 
@@ -41,7 +41,7 @@ const getThemes = computed(() => {
           :items="getThemes"
           label-text="Тема проекта"
           placeholder="Выберите тему Вашего проекта..."
-          @select="p => emit('select-theme', p)"
+          @select="themeID => emit('select-theme', themeID)"
         />
       </div>
 
@@ -50,7 +50,7 @@ const getThemes = computed(() => {
           :value="nametag ?? ''"
           label-text="неймтег проекта"
           placeholder="Неймтег проекта"
-          @update:value="p => emit('update:nametag', p)"
+          @update:value="nametag => emit('update:nametag', nametag)"
         />
       </div>
     </div>
