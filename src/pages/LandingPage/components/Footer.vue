@@ -8,15 +8,15 @@ const { theme } = useTheme()
 <template>
   <footer :class="theme">
     <div class="links-wrapper">
-      <router-link to="/">О Себе</router-link>
-      <router-link to="/">Политика конфиденциальности</router-link>
-      <router-link to="/">Условия пользования</router-link>
-      <router-link to="/">Политика в отношении файлов cookie</router-link>
-      <router-link to="/">Информация о рекламе</router-link>
-      <router-link to="/">Справочный центр</router-link>
-      <router-link to="/">Реклама</router-link>
-      <router-link to="/">Настройки</router-link>
-      <router-link to="/">Продукты компании</router-link>
+      <router-link to="#">О Себе</router-link>
+      <router-link to="#">Политика конфиденциальности</router-link>
+      <router-link to="#">Условия пользования</router-link>
+      <router-link to="#">Политика в отношении файлов cookie</router-link>
+      <router-link to="#">Информация о рекламе</router-link>
+      <router-link to="#">Справочный центр</router-link>
+      <router-link to="#">Реклама</router-link>
+      <router-link to="#">Настройки</router-link>
+      <router-link to="#">Продукты компании</router-link>
     </div>
 
     <p class="copyright">© FINDCREEK, Inc., 2022.</p>

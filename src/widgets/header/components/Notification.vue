@@ -36,7 +36,7 @@ const title = computed(() => {
       <div class="message-wrapper" :title="title">
         <p class="message" :class="theme">
           <strong>{{ notice.person }}</strong> {{ text }}
-          <router-link :to="notice.subjectUrl">{{ notice.subject }}</router-link>
+          <router-link to="#">{{ notice.subject }}</router-link>
         </p>
         <small :class="theme">{{ notice.date }}</small>
       </div>

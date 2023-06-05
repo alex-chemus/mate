@@ -30,7 +30,7 @@ const sortedNotifications = computed(() => {
     <div class="header-container" :class="theme">
       <div class="header-wrapper" :class="theme">
         <h5>Уведомления</h5>
-        <router-link tabindex to="/notifications">Прочитать все</router-link>
+        <router-link tabindex to="#">Прочитать все</router-link>
       </div>
 
       <div class="nav-wrapper" :class="theme">

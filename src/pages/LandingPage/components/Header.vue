@@ -9,16 +9,16 @@ const { theme } = useTheme()
 
 <template>
   <header>
-      <router-link to="/" class="logo-section" :class="theme">
+      <router-link to="#" class="logo-section" :class="theme">
         <logo />
         <span>FINDCREEK Mate</span>
       </router-link>
 
-      <router-link to="/features" class="nav-link">
+      <router-link to="#" class="nav-link">
         Преимущества
       </router-link>
 
-      <router-link to="/price" class="nav-link">
+      <router-link to="#" class="nav-link">
         Цены
       </router-link>
 
