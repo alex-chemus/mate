@@ -3,7 +3,7 @@ import {
   defineProps, defineEmits, ref, computed
 } from 'vue'
 import { useTheme } from '@/utils'
-import { Select } from '@/ui'
+import { Dropdown } from '@/ui'
 import { Member } from '../types'
 
 const props = defineProps<{
@@ -53,7 +53,7 @@ const getText = computed(() => {
 <template>
   <div class="role-container" :class="theme">
     <h6 class="title" :class="theme">Выберите должность</h6>
-    <Select
+    <dropdown
       :items="values.map((i) => ({ id: i.id, value: i.value }))"
       v-model:visible="isOpen"
       :selected="values.find((i) => i.key === value)?.id"

@@ -9,23 +9,28 @@ import { useTheme } from '@/utils'
 
 const props = defineProps<{
   items: {
-    id: number,
-    value: string
+    groupName: string,
+    groupItems: {
+      id: number,
+      value: string
+    }[]
   }[] | null,
   loading?: boolean,
   visible?: boolean,
   selected?: number,
   labelText?: string,
-  placeholder?: string,
-  zIndexFactor?: number,
-  defaultText?: string,
-  width?: 'auto' | 'button'
+  placeholder?: string
 }>()
 
 const emit = defineEmits<{
   (e: 'update:visible', payload: boolean): void
-  (e: 'select', payload: number): void
+  (e: 'select', id: number): void
 }>()
+
+const getAllItems = computed(() => {
+  if (props.items === null) return null
+  return props.items.map((i) => i.groupItems).flat()
+})
 
 const { theme } = useTheme()
 
@@ -99,14 +104,14 @@ const onKeyDown = (e: KeyboardEvent) => {
 const onKeyUp = (e: KeyboardEvent) => {
   if (!props.visible) return
 
-  if (focusedItem.value === null && props.items) {
-    focusedItem.value = props.items[0].id
+  if (focusedItem.value === null && getAllItems.value) {
+    focusedItem.value = getAllItems.value[0].id
     return
   }
 
   if (e.key === 'ArrowUp') {
     e.preventDefault()
-    if (props.items && focusedItem.value === props.items[0].id) return
+    if (getAllItems.value && focusedItem.value === getAllItems.value[0].id && props.items) return
     focusedItem.value!--
     adjustScroll()
   }
@@ -114,14 +119,14 @@ const onKeyUp = (e: KeyboardEvent) => {
   if (e.key === 'ArrowDown') {
     e.preventDefault()
     if (!props.items) return
-    if (props.items && focusedItem.value === props.items.slice(-1)[0].id) return
+    if (getAllItems.value && focusedItem.value === getAllItems.value.length - 1) return
     focusedItem.value!++
     adjustScroll()
   }
 
   if (e.key === 'Enter') {
-    if (focusedItem.value && props.items) {
-      const item = props.items.find((i) => i.id === focusedItem.value)
+    if (focusedItem.value && getAllItems.value) {
+      const item = getAllItems.value.find((i) => i.id === focusedItem.value)
       if (item) emit('select', item.id)
     }
   }
@@ -140,36 +145,22 @@ onBeforeUnmount(() => {
 })
 
 const getValue = computed(() => {
-  if (props.selected && props.items)
-    return props.items.find((i) => i.id === props.selected)?.value
+  if (props.selected && getAllItems.value)
+    return getAllItems.value[props.selected].value
   return undefined
 })
 
-const buttonRef = ref<InstanceType<typeof InputButton> | null>(null)
-
-const getStyle = () => {
+const getPosition = () => {
   if (selectRef.value === null) return null
 
   const position = selectRef.value.getBoundingClientRect()
   const bottom = position.bottom + window.scrollY
   const left = position.left + window.scrollX
 
-  /* eslint-disable */
   return `
     top: ${bottom + 10}px;
     left: ${left}px;
-    ${
-      props.zIndexFactor
-        ? `z-index: ${1000 + props.zIndexFactor * 2};`
-        : ''
-    }
-    ${
-      props.width === 'button' && buttonRef.value?.buttonRef
-        ? `width: ${buttonRef.value.buttonRef.offsetWidth}px;`
-        : ''
-    }
   `
-  /* eslint-enable */
 }
 </script>
 
@@ -179,15 +170,14 @@ const getStyle = () => {
     <input-button
       :value="getValue" :disabled="true"
       @update:focused="onFocusChange"
-      :text="getValue ?? placeholder ?? ''" :label-text="labelText"
-      ref="buttonRef"
+      :text="placeholder ?? ''" :label-text="labelText"
     />
     
     <teleport to="body">
       <div
         v-if="visible" ref="dropdownRef"
         class="select-dropdown" :class="theme"
-        :style="getStyle() ?? ''"
+        :style="getPosition() ?? ''"
         @click="onDropdownClick"
       >
         <popup-transition :group="true">
@@ -196,20 +186,23 @@ const getStyle = () => {
           </div>
 
           <ul v-else-if="items && items.length" :key="2">
-            <li
-              v-for="item in items" :key="item.id"
-              class="item" :class="[
-                focusedItem === item.id ? 'focused' : '',
-                theme,
-                selected === item.id ? 'selected' : ''
-              ]"
-              @mouseover="focusedItem = item.id"
-            >
-              <button
-                class="item-button"
-                @click="emit('select', item.id)"
-              >{{ item.value }}</button>
-            </li>
+            <template v-for="(group, i) in items" :key="i">
+              <li class="item title">{{ group.groupName }}</li>
+              <li
+                v-for="item in group.groupItems" :key="item.id"
+                class="item" :class="[
+                  focusedItem === item.id ? 'focused' : '',
+                  theme,
+                  selected === item.id ? 'selected' : ''
+                ]"
+                @mouseover="focusedItem = item.id"
+              >
+                <button
+                  class="item-button"
+                  @click="emit('select', item.id)"
+                >{{ item.value }}</button>
+              </li>
+            </template>
           </ul>
 
           <div
@@ -225,7 +218,7 @@ const getStyle = () => {
             v-else-if="items === null"
             :key="4"
           >
-            {{ defaultText ?? '' }}
+            Введите место проживания
           </div>
         </popup-transition>
       </div>
@@ -244,6 +237,9 @@ const getStyle = () => {
 
 .select-dropdown {
   position: absolute;
+  // top: 100%;
+  // left: 0;
+  // transform: translateY(10px);
   cursor: pointer;
 
   border-radius: 8px;
@@ -283,9 +279,8 @@ ul {
   }
 
   &.title {
-    color: var(--text-color-1);
     margin-left: 10px;
-    font-size: 13px;
+    @include findcreek(13px, var(--text-color-1));
   }
 }
 

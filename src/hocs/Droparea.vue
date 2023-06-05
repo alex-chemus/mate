@@ -3,13 +3,13 @@ import { ref, defineProps, defineEmits } from 'vue'
 import { useDebounce } from '@/utils'
 
 const props = defineProps<{
-  multiple?: boolean,
-  stretch?: boolean,
-  disableClick?: boolean
+  isMultiple?: boolean,
+  isStretch?: boolean,
+  isClickDisabled?: boolean
 }>()
 
 const emit = defineEmits<{
-  (e: 'upload', payload: FileList): void
+  (e: 'set', files: FileList): void
 }>()
 
 const inputRef = ref<HTMLInputElement | null>(null)
@@ -22,17 +22,17 @@ const { debounced: removeDragover } = useDebounce(() => {
 const upload = (e: DragEvent | Event) => {
   if (e instanceof DragEvent) {
     if (e.dataTransfer?.files.length) {
-      emit('upload', e.dataTransfer.files)
+      emit('set', e.dataTransfer.files)
       removeDragover()
     }
   } else if (inputRef.value?.files?.length) {
-    emit('upload', inputRef.value.files)
+    emit('set', inputRef.value.files)
     removeDragover()
   }
 }
 
 const onClick = () => {
-  if (!props.disableClick) inputRef.value?.click()
+  if (!props.isClickDisabled) inputRef.value?.click()
 }
 </script>
 
@@ -46,8 +46,8 @@ const onClick = () => {
     @dragend="removeDragover"
     @drop.prevent="upload"
     :style="[
-      stretch ? 'width: 100%;' : '',
-      disableClick ? '' : 'cursor: pointer;'
+      isStretch ? 'width: 100%;' : '',
+      isClickDisabled ? '' : 'cursor: pointer;'
     ]"
   >
     <input

@@ -3,7 +3,7 @@ import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
 import { useTheme } from '@/utils'
-import { Badge, GroupedSelect } from '@/ui'
+import { Tag, GroupedDropdown } from '@/ui'
 import { Specialty, SpecialtiesList } from '@/types';
 
 const props = defineProps<{
@@ -43,7 +43,7 @@ const selectOpen = ref(false)
 
 <template>
   <div class="specialties-container" :class="theme">
-    <grouped-select
+    <grouped-dropdown
       label-text="Специальности"
       placeholder="Выберите специальность..."
       :items="getSpecialties"
@@ -53,13 +53,13 @@ const selectOpen = ref(false)
 
     <ul class="specialties-list">
       <li v-for="specId in selectedSpecialties" :key="specId">
-        <Badge @close="emit('remove', specId)">
+        <tag @close="emit('remove', specId)">
           <template #content>
             <p class="spec-text" :class="theme">
               {{ specialtiesArray.find(s => s.id === specId)?.rusName }}
             </p>
           </template>
-        </Badge>
+        </tag>
       </li>
     </ul>
   </div>

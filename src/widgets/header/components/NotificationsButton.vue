@@ -20,7 +20,7 @@ const { theme } = useTheme()
     @click="emit('click')"
   >
     <span class="text"><slot /></span>
-    <div v-if="unread" class="badge" :class="[theme, { 'selected': selected }]">
+    <div v-if="unread" class="tag" :class="[theme, { 'selected': selected }]">
       {{ unread }}
     </div>
   </button>
@@ -63,7 +63,7 @@ const { theme } = useTheme()
   letter-spacing: -1.5%;
 }
 
-.badge {
+.tag {
   border-radius: 100vmax;
   height: 20px;
   aspect-ratio: 1;
@@ -81,7 +81,7 @@ const { theme } = useTheme()
   }
 }
 
-.badge.selected {
+.tag.selected {
   &.light {
     background-color: var(--dark-1);
     color: var(--light);

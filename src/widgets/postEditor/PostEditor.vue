@@ -38,7 +38,7 @@ const {
   <post-editor-layout
     :visible="isOpen"
     @toggle="p => p ? openPostEditor() : closePostEditor()"
-    @upload="addFiles"
+    @set-files="addFiles"
     :img="img"
   >
     <template #title>

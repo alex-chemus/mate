@@ -9,8 +9,8 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'toggle', payload: boolean): void,
-  (e: 'upload', payload: FileList): void
+  (e: 'toggle', flag: boolean): void,
+  (e: 'set-files', files: FileList): void
 }>()
 </script>
 
@@ -22,7 +22,7 @@ const emit = defineEmits<{
     <modal-layout @close="emit('toggle', false)">
       <droparea
         v-slot="{ over }"
-        @upload="p => emit('upload', p)"
+        @set="files => emit('set-files', files)"
         :stretch="true"
         :disable-click="true"
       >

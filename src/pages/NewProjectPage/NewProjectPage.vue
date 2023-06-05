@@ -33,8 +33,8 @@ const {
         />
         <second-widget
           v-if="currentPage === 2"
-          @upload-avatar="setAvatar"
-          @upload-cover="setCover"
+          @set-avatar="setAvatar"
+          @set-cover="setCover"
           @update:description="p => description = p"
         />
         <final-widget v-if="currentPage === 3" />

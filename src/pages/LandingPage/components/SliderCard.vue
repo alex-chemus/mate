@@ -21,7 +21,7 @@ const { theme } = useTheme()
     <div class="content-container" :class="theme">
       <div class="content-wrapper">
         <h4 :class="theme">Программирование, дизайн, уборка</h4>
-        <div class="badge" :class="theme">
+        <div class="tag" :class="theme">
           <svg width="15" height="15" viewBox="0 0 15 15">
             <use href="@/assets/imgs/tabler-sprite.svg#tabler-users" />
           </svg>
@@ -127,7 +127,7 @@ const { theme } = useTheme()
   @include findcreek-bold(16px, var(--heading-color-2));
 }
 
-.badge {
+.tag {
   padding: 5px;
   border: 1px solid currentColor;
   border-radius: 100vmax;

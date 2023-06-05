@@ -13,8 +13,8 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'upload-avatar', payload: FileList): void
-  (e: 'upload-cover', payload: FileList): void
+  (e: 'set-avatar', files: FileList): void
+  (e: 'set-cover', files: FileList): void
 }>()
 
 const { theme } = useTheme()
@@ -30,22 +30,22 @@ const getCover = computed(() => {
   return updatedCover.value ?? props.cover
 })
 
-const onAvatarUpload = (e: FileList) => {
+const setAvatar = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
   updatedAvatar.value = URL.createObjectURL(e[0])
-  emit('upload-avatar', e)
+  emit('set-avatar', e)
 }
 
-const onCoverUpload = (e: FileList) => {
+const setCover = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
   updatedCover.value = URL.createObjectURL(e[0])
-  emit('upload-cover', e)
+  emit('set-cover', e)
 }
 </script>
 
 <template>
   <div class="images-container">
-    <droparea @upload="onCoverUpload" :stretch="true">
+    <droparea @set="setCover" :stretch="true">
       <div class="cover" :class="theme" :style="`
         background: ${ getCover && `url('${getCover}');` };
         background-position: center;
@@ -60,7 +60,7 @@ const onCoverUpload = (e: FileList) => {
     </droparea>
 
     <div class="avatar-wrapper">
-      <droparea @upload="onAvatarUpload">
+      <droparea @set="setAvatar">
         <div class="avatar" :class="theme" :style="`
           background: ${ getAvatar && `url('${getAvatar}');` };
           background-position: center;

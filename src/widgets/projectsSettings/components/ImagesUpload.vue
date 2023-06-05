@@ -10,26 +10,26 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'update-avatar', payload: FileList): void
-  (e: 'update-cover', payload: FileList): void
+  (e: 'set-avatar', payload: FileList): void
+  (e: 'set-cover', payload: FileList): void
 }>()
 
 const { theme } = useTheme()
 
-const onAvatarUpdate = (e: FileList) => {
+const setAvatar = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
-  emit('update-avatar', e)
+  emit('set-avatar', e)
 }
 
-const onCoverUpdate = (e: FileList) => {
+const setCover = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
-  emit('update-cover', e)
+  emit('set-cover', e)
 }
 </script>
 
 <template>
   <div class="images-container">
-    <droparea @upload="onCoverUpdate" :stretch="true">
+    <droparea @set="setCover" :stretch="true">
       <div class="cover" :class="theme" :style="`
         background: ${ cover && `url('${cover}');` };
         background-position: center;
@@ -44,7 +44,7 @@ const onCoverUpdate = (e: FileList) => {
     </droparea>
 
     <div class="avatar-wrapper">
-      <droparea @upload="onAvatarUpdate">
+      <droparea @set="setAvatar">
         <div class="avatar" :class="theme" :style="`
           background: ${ avatar && `url('${avatar}');` };
           background-position: center;

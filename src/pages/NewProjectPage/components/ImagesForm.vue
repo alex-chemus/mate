@@ -6,8 +6,8 @@ import { useTheme } from '@/utils'
 import { Droparea } from '@/hocs'
 
 const emit = defineEmits<{
-  (e: 'upload-avatar', payload: FileList): void
-  (e: 'upload-cover', payload: FileList): void
+  (e: 'set-avatar', payload: FileList): void
+  (e: 'set-cover', payload: FileList): void
 }>()
 
 const { theme } = useTheme()
@@ -15,30 +15,22 @@ const { theme } = useTheme()
 const updatedAvatar = ref<string | null>(null)
 const updatedCover = ref<string | null>(null)
 
-// const getAvatar = computed(() => {
-//   return updatedAvatar.value
-// })
-
-// const getCover = computed(() => {
-//   return updatedCover.value ?? props.cover
-// })
-
-const emitUploadAvatar = (e: FileList) => {
+const setAvatar = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
   updatedAvatar.value = URL.createObjectURL(e[0])
-  emit('upload-avatar', e)
+  emit('set-avatar', e)
 }
 
-const emitUploadCover = (e: FileList) => {
+const setCover = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
   updatedCover.value = URL.createObjectURL(e[0])
-  emit('upload-cover', e)
+  emit('set-cover', e)
 }
 </script>
 
 <template>
   <div class="images-container">
-    <droparea @upload="emitUploadCover" :stretch="true">
+    <droparea @set="setCover" :stretch="true">
       <div class="cover" :class="theme" :style="`
         background: ${ updatedCover ? updatedCover : 'var(--gray-1)' };
         background-position: center;
@@ -53,7 +45,7 @@ const emitUploadCover = (e: FileList) => {
     </droparea>
 
     <div class="avatar-wrapper">
-      <droparea @upload="emitUploadAvatar">
+      <droparea @set="setAvatar">
         <div class="avatar" :class="theme" :style="`
           background: ${ updatedAvatar ? updatedAvatar : 'var(--gray-1)' };
           background-position: center;

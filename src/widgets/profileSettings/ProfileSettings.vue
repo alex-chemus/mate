@@ -51,8 +51,8 @@ const getAddress = computed(() => {
         :cover="fullAccountInfo.profileCover"
         :full-name="`${fullAccountInfo.firstName} ${fullAccountInfo.lastName}`"
         :text-id="fullAccountInfo.textID"
-        @upload-avatar="setAvatar"
-        @upload-cover="setCover"
+        @set-avatar="setAvatar"
+        @set-cover="setCover"
       />
     </template>
 

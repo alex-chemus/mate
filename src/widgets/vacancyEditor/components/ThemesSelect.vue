@@ -2,7 +2,7 @@
 import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
-import { Select } from '@/ui'
+import { Dropdown } from '@/ui'
 
 const props = defineProps<{
   themes: {
@@ -31,7 +31,7 @@ const onSelect = (id: number) => {
 </script>
 
 <template>
-  <Select
+  <dropdown
     :items="getThemes"
     :selected="selected"
     v-model:visible="isOpen"

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, ref } from 'vue'
 import { useTheme } from '@/utils'
-import { Input, Badge } from '@/ui'
+import { Input, Tag } from '@/ui'
 
 defineProps<{
   skills: string[]
@@ -30,11 +30,11 @@ const inputValue = ref('')
 
     <ul class="skills-list">
       <li v-for="(skill, i) in skills" :key="i">
-        <Badge @close="emit('remove', skill)">
+        <tag @close="emit('remove', skill)">
           <template #content>
-            <p class="badge-text" :class="theme">{{ skill }}</p>
+            <p class="tag-text" :class="theme">{{ skill }}</p>
           </template>
-        </Badge>
+        </tag>
       </li>
     </ul>
   </div>
@@ -67,7 +67,7 @@ const inputValue = ref('')
   gap: 5px;
 }
 
-.badge-text {
+.tag-text {
   @include noto-sans-medium(13px, var(--heading-color-1));
   letter-spacing: -0.02em;
   margin-right: 7px;

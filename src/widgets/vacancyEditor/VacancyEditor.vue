@@ -36,7 +36,7 @@ const hasFiles = computed(() => {
     :visible="isOpen"
     :has-files="hasFiles"
     @update:visible="onUpdateVisible"
-    @upload="p => addFiles(p)"
+    @set-files="files => addFiles(files)"
   >
     <template #title>
       <Title :full-project-info="fullProjectInfo" />

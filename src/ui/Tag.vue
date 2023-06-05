@@ -17,7 +17,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 
 <template>
   <div
-    class="badge" :class="[theme, { round }]"
+    class="tag" :class="[theme, { round }]"
     :style="borderColor ? {
       'border': `1px solid ${borderColor}`
     } : ''">
@@ -37,7 +37,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 @use 'sass:color';
 @import '@/assets/styles/style.scss';
 
-.badge {
+.tag {
   width: fit-content;
   height: 30px;
   padding: 0px 8px;

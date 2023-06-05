@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
-import { Input, Select } from '@/ui'
+import { Input, Dropdown } from '@/ui'
 
 const props = defineProps<{
   themes: {
@@ -37,7 +37,7 @@ const getThemes = computed(() => {
 
     <div class="input-container">
       <div class="select-wrapper">
-        <Select
+        <dropdown
           :items="getThemes"
           label-text="Тема проекта"
           placeholder="Выберите тему Вашего проекта..."

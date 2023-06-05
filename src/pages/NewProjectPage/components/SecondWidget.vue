@@ -5,8 +5,8 @@ import ImagesForm from './ImagesForm.vue'
 
 const emit = defineEmits<{
   (e: 'update:description', description: string): void,
-  (e: 'upload-avatar', files: FileList): void,
-  (e: 'upload-cover', files: FileList): void
+  (e: 'set-avatar', files: FileList): void,
+  (e: 'set-cover', files: FileList): void
 }>()
 </script>
 
@@ -17,8 +17,8 @@ const emit = defineEmits<{
 
     <div class="images-container">
       <images-form
-        @upload-avatar="files => emit('upload-avatar', files)"
-        @upload-cover="files => emit('upload-cover', files)"
+        @set-avatar="files => emit('set-avatar', files)"
+        @set-cover="files => emit('set-cover', files)"
       />
     </div>
 

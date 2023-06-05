@@ -26,7 +26,7 @@ const {
         :img="fullAccountInfo.avatar.avatarCompressed"
         :full-name="`${firstName ?? fullAccountInfo.firstName} ${lastName ?? fullAccountInfo.lastName}`"
         :text-id="textID ?? fullAccountInfo.textID"
-        @upload="setAvatar"
+        @set-avatar="setAvatar"
       />
     </template>
 

@@ -12,7 +12,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'upload', payload: FileList): void
+  (e: 'set-avatar', files: FileList): void
 }>()
 
 const { theme } = useTheme()
@@ -23,16 +23,16 @@ const getImg = computed(() => {
   return updatedImg.value ?? props.img
 })
 
-const onUpload = (e: FileList) => {
+const setAvatar = (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
   updatedImg.value = URL.createObjectURL(e[0])
-  emit('upload', e)
+  emit('set-avatar', e)
 }
 </script>
 
 <template>
   <div class="droparea-container">
-    <droparea @upload="onUpload">
+    <droparea @set="setAvatar">
       <div class="droparea" :style="`
         background: ${ getImg && `url('${getImg}');` };
         background-position: center;

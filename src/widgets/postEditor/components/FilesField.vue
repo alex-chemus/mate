@@ -3,14 +3,14 @@ import { defineEmits } from 'vue'
 import { Droparea } from '@/hocs'
 
 const emit = defineEmits<{
-  (e: 'upload', payload: FileList): void
+  (e: 'set-files', payload: FileList): void
 }>()
 </script>
 
 <template>
   <droparea
     :stretch="true"
-    @upload="(e: FileList) => emit('upload', e)"
+    @set="files => emit('set-files', files)"
   >
     <div class="cover"></div>
   </droparea>

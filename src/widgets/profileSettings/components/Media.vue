@@ -2,7 +2,7 @@
 import { defineProps, defineEmits, ref } from 'vue'
 import { useTheme } from '@/utils'
 import { SocialMedia } from '@/types'
-import { Input, Badge } from '@/ui'
+import { Input, Tag } from '@/ui'
 
 defineProps<{
   media: SocialMedia[]
@@ -52,9 +52,9 @@ const startEditing = (item: SocialMedia) => {
       </button>
     </div>
 
-    <ul class="badges-wrapper">
+    <ul class="tags-wrapper">
       <li v-for="mediaItem in media" :key="mediaItem.id">
-        <badge
+        <tag
           :round="true" @close="emit('remove', mediaItem.id)"
           :border-color="mediaItem.id === editMediaID ? '#455DF6' : undefined"
         >
@@ -84,7 +84,7 @@ const startEditing = (item: SocialMedia) => {
               </svg>
             </button>
           </template>
-        </badge>
+        </tag>
       </li>
     </ul>
   </div>
@@ -111,7 +111,7 @@ const startEditing = (item: SocialMedia) => {
   color: var(--accent);
 }
 
-.badges-wrapper {
+.tags-wrapper {
   list-style: none;
   margin: 0;
   padding: 0;
