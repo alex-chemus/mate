@@ -35,12 +35,9 @@ const getSubsTitle = computed(() => {
           alt=""
         />
         <div class="title-wrapper">
-          <h6>{{ authorInfo.firstName }} {{ authorInfo.lastName }}</h6>
+          <h6>{{ projectInfo.name }}</h6>
           <p>{{ projectInfo.subscribersNumber }} {{ getSubsTitle }}</p>
         </div>
-        <!-- <div class="button-wrapper">
-          <slot />
-        </div> -->
       </div>
     </article>
   </router-link>

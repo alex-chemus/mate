@@ -20,9 +20,6 @@ const authorsInfo = useAuthorsInfo({ projectsInfo })
         :project-info="projectInfo"
         :author-info="authorsInfo!.find((a) => a.findcreekID === projectInfo.founderID)!"
       >
-        <!-- <popover-button
-          :is-subbed="projectInfo.isSubscribed"
-        /> -->
       </project-card>
     </template>
 

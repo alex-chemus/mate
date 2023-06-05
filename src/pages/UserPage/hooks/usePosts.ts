@@ -63,15 +63,17 @@ const usePosts = (
     })) as FullUserPostInfo[]
 
     // бинарный поиск
-    let low = 0
-    let high = posts.value.length - 1
+    let left = 0
+    let right = posts.value.length - 1
 
-    while (low <= high) {
-      const mid = Math.floor((low + high) / 2)
-      const guess = posts.value[mid]
-      if (guess.id === id) posts.value[mid] = res[0] // eslint-disable-line
-      if (guess.id > id) high = mid - 1
-      else low = mid + 1
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2)
+      const post = posts.value[mid]
+      if (post.id === id) {
+        posts.value[mid] = res[0] // eslint-disable-line
+        break
+      } else if (post.id < id) right = mid - 1
+      else left = mid + 1
     }
   }
 

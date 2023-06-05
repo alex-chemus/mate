@@ -31,6 +31,6 @@
 }
 
 p {
-  @include findcreek-medium(16px);
+  @include findcreek-medium(16px, (var(--heading-color-1)));
 }
 </style>
