@@ -3,7 +3,7 @@ import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
 import { Location } from '@/types'
-import { SearchSelect } from '@/ui'
+import { SearchDropdown } from '@/ui'
 
 const props = defineProps<{
   locations: Location[] | null,
@@ -44,7 +44,7 @@ const onSelect = (i: number) => {
 </script>
 
 <template>
-  <search-select
+  <search-dropdown
     :items="getLocations"
     :selected="selected"
     :loading="loading"
