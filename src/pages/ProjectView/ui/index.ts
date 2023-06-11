@@ -1,0 +1,8 @@
+export { default as About } from './About.vue'
+export { default as Employees } from './Employees.vue'
+export { default as NewPost } from './NewPost.vue'
+export { default as Partners } from './Partners.vue'
+export { default as ProfileCard } from './ProfileCard.vue'
+export { default as Projects } from './Projects.vue'
+export { default as Subscriptions } from './Subscriptions.vue'
+export { default as PostsObserver } from './PostsObserver.vue'

@@ -1,0 +1,118 @@
+// breakpoints:
+$xl: 1440px;
+$lg: 992px;
+$md: 768px;
+$sm: 480px;
+
+// mixins:
+
+@mixin xl {
+  @media (max-width: $xl) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: $lg) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (max-width: $md) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (max-width: $sm) {
+    @content;
+  }
+}
+
+@mixin flex($jc: flex-start, $ai: center, $direction: row) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-direction: $direction;
+}
+
+@mixin container {
+  width: 100%;
+  max-width: 1310px;
+  margin: 0 auto;
+}
+
+@mixin scrollbar {
+  overflow-y: scroll;
+  overscroll-behavior-y: contain;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100vmax;
+    background-color: #bbb;
+  }
+}
+
+@mixin findcreek($fz, $color: initial) {
+  font-family: var(--findcreek);
+  font-size: $fz;
+  font-weight: normal;
+  color: $color;
+}
+
+@mixin findcreek-medium($fz, $color: initial) {
+  font-family: var(--findcreek-medium);
+  font-weight: 500;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin findcreek-bold($fz, $color: initial) {
+  font-family: var(--findcreek-bold);
+  font-weight: 700;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin findcreek-light($fz, $color: initial) {
+  font-family: var(--findcreek-light);
+  font-weight: 300;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin montserrat-bold($fz, $color: initial) {
+  font-family: var(--montserrat-bold);
+  font-weight: 700;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin noto-sans($fz, $color: initial) {
+  font-family: var(--noto-sans);
+  font-weight: normal;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin noto-sans-medium($fz, $color: initial) {
+  font-family: var(--noto-sans-medium);
+  font-weight: 500;
+  font-size: $fz;
+  color: $color;
+}
+
+@mixin noto-sans-bold($fz, $color: initial) {
+  font-family: var(--noto-sans-bold);
+  font-weight: 700;
+  font-size: $fz;
+  color: $color;
+}

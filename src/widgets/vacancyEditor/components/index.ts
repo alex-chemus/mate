@@ -1,0 +1,7 @@
+export { default as Title } from './Title.vue'
+export { default as NameInput } from './NameInput.vue'
+export { default as DescriptionInput } from './DescriptionInput.vue'
+export { default as ThemesSelect } from './ThemesSelect.vue'
+export { default as Skills } from './Skills.vue'
+export { default as BottomButton } from './BottomButtons.vue'
+export { default as FilesList } from './FilesList.vue'

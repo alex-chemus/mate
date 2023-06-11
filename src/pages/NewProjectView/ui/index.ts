@@ -1,0 +1,7 @@
+export { default as NextButton } from './NextButton.vue'
+export { default as PrevButton } from './PrevButton.vue'
+export { default as FinishButton } from './FinishButton.vue'
+export { default as Pagination } from './Pagination.vue'
+export { default as NameSection } from './NameSection.vue'
+export { default as AvatarSection } from './AvatarSection.vue'
+export { default as SuccessSection } from './SuccessSection.vue'
