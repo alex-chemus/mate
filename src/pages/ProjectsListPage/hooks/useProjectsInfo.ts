@@ -31,8 +31,6 @@ const useProjectsInfo = () => {
       info: { body, method: 'POST' }
     }) as ProjectsMembership
 
-    console.log('res: ', res)
-
     return [
       ...res.projectsManagement.founder,
       ...res.projectsManagement.administrator,
@@ -42,7 +40,8 @@ const useProjectsInfo = () => {
 
   onMounted(async () => {
     const projectsIDs = await fetchMyProjectsIDs()
-    projectsInfo.value = await fetchFullProjectsInfo(projectsIDs)
+    if (projectsIDs)
+      projectsInfo.value = await fetchFullProjectsInfo(projectsIDs)
   })
 
   return projectsInfo

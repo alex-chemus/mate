@@ -1,1 +1,1 @@
-export { default as SuperContainer } from './SuperContainer.vue'
+export { default as MainContainer } from './MainContainer.vue'

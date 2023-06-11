@@ -27,14 +27,12 @@ const useAccountInfo = (props: Readonly<{
   const dispatch = useDispatch()
   const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
-  const body = new FormData()
-  body.append('token', authState.value.token as string)
-
-  const fields = ['firstName', 'lastName', 'avatar', 'email', 'findcreekID']
-  body.append('fields', fields.join(', '))
-
   const fetchAccountInfo = async () => {
-    if (!authState.value.token) return null
+    const body = new FormData()
+    body.append('token', authState.value.token as string)
+
+    const fields = ['firstName', 'lastName', 'avatar', 'email', 'findcreekID']
+    body.append('fields', fields.join(', '))
 
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/account.getInfo/`,

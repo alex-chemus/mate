@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch
@@ -14,8 +14,6 @@ const useAllSpecialties = () => {
     const body = new FormData()
     body.append('token', authState.value.token as string)
 
-    if (!authState.value.token) return null
-
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/specialties.get/`,
       info: {
@@ -28,6 +26,9 @@ const useAllSpecialties = () => {
   const allSpecialties = ref<SpecialtiesList | null>(null)
 
   onMounted(async () => {
+    allSpecialties.value = await fetchAllSpecialties()
+  })
+  watch(authState, async () => {
     allSpecialties.value = await fetchAllSpecialties()
   })
 

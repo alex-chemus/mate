@@ -24,12 +24,12 @@ const useUploadImage = () => {
     body.append('token', authState.value.token as string)
 
     if (type === 'avatar') {
-      if (!authState.value.token || !avatar.value) return null
+      if (!avatar.value) return null
       body.append('files', avatar.value)
     }
 
     if (type === 'cover') {
-      if (!authState.value.token || !cover.value) return null
+      if (!cover.value) return null
       body.append('files', cover.value)
     }
 

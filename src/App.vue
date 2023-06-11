@@ -1,13 +1,11 @@
 <script lang="ts" setup>
-import { SuperContainer } from '@/containers'
-import { Alert } from '@/widgets'
+import { MainContainer } from '@/containers'
 </script>
 
 <template>
-  <alert />
-  <super-container>
+  <main-container>
     <router-view />
-  </super-container>
+  </main-container>
 </template>
 
 <style lang="scss">

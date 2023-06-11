@@ -1,9 +1,6 @@
 export enum authActions {
-  SET_FETCHED_TOKEN = 'AUTH__SET_FETCHED_TOKEN',
   SET_TOKEN = 'AUTH__SET_TOKEN',
-  // SET_ERROR = 'AUTH__SET_ERROR',
   GET_LOCAL_TOKEN = 'AUTH__GET_LOCAL_TOKEN',
-  FETCH_TOKEN = 'AUTH__FETCH_TOKEN'
 }
 
 export enum themeActions {

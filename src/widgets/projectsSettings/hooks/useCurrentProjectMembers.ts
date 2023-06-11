@@ -76,7 +76,7 @@ const useCurrentProjectMembers = ({ currentProject }: {
       //       findcreekID: m.findcreekID
       //     }
       //   })
-      allMembersInfo.value[currentProject.value.id] = res.map((m) => ({
+      if (res) allMembersInfo.value[currentProject.value.id] = res.map((m) => ({
         ...m,
         role: getRoleById(m.findcreekID)!
       }))

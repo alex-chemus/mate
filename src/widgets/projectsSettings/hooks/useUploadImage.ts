@@ -62,12 +62,12 @@ const useUploadImage = ({ currentProjectID }: {
     if (!currentProjectImages.value) return null
 
     if (type === 'avatar') {
-      if (!authState.value.token || !currentProjectImages.value.avatar) return null
+      if (!currentProjectImages.value.avatar) return null
       body.append('files', currentProjectImages.value.avatar)
     }
 
     if (type === 'cover') {
-      if (!authState.value.token || !currentProjectImages.value.cover) return null
+      if (!currentProjectImages.value.cover) return null
       body.append('files', currentProjectImages.value.cover)
     }
 

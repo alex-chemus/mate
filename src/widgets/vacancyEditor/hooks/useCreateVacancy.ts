@@ -46,7 +46,7 @@ const useCreateVacancy = ({
     /* eslint-disable */
     for (const file of files) {
       const fileInfo = await uploadFile(file)
-      res.push(fileInfo.fileID)
+      if (fileInfo) res.push(fileInfo.fileID)
     }
     /* eslint-enable */
 

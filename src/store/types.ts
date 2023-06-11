@@ -1,8 +1,5 @@
 export type AuthModuleState = {
   token: string | null,
-  // isError: boolean,
-  // errorMessage: string | null
-  fetchedToken: boolean
 }
 
 export type ThemeModuleState = {

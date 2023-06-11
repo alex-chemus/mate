@@ -1,8 +1,0 @@
-export { default as NextButton } from './NextButton.vue'
-export { default as PrevButton } from './PrevButton.vue'
-export { default as FinishButton } from './FinishButton.vue'
-export { default as Pagination } from './Pagination.vue'
-export { default as FirstWidget } from './FirstWidget.vue'
-export { default as SecondWidget } from './SecondWidget.vue'
-export { default as FinalWidget } from './FinalWidget.vue'
-export { default as withTransition } from './withTransition.vue'

@@ -79,7 +79,6 @@ const usePosts = (
 
   const next = () => {
     if (posts.value && posts.value.length < limit.value.from + limit.value.amount) return
-    console.log('next')
     limit.value = {
       from: limit.value.from + limit.value.amount,
       amount: limit.value.amount

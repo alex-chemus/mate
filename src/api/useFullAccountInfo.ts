@@ -12,8 +12,6 @@ const useFullAccountInfo = () => {
   const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
   const fetchAccountInfo = async () => {
-    if (!authState.value.token) return null
-
     const body = new FormData()
     body.append('token', authState.value.token as string)
 
@@ -32,7 +30,8 @@ const useFullAccountInfo = () => {
     fullAccountInfo.value = await fetchAccountInfo()
   })
 
-  watch([globalUpdate, globalAccountUpdate], async () => {
+
+  watch([globalUpdate, globalAccountUpdate, authState], async () => {
     fullAccountInfo.value = await fetchAccountInfo()
   })
 
