@@ -4,7 +4,9 @@ import {
   watch, ref, computed, nextTick
 } from 'vue'
 import { PopupTransition } from '@/hocs';
-import { InputButton, Loader } from '@/ui'
+// import { InputButton, Loader } from '@/ui'
+import InputButton from './InputButton.vue'
+import Loader from './Loader.vue'
 import { useTheme } from '@/utils'
 
 const props = defineProps<{
