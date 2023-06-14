@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { Alert } from '@/features'
+import { Alert, Settings } from '@/features'
 </script>
 
 <template>
   <alert />
+  <settings />
   <slot />
 </template>

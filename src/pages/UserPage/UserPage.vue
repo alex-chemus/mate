@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import {
-  Settings, Header, PostEditor, UserPost
-} from '@/widgets'
+import { Header, PostFormWidget } from '@/widgets'
+import { PostWidget } from './widgets'
 import {
   Bio, Partners, ProfileCard,
   Projects, Skills, Contacts, NewPost,
@@ -42,9 +41,9 @@ const partners = ref<Partner[]>([
 </script>
 
 <template>
-  <settings />
+  <!-- <settings /> -->
 
-  <post-editor
+  <post-form-widget
     v-if="fullUsersInfo && isMe(fullUsersInfo[0].findcreekID)"
     :img="fullUsersInfo[0].avatar.avatarCompressed ?? fullUsersInfo[0].avatar.avatar"
     type="user"
@@ -110,10 +109,10 @@ const partners = ref<Partner[]>([
     </template> -->
 
     <template #posts v-if="posts">
-      <user-post
+      <post-widget
         v-for="post in posts" :key="post.date.unixTime"
-        :post-info="post"
-        :author-info="fullUsersInfo[0]"
+        :post="post"
+        :author="fullUsersInfo[0]"
         @reload="updatePost"
       />
     </template>

@@ -74,14 +74,13 @@ const useTabs = ({ account }: { account: ReturnType<typeof useAccountInfo> }) =>
     }
   })
 
-  onBeforeRouteUpdate((newRoute) => {
+  router.beforeEach((newRoute) => {
     const hasSettings = Object.keys(newRoute.query).includes('settings')
 
     if (!hasSettings) {
       currentTab.value = null
       return true
     }
-
 
     if (hasSettings && !newRoute.query.settings)
       return { path: `${route.path}`, query: { settings: 'general' } }

@@ -1,5 +1,5 @@
 import { useRoute, useRouter } from 'vue-router'
-import { Tab } from '@/widgets/settings/types'
+import { Tab } from '@/features/Settings/types'
 
 const useSettings = () => {
   const router = useRouter()

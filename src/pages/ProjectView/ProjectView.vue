@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { Settings, PostEditor, VacancyEditor } from '@/widgets'
+import { PostFormWidget } from '@/widgets'
 import { useFullAccountInfo } from '@/api'
 import type { Company, Partner } from './types'
-import { PostWidget } from './widgets'
+import { PostWidget, VacancyFormWidget } from './widgets'
 import {
   ProfileCard, Subscriptions, Partners, About,
   NewPost, Projects, Employees, PostsObserver
@@ -53,12 +53,12 @@ const ownsProject = computed(() => {
 </script>
 
 <template>
-  <settings
+  <!-- <settings
     v-if="fullAccountInfo"
     :full-account-info="fullAccountInfo"
-  />
+  /> -->
 
-  <post-editor
+  <post-form-widget
     v-if="projectInfo"
     type="project"
     :id="projectInfo.id"
@@ -66,7 +66,9 @@ const ownsProject = computed(() => {
     @add="setPostUpdate"
   />
 
-  <vacancy-editor v-if="projectInfo" :full-project-info="projectInfo" />
+  <vacancy-form-widget
+    v-if="projectInfo" :full-project="projectInfo"
+  />
 
   <project-layout v-if="fullAccountInfo && projectInfo" :loading="!fullAccountInfo || !projectInfo">
     <!-- <template #header>

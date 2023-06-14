@@ -1,15 +1,12 @@
 <script lang="ts" setup>
-import {
-  defineProps, defineEmits, computed, ref
-} from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/utils'
 import { Droparea } from '@/hocs'
 
-const props = defineProps<{
+defineProps<{
   avatar: string,
   cover: string
-  fullName: string,
-  textId: string
+  fullName: string
 }>()
 
 const emit = defineEmits<{
@@ -19,38 +16,25 @@ const emit = defineEmits<{
 
 const { theme } = useTheme()
 
-const updatedAvatar = ref<string | null>(null)
-const updatedCover = ref<string | null>(null)
-
-const getAvatar = computed(() => {
-  return updatedAvatar.value ?? props.avatar
-})
-
-const getCover = computed(() => {
-  return updatedCover.value ?? props.cover
-})
-
-const setAvatar = (e: FileList) => {
-  if (!e[0].type.startsWith('image/')) return
-  updatedAvatar.value = URL.createObjectURL(e[0])
-  emit('set-avatar', e)
+const emitSetAvatar = (files: FileList) => {
+  if (!files[0].type.startsWith('image/')) return
+  emit('set-avatar', files)
 }
 
-const setCover = (e: FileList) => {
-  if (!e[0].type.startsWith('image/')) return
-  updatedCover.value = URL.createObjectURL(e[0])
-  emit('set-cover', e)
+const emitSetCover = (files: FileList) => {
+  if (!files[0].type.startsWith('image/')) return
+  emit('set-cover', files)
 }
 </script>
 
 <template>
   <div class="images-container">
-    <droparea @set="setCover" :is-stretch="true">
+    <droparea @set="emitSetCover" :is-stretch="true">
       <div class="cover" :class="theme" :style="`
-        background: ${ getCover && `url('${getCover}');` };
+        background: ${ cover && `url('${cover}');` };
         background-position: center;
         background-size: cover;
-        box-shadow: inset 0 0 0 100vmax ${ getCover ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' };
+        box-shadow: inset 0 0 0 100vmax ${ cover ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' };
       `">
         <svg width="30" height="30" viewBox="0 0 30 30">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-camera" />
@@ -60,13 +44,13 @@ const setCover = (e: FileList) => {
     </droparea>
 
     <div class="avatar-wrapper">
-      <droparea @set="setAvatar">
+      <droparea @set="emitSetAvatar">
         <div class="avatar" :class="theme" :style="`
-          background: ${ getAvatar && `url('${getAvatar}');` };
+          background: ${ avatar && `url('${avatar}');` };
           background-position: center;
           background-size: cover;
           box-shadow:
-            inset 0 0 0 100vmax ${ getAvatar ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' },
+            inset 0 0 0 100vmax ${ avatar ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' },
             0 0 9px 0 rgb(0 0 0 / .25);
         `">
           <svg width="36" height="36" viewBox="0 0 36 36">
@@ -81,12 +65,6 @@ const setCover = (e: FileList) => {
 
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
-
-.images-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-}
 
 .cover,
 .avatar {

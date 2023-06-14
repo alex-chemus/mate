@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import { FullAccountInfo } from '@/types'
+// import {
+//   ProfileSettings, ProjectsSettings, PrivacySettings
+// } from '@/widgets'
 import {
-  ProfileSettings, ProjectsSettings, PrivacySettings
-} from '@/widgets'
-import { GeneralWidget } from './widgets'
+  GeneralWidget, ProjectsWidget, ProfileWidget, PrivacyWidget
+} from './widgets'
 import { SettingsLayout } from './layouts'
 import { useTabs, useAccount } from './hooks'
 import {
@@ -67,20 +69,20 @@ const {
     </template>
 
     <template #profile-settings>
-      <profile-settings
-        :full-account-info="account"
+      <profile-widget
+        :full-account="account"
       />
     </template>
 
     <template #projects-settings>
-      <projects-settings
-        :full-account-info="account"
+      <projects-widget
+        :full-account="account"
       />
     </template>
 
     <template #privacy-settings>
-      <privacy-settings
-        :full-account-info="account"
+      <privacy-widget
+        :full-account="account"
       />
     </template>
   </settings-layout>

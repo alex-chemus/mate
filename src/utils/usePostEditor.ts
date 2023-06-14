@@ -8,15 +8,15 @@ const usePostEditor = () => {
   const isOpen = ref(false)
 
   onMounted(() => {
-    isOpen.value = Object.keys(route.query).includes('post-editor')
+    isOpen.value = Object.keys(route.query).includes('post-form')
   })
 
   onBeforeRouteUpdate((newRoute) => {
-    isOpen.value = Object.keys(newRoute.query).includes('post-editor')
+    isOpen.value = Object.keys(newRoute.query).includes('post-form')
   })
 
   const openPostEditor = () => {
-    router.push({ path: route.path, query: { 'post-editor': null } })
+    router.push({ path: route.path, query: { 'post-form': null } })
   }
 
   const closePostEditor = () => {

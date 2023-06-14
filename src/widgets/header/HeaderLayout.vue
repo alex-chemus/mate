@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { Logo } from '@/ui'
 </script>
 
 <template>
   <header class="header-container">
-    <button class="logo-wrapper">
+    <!-- <button class="logo-wrapper">
       <logo />
-    </button>
+    </button> -->
 
     <slot name="search" />
     <slot name="tabs" />
