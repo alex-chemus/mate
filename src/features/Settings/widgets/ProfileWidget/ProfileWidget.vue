@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, ref, computed } from 'vue'
-import { FullAccountInfo } from '@/types'
+import { FullAccount } from '@/types'
 import { Textarea, SaveButton } from '@/ui'
 import {
   ImagesForm, Media, Skills, Specialties,
@@ -13,7 +13,7 @@ import {
 } from './hooks'
 
 const props = defineProps<{
-  fullAccount: FullAccountInfo,
+  fullAccount: FullAccount,
 }>()
 
 const { setAvatar, setCover, uploadImage } = useImages()

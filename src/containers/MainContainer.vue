@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import AuthContainer from './AuthContainer.vue'
-import HeaderContainer from './HeaderContainer.vue'
+// import HeaderContainer from './HeaderContainer.vue'
 import ProcessesContainer from './ProcessesContainer.vue'
 import FeaturesContainer from './FeaturesContainer.vue'
 </script>
@@ -9,9 +9,7 @@ import FeaturesContainer from './FeaturesContainer.vue'
   <processes-container>
     <auth-container>
       <features-container>
-        <header-container>
-          <slot />
-        </header-container>
+        <slot />
       </features-container>
     </auth-container>
   </processes-container>

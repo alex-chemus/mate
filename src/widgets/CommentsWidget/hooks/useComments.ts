@@ -1,7 +1,7 @@
 import { onMounted, ref, watch } from 'vue'
 import { fetchActions } from '@/store/constants'
 import { useApiState, useAuthState, useDispatch } from '@/utils'
-import { CommentInfo } from '@/types'
+import { Comment } from '@/types'
 import { PostType } from '../types'
 
 const useComments = (
@@ -18,7 +18,7 @@ const useComments = (
   const authState = useAuthState()
   const dispatch = useDispatch()
 
-  const comments = ref<CommentInfo[] | null>(null)
+  const comments = ref<Comment[] | null>(null)
   const commentsUpdate = ref<symbol | null>(null)
 
   const fetchComments = async () => {
@@ -32,7 +32,7 @@ const useComments = (
       url: `${apiState.value.apiUrl}/mate/comment.getPostComments/`,
       info: { body, method: 'POST' }
     })
-    comments.value = res as CommentInfo[]
+    comments.value = res as Comment[]
   }
 
   const addComment = async ({ text, commentID }: { text: string, commentID?: number }) => {

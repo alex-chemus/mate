@@ -2,18 +2,18 @@ import {
   ref, onMounted, computed, watch
 } from 'vue'
 import { useGlobalUpdate } from '@/utils'
-import { FullAccountInfo, FullProjectInfo } from '@/types'
-import { useFetchFullProjectsInfo } from '@/api'
+import { FullAccount, FullProject } from '@/types'
+import { useFetchFullProjects } from '@/api'
 
-const useProjects = ({ fullAccount }: { fullAccount: FullAccountInfo }) => {
-  const projectsInfo = ref<FullProjectInfo[] | null>(null)
+const useProjects = ({ fullAccount }: { fullAccount: FullAccount }) => {
+  const projectsInfo = ref<FullProject[] | null>(null)
   const currentProjectID = ref<number | null>(null)
   const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
 
-  const fetchFullProjectsInfo = useFetchFullProjectsInfo()
+  const fetchFullProjects = useFetchFullProjects()
 
   onMounted(async () => {
-    projectsInfo.value = await fetchFullProjectsInfo([
+    projectsInfo.value = await fetchFullProjects([
       ...fullAccount.projectsManagement.administrator,
       ...fullAccount.projectsManagement.editor,
       ...fullAccount.projectsManagement.founder
@@ -22,7 +22,7 @@ const useProjects = ({ fullAccount }: { fullAccount: FullAccountInfo }) => {
   })
 
   watch([globalUpdate, globalProjectsUpdate], async () => {
-    projectsInfo.value = await fetchFullProjectsInfo([
+    projectsInfo.value = await fetchFullProjects([
       ...fullAccount.projectsManagement.administrator,
       ...fullAccount.projectsManagement.editor,
       ...fullAccount.projectsManagement.founder

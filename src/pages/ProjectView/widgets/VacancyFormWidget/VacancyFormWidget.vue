@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, computed } from 'vue'
-import { FullProjectInfo } from '@/types'
+import { FullProject } from '@/types'
 import { WidgetLayout } from './layouts'
 import {
   Title, NameInput, DescriptionInput, ThemesSelect,
@@ -11,7 +11,7 @@ import {
 } from './hooks'
 
 const props = defineProps<{
-  fullProject: FullProjectInfo
+  fullProject: FullProject
 }>()
 
 const { isOpen, close } = useUrlWatcher()

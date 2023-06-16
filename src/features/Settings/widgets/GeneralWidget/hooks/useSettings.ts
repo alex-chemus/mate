@@ -3,7 +3,6 @@ import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate, useAlert
 } from '@/utils'
-import { FullAccountInfo } from '@/types'
 
 const useSettings = ({
   uploadAvatar

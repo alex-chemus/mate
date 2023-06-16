@@ -4,7 +4,7 @@ import { useTheme } from '@/utils'
 
 const props = defineProps<{
   value: string,
-  selected?: boolean,
+  isSelected?: boolean,
   theme?: 'light' | 'dark',
   width?: 'fit-content' | 'max'
 }>()
@@ -20,12 +20,12 @@ const theme = props.theme
 
 <template>
   <button
-    class="checkbox-button" :class="[{ selected }, theme]"
-    @click="emit('select', !selected)"
+    class="checkbox-button" :class="[isSelected ? 'selected' : '', theme]"
+    @click="emit('select', !isSelected)"
     :style="`width: ${width === 'fit-content' ? 'fit-content' : ''}`"
   >
-    <div class="checkbox" :class="[selected, theme]">
-      <svg v-if="selected" width="16" height="16" viewBox="0 0 16 16">
+    <div class="checkbox" :class="[isSelected ? 'selected' : '', theme]">
+      <svg v-if="isSelected" width="16" height="16" viewBox="0 0 16 16">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-check" />
       </svg>
     </div>

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import { FullAccountInfo } from '@/types'
 // import {
 //   ProfileSettings, ProjectsSettings, PrivacySettings
 // } from '@/widgets'
@@ -14,11 +12,7 @@ import {
 } from './ui'
 import { Tab } from './types'
 
-const props = defineProps<{
-  fullAccountInfo?: FullAccountInfo
-}>()
-
-const account = useAccount(props)
+const account = useAccount()
 const {
   currentTab, toggleTabs, currentTitle, hasProjects
 } = useTabs({ account })

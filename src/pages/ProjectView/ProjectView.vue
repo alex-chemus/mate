@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { PostFormWidget } from '@/widgets'
-import { useFullAccountInfo } from '@/api'
+import { useFullAccount } from '@/api'
 import type { Company, Partner } from './types'
 import { PostWidget, VacancyFormWidget } from './widgets'
 import {
@@ -9,7 +9,7 @@ import {
   NewPost, Projects, Employees, PostsObserver
 } from './ui'
 import { ProjectLayout } from './layouts'
-import { useProjectInfo, useSubscribe, usePosts } from './hooks'
+import { useProject, useSubscribe, usePosts } from './hooks'
 
 //const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
 const followers = ref('6 млн')
@@ -30,9 +30,9 @@ const partners = ref<Partner[]>([
   { link: '/profile', id: 7 }
 ])
 
-const fullAccountInfo = useFullAccountInfo()
+const fullAccount = useFullAccount()
 const { subscribe, unsubscribe, subUpdate } = useSubscribe()
-const { projectInfo, projectEmployees } = useProjectInfo({
+const { project, projectEmployees } = useProject({
   update: subUpdate
 })
 
@@ -42,13 +42,13 @@ const setPostUpdate = () => {
 }
 const {
   getPosts, authors, next, updatePost
-} = usePosts({ projectInfo, update: postUpdate })
+} = usePosts({ project, update: postUpdate })
 
 const ownsProject = computed(() => {
-  if (!fullAccountInfo.value || !projectInfo.value) return
+  if (!fullAccount.value || !project.value) return
   // eslint-disable-next-line
-  return fullAccountInfo.value.findcreekID === projectInfo.value.founderID
-    || projectInfo.value.administrators.includes(fullAccountInfo.value.findcreekID)
+  return fullAccount.value.findcreekID === project.value.founderID
+    || project.value.administrators.includes(fullAccount.value.findcreekID)
 })
 </script>
 
@@ -59,18 +59,18 @@ const ownsProject = computed(() => {
   /> -->
 
   <post-form-widget
-    v-if="projectInfo"
+    v-if="project"
     type="project"
-    :id="projectInfo.id"
-    :img="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar"
+    :id="project.id"
+    :img="project.avatar.avatarCompressed ?? project.avatar.avatar"
     @add="setPostUpdate"
   />
 
   <vacancy-form-widget
-    v-if="projectInfo" :full-project="projectInfo"
+    v-if="project" :full-project="project"
   />
 
-  <project-layout v-if="fullAccountInfo && projectInfo" :loading="!fullAccountInfo || !projectInfo">
+  <project-layout v-if="fullAccount && project" :loading="!fullAccount || !project">
     <!-- <template #header>
       <Header
         :img="fullAccountInfo.avatar.avatarCompressed"
@@ -81,16 +81,16 @@ const ownsProject = computed(() => {
 
     <template #profile-card>
       <ProfileCard
-        :name="projectInfo.name"
-        :img="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar"
+        :name="project.name"
+        :img="project.avatar.avatarCompressed ?? project.avatar.avatar"
         :followers="followers"
         :following="following"
-        :nickname="projectInfo.textID"
-        :banner="projectInfo.profileCover.profileCover"
+        :nickname="project.textID"
+        :banner="project.profileCover.profileCover"
         :owns-project="ownsProject"
-        :is-subscribed="projectInfo.isSubscribed"
-        @subscribe="subscribe(projectInfo!.id)"
-        @unsubscribe="unsubscribe(projectInfo!.id)"
+        :is-subscribed="project.isSubscribed"
+        @subscribe="subscribe(project!.id)"
+        @unsubscribe="unsubscribe(project!.id)"
       />
     </template>
 
@@ -106,19 +106,19 @@ const ownsProject = computed(() => {
       />
     </template>
 
-    <template #about v-if="projectInfo.description.length">
-      <About :text="projectInfo.description" />
+    <template #about v-if="project.description.length">
+      <About :text="project.description" />
     </template>
 
     <template #new-post>
-      <new-post :img="fullAccountInfo.avatar.avatarCompressed ?? fullAccountInfo.avatar.avatar" />
+      <new-post :img="fullAccount.avatar.avatarCompressed ?? fullAccount.avatar.avatar" />
     </template>
 
     <template #posts v-if="getPosts && authors">
       <post-widget
         v-for="post in getPosts" :key="post.date.unixTime"
         :post-info="post"
-        :project-info="projectInfo"
+        :project-info="project"
         :author-info="authors!.find((i) => i.postID === post.id)!.author"
         @reload="updatePost"
       />

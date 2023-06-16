@@ -4,13 +4,13 @@ import {
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
-import { FullProjectInfo, ExcludeProperties } from '@/types'
+import { FullProject, ExcludeProperties } from '@/types'
 import { fetchActions } from '@/store/constants'
 import { Member } from '../types'
 import userCurrentProjectMembers from './useCurrentProjectMembers'
 
 const useMembers = ({ currentProject }: {
-  currentProject: ComputedRef<FullProjectInfo | null>
+  currentProject: ComputedRef<FullProject | null>
 }) => {
   const apiState = useApiState()
   const authState = useAuthState()

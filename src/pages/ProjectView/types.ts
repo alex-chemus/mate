@@ -26,7 +26,7 @@ export type Employee = {
   role: Role
 }
 
-export type AccountInfo = {
+export type Account = {
   findcreekID: number,
   roles: ('user' | 'admin' | 'active_person')[],
   address: {
@@ -95,7 +95,7 @@ export type ProjectProduct = {
   lastEditDate: string
 }
 
-export type ProjectInfo = {
+export type FullProject = {
   id: number,
   founderID: number,
   textID: string,

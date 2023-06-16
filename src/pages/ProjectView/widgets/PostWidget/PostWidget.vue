@@ -3,7 +3,7 @@ import {
   defineEmits, defineProps, computed
 } from 'vue'
 import {
-  FullProjectPostInfo, FullProjectInfo, FullUserInfo
+  FullProjectPost, FullProject, FullUser
 } from '@/types'
 import { CommentsWidget } from '@/widgets'
 import { useDate, useLikes, useViewer } from './hooks'
@@ -14,9 +14,9 @@ import {
 } from './ui'
 
 const props = defineProps<{
-  postInfo: FullProjectPostInfo,
-  authorInfo: FullUserInfo,
-  projectInfo: FullProjectInfo
+  postInfo: FullProjectPost,
+  authorInfo: FullUser,
+  projectInfo: FullProject
 }>()
 
 const emit = defineEmits<{

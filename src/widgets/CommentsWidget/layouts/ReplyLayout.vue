@@ -1,28 +1,14 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps } from 'vue'
 import { useTimeUtils, useUserState } from '@/utils'
-import { CommentInfo, ReplyInfo } from '@/types'
-import CommentForm from './CommentForm.vue'
-import LikeSvg from './LikeSvg.vue'
-import DislikeSvg from './DislikeSvg.vue'
+import { Comment, Reply } from '@/types'
 
-const props = defineProps<{
-  reply: ReplyInfo,
-  comment: CommentInfo,
+defineProps<{
+  reply: Reply,
+  comment: Comment,
   replyToId: number | null,
   editingId: number | null
 }>()
-
-// const emit = defineEmits<{
-//   (e: 'update:newReply', payload: number | null): void,
-//   (e: 'update:editing', payload: number | null): void,
-//   (e: 'new-reply', payload: { text: string, id: number }): void,
-//   (e: 'like', payload: reply): void,
-//   (e: 'dislike', payload: reply): void,
-//   (e: 'edit-comment', payload: { text: string, id: number }): void,
-//   (e: 'set-reply-to-id', id: number | null): void,
-//   (e: 'set-editing-id', id: number | null): void
-// }>()
 
 const userState = useUserState()
 const { isToday, isYesterday } = useTimeUtils()
@@ -36,30 +22,6 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
 
   return date
 }
-
-// const onNewReply = ({ text, id }: { text: string, id: number }) => {
-//   emit('new-reply', { text, id })
-//   emit('update:newReply', null)
-// }
-
-// const onReplyButtonClick = () => {
-//   if (props.newReply === null)
-//     emit('update:newReply', props.reply.id)
-//   else
-//     emit('update:newReply', null)
-// }
-
-// const onEditClick = () => {
-//   if (props.editing === null)
-//     emit('update:editing', props.reply.id)
-//   else
-//     emit('update:editing', null)
-// }
-
-// const onEdit = ({ text, id }: { text: string, id: number }) => {
-//   emit('update:editing', null)
-//   emit('edit-comment', { text, id })
-// }
 </script>
 
 <template>
@@ -77,12 +39,6 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
       v-if="reply.authorID === userState.id && editingId === reply.id"
       class="editing-wrapper"
     >
-      <!-- <comment-form
-        :initial-text="reply.text"
-        :no-avatar="true"
-        placeholder="Отредактируйте комментарий"
-        @submit="text=> onEdit({ text, id: reply.id })"
-      /> -->
       <slot name="edit-reply-form" />
     </div>
     <template v-else>
@@ -98,43 +54,18 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
     </template>
 
     <div class="buttons-container">
-      <!-- <button class="reply-button" @click="onReplyButtonClick">Ответить</button> -->
       <slot name="add-reply-button" />
 
-      <!-- <button
-        v-if="reply.authorID === userState.id"
-        class="edit-button"
-        @click="onEditClick"
-      >
-        <svg width="20" height="20" viewBox="0 0 20 20">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-pencil" />
-        </svg>
-      </button> -->
       <slot name="set-editing-button" />
 
-      <!-- <button
-        class="like-button" :class="{ 'active': reply.isLiked }"
-        @click="emit('like', reply)"
-      >
-        <like-svg :active="reply.isLiked" />
-        <span>{{ reply.likesNumber }}</span>
-      </button> -->
       <div class="like-button-wrapper">
         <slot name="like-button" />
       </div>
 
-      <!-- <button
-        class="dislike-button" :class="{ 'active': reply.isDisliked }"
-        @click="emit('dislike', reply)"
-      >
-        <dislike-svg :active="reply.isDisliked" />
-        <span>{{ reply.dislikesNumber }}</span>
-      </button> -->
       <slot name="dislike-button" />
     </div>
 
     <div v-if="replyToId === reply.id">
-      <!-- <comment-form @submit="text => onNewReply({ text, id: reply.id })" /> -->
       <slot name="add-reply-form" />
     </div>
   </div>

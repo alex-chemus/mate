@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { FullProjectInfo } from '@/types'
+import { FullProject } from '@/types'
 
 defineProps<{
-  fullProject: FullProjectInfo
+  fullProject: FullProject
 }>()
 </script>
 

@@ -1,10 +1,5 @@
 export type SettingsTab = 'settings' | 'members'
 
-// export type ProjectTab = {
-//   id: number,
-//   name: string
-// }
-
 export type Role = 'founder' | 'administrator' | 'editor' | 'user'
 
 export type Member = {

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
 import Flicking from '@egjs/vue3-flicking'
-import { FullProjectInfo } from '@/types'
+import { FullProject } from '@/types'
 import SliderButton from './SliderButton.vue'
 import '@/assets/styles/carousel.css'
 
@@ -9,7 +9,7 @@ import '@egjs/vue3-flicking/dist/flicking.css'
 import '@egjs/vue3-flicking/dist/flicking-inline.css'
 
 defineProps<{
-  projects: FullProjectInfo[]
+  projects: FullProject[]
   currentTabId: number
 }>()
 

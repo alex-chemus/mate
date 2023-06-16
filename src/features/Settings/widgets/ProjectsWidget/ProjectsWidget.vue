@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
-import { FullAccountInfo } from '@/types'
+import { FullAccount } from '@/types'
 import { Input, SaveButton, DateInput } from '@/ui'
 import { WidgetLayout, RolePopup } from './layouts'
 // import ProjectsSettingsLayout from './ProjectsSettingsLayout.vue'
@@ -15,7 +15,7 @@ import {
 import { SettingsTab, Member } from './types'
 
 const props = defineProps<{
-  fullAccount: FullAccountInfo
+  fullAccount: FullAccount
 }>()
 
 const { projectsInfo, currentProjectID, currentProject } = useProjects({

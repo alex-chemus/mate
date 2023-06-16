@@ -1,17 +1,17 @@
 import {
   Ref, ref, watch, computed
 } from 'vue'
-import { FullProjectInfo, FullProjectPostInfo, FullUserInfo } from '@/types'
+import { FullProject, FullProjectPost, FullUser } from '@/types'
 import {
   useApiState, useAuthState, useDispatch,
 } from '@/utils'
 import { fetchActions } from '@/store/constants'
-import { useFetchFullUsersInfo } from '@/api'
+import { useFetchFullUsers } from '@/api'
 
 const usePosts = (
-  { projectInfo, update }:
+  { project, update }:
   {
-    projectInfo: Ref<FullProjectInfo | null>,
+    project: Ref<FullProject | null>,
     update?: Ref<symbol | null> | Ref<symbol | null>[]
   }
 ) => {
@@ -19,7 +19,7 @@ const usePosts = (
   const authState = useAuthState()
   const dispatch = useDispatch()
 
-  const posts = ref<FullProjectPostInfo[] | null>(null)
+  const posts = ref<FullProjectPost[] | null>(null)
   const getPosts = computed(() => {
     return posts.value
     // return posts.value !== null
@@ -28,7 +28,7 @@ const usePosts = (
   })
 
   const authors = ref<{
-    author: FullUserInfo,
+    author: FullUser,
     postID: number
   }[] | null>(null)
 
@@ -38,33 +38,33 @@ const usePosts = (
   }
 
   const fetchPosts = async (shouldntReset?: boolean) => {
-    if (projectInfo.value === null) return
+    if (project.value === null) return
 
     const body = new FormData()
     body.append('token', authState.value.token as string)
-    body.append('projectID', projectInfo.value.id.toString())
+    body.append('projectID', project.value.id.toString())
     body.append('limit', `${limit.value.from},${limit.value.amount}`)
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.getProjectPosts/`,
       info: { method: 'POST', body }
-    })) as FullProjectPostInfo[]
+    })) as FullProjectPost[]
 
     if (shouldntReset && posts.value) posts.value = [...posts.value, ...res]
     else posts.value = res
   }
 
-  watch(projectInfo, () => {
+  watch(project, () => {
     resetLimit()
     fetchPosts()
   })
   if (update) watch(update, () => fetchPosts)
 
-  const fetchFullUsersInfo = useFetchFullUsersInfo()
+  const fetchFullUsers = useFetchFullUsers()
   watch(posts, async () => {
     if (posts.value === null) return
     const IDs = posts.value.map((p) => p.authorID)
-    const users = await fetchFullUsersInfo(IDs)
+    const users = await fetchFullUsers(IDs)
     authors.value = posts.value.map((p) => {
       return {
         postID: p.id,
@@ -83,7 +83,7 @@ const usePosts = (
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.getInfo/`,
       info: { method: 'POST', body }
-    })) as FullProjectPostInfo[]
+    })) as FullProjectPost[]
 
     posts.value = posts.value.map((p) => p.id === id ? res[0] : p)
     // бинарный поиск ps.s херня полная, надо переделать

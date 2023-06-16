@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import { useTheme } from '@/utils'
-import { FullAccountInfo } from '@/types'
+import { FullAccount } from '@/types'
 
 defineProps<{
-  fullAccount: FullAccountInfo
+  fullAccount: FullAccount
 }>()
 
 const { theme } = useTheme()

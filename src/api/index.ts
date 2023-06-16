@@ -1,5 +1,5 @@
 export { default as useAllSpecialties } from './useAllSpecialties'
-export { default as useFullAccountInfo } from './useFullAccountInfo'
-export { default as useFetchFullProjectsInfo } from './useFetchFullProjectsInfo'
-export { default as useFetchFullUsersInfo } from './useFetchFullUsersInfo'
+export { default as useFullAccount } from './useFullAccount'
+export { default as useFetchFullProjects } from './useFetchFullProjects'
+export { default as useFetchFullUsers } from './useFetchFullUsers'
 export { default as useFetchSubscribe } from './useFetchSubscribe'

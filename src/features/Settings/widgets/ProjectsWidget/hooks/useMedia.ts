@@ -2,13 +2,13 @@ import { ComputedRef } from 'vue'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
-import { FullProjectInfo } from '@/types'
+import { FullProject } from '@/types'
 import { fetchActions } from '@/store/constants'
 
 const useMedia = ({
   currentProject
 }: {
-  currentProject: ComputedRef<FullProjectInfo | null>
+  currentProject: ComputedRef<FullProject | null>
 }) => {
   const apiState = useApiState()
   const authState = useAuthState()

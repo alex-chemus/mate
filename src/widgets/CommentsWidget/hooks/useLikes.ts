@@ -1,4 +1,4 @@
-import { ReplyInfo, CommentInfo } from '@/types'
+import { Reply, Comment } from '@/types'
 import { useApiState, useAuthState, useDispatch } from '@/utils'
 import { fetchActions } from '@/store/constants'
 
@@ -20,7 +20,7 @@ const useCommentLikes = (
     })
   }
 
-  const uploadLike = async (info: CommentInfo | ReplyInfo) => {
+  const uploadLike = async (info: Comment | Reply) => {
     if (info.isLiked === false && info.isDisliked === false) {
       await setReaction(info.id, 'like')
       onUpdate()
@@ -40,7 +40,7 @@ const useCommentLikes = (
     }
   }
 
-  const uploadDislike = async (info: CommentInfo | ReplyInfo) => {
+  const uploadDislike = async (info: Comment | Reply) => {
     if (info.isDisliked === false && info.isLiked === false) {
       await setReaction(info.id, 'dislike')
       onUpdate()

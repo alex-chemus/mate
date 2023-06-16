@@ -1,26 +1,15 @@
-import {
-  ref, onMounted, watch, computed
-} from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { FullAccount } from '@/types'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate
 } from '@/utils'
-import { FullAccountInfo } from '@/types'
 import { fetchActions } from '@/store/constants'
 
-const useAccount = (props: Readonly<{
-  fullAccountInfo?: FullAccountInfo
-}>) => {
-  if (props.fullAccountInfo) {
-    return computed(() => props.fullAccountInfo)
-  }
-
+const useAccount = () => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
   const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
-
-  // const fields = ['firstName', 'lastName', 'avatar', 'email']
-  // body.append('fields', fields.join(', '))
 
   const fetchAccountInfo = async () => {
     const body = new FormData()
@@ -32,10 +21,10 @@ const useAccount = (props: Readonly<{
         method: 'POST',
         body
       }
-    })) as FullAccountInfo
+    })) as FullAccount
   }
 
-  const account = ref<FullAccountInfo | null>(null)
+  const account = ref<FullAccount | null>(null)
 
   onMounted(async () => {
     account.value = await fetchAccountInfo()

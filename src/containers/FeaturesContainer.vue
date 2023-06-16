@@ -1,9 +1,31 @@
 <script lang="ts" setup>
-import { Alert, Settings } from '@/features'
+import { Alert, Settings, Header } from '@/features'
 </script>
 
 <template>
   <alert />
   <settings />
-  <slot />
+  <section class="main-section">
+    <Header />
+    <slot />
+  </section>
 </template>
+
+<style lang="scss" scoped>
+@import '@/assets/styles/style.scss';
+
+.main-section {
+  @include container;
+  padding-top: 50px;
+
+  @include flex(flex-start, stretch, column);
+  gap: 40px;
+  height: 100vh;
+}
+</style>
+
+<!-- <template>
+  <alert />
+  <settings />
+  <slot />
+</template> -->
