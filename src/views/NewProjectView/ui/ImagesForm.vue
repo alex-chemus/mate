@@ -30,9 +30,9 @@ const setCover = (e: FileList) => {
 
 <template>
   <div class="images-container">
-    <droparea @set="setCover" :stretch="true">
+    <droparea @set="setCover" :is-stretch="true">
       <div class="cover" :class="theme" :style="`
-        background: ${ updatedCover ? updatedCover : 'var(--gray-1)' };
+        background: ${ updatedCover ? `url(${updatedCover})` : 'var(--gray-1)' };
         background-position: center;
         background-size: cover;
         box-shadow: inset 0 0 0 100vmax ${ updatedCover ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' };
@@ -47,7 +47,7 @@ const setCover = (e: FileList) => {
     <div class="avatar-wrapper">
       <droparea @set="setAvatar">
         <div class="avatar" :class="theme" :style="`
-          background: ${ updatedAvatar ? updatedAvatar : 'var(--gray-1)' };
+          background: ${ updatedAvatar ? `url(${updatedAvatar})` : 'var(--gray-1)' };
           background-position: center;
           background-size: cover;
           box-shadow:

@@ -1,28 +1,24 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { ViewLayout } from './layouts'
 import {
   NextButton, PrevButton, FinishButton, Pagination,
   NameSection, AvatarSection, SuccessSection
 } from './ui'
 import { WithTransition } from './hocs'
 import { useProject, useThemes, useImages } from './hooks'
-import NewProjectLayout from './NewProjectLayout.vue'
 
 const currentPage = ref<1 | 2 | 3>(1)
 
 const themes = useThemes()
-const { setAvatar, setCover } = useImages()
+const { setAvatar, setCover, uploadImage } = useImages()
 const {
-  name, nametag, theme, description
-} = useProject()
+  name, nametag, themeID, description, uploadProject
+} = useProject({ uploadImage })
 </script>
 
 <template>
-  <new-project-layout :current-page="currentPage">
-    <!-- <template #header>
-      <Header />
-    </template> -->
-
+  <view-layout :current-page="currentPage">
     <template #content>
       <with-transition :current-page="currentPage">
         <name-section
@@ -30,6 +26,9 @@ const {
           :name="name"
           :nametag="nametag"
           :themes="themes ?? []"
+          @update:name="n => name = n"
+          @update:nametag="t => nametag = t"
+          @select-theme="t => themeID = t"
         />
         <avatar-section
           v-if="currentPage === 2"
@@ -57,10 +56,10 @@ const {
 
       <template v-if="currentPage === 3">
         <prev-button @click="currentPage = 2" />
-        <finish-button />
+        <finish-button @click="uploadProject" />
       </template>
     </template>
-  </new-project-layout>
+  </view-layout>
 </template>
 
 <style lang="scss" scoped>

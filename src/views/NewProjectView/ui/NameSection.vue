@@ -28,14 +28,23 @@ const getThemes = computed(() => {
     <p class="text">Введите название для вашего проекта, оно будет на виду у всего мира.
     Позже его можно будет изменить</p>
 
+    <div class="input-wrapper">
+      <Input
+        :value="name ?? ''"
+        label-text="Название проекта"
+        placeholder="Название проекта"
+        @update:value="p => emit('update:name', p)"
+      />
+    </div>
+
     <Input
-      :value="name ?? ''"
-      label-text="Название проекта"
-      placeholder="Название проекта"
-      @update:value="p => emit('update:name', p)"
+      :value="nametag ?? ''"
+      label-text="неймтег проекта"
+      placeholder="Неймтег проекта"
+      @update:value="nametag => emit('update:nametag', nametag)"
     />
 
-    <div class="input-container">
+    <!-- <div class="input-container">
       <div class="select-wrapper">
         <dropdown
           :items="getThemes"
@@ -53,7 +62,7 @@ const getThemes = computed(() => {
           @update:value="nametag => emit('update:nametag', nametag)"
         />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -75,5 +84,9 @@ const getThemes = computed(() => {
   grid-template-columns: 1fr 1fr;
   margin-top: 13px;
   grid-gap: 16px;
+}
+
+.input-wrapper {
+  margin-bottom: 13px;
 }
 </style>

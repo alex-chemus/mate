@@ -3,7 +3,7 @@ import {
   LandingPage, ErrorPage, NewProjectView,
   ProjectView, VacanciesView, UserView, ProjectsListView,
   RedirectView
-} from '@/pages'
+} from '@/views'
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/landing', component: LandingPage },

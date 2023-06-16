@@ -9,43 +9,31 @@ defineProps<{
 </script>
 
 <template>
-  <section v-if="loading" class="main-section --loading">
+  <section v-if="loading" class="loader">
     <loader :size="100" />
   </section>
 
-  <section v-else class="main-section">
-    <!-- <slot name="header" /> -->
+  <main v-else class="main-section">
+    <div class="content-wrapper">
+      <slot name="content" />
+    </div>
+    <slot name="pagination" />
 
-    <main class="main-container">
-      <div class="content-wrapper">
-        <slot name="content" />
-      </div>
-      <slot name="pagination" />
-
-      <div class="button-wrapper" :class="currentPage > 1 ? 'grid' : ''">
-        <slot name="buttons" />
-      </div>
-    </main>
-  </section>
+    <div class="button-wrapper" :class="currentPage > 1 ? 'grid' : ''">
+      <slot name="buttons" />
+    </div>
+  </main>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
 
-.main-section {
-  // @include container;
-  // padding-top: 50px;
-  // @include flex(flex-start, stretch, column);
-  // height: 100vh;
-
-  &.--loading {
-    @include flex(center, center);
-    // height: 100vh;
-  }
+.loader {
+  @include flex(center, center);
 }
 
-.main-container {
-  margin: 40px 0 100px;
+.main-section {
+  margin: 40px auto 100px;
   flex-grow: 1;
   background-color: var(--bg-color-1);
   border-radius: 13px;
