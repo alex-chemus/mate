@@ -18,7 +18,7 @@ const authModule: Module<AuthModuleState, RootState> = {
       const token = localStorage.getItem('token')
 
       if (token === null) {
-        const redirectPath = encodeURIComponent(`htpps://${window.location.hostname}/redirect`)
+        const redirectPath = encodeURIComponent(`${window.location.protocol}//${window.location.hostname}/redirect`)
         const href = `
           https://id.findcreek.com/auth/?redirectTo=${redirectPath}&returnToken=true
         `
