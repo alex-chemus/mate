@@ -13,12 +13,18 @@ const isRedirect = computed(() => {
   return window.location.pathname === '/redirect'
 })
 
+const getToken = computed(() => {
+  const params = window.location.search.split('?')[1].split('&')
+
+  return params.find(param => param.startsWith('token='))?.split('=')[1]
+})
+
 onMounted(() => {
   if (isRedirect.value) {
-    console.log('route.query.token: ', route.query.token)
+    console.log('getToken: ', getToken.value)
 
-    if (route.query.token)
-      commit(authActions.SET_TOKEN, route.query.token)
+    if (getToken.value)
+      commit(authActions.SET_TOKEN, getToken.value)
     else
       alert('Ошибка авторизации') // eslint-disable-line
   } else dispatch(authActions.GET_LOCAL_TOKEN)
