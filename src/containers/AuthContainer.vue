@@ -15,6 +15,8 @@ const isRedirect = computed(() => {
 
 onMounted(() => {
   if (isRedirect.value) {
+    console.log('route.query.token: ', route.query.token)
+
     if (route.query.token)
       commit(authActions.SET_TOKEN, route.query.token)
     else
