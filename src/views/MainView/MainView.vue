@@ -14,7 +14,6 @@ onMounted(() => {
 })
 
 watch(() => userState.value.id, () => {
-  console.log('use id')
   if (userState.value.id) {
     router.push(`/user/${userState.value.id}`)
   }
