@@ -1,12 +1,10 @@
 <script lang="ts" setup>
 import { onMounted, computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { authActions } from '@/store/constants'
 import { useAuthState, useDispatch, useCommit } from '@/utils'
 
 const dispatch = useDispatch()
 const state = useAuthState()
-const route = useRoute()
 const commit = useCommit()
 
 const isRedirect = computed(() => {
@@ -16,7 +14,10 @@ const isRedirect = computed(() => {
 const getToken = computed(() => {
   const params = window.location.search.split('?')[1].split('&')
 
-  return params.find(param => param.startsWith('token='))?.split('=')[1]
+  const tokenParam = params.find(param => param.startsWith('token='))
+  return tokenParam
+    ? decodeURIComponent(tokenParam.split('=')[1])
+    : null
 })
 
 onMounted(() => {
