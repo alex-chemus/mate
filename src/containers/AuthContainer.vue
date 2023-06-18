@@ -9,6 +9,7 @@ const state = useAuthState()
 const route = useRoute()
 
 onMounted(() => {
+  console.log(route)
   alert(route.path)
   if (route.path.startsWith('/redirect')) return
   dispatch(authActions.GET_LOCAL_TOKEN)
