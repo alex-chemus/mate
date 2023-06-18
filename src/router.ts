@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import {
-  LandingPage, ErrorPage, NewProjectView,
+  LandingPage, ErrorPage, NewProjectView, MainView,
   ProjectView, VacanciesView, UserView, ProjectsListView,
-  RedirectView
 } from '@/views'
 
 const routes: Array<RouteRecordRaw> = [
@@ -15,6 +14,8 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/projects-list', component: ProjectsListView },
   { path: '/new-project', component: NewProjectView },
   // { path: '/redirect', component: RedirectView }
+
+  { path: '/', component: MainView }
 ]
 
 const router = createRouter({

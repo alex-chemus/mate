@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { onMounted, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { authActions } from '@/store/constants'
 import { useAuthState, useDispatch, useCommit } from '@/utils'
 
 const dispatch = useDispatch()
 const state = useAuthState()
 const commit = useCommit()
+const router = useRouter()
 
 const isRedirect = computed(() => {
   return window.location.pathname === '/redirect'
@@ -22,11 +24,10 @@ const getToken = computed(() => {
 
 onMounted(() => {
   if (isRedirect.value) {
-    console.log('getToken: ', getToken.value)
-
-    if (getToken.value)
+    if (getToken.value) {
       commit(authActions.SET_TOKEN, getToken.value)
-    else
+      router.push('/')
+    } else
       alert('Ошибка авторизации') // eslint-disable-line
   } else dispatch(authActions.GET_LOCAL_TOKEN)
 })
