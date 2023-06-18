@@ -10,6 +10,7 @@ const commit = useCommit()
 const userState = useUserState()
 
 onMounted(() => {
+  console.log('route: ', route)
   if (route.query.token) {
     commit(authActions.SET_TOKEN, route.query.token)
   } else {
