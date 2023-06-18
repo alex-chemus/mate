@@ -1,9 +1,7 @@
-import { useRoute } from 'vue-router'
+import { RouteLocationNormalizedLoaded } from 'vue-router'
 import type { Module } from 'vuex'
 import type { AuthModuleState, RootState } from '@/store/types'
 import { authActions } from '../constants'
-
-const route = useRoute()
 
 const authModule: Module<AuthModuleState, RootState> = {
   state: () => ({
@@ -17,7 +15,7 @@ const authModule: Module<AuthModuleState, RootState> = {
   },
 
   actions: {
-    [authActions.GET_LOCAL_TOKEN]({ commit }) {
+    [authActions.GET_LOCAL_TOKEN]({ commit }, route: RouteLocationNormalizedLoaded) {
       const token = localStorage.getItem('token')
       console.log('route: ', route)
       console.log('route.path: ', route.path)
