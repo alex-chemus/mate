@@ -19,6 +19,8 @@ const authModule: Module<AuthModuleState, RootState> = {
   actions: {
     [authActions.GET_LOCAL_TOKEN]({ commit }) {
       const token = localStorage.getItem('token')
+      console.log('route: ', route)
+      console.log('route.path: ', route.path)
 
       if (token === null) {
         const redirectPath = encodeURI(`${route.path}/redirect`)
