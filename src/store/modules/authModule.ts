@@ -10,6 +10,7 @@ const authModule: Module<AuthModuleState, RootState> = {
   mutations: {
     [authActions.SET_TOKEN](state, value: string) {
       state.token = value
+      console.log('state.token: ', state.token)
     }
   },
 
