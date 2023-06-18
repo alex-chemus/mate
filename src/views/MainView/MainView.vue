@@ -8,12 +8,14 @@ const userState = useUserState()
 const router = useRouter()
 
 onMounted(() => {
+  console.log('use id')
   if (userState.value.id) {
     router.push(`/user/${userState.value.id}`)
   }
 })
 
 watch(userState, () => {
+  console.log('use id')
   if (userState.value.id) {
     router.push(`/user/${userState.value.id}`)
   }
