@@ -18,10 +18,10 @@ onMounted(() => {
   }
 })
 
-watch(userState, () => {
-  if (userState.value.id)
-    router.push(`/user/${userState.value.id}`)
-})
+// watch(userState, () => {
+//   if (userState.value.id)
+//     router.push(`/user/${userState.value.id}`)
+// })
 </script>
 
 <template>

@@ -1,19 +1,28 @@
 <script lang="ts" setup>
 import { onMounted, computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { authActions } from '@/store/constants'
-import { useAuthState, useDispatch } from '@/utils'
+import { useAuthState, useDispatch, useCommit } from '@/utils'
 
 const dispatch = useDispatch()
 const state = useAuthState()
+const route = useRoute()
+const commit = useCommit()
 
-const isRedirect = computed(() => window.location.pathname === '/redirect')
+const isRedirect = computed(() => {
+  return window.location.pathname === '/redirect'
+})
 
 onMounted(() => {
-  if (isRedirect.value) return
-  dispatch(authActions.GET_LOCAL_TOKEN)
+  if (isRedirect.value) {
+    if (route.query.token)
+      commit(authActions.SET_TOKEN, route.query.token)
+    else
+      alert('Ошибка авторизации') // eslint-disable-line
+  } else dispatch(authActions.GET_LOCAL_TOKEN)
 })
 </script>
 
 <template>
-  <slot v-if="state.token || isRedirect" />
+  <slot v-if="state.token" />
 </template>

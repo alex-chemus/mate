@@ -14,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/user/:id', component: UserView },
   { path: '/projects-list', component: ProjectsListView },
   { path: '/new-project', component: NewProjectView },
-  { path: '/redirect', component: RedirectView }
+  // { path: '/redirect', component: RedirectView }
 ]
 
 const router = createRouter({
