@@ -2,6 +2,7 @@
 import { watch, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserState } from '@/utils'
+import { Loader } from '@/ui';
 
 const userState = useUserState()
 const router = useRouter()
@@ -20,9 +21,16 @@ watch(userState, () => {
 </script>
 
 <template>
-  <div></div>
+  <div class="loader-wrapper">
+    <loader />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
+
+.loader-wrapper {
+  flex-grow: 1;
+  @include flex(center, center);
+}
 </style>
