@@ -1,4 +1,3 @@
-import { RouteLocationNormalizedLoaded } from 'vue-router'
 import type { Module } from 'vuex'
 import type { AuthModuleState, RootState } from '@/store/types'
 import { authActions } from '../constants'
@@ -15,13 +14,11 @@ const authModule: Module<AuthModuleState, RootState> = {
   },
 
   actions: {
-    [authActions.GET_LOCAL_TOKEN]({ commit }, route: RouteLocationNormalizedLoaded) {
+    [authActions.GET_LOCAL_TOKEN]({ commit }) {
       const token = localStorage.getItem('token')
-      console.log('route: ', route)
-      console.log('route.path: ', route.path)
 
       if (token === null) {
-        const redirectPath = encodeURI(`${route.path}/redirect`)
+        const redirectPath = encodeURI(`${window.location.hostname}/redirect`)
         const href = `
           https://id.findcreek.com/auth/?redirectTo=${redirectPath}&returnToken=true
         `
