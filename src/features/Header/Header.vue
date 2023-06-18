@@ -46,6 +46,11 @@ const notices: Notice[] = [
   }
 ]
 
+const logout = () => {
+  localStorage.removeItem('token')
+  window.location.href = 'https://id.findcreek.com'
+}
+
 const isSearchOpen = ref(false)
 </script>
 
@@ -92,6 +97,7 @@ const isSearchOpen = ref(false)
           :full-name="`${account.lastName} ${account.firstName}`"
           :email="account.email"
           @open-settings="openSettings"
+          @logout="logout"
         />
       </profile-layout>
     </template>

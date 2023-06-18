@@ -10,7 +10,8 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'open-settings'): void
+  (e: 'open-settings'): void,
+  (e: 'logout'): void
 }>()
 
 const { theme, toggleTheme } = useTheme()
@@ -47,7 +48,7 @@ const { theme, toggleTheme } = useTheme()
       <theme-switcher />
     </button>
 
-    <button class="logout-button" :class="theme">
+    <button class="logout-button" :class="theme" @click="emit('logout')">
       Выйти из аккаунта
     </button>
   </div>

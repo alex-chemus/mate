@@ -76,17 +76,19 @@ defineProps<{
 }
 
 .cards-wrapper {
-  @include flex(space-around, stretch);
+  @include flex(space-between, stretch);
   //align-content: flex-start;
   flex-wrap: wrap;
   gap: 20px;
-  height: 100%;
+  // height: 100%;
+  padding: 0 100px;
   // grid-column: 1 / span 2;
 
   &.open {
     // grid-column: 1 / span 1;
     justify-content: flex-start;
     flex-direction: column;
+    padding: 0;
   }
 }
 
