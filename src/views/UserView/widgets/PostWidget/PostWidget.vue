@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
 import { FullUser, FullUserPost } from '@/types'
+import { CommentsWidget } from '@/widgets'
 import { WidgetLayout } from './layouts'
 import { useDate, useViewer, useLikes } from './hooks'
 import {
@@ -77,6 +78,13 @@ const getReaction = computed(() => {
         :dislikes="post.dislikesNumber"
         @like="uploadLike(post.id, post.isLiked, post.isDisliked)"
         @dislike="uploadDislike(post.id, post.isLiked, post.isDisliked)"
+      />
+    </template>
+
+    <template #comments-widget>
+      <comments-widget
+        :post-id="post.id"
+        post-type="user"
       />
     </template>
   </widget-layout>

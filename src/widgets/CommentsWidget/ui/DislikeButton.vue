@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
+import DislikeSvg from './DislikeSvg.vue'
 
 defineProps<{
   isDisliked: boolean,

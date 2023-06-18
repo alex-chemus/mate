@@ -10,6 +10,7 @@ const { theme } = useTheme()
     <slot name="text" />
     <slot name="gallery" />
     <slot name="buttons" />
+    <slot name="comments-widget" />
   </article>
 </template>
 
