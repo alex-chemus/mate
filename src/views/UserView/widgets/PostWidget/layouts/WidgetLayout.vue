@@ -18,6 +18,7 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .post-section {
+  border: var(--border-2);
   border-radius: 13px;
   position: relative;
   overflow: hidden;

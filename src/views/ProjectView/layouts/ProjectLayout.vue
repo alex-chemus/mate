@@ -69,7 +69,7 @@ defineProps<{
   display: grid;
   grid-template-columns: 325px minmax(0, 1fr) 325px;
   grid-gap: 24px;
-  margin-top: 40px;
+  // margin-top: 40px;
 }
 
 aside {

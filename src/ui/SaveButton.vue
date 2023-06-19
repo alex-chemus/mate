@@ -31,8 +31,8 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   border-radius: 8px;
   background-color: var(--accent-1, $accent-1);
   color: var(--light, $light);
-  font-family: var(--findcreek-bold, $findcreek-bold);
-  font-weight: var(--bold, $bold);
+  font-family: var(--findcreek-medium, $findcreek-medium);
+  font-weight: var(--medium, $medium);
   font-size: 16px;
   transition: var(--fast, $fast);
 

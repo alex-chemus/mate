@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, computed, defineEmits } from 'vue'
+import { useRouter } from 'vue-router'
 import { KeyedSearchItem } from '../types'
 import { useTypeChecks } from '../hooks'
 
@@ -10,8 +11,11 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: 'subscribe', item: KeyedSearchItem): void,
-  (e: 'unsubscribe', item: KeyedSearchItem): void
+  (e: 'unsubscribe', item: KeyedSearchItem): void,
+  (e: 'close'): void
 }>()
+
+const router = useRouter()
 
 const { isProject, isUser } = useTypeChecks()
 
@@ -20,6 +24,11 @@ const getUrl = computed(() => {
     return `/user/${props.content.findcreekID}`
   return `/project/${props.content.id}`
 })
+
+const navigate = () => {
+  router.push(getUrl.value)
+  emit('close')
+}
 </script>
 
 <template>
@@ -59,7 +68,10 @@ const getUrl = computed(() => {
           </li>
         </ul>
         <div class="buttons-wrapper">
-          <router-link :to="getUrl" class="profile-button">Перейти в профиль</router-link>
+          <!-- <router-link :to="getUrl" class="profile-button">Перейти в профиль</router-link> -->
+          <button class="profile-button" @click="navigate">
+            Перейти в профиль
+          </button>
           <template v-if="isUser(content) && userId !== content.findcreekID">
             <button v-if="!content.isSubscribed" class="sub-button" @click="emit('subscribe', content)">
               <svg width="20" height="20" viewBox="0 0 20 20">
@@ -83,7 +95,8 @@ const getUrl = computed(() => {
 
 .content-container {
   @include flex(flex-start, center, column);
-  max-width: 100%;
+  // max-width: 100%;
+  width: 100%;
 }
 
 .banner {
@@ -132,6 +145,9 @@ const getUrl = computed(() => {
   margin: 0 auto;
   text-align: center;
   line-height: 0.95em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .bottom-wrapper {

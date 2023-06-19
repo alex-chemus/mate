@@ -162,22 +162,33 @@ const { theme } = useTheme()
 .content-item {
   @include flex(flex-start, flex-start);
   gap: 12px;
+
+  svg {
+    flex-shrink: 0;
+  }
 }
 
 .content-wrapper {
   @include flex(flex-start, flex-start, column);
   gap: 5px;
+  overflow: hidden;
 }
 
 .content-wrapper h6,
 .skills-wrapper h6 {
   @include findcreek-bold(14px, var(--heading-color-2));
   letter-spacing: .01em;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .content-wrapper p {
   @include findcreek(13px, var(--text-color-1));
   line-height: 1.6em;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow: hidden;
 
   &.colored {
     color: var(--accent);

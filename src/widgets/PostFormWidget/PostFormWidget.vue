@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
 import { usePostEditor } from '@/utils'
-import { Input, Textarea } from '@/ui'
+import { Textarea } from '@/ui'
 import { WidgetLayout } from './layouts'
-import { FilesList, SubmitButton } from './ui'
+import { FilesList, SubmitButton, TitleInput } from './ui'
 import { useFiles, useUploadPost } from './hooks'
 
 const props = defineProps<{
@@ -42,11 +42,9 @@ const {
     :img="img"
   >
     <template #title>
-      <Input
-        label-text="Заголовок"
-        placeholder="Заголовок"
-        :value="getTitle ?? ''"
-        @update:value="setTitle"
+      <title-input
+        :get-title="getTitle"
+        :set-title="setTitle"
       />
     </template>
 

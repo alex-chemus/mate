@@ -79,6 +79,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
           :user-id="userId"
           @subscribe="item => emit('subscribe', item)"
           @unsubscribe="item => emit('unsubscribe', item)"
+          @close="emit('close')"
         />
       </template>
 
@@ -123,7 +124,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
 
 .popup-container {
   display: grid;
-  grid-template-columns: 230px 1fr;
+  grid-template-columns: 230px minmax(0, 1fr);
   grid-template-rows: min-content 1fr;
   height: 100%;
 

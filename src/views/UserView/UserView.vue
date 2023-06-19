@@ -22,6 +22,10 @@ const { posts, next, updatePost } = usePosts({
   userInfo: computed(() => fullUsers.value ? fullUsers.value[0] : null)
 })
 
+const user = computed(() => {
+  return fullUsers.value ? fullUsers.value[0] : null
+})
+
 const skills = computed(() => {
   if (!fullUsers.value) return null
   if (fullUsers.value[0].skills === '') return []
@@ -42,22 +46,22 @@ const partners = ref<Partner[]>([
 
 <template>
   <post-form-widget
-    v-if="fullUsers && isMe(fullUsers[0].findcreekID)"
-    :img="fullUsers[0].avatar.avatarCompressed ?? fullUsers[0].avatar.avatar"
+    v-if="user && isMe(user.findcreekID)"
+    :img="user.avatar.avatarCompressed ?? user.avatar.avatar"
     type="user"
   />
 
-  <view-layout v-if="fullUsers" :loading="!fullUsers">
+  <view-layout v-if="user" :loading="!user">
     <template #profile-card>
       <profile-card
-        :full-name="`${fullUsers[0].firstName} ${fullUsers[0].lastName}`"
-        :img="fullUsers[0].avatar.avatarCompressed"
+        :full-name="`${user.firstName} ${user.lastName}`"
+        :img="user.avatar.avatarCompressed"
         :followers="'followers'"
         :following="'following'"
-        :nickname="fullUsers[0].textID"
-        :banner="fullUsers[0].profileCover ? fullUsers[0].profileCover : undefined"
-        :can-edit="isMe(fullUsers[0].findcreekID)"
-        :is-subscribed="fullUsers[0].isSubscribed"
+        :nickname="user.textID"
+        :banner="user.profileCover ? user.profileCover : undefined"
+        :can-edit="isMe(user.findcreekID)"
+        :is-subscribed="user.isSubscribed"
         @subscribe="uploadSubscribe(fullUsers![0].findcreekID)"
         @unsubscribe="uploadUnsubscribe(fullUsers![0].findcreekID)"
       />
@@ -65,7 +69,7 @@ const partners = ref<Partner[]>([
 
     <template #contacts>
       <contacts
-        :media="fullUsers[0].contacts.socialNetworks"
+        :media="user.contacts.socialNetworks"
       />
     </template>
 
@@ -75,13 +79,13 @@ const partners = ref<Partner[]>([
 
     <template #bio>
       <bio-layout
-        :bio="fullUsers[0].bio"
-        :emails="fullUsers[0].contacts.emailAddresses"
-        :specialties="fullUsers[0].specialties.map(s => s.rusName)"
-        :registration-date="fullUsers[0].registrationDate"
-        :phones="fullUsers[0].contacts.phoneNumbers"
-        :city="fullUsers[0].address.cityRusName"
-        :skills="fullUsers[0].skills"
+        :bio="user.bio"
+        :emails="user.contacts.emailAddresses"
+        :specialties="user.specialties.map(s => s.rusName)"
+        :registration-date="user.registrationDate"
+        :phones="user.contacts.phoneNumbers"
+        :city="user.address.cityRusName"
+        :skills="user.skills"
       />
     </template>
 
@@ -91,11 +95,12 @@ const partners = ref<Partner[]>([
 
     <template #new-post>
       <new-post
-        :img="fullUsers[0].avatar.avatarCompressed ?? fullUsers[0].avatar.avatar"
+        v-if="isMe(user.findcreekID)"
+        :img="user.avatar.avatarCompressed ?? user.avatar.avatar"
       />
       <!-- <post-editor
-        v-if="isMe(fullUsers[0].findcreekID)"
-        type="user" :img="fullUsers[0].avatar.avatarCompressed ?? fullUsers[0].avatar.avatar" /> -->
+        v-if="isMe(user.findcreekID)"
+        type="user" :img="user.avatar.avatarCompressed ?? user.avatar.avatar" /> -->
     </template>
 
     <!-- <template #post>
@@ -106,7 +111,7 @@ const partners = ref<Partner[]>([
       <post-widget
         v-for="post in posts" :key="post.date.unixTime"
         :post="post"
-        :author="fullUsers[0]"
+        :author="user"
         @reload="updatePost"
       />
     </template>

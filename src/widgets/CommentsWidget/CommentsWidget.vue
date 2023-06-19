@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
+import { useUserState } from '@/utils'
+import { useFullAccount } from '@/api'
 import { CommentLayout, ReplyLayout, WidgetLayout } from './layouts'
 import {
   CommentForm, AddReplyButton, SetEditingButton, LikeButton,
@@ -12,6 +14,10 @@ const props = defineProps<{
   postId: number,
   postType: PostType
 }>()
+
+const account = useFullAccount()
+
+const userState = useUserState()
 
 const replyToID = ref<number | null>(null)
 const editingID = ref<number | null>(null)
@@ -33,7 +39,11 @@ const { uploadLike, uploadDislike } = useLikes({
 <template>
   <widget-layout>
     <template #comment-form>
-      <comment-form @submit="text => addComment({ text })" />
+      <comment-form
+        :clear-on-submit="true"
+        :img="account?.avatar.avatarCompressed ?? account?.avatar.avatar"
+        @submit="text => addComment({ text })"
+      />
     </template>
 
     <template v-if="comments" #comments>
@@ -46,6 +56,7 @@ const { uploadLike, uploadDislike } = useLikes({
         <template #edit-comment-form>
           <comment-form
             :initial-text="comment.text"
+            :no-avatar="true"
             @submit="text => editComment({ text, commentID: comment.id })"
           />
         </template>
@@ -58,6 +69,7 @@ const { uploadLike, uploadDislike } = useLikes({
 
         <template #set-editing-button>
           <set-editing-button
+            v-if="userState.id === comment.authorID"
             @set-editing="editingID = editingID === comment.id ? null : comment.id"
           />
         </template>
@@ -80,6 +92,8 @@ const { uploadLike, uploadDislike } = useLikes({
 
         <template #add-reply-form>
           <comment-form
+            :clear-on-submit="true"
+            :img="account?.avatar.avatarCompressed ?? account?.avatar.avatar"
             @submit="text => addComment({ text, commentID: comment.id })"
           />
         </template>
@@ -95,6 +109,7 @@ const { uploadLike, uploadDislike } = useLikes({
             <template #edit-reply-form>
               <comment-form
                 :initial-text="reply.text"
+                :no-avatar="true"
                 @submit="text => editComment({ text, commentID: reply.id })"
               />
             </template>
@@ -107,6 +122,7 @@ const { uploadLike, uploadDislike } = useLikes({
 
             <template #set-editing-button>
               <set-editing-button
+                v-if="userState.id === reply.authorID"
                 @set-editing="editingID = editingID === reply.id ? null : reply.id"
               />
             </template>
@@ -120,7 +136,11 @@ const { uploadLike, uploadDislike } = useLikes({
             </template>
 
             <template #add-reply-form>
-              <comment-form @submit="text => addComment({ text, commentID: reply.id })" />
+              <comment-form
+                :clear-on-submit="true"
+                :img="account?.avatar.avatarCompressed ?? account?.avatar.avatar"
+                @submit="text => addComment({ text, commentID: reply.id })"
+              />
             </template>
           </reply-layout>
         </template>

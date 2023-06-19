@@ -34,7 +34,7 @@ const { theme } = useTheme()
   }
 
   p {
-    @include findcreek-medium(13px);
+    @include findcreek-medium(13px, currentColor);
     line-height: 160%;
     letter-spacing: -2%;
   }

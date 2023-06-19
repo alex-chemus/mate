@@ -22,7 +22,6 @@ const useUserProcess = () => {
       info: { body, method: 'POST' }
     })
 
-    console.log('set id')
     store.commit(userActions.SET_ID, res.findcreekID as number)
   }
 

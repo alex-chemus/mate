@@ -20,7 +20,7 @@ const { theme } = useTheme()
       :class="currentTab === 'profile' ? 'current' : ''"
       @click="emit('switch', 'profile')"
     >
-      <svg width="30" height="30" viewBox="0 0 30 30">
+      <svg width="28" height="28" viewBox="0 0 30 30">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-user-circle" />
       </svg>
     </button>
@@ -29,7 +29,7 @@ const { theme } = useTheme()
       :class="currentTab === 'vacancies' ? 'current' : ''"
       @click="emit('switch', 'vacancies')"
     >
-      <svg width="30" height="30" viewBox="0 0 30 30">
+      <svg width="28" height="28" viewBox="0 0 30 30">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-list-search" />
       </svg>
     </button>
@@ -38,7 +38,7 @@ const { theme } = useTheme()
       :class="currentTab === 'projects' ? 'current' : ''"
       @click="emit('switch', 'projects')"
     >
-      <svg width="30" height="30" viewBox="0 0 30 30">
+      <svg width="28" height="28" viewBox="0 0 30 30">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-briefcase" />
       </svg>
     </button>
@@ -78,15 +78,15 @@ const { theme } = useTheme()
     color: var(--accent);
   }
 
-  &.current:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 1px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: var(--accent);
-  }
+  // &.current:after {
+  //   content: '';
+  //   display: block;
+  //   width: 100%;
+  //   height: 1px;
+  //   position: absolute;
+  //   left: 0;
+  //   bottom: 0;
+  //   background-color: var(--accent);
+  // }
 }
 </style>

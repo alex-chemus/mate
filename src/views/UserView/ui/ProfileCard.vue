@@ -223,6 +223,14 @@ const { openSettings } = useSettings()
 
 .logo-button {
   border-radius: 8px;
+
+  &.dark :is(span, strong) {
+    color: var(--light);
+  }
+
+  &.light :is(span, strong) {
+    color: #4d4d4d;
+  }
 }
 
 .edit-button {

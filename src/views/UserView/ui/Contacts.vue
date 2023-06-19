@@ -22,7 +22,11 @@ const { theme } = useTheme()
         :src="mediaItem.logo" :alt="mediaItem.service"
         class="media-logo"
       />
-      <div v-else class="media-logo placeholder" />
+      <div v-else class="media-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-world-question" />
+        </svg>
+      </div>
     </a>
   </section>
 </template>
@@ -34,14 +38,15 @@ const { theme } = useTheme()
 .media-section {
   //width: fit-content;
   padding: 17px;
-  border-radius: 20px;
+  border-radius: 13px;
   display: grid;
   grid-template-columns: repeat(min-content, 2);
   grid-gap: 29px;
   grid-auto-rows: 1fr;
   grid-auto-flow: column;
   background-color: var(--bg-color-1);
-  border: 1px solid color.change($gray-1, $alpha: .4);
+  // border: 1px solid color.change($gray-1, $alpha: .4);
+  border: var(--border-2);
 }
 
 .media-item {
@@ -63,6 +68,8 @@ const { theme } = useTheme()
   aspect-ratio: 1;
   object-fit: contain;
   object-position: 50% 50%;
+  @include flex;
+  color: var(--heading-color-2);
 
   &.placeholder {
     border-radius: 100vmax;

@@ -57,7 +57,7 @@ const isOpen = ref(false)
 .bio-section {
   border-radius: 13px;
   border: 1px solid rgba(118 118 118 / .25);
-  padding: 11px 19px;
+  padding: 15px 19px;
   color: var(--heading-color-2);
   background-color: var(--bg-color-1);
 
@@ -82,7 +82,7 @@ const isOpen = ref(false)
   color: var(--accent);
 
   span {
-    @include findcreek(12px, currentColor);
+    @include findcreek(13px, currentColor);
   }
 }
 </style>

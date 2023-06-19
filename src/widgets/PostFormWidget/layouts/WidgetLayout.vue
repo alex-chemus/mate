@@ -17,7 +17,7 @@ const emit = defineEmits<{
 <template>
   <modal
     :visible="visible" @update:visible="payload => emit('toggle', payload)"
-    width="1000"
+    width="800"
   >
     <modal-layout @close="emit('toggle', false)">
       <droparea
