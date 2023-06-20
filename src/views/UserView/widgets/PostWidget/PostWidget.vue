@@ -6,7 +6,7 @@ import { WidgetLayout } from './layouts'
 import { useDate, useViewer, useLikes } from './hooks'
 import {
   ImageViewer, PostText, PostHeader, PostGallery,
-  PostButtons
+  PostButtons, PostHeading
 } from './ui'
 
 const props = defineProps<{
@@ -69,6 +69,10 @@ const getReaction = computed(() => {
 
     <template #text>
       <post-text :text="post.description" />
+    </template>
+
+    <template #heading>
+      <post-heading :heading="post.title" />
     </template>
 
     <template #buttons>

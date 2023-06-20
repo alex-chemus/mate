@@ -43,6 +43,8 @@ const useViewInfo = ({ update }: { update: Ref<symbol> }) => {
     ]
     if (projects.length)
       fullProjects.value = await fetchFullProjects(projects)
+    else
+      fullProjects.value = []
   })
 
   return { fullUsers, fullProjects, isMe }

@@ -7,6 +7,7 @@ const { theme } = useTheme()
 <template>
   <article class="post-section" :class="theme">
     <slot name="header" />
+    <slot name="heading" />
     <slot name="text" />
     <slot name="gallery" />
     <slot name="buttons" />

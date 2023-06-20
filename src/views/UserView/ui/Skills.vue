@@ -3,14 +3,15 @@ import { defineProps } from 'vue'
 import { useTheme } from '@/utils'
 
 defineProps<{
-  skills: string[]
+  skills: string[],
+  isMe?: boolean
 }>()
 
 const { theme } = useTheme()
 </script>
 
 <template>
-  <section class="skills-section" :class="theme">
+  <section v-if="isMe || skills.length" class="skills-section" :class="theme">
     <h4 class="title" :class="theme">Навыки</h4>
     <ul  v-if="skills.length" class="skills-list">
       <li

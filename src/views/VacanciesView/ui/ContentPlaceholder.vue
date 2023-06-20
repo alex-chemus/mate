@@ -8,9 +8,12 @@ defineProps<{
 </script>
 
 <template>
-  <div class="placeholder">
-    <loader v-if="type === 'loader'" />
-    <p v-else>Ничего не найдено</p>
+  <div v-if="type === 'loader'" class="placeholder center">
+    <loader />
+  </div>
+
+  <div v-else class="placeholder">
+    <p>Ничего не найдено</p>
   </div>
 </template>
 
@@ -21,5 +24,6 @@ defineProps<{
   height: 100%;
   @include flex(center, center);
   @include findcreek-medium(16px, var(--heading-color-1));
+  width: 100%;
 }
 </style>

@@ -60,7 +60,7 @@ const { theme } = useTheme()
         </div>
       </li>
 
-      <li class="content-item">
+      <li v-if="specialties.length" class="content-item">
         <svg
           class="icon" :class="theme"
           width="24" height="24" viewBox="0 0 24 24"

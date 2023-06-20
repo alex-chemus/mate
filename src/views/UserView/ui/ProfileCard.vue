@@ -104,9 +104,9 @@ const { openSettings } = useSettings()
   display: flex;
 }
 
-.cover-container {
-  margin-bottom: 32px;
-}
+// .cover-container {
+//   margin-bottom: 32px;
+// }
 
 .banner-img {
   max-height: 140px;
@@ -119,6 +119,7 @@ const { openSettings } = useSettings()
 .profile-container {
   @include flex(flex-start, center, column);
   padding: 17px;
+  padding-top: 32px;
 }
 
 .content-container {

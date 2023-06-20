@@ -53,7 +53,7 @@ const { theme } = useTheme()
   height: 40px;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 76px;
+  grid-auto-columns: 70px;
   border: 1px solid color.change($gray-1, $alpha: .25);
   border-radius: 10px;
   overflow: hidden;

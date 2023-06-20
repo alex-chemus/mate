@@ -20,8 +20,10 @@ const popoverWrapper = ref<HTMLDivElement | null>(null)
 const clickHandler = (e: MouseEvent) => {
   const target = e.target as HTMLElement
   if (!props.visible || popoverWrapper.value === null) return
-  if (!popoverWrapper.value?.contains(target) && !popover.value?.contains(target))
+
+  if (!popoverWrapper.value?.contains(target) && !popover.value?.contains(target)) {
     emit('update:visible', false)
+  }
 }
 
 onMounted(() => {

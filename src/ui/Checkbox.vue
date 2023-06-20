@@ -97,6 +97,10 @@ const theme = props.theme
   &.dark {
     border: 1.5px solid #bbb;
   }
+
+  svg {
+    pointer-events: none;
+  }
 }
 
 .checkbox-button:hover .checkbox,

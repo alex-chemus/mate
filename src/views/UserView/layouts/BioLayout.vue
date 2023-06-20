@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { defineProps, ref } from 'vue'
+import { defineProps, ref, computed } from 'vue'
 import { Modal } from '@/hocs'
 import { useTheme } from '@/utils'
 import ProfileLayout from './ProfileLayout.vue'
 
-defineProps<{
+const props = defineProps<{
   bio: string,
   emails: {
     id: number,
@@ -17,18 +17,25 @@ defineProps<{
     phoneNumber: string
   }[],
   city: string,
-  skills: string
+  skills: string,
+  isMe?: boolean
 }>()
 
 const { theme } = useTheme()
 
 const isOpen = ref(false)
+
+const getText = computed(() => {
+  if (props.bio.length) return props.bio
+  if (props.isMe) return 'Расскажите о себе'
+  return 'Тут пока ничего нет'
+})
 </script>
 
 <template>
   <section class="bio-section" :class="theme">
     <h5>О себе</h5>
-    <p>{{ bio.length === 0 ? 'Расскажите о себе' : bio }}</p>
+    <p>{{ getText }}</p>
     <button class="info-button" :class="theme" @click="isOpen = true">
       <svg width="16" height="16" viewBox="0 0 16 16">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-info-circle" />

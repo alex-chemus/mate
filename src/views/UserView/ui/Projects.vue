@@ -5,7 +5,8 @@ import { MoreButton } from '@/ui'
 import { FullProject } from '@/types'
 
 const props = defineProps<{
-  projects: FullProject[]
+  projects: FullProject[],
+  isMe?: boolean
 }>()
 
 const { theme } = useTheme()
@@ -21,7 +22,7 @@ const computedProjects = computed(() => {
 </script>
 
 <template>
-  <section class="projects-section" :class="theme">
+  <section v-if="projects.length" class="projects-section" :class="theme">
     <h4 class="projects-title" :class="theme">
       Последние проекты
       <span>{{ projects.length }}</span>
@@ -58,6 +59,22 @@ const computedProjects = computed(() => {
         <more-button @click="shouldTrimProjects = false">Ещё</more-button>
       </div>
     </template>
+  </section>
+
+  <section v-else-if="isMe" class="projects-section" :class="theme">
+    <h4 class="projects-title" :class="theme">
+      Последние проекты
+    </h4>
+
+    <router-link to="/new-project" class="project-form-link">Создайте свой первый проект</router-link>
+  </section>
+
+  <section v-else class="projects-section" :class="theme">
+    <h4 class="projects-title" :class="theme">
+      Последние проекты
+    </h4>
+
+    <p class="message-text">Тут пока ничего нет</p>
   </section>
 </template>
 
@@ -153,5 +170,20 @@ const computedProjects = computed(() => {
 
 .more-button-wrapper {
   margin-top: 20px;
+}
+
+.project-form-link {
+  @include findcreek(13px, var(--heading-color-1));
+  text-decoration: none;
+  transition: var(--fast);
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+.message-text {
+  @include findcreek(13px, var(--heading-color-1));
 }
 </style>

@@ -19,7 +19,7 @@ const getSubs = computed(() => {
 </script>
 
 <template>
-  <section class="subscriptions-section" :class="theme">
+  <section v-if="subscriptions.length" class="subscriptions-section" :class="theme">
     <div class="title-wrapper" :class="theme">
       <h4 class="title" :class="theme">Подписки</h4>
       <!-- <button class="search-button">

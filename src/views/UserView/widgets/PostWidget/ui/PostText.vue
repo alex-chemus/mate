@@ -18,7 +18,7 @@ const computedText = computed(() => {
 </script>
 
 <template>
-  <div class="text-wrapper">
+  <div v-if="text.length" class="text-wrapper">
     <p class="text" :class="theme">{{ computedText }}</p>
     <button
       v-if="shouldClip && isClipped"

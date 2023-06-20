@@ -74,12 +74,13 @@ const partners = ref<Partner[]>([
     </template>
 
     <template #skills>
-      <Skills v-if="skills" :skills="skills" />
+      <Skills v-if="skills" :is-me="isMe(user.findcreekID)" :skills="skills" />
     </template>
 
     <template #bio>
       <bio-layout
         :bio="user.bio"
+        :is-me="isMe(user.findcreekID)"
         :emails="user.contacts.emailAddresses"
         :specialties="user.specialties.map(s => s.rusName)"
         :registration-date="user.registrationDate"
