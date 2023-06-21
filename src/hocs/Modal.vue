@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {
-  defineProps, defineEmits, onMounted, onBeforeUnmount
+  defineProps, defineEmits, onMounted, onBeforeUnmount, watch
 } from 'vue'
 import PopupTransition from './PopupTransition.vue'
 import BackdropTransition from './BackdropTransition.vue'
@@ -19,6 +19,21 @@ const onEsc = (e: KeyboardEvent) => {
   if (props.visible && e.key === 'Escape')
     emit('update:visible', false)
 }
+
+watch(() => props.visible, () => {
+  if (props.visible) { // on modal open
+    const { scrollY } = window
+    document.body.style.position = 'fixed'
+    document.body.style.width = '100%'
+    document.body.style.top = `-${scrollY}px`
+  } else { // on modal close
+    const scrollY = document.body.style.top
+    document.body.style.position = ''
+    document.body.style.top = ''
+    document.body.style.width = ''
+    window.scrollTo(0, parseInt(scrollY || '0') * -1) // eslint-disable-line
+  }
+})
 
 onMounted(() => {
   document.addEventListener('keyup', onEsc)

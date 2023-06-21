@@ -255,6 +255,7 @@ const getStyle = () => {
   max-height: 150px;
   overflow-y: scroll;
   background-color: var(--bg-color-1);
+  overscroll-behavior: contain;
 
   &::-webkit-scrollbar {
     width: 0;

@@ -13,6 +13,7 @@ import { MainContainer } from '@/containers'
 
 #app {
   min-height: 100vh;
+  width: 100%;
 
   &.dark {
     background-image: linear-gradient(105.91deg, #282A37 49.48%, #353840 100%);
