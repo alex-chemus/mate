@@ -27,14 +27,14 @@ const isRepliesOpen = ref(false)
 
 <template>
   <div class="root-comment">
-    <div class="heading-container">
+    <router-link :to="`/user/${comment.authorID}`" class="heading-container">
       <img class="avatar" :src="comment.authorData.avatar.avatarCompressed" alt="" />
       <div class="heading-wrapper">
         <h6 class="name">{{ comment.authorData.firstName }} {{ comment.authorData.lastName }}</h6>
         <p class="name-tag">@{{ comment.authorData.textID }}</p>
       </div>
       <p class="time">{{ getTime({ unixTime: comment.date.unixTime, date: comment.date.date }) }}</p>
-    </div>
+    </router-link>
 
     <div
       v-if="comment.authorID === userState.id && editingId === comment.id"
@@ -91,6 +91,7 @@ const isRepliesOpen = ref(false)
   @include flex(flex-start, center);
   gap: 10px;
   margin-bottom: 11px;
+  text-decoration: none;
 }
 
 .avatar {

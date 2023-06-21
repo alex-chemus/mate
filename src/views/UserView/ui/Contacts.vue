@@ -40,10 +40,11 @@ const { theme } = useTheme()
   padding: 17px;
   border-radius: 13px;
   display: grid;
-  grid-template-columns: repeat(min-content, 2);
+  grid-template-columns: repeat(4, min-content);
   grid-gap: 29px;
   grid-auto-rows: 1fr;
-  grid-auto-flow: column;
+  grid-auto-flow: row;
+  justify-items: center;
   background-color: var(--bg-color-1);
   // border: 1px solid color.change($gray-1, $alpha: .4);
   border: var(--border-2);

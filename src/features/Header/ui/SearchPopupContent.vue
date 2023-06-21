@@ -72,18 +72,6 @@ const navigate = () => {
           <button class="profile-button" @click="navigate">
             Перейти в профиль
           </button>
-          <template v-if="isUser(content) && userId !== content.findcreekID">
-            <button v-if="!content.isSubscribed" class="sub-button" @click="emit('subscribe', content)">
-              <svg width="20" height="20" viewBox="0 0 20 20">
-                <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
-              </svg>
-            </button>
-            <button v-else class="sub-button" @click="emit('unsubscribe', content)">
-              <svg width="20" height="20" viewBox="0 0 20 20">
-                <use href="@/assets/imgs/tabler-sprite.svg#tabler-minus" />
-              </svg>
-            </button>
-          </template>
         </div>
       </div>
     </div>

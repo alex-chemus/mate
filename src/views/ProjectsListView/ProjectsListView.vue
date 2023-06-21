@@ -1,10 +1,20 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { useUserState } from '@/utils'
 import { useProjects, useAuthors } from './hooks'
 import { ProjectCard, AddProjectButton } from './ui'
 import { ProjectsListLayout } from './layouts'
 
+const userState = useUserState()
+
 const projects = useProjects()
 const authorsInfo = useAuthors({ projects })
+
+const getCreatedProjectsCount = computed(() => {
+  if (projects.value === null || projects.value.length === 0) return 0
+  return projects.value
+    .filter(project => project.founderID === userState.value.id).length
+})
 </script>
 
 <template>
@@ -18,7 +28,7 @@ const authorsInfo = useAuthors({ projects })
     </template>
 
     <template #add-project-button>
-      <add-project-button />
+      <add-project-button v-if="getCreatedProjectsCount < 3" />
     </template>
   </projects-list-layout>
 </template>

@@ -30,7 +30,12 @@ const getSubs = computed(() => {
     </div>
 
     <ul class="subscriptions-list">
-      <li v-for="item in getSubs" :key="item.id" class="item">
+      <router-link
+        v-for="item in getSubs"
+        :key="item.id"
+        :to="`/project/${item.id}`"
+        class="item"
+      >
         <img
           v-if="item.avatar.avatarCompressed ?? item.avatar.avatar"
           :src="item.avatar.avatarCompressed ?? item.avatar.avatar" :alt="item.name"
@@ -42,7 +47,7 @@ const getSubs = computed(() => {
           <h6>{{ item.name }}</h6>
           <small>{{ item.subscribers.users.length }} подписчиков</small>
         </div>
-      </li>
+      </router-link>
     </ul>
 
     <div v-if="props.subscriptions.length > 3 && isLimited" class="more-button-wrapper">
@@ -81,30 +86,16 @@ const getSubs = computed(() => {
   padding: 0;
   margin: 0;
   max-height: 300px;
-  // overflow-y: scroll;
-  // overscroll-behavior-y: contain;
   @include scrollbar;
 
   & > *:not(:last-child) {
     margin-bottom: 21px;
   }
-
-  // &::-webkit-scrollbar {
-  //   width: 5px;
-  // }
-
-  // &::-webkit-scrollbar-track {
-  //   background-color: transparent;
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //   border-radius: 100vmax;
-  //   background-color: #bbb;
-  // }
 }
 
 .item {
   @include flex(flex-start, center);
+  text-decoration: none;
 
   & > *:not(:last-child) {
     margin-right: 11px;

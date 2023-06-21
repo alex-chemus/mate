@@ -26,14 +26,14 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
 
 <template>
   <div class="reply-comment">
-    <div class="heading-container">
+    <router-link :to="`/user/${reply.authorID}`" class="heading-container">
       <img class="avatar" :src="reply.authorData.avatar.avatarCompressed" alt="" />
       <div class="heading-wrapper">
         <h6 class="name">{{ reply.authorData.firstName }} {{ reply.authorData.lastName }}</h6>
         <p class="name-tag">@{{ reply.authorData.textID }}</p>
       </div>
       <p class="time">{{ getTime({ unixTime: reply.date.unixTime, date: reply.date.date }) }}</p>
-    </div>
+    </router-link>
 
     <div
       v-if="reply.authorID === userState.id && editingId === reply.id"
@@ -78,6 +78,7 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
   @include flex(flex-start, center);
   gap: 10px;
   margin-bottom: 11px;
+  text-decoration: none;
 }
 
 .avatar {

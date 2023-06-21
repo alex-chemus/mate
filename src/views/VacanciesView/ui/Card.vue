@@ -28,9 +28,11 @@ const getButtonValue = computed(() => {
 </script>
 
 <template>
-  <article class="card-vacancy" :class="{ 'current': isCurrent }">
+  <article
+    class="card-vacancy" :class="{ 'current': isCurrent }"
+  >
     <div class="top-container">
-      <div class="project">
+      <router-link :to="`/project/${projectInfo.id}`" class="project">
         <img
           :src="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar" alt=""
           class="project-logo"
@@ -39,18 +41,21 @@ const getButtonValue = computed(() => {
           <h6>{{ projectInfo.name }}</h6>
           <p>@{{ projectInfo.textID }}</p>
         </div>
-      </div>
+      </router-link>
       <button
         class="like-button" :class="{ 'liked': vacancy.isLiked }"
         @click="emit('toggle-like', !vacancy.isLiked)"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24">
+        <svg v-if="vacancy.isLiked" width="24" height="24" viewBox="0 0 24 24">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-heart-filled" />
+        </svg>
+        <svg v-else width="24" height="24" viewBox="0 0 24 24">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-heart" />
         </svg>
       </button>
     </div>
 
-    <div class="content-container">
+    <button @click="isCurrent ? emit('close') : emit('view', vacancy.id)" class="content-container">
       <div class="title-wrapper">
         <p class="theme">{{ vacancy.themeName }}</p>
         <p class="title" :title="vacancy.title">{{ vacancy.title }}</p>
@@ -58,13 +63,16 @@ const getButtonValue = computed(() => {
 
       <p class="date">{{ getDate }}</p>
 
-      <button
+      <!-- <button
         class="view-button" :class="vacancy.isViewed ? 'viewed' : ''"
         @click="isCurrent ? emit('close') :emit('view', vacancy.id)"
       >
         {{ getButtonValue }}
-      </button>
-    </div>
+      </button> -->
+      <div class="view-tag" v-if="vacancy.isViewed">
+        Просмотрено
+      </div>
+    </button>
   </article>
 </template>
 
@@ -81,6 +89,8 @@ const getButtonValue = computed(() => {
   height: 190px;
   @include flex(flex-start, stretch, column);
   gap: 11px;
+  // cursor: pointer;
+  // text-align: left;
 
   &.current {
     border: 1px solid var(--accent);
@@ -139,6 +149,7 @@ const getButtonValue = computed(() => {
   grid-gap: 7px;
   align-items: center;
   flex-grow: 2;
+  text-align: left;
 }
 
 .title-wrapper {
@@ -164,26 +175,28 @@ const getButtonValue = computed(() => {
   letter-spacing: -0.03em;
 }
 
-.view-button {
+.view-tag {
+  @include flex(center, center);
   grid-row: 2;
   border-radius: 5px;
   height: 28px;
   width: 100px;
-  border: 1px solid transparent;
-  @include findcreek-medium(12px, var(--light));
+  border: 1px solid currentColor;
+  @include findcreek-medium(12px, var(--accent));
   letter-spacing: .01em;
   transition: var(--fast);
-  background-color: var(--accent);
+  // background-color: var(--accent);
+  background-color: transparent;
 
-  &:hover,
-  &:focus {
-    box-shadow: 0 0 4px var(--accent);
-  }
+  // &:hover,
+  // &:focus {
+  //   box-shadow: 0 0 4px var(--accent);
+  // }
 
-  &.viewed {
-    background-color: transparent;
-    color: var(--accent);
-    border-color: currentColor;
-  }
+  // &.viewed {
+  //   background-color: transparent;
+  //   color: var(--accent);
+  //   border-color: currentColor;
+  // }
 }
 </style>
