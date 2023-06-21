@@ -60,7 +60,7 @@ const usePosts = (
   })
   if (update) watch(update, () => fetchPosts)
 
-  const fetchFullUsers = useFetchFullUsers()
+  const fetchFullUsers = useFetchFullUsers('[views/ProjectView] Ошибка загрузки авторов постов')
   watch(posts, async () => {
     if (posts.value === null) return
     const IDs = posts.value.map((p) => p.authorID)

@@ -40,7 +40,7 @@ const useProjects = () => {
 
   onMounted(async () => {
     const projectsIDs = await fetchMyProjectsIDs()
-    if (projectsIDs)
+    if (projectsIDs.length)
       projects.value = await fetchFullProjects(projectsIDs)
   })
 

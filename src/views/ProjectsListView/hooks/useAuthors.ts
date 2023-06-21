@@ -12,7 +12,7 @@ const useAuthors = (
   const fetchFullUsers = useFetchFullUsers()
 
   const getAuthors = async () => {
-    if (projects.value === null) return
+    if (projects.value === null || projects.value.length === 0) return
 
     const authorIDs = [
       ...new Set(projects.value.map((p) => p.founderID))

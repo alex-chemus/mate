@@ -2,7 +2,7 @@ import { useApiState, useAuthState, useDispatch } from '@/utils'
 import { fetchActions } from '@/store/constants'
 import { FullUser } from '@/types'
 
-const useFetchFullUsers = () => {
+const useFetchFullUsers = (logErrorMessage?: string) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -17,7 +17,8 @@ const useFetchFullUsers = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: logErrorMessage
     })) as FullUser[]
   }
 

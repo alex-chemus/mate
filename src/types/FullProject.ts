@@ -8,13 +8,14 @@ export type FullProject = {
   textID: string,
   name: string,
   avatar: Avatar,
-  profileCover: {
-    profileCover: string,
-    profileCoverCompressed: string,
-    profileCoverShiftX: number,
-    profileCoverShiftY: number,
-    profileCoverScale: number
-  },
+  // profileCover: {
+  //   profileCover: string,
+  //   profileCoverCompressed: string,
+  //   profileCoverShiftX: number,
+  //   profileCoverShiftY: number,
+  //   profileCoverScale: number
+  // },
+  profileCover: string,
   slogan: string,
   description: string,
   contacts: {

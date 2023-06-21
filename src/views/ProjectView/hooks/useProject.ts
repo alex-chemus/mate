@@ -52,7 +52,8 @@ const useProject = ({ update }: { update: Ref<symbol> }) => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[views/ProjectView] Ошибка загрузки сотрудников проекта'
     })) as any[]
 
     const getRole = (id: number): Role => {

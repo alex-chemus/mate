@@ -34,7 +34,7 @@ watch(() => props.currentPage, (newValue, oldValue) => {
 .tonext-leave-active,
 .toprev-enter-active,
 .toprev-leave-active {
-  transition: transform .75s ease-out;
+  transition: transform .5s ease-out;
 }
 
 .tonext-enter-to,

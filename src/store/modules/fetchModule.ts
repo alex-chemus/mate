@@ -2,6 +2,14 @@ import type { Module } from 'vuex'
 import type { RootState, FetchModuleState } from '../types'
 import { fetchActions } from '../constants'
 
+type SetErrorPayload = {
+  logError?: string,
+  fetchError: {
+    error_code: 3 | 4 | 5, // eslint-disable-line
+    error_msg: string // eslint-disable-line
+  }
+}
+
 const fetchModule: Module<FetchModuleState, RootState> = {
   state: () => ({
     errorCode: null,
@@ -10,17 +18,17 @@ const fetchModule: Module<FetchModuleState, RootState> = {
 
   mutations: {
     // eslint-disable-next-line
-    [fetchActions.SET_ERROR](state, payload: { error_code: 3 | 4 | 5, error_msg: string }) {
-      if (![3, 4, 5].includes(payload.error_code)) return
+    [fetchActions.SET_ERROR](state, { logError, fetchError }: SetErrorPayload) {
+      if (![3, 4, 5].includes(fetchError.error_code)) return
 
-      if (payload.error_msg === 'Invalid token') {
-        state.errorCode = payload.error_code
+      if (fetchError.error_msg === 'Invalid token') {
+        state.errorCode = fetchError.error_code
         state.errorMsg = 'Ошибка авторизации'
         return
       }
 
-      state.errorCode = payload.error_code
-      switch (payload.error_code) {
+      state.errorCode = fetchError.error_code
+      switch (fetchError.error_code) {
         case 3:
           state.errorMsg = 'Нет прав для выполнения этого действия'
           break
@@ -32,11 +40,17 @@ const fetchModule: Module<FetchModuleState, RootState> = {
         default:
           state.errorMsg = 'Запрос не может быть выполнен'
       }
+
+      if (logError) console.error(logError) // eslint-disable-line
     }
   },
 
   actions: {
-    async [fetchActions.FETCH]({ commit }, payload: { url: string, info: RequestInit | undefined }) {
+    async [fetchActions.FETCH]({ commit }, payload: {
+      url: string,
+      info: RequestInit | undefined,
+      errorMessage?: string
+    }) {
       const res = await fetch(payload.url, payload.info)
 
       type Data = {
@@ -52,7 +66,10 @@ const fetchModule: Module<FetchModuleState, RootState> = {
       const data = (await res.json()) as Data
 
       if (!Array.isArray(data) && data.error) {
-        commit(fetchActions.SET_ERROR, data.error)
+        commit(fetchActions.SET_ERROR, {
+          fetchError: data.error,
+          logError: payload.errorMessage
+        } as SetErrorPayload)
         return null
       }
 

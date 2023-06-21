@@ -62,5 +62,9 @@ const { theme } = useTheme()
     transform: translateX(-15px);
     // left: 3px;
   }
+
+  svg {
+    pointer-events: none;
+  }
 }
 </style>

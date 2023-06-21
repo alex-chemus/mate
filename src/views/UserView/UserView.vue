@@ -90,9 +90,9 @@ const partners = ref<Partner[]>([
       />
     </template>
 
-    <template #partners>
+    <!-- <template #partners>
       <Partners :partners="partners"  />
-    </template>
+    </template> -->
 
     <template #new-post>
       <new-post

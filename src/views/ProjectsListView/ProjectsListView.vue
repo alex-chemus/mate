@@ -9,17 +9,12 @@ const authorsInfo = useAuthors({ projects })
 
 <template>
   <projects-list-layout>
-    <template #header>
-      <Header />
-    </template>
-
     <template #projects v-if="projects && authorsInfo">
       <project-card
         v-for="projectInfo in projects" :key="projectInfo.id"
         :project="projectInfo"
         :author="authorsInfo!.find((a) => a.findcreekID === projectInfo.founderID)!"
-      >
-      </project-card>
+      />
     </template>
 
     <template #add-project-button>

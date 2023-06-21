@@ -48,7 +48,7 @@ const notices: Notice[] = [
 
 const logout = () => {
   localStorage.removeItem('token')
-  window.location.href = 'https://id.findcreek.com'
+  window.location.href = 'https://id.findcreek.com/auth/?redirectTo=https%3A%2F%2Fmate.findcreek.com%2Fredirect&returnToken=true'
 }
 
 const isSearchOpen = ref(false)

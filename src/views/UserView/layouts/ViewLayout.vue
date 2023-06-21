@@ -31,7 +31,7 @@ defineProps<{
       <div class="bio-wrapper">
         <slot name="bio" />
       </div>
-      <slot name="partners" />
+      <!-- <slot name="partners" /> -->
       <div class="new-post-wrapper">
         <slot name="new-post" />
       </div>

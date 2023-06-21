@@ -61,7 +61,7 @@ const {
       <images-form
         v-if="currentProject"
         :avatar="getAvatar ?? currentProject.avatar.avatarCompressed ?? currentProject.avatar.avatar"
-        :cover="getCover ?? currentProject.profileCover.profileCover"
+        :cover="getCover ?? currentProject.profileCover"
         :full-name="currentProject.name"
         @set-avatar="setAvatar"
         @set-cover="setCover"
