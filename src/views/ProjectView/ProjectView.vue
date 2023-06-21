@@ -30,7 +30,7 @@ const partners = ref<Partner[]>([
   { link: '/profile', id: 7 }
 ])
 
-const fullAccount = useFullAccount()
+const fullAccount = useFullAccount('[views/ProjectView] Failed to fetch account info')
 const { subscribe, unsubscribe, subUpdate } = useSubscribe()
 const { project, projectEmployees } = useProject({
   update: subUpdate
@@ -86,7 +86,7 @@ const ownsProject = computed(() => {
         :followers="followers"
         :following="following"
         :nickname="project.textID"
-        :banner="project.profileCover.profileCover"
+        :banner="project.profileCover"
         :owns-project="ownsProject"
         :is-subscribed="project.isSubscribed"
         @subscribe="subscribe(project!.id)"

@@ -15,7 +15,7 @@ const props = defineProps<{
   postType: PostType
 }>()
 
-const account = useFullAccount()
+const account = useFullAccount('[widgets/CommentsWidget] Failed to fetch account info')
 
 const userState = useUserState()
 

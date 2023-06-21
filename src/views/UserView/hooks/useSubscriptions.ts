@@ -21,10 +21,8 @@ const useSubscriptions = (
 
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projects.getInfo/`,
-      info: {
-        method: 'POST',
-        body
-      }
+      info: { method: 'POST', body },
+      errorMessage: '[views/UserView/useSubscriptions] Failed to fetch subscriptions'
     })) as Subscription[]
   }
 

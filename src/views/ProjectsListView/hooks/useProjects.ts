@@ -9,7 +9,7 @@ const useProjects = () => {
   const authState = useAuthState()
   const dispatch = useDispatch()
 
-  const fetchFullProjects = useFetchFullProjects()
+  const fetchFullProjects = useFetchFullProjects('[views/ProjectsListView/useProjects] Failed to fetch projects')
 
   const projects = ref<FullProject[] | null>(null)
 
@@ -28,7 +28,8 @@ const useProjects = () => {
 
     const res = await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/account.getInfo/`,
-      info: { body, method: 'POST' }
+      info: { body, method: 'POST' },
+      errorMessage: '[views/ProjectsListView/useProjects] Failed to users projects ids'
     }) as ProjectsMembership
 
     return [

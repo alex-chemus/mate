@@ -38,7 +38,8 @@ const useUploadPost = ({
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.cloudUlr}/methods/cloud.uploadFiles/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[widgets/PostFormWidget/useUplaodPosts] Failed to upload post files'
     })) as FileInfo[]
 
     uploadingFile.value = null
@@ -74,13 +75,15 @@ const useUploadPost = ({
     if (type === 'project') {
       await dispatch(fetchActions.FETCH, {
         url: `${apiState.value.apiUrl}/mate/projectPosts.create/`,
-        info: { method: 'POST', body }
+        info: { method: 'POST', body },
+        errorMessage: '[widgets/PostFormWidget/useUplaodPosts] Failed to create project post'
       })
       //setGlobalProjectsUpdate()
     } else {
       await dispatch(fetchActions.FETCH, {
         url: `${apiState.value.apiUrl}/mate/userPosts.create/`,
-        info: { method: 'POST', body }
+        info: { method: 'POST', body },
+        errorMessage: '[widgets/PostFormWidget/useUplaodPosts] Failed to create user post'
       })
       //setGlobalAccountUpdate()
     }

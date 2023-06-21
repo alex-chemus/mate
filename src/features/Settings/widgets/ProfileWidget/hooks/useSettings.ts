@@ -37,7 +37,8 @@ const useSettings = ({
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProfileWidget/useSettings] Failed to set avatar image'
     })
   }
 
@@ -67,7 +68,8 @@ const useSettings = ({
         info: {
           method: 'POST',
           body
-        }
+        },
+        errorMessage: '[features/Settings/ProfileWidget/useSettings] Failed to upload settings'
       })
     }
 

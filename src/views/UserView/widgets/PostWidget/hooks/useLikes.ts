@@ -16,7 +16,8 @@ const useLikes = (
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/userPosts.${method}/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: `[views/UserView/PostWidget/useLikes] Failed to set ${method}`
     })
   }
 

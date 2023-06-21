@@ -16,7 +16,8 @@ const useLikes = (
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.${method}/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: `[views/ProjectView/PostWidget/useLikes] Failed to + ${method}`
     })
   }
 

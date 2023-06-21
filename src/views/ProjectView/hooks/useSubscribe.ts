@@ -3,7 +3,7 @@ import { useFetchSubscribe } from '@/api'
 
 const useSubscribe = () => {
   const subUpdate = ref<symbol>(Symbol())
-  const { fetchSubscribe, fetchUnsubscribe } = useFetchSubscribe()
+  const { fetchSubscribe, fetchUnsubscribe } = useFetchSubscribe('[views/ProjectView/useSubscribe] Failed to subscribe or unsubscribe')
 
   const subscribe = async (projectID: number) => {
     await fetchSubscribe('project', projectID)

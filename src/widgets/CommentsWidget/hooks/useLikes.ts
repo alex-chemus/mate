@@ -16,7 +16,8 @@ const useCommentLikes = (
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/comment.${method}/`,
-      info: { body, method: 'POST' }
+      info: { body, method: 'POST' },
+      errorMessage: `[widgets/CommentsWidget/useLikes] Failed to ${method}`
     })
   }
 

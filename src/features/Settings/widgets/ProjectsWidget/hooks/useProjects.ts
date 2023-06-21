@@ -10,7 +10,7 @@ const useProjects = ({ fullAccount }: { fullAccount: FullAccount }) => {
   const currentProjectID = ref<number | null>(null)
   const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
 
-  const fetchFullProjects = useFetchFullProjects()
+  const fetchFullProjects = useFetchFullProjects('[features/Settings/ProjectsWidget/useProjects] Failed to fetch projects')
 
   onMounted(async () => {
     projectsInfo.value = await fetchFullProjects([

@@ -28,7 +28,8 @@ const useCurrentProjectMembers = ({ currentProject }: {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProfileWidget/useCurrentProjectMembers] Failed to fetch members info for current project'
     })) as ExcludeProperties<Member, 'role'>[]
   }
 

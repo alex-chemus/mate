@@ -30,7 +30,8 @@ const useComments = (
 
     const res = await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/comment.getPostComments/`,
-      info: { body, method: 'POST' }
+      info: { body, method: 'POST' },
+      errorMessage: '[widgets/CommentsWidget/useComments] Failed to fetch post comments'
     })
     comments.value = res as Comment[]
   }
@@ -46,7 +47,8 @@ const useComments = (
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/comment.create/`,
-      info: { body, method: 'POST' }
+      info: { body, method: 'POST' },
+      errorMessage: '[widgets/CommentsWidget/useComments] Failed to add comment'
     })
 
     commentsUpdate.value = Symbol()
@@ -64,7 +66,8 @@ const useComments = (
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/comment.setInfo/`,
-      info: { body, method: 'POST' }
+      info: { body, method: 'POST' },
+      errorMessage: '[widgets/CommentsWidget/useComments] Failed to edit comment'
     })
 
     commentsUpdate.value = Symbol()

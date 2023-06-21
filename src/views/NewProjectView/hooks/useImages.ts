@@ -35,10 +35,8 @@ const useUpload = () => {
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.cloudUlr}/methods/cloud.uploadFiles/`,
-      info: {
-        method: 'POST',
-        body
-      }
+      info: { method: 'POST', body },
+      errorMessage: '[view/NewProjectView/useImages] Failed to upload avatar or cover'
     })) as FileInfo[]
 
     return res[0].fileID

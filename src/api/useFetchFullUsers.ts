@@ -14,10 +14,7 @@ const useFetchFullUsers = (logErrorMessage?: string) => {
 
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/users.getInfo/`,
-      info: {
-        method: 'POST',
-        body
-      },
+      info: { method: 'POST', body },
       errorMessage: logErrorMessage
     })) as FullUser[]
   }

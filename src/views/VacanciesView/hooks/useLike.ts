@@ -16,7 +16,8 @@ const useLike = () => {
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectVacancies.like/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/VacanciesView/useLike] Failed to set like to vacancy'
     })
 
     likeUpdate.value = Symbol()
@@ -29,7 +30,8 @@ const useLike = () => {
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectVacancies.removeLike/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/VacanciesView/useLikes] Failed to remove like to vacancy'
     })
 
     likeUpdate.value = Symbol()

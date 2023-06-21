@@ -23,7 +23,8 @@ const useAccount = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Header/useAccount] Failed to fetch account info'
     })) as Account
   }
 

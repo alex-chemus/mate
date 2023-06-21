@@ -73,7 +73,8 @@ const useImages = ({ currentProjectID }: {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/projectsWidget/useImages] Failed to upload avatar or cover'
     })) as FileInfo[])[0].fileID
   }
 

@@ -9,7 +9,7 @@ const useAuthors = (
   { projects: Ref<FullProject[] | null> | ComputedRef<FullProject[] | null> }
 ) => {
   const authors = ref<FullUser[] | null>(null)
-  const fetchFullUsers = useFetchFullUsers()
+  const fetchFullUsers = useFetchFullUsers('[views/ProjectsListView/useAuthors] Failed to fetch project authors')
 
   const getAuthors = async () => {
     if (projects.value === null || projects.value.length === 0) return

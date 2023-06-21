@@ -78,7 +78,8 @@ const useSettings = ({ uploadImage, currentProjectID }: {
         info: {
           method: 'POST',
           body
-        }
+        },
+        errorMessage: '[features/Settings/ProjectsWidget/useSettings] Failed to upload project settings'
       })
     }
 

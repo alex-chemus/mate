@@ -20,7 +20,8 @@ const useAccount = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/useAccount] Failed to fetch account info'
     })) as FullAccount
   }
 

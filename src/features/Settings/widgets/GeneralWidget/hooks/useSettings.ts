@@ -54,7 +54,8 @@ const useSettings = ({
         info: {
           method: 'POST',
           body
-        }
+        },
+        errorMessage: '[features/Settings/GeneralWidget/useSettings] Failed to upload settings'
       })
     }
 

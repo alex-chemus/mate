@@ -36,7 +36,8 @@ const usePosts = (
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/userPosts.getUserPosts/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/UserView/usePosts] Failed to fetch users posts'
     })) as FullUserPost[]
 
     posts.value = shouldntReset && posts.value
@@ -59,7 +60,8 @@ const usePosts = (
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/userPosts.getInfo/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/UserView/usePosts] Failed to update post'
     })) as FullUserPost[]
 
     // бинарный поиск

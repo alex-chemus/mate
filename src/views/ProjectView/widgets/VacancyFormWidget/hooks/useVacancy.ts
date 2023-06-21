@@ -33,7 +33,8 @@ const useVacancy = ({
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.cloudUlr}/methods/cloud.uploadFiles/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/ProjectView/VacancyFormWidget/useVacancy] Failed to upload vacancy files'
     })) as FileInfo[]
 
     isUploadingFile.value = null
@@ -84,7 +85,8 @@ const useVacancy = ({
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectVacancies.create/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/ProjectView/VacancyFormWidget/useVacancy] Failed to create vacancy'
     })
 
     setSuccessMessage('Опубликовано')

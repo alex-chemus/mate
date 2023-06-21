@@ -8,7 +8,7 @@ const useSpecialties = () => {
   const authState = useAuthState()
   const dispatch = useDispatch()
 
-  const allSpecialties = useAllSpecialties()
+  const allSpecialties = useAllSpecialties('[features/Settings/ProfileWidget/useSpecialties] Failed to fetch specialties')
 
   const selectedSpecialties = ref<number[] | null>(null)
 
@@ -24,7 +24,8 @@ const useSpecialties = () => {
         info: {
           method: 'POST',
           body
-        }
+        },
+        errorMessage: '[features/Settings/ProfileWidget/useSpecialties] Failed to add specialties'
       })
     }
   }

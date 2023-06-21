@@ -27,7 +27,8 @@ const useUploadAvatar = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/GeneralWidget/useUploadAvatar] Failed to upload avatar'
     })) as FileInfo[])[0].fileID
   }
 

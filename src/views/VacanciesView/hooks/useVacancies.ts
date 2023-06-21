@@ -39,10 +39,8 @@ const useVacancies = (
 
     vacancies.value = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectVacancies.search/`,
-      info: {
-        method: 'POST',
-        body
-      }
+      info: { method: 'POST', body },
+      errorMessage: '[views/VacanciesView/useVacancies] Failed to fetch vacancies with search string'
     })) as FullVacancy[]
 
     if (vacancies.value.length < limit.value.amount)

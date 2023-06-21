@@ -16,7 +16,8 @@ const useThemes = () => {
 
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projects.getThemesList/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/NewProjectView/useThemes] Failed to fetch themes list'
     })) as Theme[]
   }
 

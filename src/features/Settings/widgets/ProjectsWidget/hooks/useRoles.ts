@@ -39,7 +39,8 @@ const useRoles = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProjectsWidget/useRoles] Failed to set user role'
     })
 
     setGlobalProjectsUpdate()

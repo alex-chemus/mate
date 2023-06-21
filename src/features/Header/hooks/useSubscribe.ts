@@ -4,7 +4,7 @@ import { KeyedSearchItem } from '../types'
 import useTypeChecks from './useTypeChecks'
 
 const useSubscribe = () => {
-  const { fetchSubscribe, fetchUnsubscribe } = useFetchSubscribe()
+  const { fetchSubscribe, fetchUnsubscribe } = useFetchSubscribe('[features/Header/useSubscribe] Failed to subscribe or unsubscribe')
   const { isUser } = useTypeChecks()
 
   const subUpdate = ref<symbol>(Symbol())

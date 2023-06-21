@@ -6,7 +6,7 @@ const useProjects = (
   { vacancies }:
   { vacancies: Ref<FullVacancy[] | null> }
 ) => {
-  const fetchFullProjects = useFetchFullProjects()
+  const fetchFullProjects = useFetchFullProjects('[views/VacanciesView/useProjects] Failed to fetch projects')
   const projects = ref<FullProject[] | null>(null)
 
   watch(vacancies, async () => {

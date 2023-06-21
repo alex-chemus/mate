@@ -38,7 +38,8 @@ const useImages = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProfileWidget/useImages] Failed to upload avatar or cover'
     })) as FileInfo[]
 
     return res[0].fileID

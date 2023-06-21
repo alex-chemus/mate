@@ -28,7 +28,8 @@ const useMedia = ({
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProjectsWidget/useMedia] Failed to add contact'
     })
 
     if (!noUpdate) setGlobalProjectsUpdate()
@@ -47,7 +48,8 @@ const useMedia = ({
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProjectsWidget/useMedia] Failed to delete contact'
     })
 
     if (!noUpdate) setGlobalProjectsUpdate()

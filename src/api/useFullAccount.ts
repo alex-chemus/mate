@@ -5,7 +5,7 @@ import {
 } from '@/utils'
 import { FullAccount } from '@/types'
 
-const useFullAccount = () => {
+const useFullAccount = (logErrorMessage?: string) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -17,10 +17,8 @@ const useFullAccount = () => {
 
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/account.getInfo/`,
-      info: {
-        method: 'POST',
-        body
-      }
+      info: { method: 'POST', body },
+      errorMessage: logErrorMessage
     })) as FullAccount
   }
 

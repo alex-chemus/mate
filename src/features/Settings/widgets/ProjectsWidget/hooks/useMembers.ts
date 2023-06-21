@@ -53,7 +53,8 @@ const useMembers = ({ currentProject }: {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProjectsWidget/useMembers] Failed to fetch members info with search string'
     })) as ExcludeProperties<Member, 'role'>[]
 
     searchedMembers.value = res.map((m) => ({

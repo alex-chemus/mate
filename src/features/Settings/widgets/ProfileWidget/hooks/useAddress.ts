@@ -40,7 +40,8 @@ const useAddress = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProfileWidget/useAddress] Failed to fetch locations'
     }) as Location[]
 
     isFetching.value = false
@@ -50,10 +51,6 @@ const useAddress = () => {
     debounced: fetchLocations,
     debouncing
   } = useDebounce(lclFetchLocation, 1500)
-
-  // watch(debouncing, () => {
-  //   console.log('debouncing', debouncing.value)
-  // })
 
   const locationsLoading = computed(() => {
     return debouncing.value || isFetching.value

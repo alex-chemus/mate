@@ -12,8 +12,8 @@ const useViewInfo = ({ update }: { update: Ref<symbol> }) => {
   const route = useRoute()
   const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
-  const fetchFullUsers = useFetchFullUsers()
-  const fetchFullProjects = useFetchFullProjects()
+  const fetchFullUsers = useFetchFullUsers('[views/UserView/usePageInfo] Failed to fetch users')
+  const fetchFullProjects = useFetchFullProjects('[views/UserView/usePageInfo] Failed to fetch projects')
   const { fetchAccountInfo, isMe } = useIsMe()
 
   const fullUsers = ref<FullUser[] | null>(null)

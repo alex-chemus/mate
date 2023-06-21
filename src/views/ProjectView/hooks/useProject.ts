@@ -29,7 +29,8 @@ const useProject = ({ update }: { update: Ref<symbol> }) => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[views/ProjectView/useProject] Failed to fetch projects info'
     }))[0] as FullProject
   }
 
@@ -49,11 +50,8 @@ const useProject = ({ update }: { update: Ref<symbol> }) => {
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/id/users.getInfo/`,
-      info: {
-        method: 'POST',
-        body
-      },
-      errorMessage: '[views/ProjectView] Ошибка загрузки сотрудников проекта'
+      info: { method: 'POST', body },
+      errorMessage: '[views/ProjectView/useProject] Failed to load project employees'
     })) as any[]
 
     const getRole = (id: number): Role => {

@@ -24,7 +24,8 @@ const useProject = ({ uploadImage }: { uploadImage(type: 'avatar' | 'cover'): Pr
 
     const projectID = await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projects.create/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/NewProjectView/useProject] Failed to create a project'
     }) as number
 
     body.delete('name')
@@ -42,7 +43,8 @@ const useProject = ({ uploadImage }: { uploadImage(type: 'avatar' | 'cover'): Pr
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projects.setInfo/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/NewProjectView/useProject] Failed to upload project info'
     })
   }
 

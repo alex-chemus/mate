@@ -54,7 +54,8 @@ const useGlobalSearch = ({ update }: { update: Ref<symbol> }) => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Header/useGlobalSearch] Failed to fetch global search'
     })) as SearchItem[]
   }
 

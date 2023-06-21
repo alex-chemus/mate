@@ -47,7 +47,8 @@ const usePosts = (
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.getProjectPosts/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/ProjectsListView/usePosts] Failed to fetch project posts'
     })) as FullProjectPost[]
 
     if (shouldntReset && posts.value) posts.value = [...posts.value, ...res]
@@ -60,7 +61,7 @@ const usePosts = (
   })
   if (update) watch(update, () => fetchPosts)
 
-  const fetchFullUsers = useFetchFullUsers('[views/ProjectView] Ошибка загрузки авторов постов')
+  const fetchFullUsers = useFetchFullUsers('[views/ProjectView/usePosts] Failed to fetch post authors')
   watch(posts, async () => {
     if (posts.value === null || posts.value.length === 0) return
     const IDs = posts.value.map((p) => p.authorID)
@@ -82,7 +83,8 @@ const usePosts = (
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.getInfo/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/ProjectView/usePosts] Failed to fetch posts'
     })) as FullProjectPost[]
 
     posts.value = posts.value.map((p) => p.id === id ? res[0] : p)

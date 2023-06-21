@@ -1,7 +1,7 @@
 import { useApiState, useAuthState, useDispatch } from '@/utils'
 import { fetchActions } from '@/store/constants'
 
-const useFetchSubscribe = () => {
+const useFetchSubscribe = (logErrorMessage?: string) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -16,10 +16,8 @@ const useFetchSubscribe = () => {
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/${reqType}.subscribe/`,
-      info: {
-        method: 'POST',
-        body
-      }
+      info: { method: 'POST', body },
+      errorMessage: logErrorMessage
     })
   }
 
@@ -33,10 +31,8 @@ const useFetchSubscribe = () => {
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/${reqType}.unsubscribe/`,
-      info: {
-        method: 'POST',
-        body
-      }
+      info: { method: 'POST', body },
+      errorMessage: logErrorMessage
     })
   }
 

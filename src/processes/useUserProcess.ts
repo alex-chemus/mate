@@ -19,7 +19,8 @@ const useUserProcess = () => {
 
     const res = await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/account.getInfo/`,
-      info: { body, method: 'POST' }
+      info: { body, method: 'POST' },
+      errorMessage: '[processes/useUserProcess] Failed to fetch account info'
     })
 
     store.commit(userActions.SET_ID, res.findcreekID as number)

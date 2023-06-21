@@ -5,7 +5,7 @@ import {
 } from '@/utils'
 import { SpecialtiesList } from '@/types'
 
-const useAllSpecialties = () => {
+const useAllSpecialties = (logErrorMessage?: string) => {
   const apiState = useApiState()
   const authState = useAuthState()
   const dispatch = useDispatch()
@@ -16,10 +16,8 @@ const useAllSpecialties = () => {
 
     return (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/specialties.get/`,
-      info: {
-        method: 'POST',
-        body
-      }
+      info: { method: 'POST', body },
+      errorMessage: logErrorMessage
     })) as SpecialtiesList
   }
 

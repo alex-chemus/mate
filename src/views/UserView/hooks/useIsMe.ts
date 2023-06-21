@@ -16,10 +16,8 @@ const useIsMe = () => {
 
     accountInfo.value = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/account.getInfo/`,
-      info: {
-        method: 'POST',
-        body
-      }
+      info: { method: 'POST', body },
+      errorMessage: '[views/UserView/useIsMe] Failed to fetch account id'
     })) as { findcreekID: number }
   }
 

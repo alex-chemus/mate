@@ -19,7 +19,8 @@ const useView = () => {
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectVacancies.setAsViewed/`,
-      info: { method: 'POST', body }
+      info: { method: 'POST', body },
+      errorMessage: '[views/VacanciesView/useView] Failed to set vacancy as viewed'
     })
 
     viewUpdate.value = Symbol()
