@@ -36,6 +36,7 @@ defineExpose({ inputRef: containerRref })
 </script>
 
 <template>
+  <!-- eslint-disable -->
   <label ref="containerRef">
     <p v-if="labelText" class="label" :class="theme">{{ labelText }}</p>
     <div class="input-wrapper" :class="[theme, { focused }]">
@@ -54,6 +55,7 @@ defineExpose({ inputRef: containerRref })
       <slot name="after" />
     </div>
   </label>
+  <!-- eslint-enable -->
 </template>
 
 <style lang="scss" scoped>

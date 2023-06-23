@@ -9,6 +9,8 @@ const props = defineProps<{
   isMe?: boolean
 }>()
 
+console.log('projects', props.projects)
+
 const { theme } = useTheme()
 
 const shouldTrimProjects = ref(true)
@@ -38,8 +40,8 @@ const computedProjects = computed(() => {
         >
           <router-link :to="`/project/${project.id}`" :class="theme">
             <img
-              v-if="project.avatar.avatarCompressed"
-              :src="project.avatar.avatarCompressed"
+              v-if="project.avatar.avatarCompressed ?? project.avatar.avatar"
+              :src="project.avatar.avatarCompressed ?? project.avatar.avatar"
               alt="" class="icon"
             />
             <div v-else class="icon placeholder" />
