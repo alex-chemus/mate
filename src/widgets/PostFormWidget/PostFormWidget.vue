@@ -32,6 +32,13 @@ const {
   getFiles,
   onAdd: () => emit('add')
 })
+
+const submitPost = async () => {
+  await uploadPost()
+  setTitle('')
+  description.value = ''
+  closePostEditor()
+}
 </script>
 
 <template>
@@ -65,7 +72,7 @@ const {
     </template>
 
     <template #submit-button>
-      <submit-button @click="uploadPost" />
+      <submit-button @click="submitPost" />
     </template>
   </widget-layout>
 </template>
