@@ -52,6 +52,7 @@ const logout = () => {
 }
 
 const isSearchOpen = ref(false)
+const isProfileOpen = ref(false)
 </script>
 
 <template>
@@ -88,6 +89,7 @@ const isSearchOpen = ref(false)
     <template #profile>
       <profile-layout
         v-if="account"
+        v-model:is-open="isProfileOpen"
         :img="account.avatar.avatarCompressed || account.avatar.avatar"
         :full-name="`${account.lastName} ${account.firstName}`"
         :email="account.email"
@@ -96,7 +98,10 @@ const isSearchOpen = ref(false)
           :img="account.avatar.avatarCompressed || account.avatar.avatar"
           :full-name="`${account.lastName} ${account.firstName}`"
           :email="account.email"
-          @open-settings="openSettings"
+          @open-settings="() => {
+            openSettings()
+            isProfileOpen = false
+          }"
           @logout="logout"
         />
       </profile-layout>
