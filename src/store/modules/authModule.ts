@@ -24,6 +24,7 @@ const authModule: Module<AuthModuleState, RootState> = {
           https://id.findcreek.com/auth/?redirectTo=${redirectPath}&returnToken=true
         `
         window.location.href = href
+        alert('Нет токена')
       } else if (token.trim().length > 0) {
         commit(authActions.SET_TOKEN, token)
       } else {
