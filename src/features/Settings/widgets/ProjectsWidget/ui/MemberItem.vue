@@ -100,7 +100,7 @@ const getRole = computed(() => {
 }
 
 .role {
-  @include findcreek(13px);
+  @include findcreek(13px, var(--text-color-1));
 }
 
 .change-button {
