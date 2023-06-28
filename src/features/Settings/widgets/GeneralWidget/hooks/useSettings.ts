@@ -2,7 +2,7 @@ import { ref, computed } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate, useAlert
-} from '@/utils'
+} from '@/shared/utils'
 
 const useSettings = ({
   uploadAvatar

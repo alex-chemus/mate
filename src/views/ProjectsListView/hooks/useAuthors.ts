@@ -1,8 +1,8 @@
 import {
   Ref, ComputedRef, ref, watch, onMounted
 } from 'vue'
-import { FullProject, FullUser } from '@/types'
-import { useFetchFullUsers } from '@/api'
+import { FullProject, FullUser } from '@/shared/types'
+import { useFetchFullUsers } from '@/shared/api'
 
 const useAuthors = (
   { projects }:

@@ -2,8 +2,8 @@ import { ref, computed, watch } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useDebounce
-} from '@/utils'
-import { Location, ExcludeProperties } from '@/types'
+} from '@/shared/utils'
+import { Location, ExcludeProperties } from '@/shared/types'
 
 const useAddress = () => {
   const apiState = useApiState()

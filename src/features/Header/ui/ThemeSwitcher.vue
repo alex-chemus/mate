@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useTheme } from '@/utils'
+import { useTheme } from '@/shared/utils'
 const { theme } = useTheme()
 </script>
 

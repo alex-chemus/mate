@@ -1,9 +1,9 @@
 import { ref, Ref, ComputedRef } from 'vue'
 import {
   useApiState, useAuthState, useDispatch, useAlert
-} from '@/utils'
+} from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
-import { FileInfo } from '@/types'
+import { FileInfo } from '@/shared/types'
 import { IFile } from '../types'
 
 const useVacancy = ({

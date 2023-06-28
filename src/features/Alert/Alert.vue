@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import { useAlert, useTheme } from '@/utils'
+import { useAlert, useTheme } from '@/shared/utils'
 
 const { type, message, update } = useAlert()
 const { theme } = useTheme()

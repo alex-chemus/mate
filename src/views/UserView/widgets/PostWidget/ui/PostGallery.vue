@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
-import { FileInfo } from '@/types'
+import { FileInfo } from '@/shared/types'
 import PostSlider from './PostSlider.vue'
 
 const props = defineProps<{

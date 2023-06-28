@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { PostFormWidget } from '@/widgets'
+import { PostFormWidget } from '@/shared/widgets'
 import { ViewLayout, BioLayout } from './layouts'
 import { PostWidget } from './widgets'
 import {

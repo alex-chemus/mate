@@ -1,9 +1,9 @@
 import {
   ref, onMounted, computed, watch
 } from 'vue'
-import { useGlobalUpdate } from '@/utils'
-import { FullAccount, FullProject } from '@/types'
-import { useFetchFullProjects } from '@/api'
+import { useGlobalUpdate } from '@/shared/utils'
+import { FullAccount, FullProject } from '@/shared/types'
+import { useFetchFullProjects } from '@/shared/api'
 
 const useProjects = ({ fullAccount }: { fullAccount: FullAccount }) => {
   const projectsInfo = ref<FullProject[] | null>(null)

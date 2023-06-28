@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { Button } from '@/ui'
-import { useTheme } from '@/utils'
+import { Button } from '@/shared/ui'
+import { useTheme } from '@/shared/utils'
 import Search from './Search.vue'
 
 const { theme } = useTheme()

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
-import { ModalLayout, Modal } from '@/hocs'
-import { useTheme } from '@/utils'
-import { SaveButton } from '@/ui'
+import { ModalLayout, Modal } from '@/shared/hocs'
+import { useTheme } from '@/shared/utils'
+import { SaveButton } from '@/shared/ui'
 import { Member } from '../types'
 
 const props = defineProps<{

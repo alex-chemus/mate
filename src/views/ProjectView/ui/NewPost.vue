@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { useTheme, usePostEditor } from '@/utils'
+import { useTheme, usePostEditor } from '@/shared/utils'
 
 defineProps<{
   img?: string

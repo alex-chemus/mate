@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, ref, computed } from 'vue'
-import { Modal } from '@/hocs'
-import { useTheme } from '@/utils'
+import { Modal } from '@/shared/hocs'
+import { useTheme } from '@/shared/utils'
 import ProfileLayout from './ProfileLayout.vue'
 
 const props = defineProps<{

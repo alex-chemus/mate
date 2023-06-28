@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { watch, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useUserState } from '@/utils'
-import { Loader } from '@/ui';
+import { useUserState } from '@/shared/utils'
+import { Loader } from '@/shared/ui';
 
 const userState = useUserState()
 const router = useRouter()

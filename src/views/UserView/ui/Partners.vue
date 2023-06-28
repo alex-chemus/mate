@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { useTheme } from '@/utils'
+import { useTheme } from '@/shared/utils'
 import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import type { Partner } from '../types'
 //import './carousel.css'

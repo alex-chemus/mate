@@ -1,10 +1,10 @@
 import {
   Ref, ref, watch, ComputedRef
 } from 'vue'
-import { FullUserPost, FullUser } from '@/types'
+import { FullUserPost, FullUser } from '@/shared/types'
 import {
   useApiState, useAuthState, useDispatch,
-} from '@/utils'
+} from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
 
 const usePosts = (

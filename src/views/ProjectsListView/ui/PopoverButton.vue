@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineEmits, ref, defineProps } from 'vue'
-import { Popover } from '@/hocs'
+import { Popover } from '@/shared/hocs'
 
 defineProps<{
   isSubbed?: boolean

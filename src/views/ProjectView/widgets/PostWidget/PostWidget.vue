@@ -4,8 +4,8 @@ import {
 } from 'vue'
 import {
   FullProjectPost, FullProject, FullUser
-} from '@/types'
-import { CommentsWidget } from '@/widgets'
+} from '@/shared/types'
+import { CommentsWidget } from '@/shared/widgets'
 import { useDate, useLikes, useViewer } from './hooks'
 import { WidgetLayout } from './layouts'
 import {

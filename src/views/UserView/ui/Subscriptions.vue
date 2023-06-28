@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, ref, computed } from 'vue'
-import { useTheme } from '@/utils'
-import { MoreButton } from '@/ui'
+import { useTheme } from '@/shared/utils'
+import { MoreButton } from '@/shared/ui'
 import { Subscription } from '../types'
 
 const { theme } = useTheme()

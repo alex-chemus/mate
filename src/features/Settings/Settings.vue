@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // import {
 //   ProfileSettings, ProjectsSettings, PrivacySettings
-// } from '@/widgets'
+// } from '@/shared/widgets'
 import {
   GeneralWidget, ProjectsWidget, ProfileWidget, PrivacyWidget
 } from './widgets'

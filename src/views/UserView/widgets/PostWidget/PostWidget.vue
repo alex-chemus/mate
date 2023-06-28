@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
-import { FullUser, FullUserPost } from '@/types'
-import { CommentsWidget } from '@/widgets'
+import { FullUser, FullUserPost } from '@/shared/types'
+import { CommentsWidget } from '@/shared/widgets'
 import { WidgetLayout } from './layouts'
 import { useDate, useViewer, useLikes } from './hooks'
 import {

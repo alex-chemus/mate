@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { Input } from '@/ui'
+import { Input } from '@/shared/ui'
 import { Theme } from '../types'
 
 defineProps<{

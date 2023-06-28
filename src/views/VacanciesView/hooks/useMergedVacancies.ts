@@ -1,5 +1,5 @@
 import { computed, Ref } from 'vue'
-import { FullVacancy, FullProject } from '@/types'
+import { FullVacancy, FullProject } from '@/shared/types'
 import { MergedVacancy } from '../types'
 
 const useMergedVacancies = (

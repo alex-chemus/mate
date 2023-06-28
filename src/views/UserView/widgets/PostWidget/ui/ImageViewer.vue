@@ -2,7 +2,7 @@
 import {
   defineProps, defineEmits, ref, watch, onMounted, onBeforeUnmount
 } from 'vue'
-import { Modal } from '@/hocs'
+import { Modal } from '@/shared/hocs'
 
 const props = defineProps<{
   src: string | null,

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { FullProject, FullVacancy } from '@/types'
+import { FullProject, FullVacancy } from '@/shared/types'
 import { defineProps, computed } from 'vue'
 import { Files, Gallery } from '../ui'
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { Popover } from '@/hocs'
-import { useTheme } from '@/utils'
+import { Popover } from '@/shared/hocs'
+import { useTheme } from '@/shared/utils'
 
 defineProps<{
   popupOpen: boolean

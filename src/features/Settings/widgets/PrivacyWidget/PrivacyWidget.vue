@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { useTheme } from '@/utils'
-import { FullAccount } from '@/types'
+import { useTheme } from '@/shared/utils'
+import { FullAccount } from '@/shared/types'
 
 defineProps<{
   fullAccount: FullAccount

@@ -2,8 +2,8 @@
 import {
   defineProps, defineEmits, ref, computed
 } from 'vue'
-import { useTheme } from '@/utils'
-import { Popover } from '@/hocs'
+import { useTheme } from '@/shared/utils'
+import { Popover } from '@/shared/hocs'
 import PostPopupLayout from './PostPopupLayout.vue'
 import LikeSvg from './LikeSvg.vue'
 import DislikeSvg from './DislikeSvg.vue'

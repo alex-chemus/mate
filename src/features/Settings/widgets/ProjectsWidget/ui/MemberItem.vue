@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
-import { useTheme } from '@/utils'
+import { useTheme } from '@/shared/utils'
 import { Member } from '../types'
 
 const props = defineProps<{

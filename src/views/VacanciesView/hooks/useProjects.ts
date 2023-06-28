@@ -1,6 +1,6 @@
 import { ref, Ref, watch } from 'vue'
-import { FullProject, FullVacancy } from '@/types'
-import { useFetchFullProjects } from '@/api'
+import { FullProject, FullVacancy } from '@/shared/types'
+import { useFetchFullProjects } from '@/shared/api'
 
 const useProjects = (
   { vacancies }:

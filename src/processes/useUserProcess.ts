@@ -1,6 +1,6 @@
 import { onMounted, watch } from 'vue'
 import { useStore } from 'vuex'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
+import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
 import { fetchActions, userActions } from '@/store/constants'
 import { RootState } from '@/store/types'
 

@@ -1,6 +1,6 @@
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/utils'
+} from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
 
 const useMedia = () => {

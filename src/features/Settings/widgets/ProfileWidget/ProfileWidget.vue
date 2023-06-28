@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, ref, computed } from 'vue'
-import { FullAccount } from '@/types'
-import { Textarea, SaveButton } from '@/ui'
+import { FullAccount } from '@/shared/types'
+import { Textarea, SaveButton } from '@/shared/ui'
 import {
   ImagesForm, Media, Skills, Specialties,
   AddressDropdown

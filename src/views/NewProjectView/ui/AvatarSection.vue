@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineEmits } from 'vue'
-import { Textarea } from '@/ui'
+import { Textarea } from '@/shared/ui'
 import ImagesForm from './ImagesForm.vue'
 
 const emit = defineEmits<{

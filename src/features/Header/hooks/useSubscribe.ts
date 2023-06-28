@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { useFetchSubscribe } from '@/api'
+import { useFetchSubscribe } from '@/shared/api'
 import { KeyedSearchItem } from '../types'
 import useTypeChecks from './useTypeChecks'
 

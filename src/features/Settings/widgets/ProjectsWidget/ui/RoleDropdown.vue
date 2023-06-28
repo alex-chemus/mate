@@ -2,8 +2,8 @@
 import {
   defineProps, defineEmits, ref, computed
 } from 'vue'
-import { useTheme } from '@/utils'
-import { Dropdown } from '@/ui'
+import { useTheme } from '@/shared/utils'
+import { Dropdown } from '@/shared/ui'
 import { Member } from '../types'
 
 const props = defineProps<{

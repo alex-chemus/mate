@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useFetchState } from '@/utils'
+import { useFetchState } from '@/shared/utils'
 
 const fetchState = useFetchState()
 </script>

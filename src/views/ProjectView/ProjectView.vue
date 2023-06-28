@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { PostFormWidget } from '@/widgets'
-import { useFullAccount } from '@/api'
+import { PostFormWidget } from '@/shared/widgets'
+import { useFullAccount } from '@/shared/api'
 import type { Company, Partner } from './types'
 import { PostWidget, VacancyFormWidget } from './widgets'
 import {

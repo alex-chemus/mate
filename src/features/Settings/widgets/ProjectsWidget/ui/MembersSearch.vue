@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, defineEmits } from 'vue'
-import { Input } from '@/ui'
-import { useTheme } from '@/utils'
+import { Input } from '@/shared/ui'
+import { useTheme } from '@/shared/utils'
 
 const emit = defineEmits<{
   (e: 'search', searchString: string): void

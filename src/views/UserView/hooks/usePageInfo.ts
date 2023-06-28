@@ -2,9 +2,9 @@ import {
   ref, onMounted, watch, Ref
 } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useFetchFullUsers, useFetchFullProjects } from '@/api'
-import { useGlobalUpdate } from '@/utils'
-import { FullProject, FullUser } from '@/types'
+import { useFetchFullUsers, useFetchFullProjects } from '@/shared/api'
+import { useGlobalUpdate } from '@/shared/utils'
+import { FullProject, FullUser } from '@/shared/types'
 import useIsMe from './useIsMe'
 
 const useViewInfo = ({ update }: { update: Ref<symbol> }) => {

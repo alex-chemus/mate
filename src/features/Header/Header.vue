@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { useSettings } from '@/utils'
+import { useSettings } from '@/shared/utils'
 import {
   HeaderLayout, ProfileLayout, NotificationsLayout, SearchLayout
 } from './layouts'

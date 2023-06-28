@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { FullProject } from '@/types'
+import { FullProject } from '@/shared/types'
 
 defineProps<{
   fullProject: FullProject

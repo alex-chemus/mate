@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { fetchActions } from '@/store/constants'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
-import { FileInfo } from '@/types'
+import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import { FileInfo } from '@/shared/types'
 
 const useImages = () => {
   const apiState = useApiState()

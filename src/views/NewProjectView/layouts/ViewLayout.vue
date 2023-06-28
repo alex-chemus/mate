@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { Loader } from '@/ui'
+import { Loader } from '@/shared/ui'
 
 defineProps<{
   loading?: boolean,

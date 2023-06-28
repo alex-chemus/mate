@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { Popover } from '@/hocs'
+import { Popover } from '@/shared/hocs'
 
 const isOpen = ref(false)
 </script>

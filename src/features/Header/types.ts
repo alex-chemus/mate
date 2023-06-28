@@ -1,4 +1,4 @@
-import { Specialty } from '@/types'
+import { Specialty } from '@/shared/types'
 
 // временный тип, с появлением api переделаю
 export type Notice = {

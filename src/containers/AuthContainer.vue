@@ -2,7 +2,7 @@
 import { onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { authActions } from '@/store/constants'
-import { useAuthState, useDispatch, useCommit } from '@/utils'
+import { useAuthState, useDispatch, useCommit } from '@/shared/utils'
 
 const dispatch = useDispatch()
 const state = useAuthState()

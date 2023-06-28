@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { useFetchSubscribe } from '@/api'
+import { useFetchSubscribe } from '@/shared/api'
 
 const useSubscribe = () => {
   const subUpdate = ref<symbol>(Symbol())

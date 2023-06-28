@@ -2,7 +2,7 @@
 import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
-import { Dropdown } from '@/ui'
+import { Dropdown } from '@/shared/ui'
 
 const props = defineProps<{
   themes: {

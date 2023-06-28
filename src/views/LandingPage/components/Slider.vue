@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineEmits, defineProps } from 'vue'
-import { useTheme } from '@/utils'
+import { useTheme } from '@/shared/utils'
 
 defineProps<{
   currentSlide: number

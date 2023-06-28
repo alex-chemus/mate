@@ -2,8 +2,8 @@
 import {
   defineEmits, ref
 } from 'vue'
-import { useTheme } from '@/utils'
-import { Droparea } from '@/hocs'
+import { useTheme } from '@/shared/utils'
+import { Droparea } from '@/shared/hocs'
 
 const emit = defineEmits<{
   (e: 'set-avatar', payload: FileList): void

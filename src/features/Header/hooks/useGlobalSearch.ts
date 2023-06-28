@@ -3,7 +3,7 @@ import {
 } from 'vue'
 import {
   useDebounce, useApiState, useAuthState, useDispatch
-} from '@/utils'
+} from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
 import { SearchItem, KeyedSearchItem, SearchFilters } from '../types'
 

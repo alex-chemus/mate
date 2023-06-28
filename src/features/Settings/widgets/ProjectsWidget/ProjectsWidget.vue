@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
-import { FullAccount } from '@/types'
-import { Input, SaveButton, DateInput } from '@/ui'
+import { FullAccount } from '@/shared/types'
+import { Input, SaveButton, DateInput } from '@/shared/ui'
 import { WidgetLayout, RolePopup } from './layouts'
 // import ProjectsSettingsLayout from './ProjectsSettingsLayout.vue'
 import {

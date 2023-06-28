@@ -2,8 +2,8 @@
 import {
   defineProps, defineEmits, ref, computed
 } from 'vue'
-import { Loader, Checkbox } from '@/ui'
-import { useTheme } from '@/utils'
+import { Loader, Checkbox } from '@/shared/ui'
+import { useTheme } from '@/shared/utils'
 import { KeyedSearchItem, SearchFilters } from '../types'
 import SearchPopupContent from './SearchPopupContent.vue'
 import { useTypeChecks } from '../hooks'

@@ -3,8 +3,8 @@ import {
 } from 'vue'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/utils'
-import { FullProject, ExcludeProperties } from '@/types'
+} from '@/shared/utils'
+import { FullProject, ExcludeProperties } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
 import { Member } from '../types'
 import userCurrentProjectMembers from './useCurrentProjectMembers'

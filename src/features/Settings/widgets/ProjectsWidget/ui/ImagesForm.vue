@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { useTheme } from '@/utils'
-import { Droparea } from '@/hocs'
+import { useTheme } from '@/shared/utils'
+import { Droparea } from '@/shared/hocs'
 
 defineProps<{
   avatar: string,

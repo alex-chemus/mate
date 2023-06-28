@@ -1,5 +1,5 @@
 import { onMounted, ref } from 'vue'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
+import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
 import { Theme } from '../types'
 

@@ -1,7 +1,7 @@
 import { ref, onMounted, watch } from 'vue'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/utils'
+} from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
 import { Account } from '../types'
 

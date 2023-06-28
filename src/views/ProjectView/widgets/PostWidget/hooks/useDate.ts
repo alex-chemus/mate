@@ -1,5 +1,5 @@
 import { ComputedRef, computed } from 'vue'
-import { useTimeUtils } from '@/utils'
+import { useTimeUtils } from '@/shared/utils'
 
 const useDate = ({ timestamp }: { timestamp: ComputedRef<number> }) => {
   const { isToday, isYesterday } = useTimeUtils()

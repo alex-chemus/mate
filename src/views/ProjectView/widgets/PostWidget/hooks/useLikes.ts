@@ -1,5 +1,5 @@
 import { fetchActions } from '@/store/constants'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
+import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
 
 const useLikes = (
   { onUpdate }:

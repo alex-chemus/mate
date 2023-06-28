@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { Logo } from '@/ui'
-import { useTheme, useSettings } from '@/utils'
+import { Logo } from '@/shared/ui'
+import { useTheme, useSettings } from '@/shared/utils'
 
 defineProps<{
   name: string,

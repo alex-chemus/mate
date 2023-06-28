@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref, defineProps, computed } from 'vue'
-import { useTheme } from '@/utils'
-import { MoreButton } from '@/ui'
-import { FullProject } from '@/types'
+import { useTheme } from '@/shared/utils'
+import { MoreButton } from '@/shared/ui'
+import { FullProject } from '@/shared/types'
 
 const props = defineProps<{
   projects: FullProject[],

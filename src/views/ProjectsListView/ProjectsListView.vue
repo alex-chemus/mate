@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useUserState } from '@/utils'
+import { useUserState } from '@/shared/utils'
 import { useProjects, useAuthors } from './hooks'
 import { ProjectCard, AddProjectButton } from './ui'
 import { ProjectsListLayout } from './layouts'

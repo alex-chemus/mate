@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
-import { Loader } from '@/ui'
+import { Loader } from '@/shared/ui'
 import { IFile } from '../types'
 
 const props = defineProps<{

@@ -1,8 +1,8 @@
 import { ref, onMounted, watch } from 'vue'
-import { FullAccount } from '@/types'
+import { FullAccount } from '@/shared/types'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/utils'
+} from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
 
 const useAccount = () => {

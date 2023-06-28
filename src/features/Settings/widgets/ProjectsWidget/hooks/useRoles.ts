@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
   useAlert
-} from '@/utils'
+} from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
 
 type Role = {

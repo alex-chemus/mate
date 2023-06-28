@@ -1,4 +1,4 @@
-import { FullVacancy, FullProject } from '@/types'
+import { FullVacancy, FullProject } from '@/shared/types'
 
 export type Theme = {
   id: number,

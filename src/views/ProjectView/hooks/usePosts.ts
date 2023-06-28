@@ -1,12 +1,12 @@
 import {
   Ref, ref, watch, computed
 } from 'vue'
-import { FullProject, FullProjectPost, FullUser } from '@/types'
+import { FullProject, FullProjectPost, FullUser } from '@/shared/types'
 import {
   useApiState, useAuthState, useDispatch,
-} from '@/utils'
+} from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
-import { useFetchFullUsers } from '@/api'
+import { useFetchFullUsers } from '@/shared/api'
 
 const usePosts = (
   { project, update }:

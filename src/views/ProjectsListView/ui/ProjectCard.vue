@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, computed } from 'vue'
-import { FullProject, FullUser } from '@/types'
+import { FullProject, FullUser } from '@/shared/types'
 
 const props = defineProps<{
   project: FullProject,

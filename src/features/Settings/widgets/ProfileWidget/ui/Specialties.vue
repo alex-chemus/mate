@@ -2,9 +2,9 @@
 import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
-import { useTheme } from '@/utils'
-import { Tag, GroupedDropdown } from '@/ui'
-import { Specialty, SpecialtiesList } from '@/types';
+import { useTheme } from '@/shared/utils'
+import { Tag, GroupedDropdown } from '@/shared/ui'
+import { Specialty, SpecialtiesList } from '@/shared/types';
 
 const props = defineProps<{
   allSpecialties: SpecialtiesList

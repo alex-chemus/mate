@@ -1,5 +1,5 @@
 import { ref, ComputedRef } from 'vue'
-import { FileInfo } from '@/types'
+import { FileInfo } from '@/shared/types'
 
 const useViewer = (
   { getImages }:

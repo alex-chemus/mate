@@ -3,7 +3,7 @@ import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate,
   useAlert
-} from '@/utils'
+} from '@/shared/utils'
 
 const useSettings = ({ uploadImage, currentProjectID }: {
   uploadImage?: (type: 'avatar' | 'cover') => Promise<null | number>,

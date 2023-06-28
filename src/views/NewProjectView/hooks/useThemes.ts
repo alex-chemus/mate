@@ -1,6 +1,6 @@
 import { onMounted, ref } from 'vue'
 import { fetchActions } from '@/store/constants'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
+import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
 
 const useThemes = () => {
   const apiState = useApiState()

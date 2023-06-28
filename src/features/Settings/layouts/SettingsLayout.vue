@@ -2,8 +2,8 @@
 import {
   defineProps, defineEmits, ref, watch
 } from 'vue'
-import { ModalLayout, Modal } from '@/hocs'
-import { useTheme } from '@/utils'
+import { ModalLayout, Modal } from '@/shared/hocs'
+import { useTheme } from '@/shared/utils'
 import { Tab } from '../types'
 
 const props = defineProps<{

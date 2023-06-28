@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Logo } from '@/ui'
+import { Logo } from '@/shared/ui'
 </script>
 
 <template>

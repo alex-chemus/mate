@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, computed } from 'vue'
-import { FullProject } from '@/types'
+import { FullProject } from '@/shared/types'
 import { WidgetLayout } from './layouts'
 import {
   Title, NameInput, DescriptionInput, ThemesSelect,

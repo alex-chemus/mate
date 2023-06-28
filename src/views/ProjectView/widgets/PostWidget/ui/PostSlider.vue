@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { FileInfo } from '@/types'
+import { FileInfo } from '@/shared/types'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
 
 defineProps<{

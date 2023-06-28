@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, ref } from 'vue'
-import { useTheme } from '@/utils'
-import { Input, Tag } from '@/ui'
+import { useTheme } from '@/shared/utils'
+import { Input, Tag } from '@/shared/ui'
 
 defineProps<{
   skills: string[]

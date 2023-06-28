@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useTheme } from '@/utils'
+import { useTheme } from '@/shared/utils'
 
 const { theme } = useTheme()
 

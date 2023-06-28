@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
-import { Input, Dropdown } from '@/ui'
+import { Input, Dropdown } from '@/shared/ui'
 
 const props = defineProps<{
   themes: {

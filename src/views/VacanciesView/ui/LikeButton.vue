@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { FullVacancy } from '@/types'
+import { FullVacancy } from '@/shared/types'
 
 defineProps<{
   vacancy: FullVacancy

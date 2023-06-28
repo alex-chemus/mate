@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { Modal, ModalLayout, Droparea } from '@/hocs'
+import { Modal, ModalLayout, Droparea } from '@/shared/hocs'
 
 defineProps<{
   visible: boolean,

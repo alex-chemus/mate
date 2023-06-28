@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, ref, computed } from 'vue'
-import { useTheme } from '@/utils'
+import { useTheme } from '@/shared/utils'
 
 const props = defineProps<{
   text: string

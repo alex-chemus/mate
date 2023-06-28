@@ -2,7 +2,7 @@
 import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
-import { FullProject, FullVacancy } from '@/types'
+import { FullProject, FullVacancy } from '@/shared/types'
 
 const props = defineProps<{
   vacancy: FullVacancy,

@@ -1,6 +1,6 @@
 import { watch, onMounted } from 'vue'
 import { themeActions } from '@/store/constants'
-import { useTheme, useDispatch } from '@/utils'
+import { useTheme, useDispatch } from '@/shared/utils'
 
 const useThemeProcess = () => {
   const { theme } = useTheme()

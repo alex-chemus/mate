@@ -1,7 +1,7 @@
 import { ref } from 'vue'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
+import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
-import { FullVacancy } from '@/types'
+import { FullVacancy } from '@/shared/types'
 
 const useView = () => {
   const apiState = useApiState()

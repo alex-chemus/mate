@@ -1,6 +1,6 @@
 import { Ref, ref, watch } from 'vue'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
-import { FullUser } from '@/types'
+import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import { FullUser } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
 import { Subscription } from '../types'
 

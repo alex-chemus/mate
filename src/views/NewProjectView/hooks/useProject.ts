@@ -1,7 +1,7 @@
 import { ref } from 'vue'
-import { useAuthState, useDispatch, useApiState } from '@/utils'
+import { useAuthState, useDispatch, useApiState } from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
-import { FileInfo } from '@/types'
+import { FileInfo } from '@/shared/types'
 
 const useProject = ({ uploadImage }: { uploadImage(type: 'avatar' | 'cover'): Promise<number | null> }) => {
   const authState = useAuthState()

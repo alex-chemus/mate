@@ -1,8 +1,8 @@
 import { ComputedRef } from 'vue'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/utils'
-import { FullProject } from '@/types'
+} from '@/shared/utils'
+import { FullProject } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
 
 const useMedia = ({

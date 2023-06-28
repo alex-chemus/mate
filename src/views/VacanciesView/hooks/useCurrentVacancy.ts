@@ -1,5 +1,5 @@
 import { Ref, ref, watch } from 'vue'
-import { FullVacancy } from '@/types'
+import { FullVacancy } from '@/shared/types'
 import { MergedVacancy } from '../types'
 
 const useCurrentVacancy = ({ vacancies }: { vacancies: Ref<FullVacancy[] | null> }) => {

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
-import { useTheme } from '@/utils'
-import { MoreButton } from '@/ui'
+import { useTheme } from '@/shared/utils'
+import { MoreButton } from '@/shared/ui'
 import type { Company } from '../types';
 
 const { theme } = useTheme()

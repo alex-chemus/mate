@@ -1,8 +1,8 @@
 import { ref, onMounted } from 'vue'
-import { useFetchFullProjects } from '@/api'
+import { useFetchFullProjects } from '@/shared/api'
 import { fetchActions } from '@/store/constants'
-import { FullProject } from '@/types'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
+import { FullProject } from '@/shared/types'
+import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
 
 const useProjects = () => {
   const apiState = useApiState()

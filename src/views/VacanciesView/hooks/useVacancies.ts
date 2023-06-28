@@ -3,8 +3,8 @@ import {
 } from 'vue'
 import {
   useApiState, useAuthState, useDebounce, useDispatch
-} from '@/utils'
-import { FullVacancy } from '@/types'
+} from '@/shared/utils'
+import { FullVacancy } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
 import { Theme } from '../types'
 
