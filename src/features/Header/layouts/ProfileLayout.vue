@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, defineProps } from 'vue'
+import { defineEmits, defineProps } from 'vue'
 import { Popover } from '@/hocs'
 import { useTheme } from '@/utils'
 
@@ -7,17 +7,24 @@ defineProps<{
   img: string,
   fullName: string,
   email: string,
+  isOpen: boolean
 }>()
 
-const { theme } = useTheme()
+const emit = defineEmits<{
+  (e: 'update:is-open', state: boolean): void
+}>()
 
-const isOpen = ref(false)
+const emitIsOpen = (state: boolean) => {
+  emit('update:is-open', state)
+}
+
+const { theme } = useTheme()
 </script>
 
 <template>
-  <popover v-model:visible="isOpen" placement="bottom-left">
+  <popover :visible="isOpen" @update:visible="emitIsOpen" placement="bottom-left">
     <template #button>
-      <button class="popup-button" :class="theme" @click="isOpen = !isOpen">
+      <button class="popup-button" :class="theme" @click="emitIsOpen(!isOpen)">
         <img v-if="img" :src="img" alt="" class="avatar" />
         <div v-else class="placeholder" />
         <span>{{ fullName }}</span>

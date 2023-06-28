@@ -106,7 +106,8 @@ const getSubs = computed(() => {
   width: 70px;
   height: 70px;
   border-radius: 100vmax;
-  border: 4px solid color.change($gray-1, $alpha: .3);
+  // border: 1px solid color.change($gray-1, $alpha: .3);
+  border: var(--border-2);
   object-fit: cover;
   background-color: var(--text-color-2);
 }

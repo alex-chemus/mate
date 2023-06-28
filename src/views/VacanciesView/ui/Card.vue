@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits, computed } from 'vue'
+import {
+  defineProps, defineEmits, computed, ref
+} from 'vue'
 import { FullProject, FullVacancy } from '@/types'
 
 const props = defineProps<{
@@ -21,10 +23,12 @@ const getDate = computed(() => {
   ].join(' ')
 })
 
-const getButtonValue = computed(() => {
-  if (props.isCurrent) return 'Закрыть'
-  return props.vacancy.isViewed ? 'Посмотрено' : 'Посмотреть'
-})
+const isHovered = ref(false)
+
+// const getButtonValue = computed(() => {
+//   if (props.isCurrent) return 'Закрыть'
+//   return props.vacancy.isViewed ? 'Посмотрено' : 'Посмотреть'
+// })
 </script>
 
 <template>
@@ -55,10 +59,19 @@ const getButtonValue = computed(() => {
       </button>
     </div>
 
-    <button @click="isCurrent ? emit('close') : emit('view', vacancy.id)" class="content-container">
+    <!-- eslint-disable -->
+    <button
+      @click="isCurrent ? emit('close') : emit('view', vacancy.id)"
+      @mouseenter="isHovered = true"
+      @mouseleave="isHovered = false"
+      class="content-container"
+    >
       <div class="title-wrapper">
         <p class="theme">{{ vacancy.themeName }}</p>
-        <p class="title" :title="vacancy.title">{{ vacancy.title }}</p>
+        <p
+          class="title" :class="isHovered ? 'underline' : ''"
+          :title="vacancy.title"
+        >{{ vacancy.title }}</p>
       </div>
 
       <p class="date">{{ getDate }}</p>
@@ -73,6 +86,7 @@ const getButtonValue = computed(() => {
         Просмотрено
       </div>
     </button>
+    <!-- eslint-enable -->
   </article>
 </template>
 
@@ -167,6 +181,10 @@ const getButtonValue = computed(() => {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  &.underline {
+    text-decoration: underline;
+  }
 }
 
 .date {

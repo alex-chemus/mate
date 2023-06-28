@@ -25,14 +25,16 @@ const getRole = computed(() => {
 
 <template>
   <div class="member-item">
-    <img v-if="member.avatar" class="avatar" :src="member.avatar.avatarCompressed ?? member.avatar.avatar" alt="" />
-    <div v-else class="avatar" />
+    <router-link :to="`/user/${member.findcreekID}`" class="member-link">
+      <img v-if="member.avatar" class="avatar" :src="member.avatar.avatarCompressed ?? member.avatar.avatar" alt="" />
+      <div v-else class="avatar" />
 
-    <div class="name-wrapper">
-      <h6 class="full-name" :class="theme">{{ member.firstName }} {{ member.lastName }}</h6>
-      <p class="text-id" :class="theme">@{{ member.textID }}</p>
-      <p class="role" :class="theme">{{ getRole }}</p>
-    </div>
+      <div class="name-wrapper">
+        <h6 class="full-name" :class="theme">{{ member.firstName }} {{ member.lastName }}</h6>
+        <p class="text-id" :class="theme">@{{ member.textID }}</p>
+        <p class="role" :class="theme">{{ getRole }}</p>
+      </div>
+    </router-link>
 
     <button
       v-if="member.role !== 'founder'"
@@ -48,6 +50,12 @@ const getRole = computed(() => {
 .member-item {
   @include flex(flex-start, center);
   gap: 14px;
+}
+
+.member-link {
+  @include flex(flex-start, center);
+  gap: 14px;
+  text-decoration: none;
 }
 
 .avatar {
@@ -92,7 +100,7 @@ const getRole = computed(() => {
 }
 
 .role {
-  @include findcreek(13px);
+  @include findcreek(13px, var(--text-color-1));
 }
 
 .change-button {
