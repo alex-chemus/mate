@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, ref, computed } from 'vue'
-import { useTheme } from '@/shared/utils'
+import { useTheme, useTextWithLinks } from '@/shared/utils'
 
 const props = defineProps<{
   text: string
@@ -15,11 +15,18 @@ const computedText = computed(() => {
     ? `${props.text.slice(0, 201)}...`
     : props.text
 })
+
+const getText = useTextWithLinks(computedText)
+
+// const getHTMLString = computed(() => {
+//   const LINK_DETECTION_REGEX = /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/
+//   return computedText.value.replace(LINK_DETECTION_REGEX, '<a href="$&" target="_blank">$&</a>')
+// })
 </script>
 
 <template>
   <div v-if="text.length" class="text-wrapper">
-    <p class="text" :class="theme">{{ computedText }}</p>
+    <p class="text" :class="theme" v-html="getText" />
     <button
       v-if="shouldClip && isClipped"
       @click="isClipped = false"
@@ -38,6 +45,15 @@ const computedText = computed(() => {
   @include findcreek(13px, var(--heading-color-2));
   line-height: 140%;
   letter-spacing: -3.3%;
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
 }
 
 .more-button {
