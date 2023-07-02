@@ -81,7 +81,8 @@ const emitSubmit = () => {
 .comment-wrapper {
   margin-right: 20px;
   height: 40px;
-  padding: 0 12px;
+  // padding: 0 12px;
+  // padding-right: 12px;
   border-radius: 8px;
   border: 1px solid color.change($gray-1, $alpha: .5);
   @include flex(flex-start, center);
@@ -95,13 +96,15 @@ const emitSubmit = () => {
   flex-grow: 1;
   outline: none;
   border: none;
-  margin-right: 10px;
   @include findcreek(14px, inherit);
   background-color: transparent;
+  height: 100%;
+  padding-left: 12px;
 }
 
 .image-button {
   color: inherit;
+  padding: 0 12px;
 }
 
 .send-button {
