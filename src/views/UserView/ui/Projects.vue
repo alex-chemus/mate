@@ -9,8 +9,6 @@ const props = defineProps<{
   isMe?: boolean
 }>()
 
-console.log('projects', props.projects)
-
 const { theme } = useTheme()
 
 const shouldTrimProjects = ref(true)

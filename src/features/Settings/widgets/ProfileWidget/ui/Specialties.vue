@@ -12,8 +12,8 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'select', payload: number): void,
-  (e: 'remove', payload: number): void
+  (e: 'select', id: number): void,
+  (e: 'remove', id: number): void
 }>()
 
 const { theme } = useTheme()
@@ -48,7 +48,10 @@ const selectOpen = ref(false)
       placeholder="Выберите специальность..."
       :items="getSpecialties"
       v-model:visible="selectOpen"
-      @select="p => emit('select', p)"
+      @select="id => {
+        emit('select', id)
+        selectOpen = false
+      }"
     />
 
     <ul class="specialties-list">
