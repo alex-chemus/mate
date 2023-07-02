@@ -20,7 +20,7 @@ const emit = defineEmits<{
 
 <template>
   <section class="projects-slider">
-    <flicking :options="{ slidesPerView: -1, align: 'prev' }">
+    <flicking :options="{ align: 'prev', bound: true }">
       <slider-button
         v-for="project in projects" :key="project.id"
         :selected="project.id === currentTabId"
