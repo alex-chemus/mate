@@ -29,7 +29,7 @@ const emitSetCover = (files: FileList) => {
 
 <template>
   <div class="images-container">
-    <droparea @set="emitSetCover" :is-stretch="true">
+    <droparea @set="emitSetCover" :is-stretch="true" :is-images="true">
       <div class="cover" :class="theme" :style="`
         background: ${ cover && `url('${cover}');` };
         background-position: center;
@@ -44,7 +44,7 @@ const emitSetCover = (files: FileList) => {
     </droparea>
 
     <div class="avatar-wrapper">
-      <droparea @set="emitSetAvatar">
+      <droparea @set="emitSetAvatar" :is-images="true">
         <div class="avatar" :class="theme" :style="`
           background: ${ avatar && `url('${avatar}');` };
           background-position: center;

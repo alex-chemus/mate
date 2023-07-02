@@ -32,7 +32,7 @@ const setAvatar = (e: FileList) => {
 
 <template>
   <div class="droparea-container">
-    <droparea @set="setAvatar">
+    <droparea @set="setAvatar" :is-images="true">
       <div class="droparea" :style="`
         background: ${ getImg && `url('${getImg}');` };
         background-position: center;

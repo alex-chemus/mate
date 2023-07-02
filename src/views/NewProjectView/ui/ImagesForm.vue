@@ -30,7 +30,7 @@ const setCover = (e: FileList) => {
 
 <template>
   <div class="images-container">
-    <droparea @set="setCover" :is-stretch="true">
+    <droparea @set="setCover" :is-stretch="true" :is-images="true">
       <div class="cover" :class="theme" :style="`
         background: ${ updatedCover ? `url(${updatedCover})` : 'var(--gray-1)' };
         background-position: center;
@@ -45,7 +45,7 @@ const setCover = (e: FileList) => {
     </droparea>
 
     <div class="avatar-wrapper">
-      <droparea @set="setAvatar">
+      <droparea @set="setAvatar" :is-images="true">
         <div class="avatar" :class="theme" :style="`
           background: ${ updatedAvatar ? `url(${updatedAvatar})` : 'var(--gray-1)' };
           background-position: center;

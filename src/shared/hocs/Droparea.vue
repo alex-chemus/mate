@@ -5,7 +5,8 @@ import { useDebounce } from '@/shared/utils'
 const props = defineProps<{
   isMultiple?: boolean,
   isStretch?: boolean,
-  isClickDisabled?: boolean
+  isClickDisabled?: boolean,
+  isImages?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -60,6 +61,7 @@ const onClick = () => {
       type="file"
       name="file"
       class="input"
+      accept=".jpg, .jpeg, .png, .gif"
       @change="upload"
     />
     <slot :over="isDragover" />
