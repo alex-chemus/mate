@@ -6,7 +6,7 @@ import ThemeSwitcher from './ThemeSwitcher.vue'
 defineProps<{
   img: string,
   fullName: string,
-  email: string,
+  nametag: string
 }>()
 
 const emit = defineEmits<{
@@ -23,18 +23,18 @@ const { theme, toggleTheme } = useTheme()
       <img :src="img" alt="" class="avatar" />
       <div>
         <h6 :class="theme">{{ fullName }}</h6>
-        <small :class="theme">{{ email }}</small>
+        <small :class="theme">@{{ nametag }}</small>
       </div>
     </div>
 
-    <button class="button" :class="theme" @click="emit('open-settings')">
+    <button class="button menu-item" :class="theme" @click="emit('open-settings')">
       <svg width="24" height="25" viewBox="0 0 24 24">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-settings" />
       </svg>
       <span>Настройки</span>
     </button>
 
-    <button class="button --blue" :class="theme">
+    <button class="button menu-item --blue" :class="theme">
       <svg width="24" height="24" viewBox="0 0 24 24">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-basket" />
       </svg>
@@ -44,8 +44,16 @@ const { theme, toggleTheme } = useTheme()
     <div class="separator" :class="theme" />
 
     <button class="button --theme-button" :class="theme" @click="toggleTheme()">
+      <svg v-if="theme === 'light'" width="24" height="24" viewBox="0 0 24 24">
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-sun" />
+      </svg>
+      <svg v-else width="24" height="24" viewBox="0 0 24 24">
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-moon" />
+      </svg>
       {{ theme === 'light' ? 'Светлая' : 'Темная' }} тема
-      <theme-switcher />
+      <div class="theme-switcher-wrapper">
+        <theme-switcher />
+      </div>
     </button>
 
     <button class="logout-button" :class="theme" @click="emit('logout')">
@@ -110,6 +118,10 @@ small {
   gap: 12px;
   @include findcreek(12px, var(--heading-color-2));
 
+  &.menu-item {
+    font-size: 13px;
+  }
+
   &:hover {
     background-color: var(--bg-color-3);
   }
@@ -119,12 +131,17 @@ small {
   }
 
   &.--theme-button {
-    @include flex(space-between, center);
+    @include flex(flex-start, center);
+    gap: 12px;
   }
 
   &.--theme-button:hover {
     background-color: transparent;
   }
+}
+
+.theme-switcher-wrapper {
+  margin-left: auto;
 }
 
 .separator {

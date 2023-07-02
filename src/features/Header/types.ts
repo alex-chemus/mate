@@ -24,7 +24,8 @@ export type Account = {
     avatarScale: number
   },
   email: string,
-  findcreekID: number
+  findcreekID: number,
+  textID: string
 }
 
 export type Tab = 'profile' | 'vacancies' | 'projects' | null

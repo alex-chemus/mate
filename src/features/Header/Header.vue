@@ -97,7 +97,7 @@ const isProfileOpen = ref(false)
         <profile-popup
           :img="account.avatar.avatarCompressed || account.avatar.avatar"
           :full-name="`${account.lastName} ${account.firstName}`"
-          :email="account.email"
+          :nametag="account.textID"
           @open-settings="() => {
             openSettings()
             isProfileOpen = false

@@ -6,12 +6,12 @@ const { theme } = useTheme()
 <template>
   <button class="wrapper" :class="theme">
     <div class="toggler" :class="theme">
-      <svg v-if="theme === 'light'" width="18" height="18" viewBox="0 0 18 18">
+      <!-- <svg v-if="theme === 'light'" width="18" height="18" viewBox="0 0 18 18">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-sun-high" />
       </svg>
       <svg v-else width="18" height="18" viewBox="0 0 18 18">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-moon" />
-      </svg>
+      </svg> -->
     </div>
   </button>
 </template>
@@ -20,8 +20,8 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .wrapper {
-  height: 30px;
-  width: 60px;
+  height: 20px;
+  width: 35px;
   padding: 3px;
   position: relative;
   border-radius: 100vmax;
@@ -41,7 +41,7 @@ const { theme } = useTheme()
 }
 
 .toggler {
-  height: 24px;
+  height: 16px;
   aspect-ratio: 1;
   border-radius: 100vmax;
   @include flex(center, center);
@@ -53,13 +53,13 @@ const { theme } = useTheme()
     background-color: var(--light);
     color: #737278;
     // right: 3px;
-    transform: translateX(15px);
+    transform: translateX(6.5px);
   }
 
   &.dark {
     background-color: #fdfdfd;
     color: #1E1F29;
-    transform: translateX(-15px);
+    transform: translateX(-6.5px);
     // left: 3px;
   }
 
