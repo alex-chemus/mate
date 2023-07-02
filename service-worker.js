@@ -5,7 +5,7 @@ import { registerRoute } from 'workbox-routing'
 precacheAndRoute(self.__WB_MANIFEST)
 
 const matchCallback = ({ url }) => {
-  return url.origin !== 'https://alex-chemus.github.io'
+  return url.origin !== 'https://mate.findcreek.com'
 }
 
 const handlerCallback = async ({ request }) => {

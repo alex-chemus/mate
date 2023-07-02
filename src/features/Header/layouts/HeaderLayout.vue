@@ -31,7 +31,7 @@ import { Logo } from '@/shared/ui'
 
 .logo-wrapper {
   position: absolute;
-  left: -42px;
+  left: -30px;
   transform: translateX(-100%);
 }
 
