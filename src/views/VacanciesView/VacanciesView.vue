@@ -32,7 +32,10 @@ const currentVacancy = useCurrentVacancy({ vacancies })
       <filters
         :selected-theme="selectedTheme"
         :themes="themes"
-        @select-theme="p => selectedTheme = p"
+        @select-theme="theme => {
+          selectedTheme = theme
+          currentVacancy = null
+        }"
         @input="onType"
       />
     </template>
