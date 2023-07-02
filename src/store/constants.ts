@@ -1,6 +1,7 @@
 export enum authActions {
   SET_TOKEN = 'AUTH__SET_TOKEN',
   GET_LOCAL_TOKEN = 'AUTH__GET_LOCAL_TOKEN',
+  REDIRECT = 'AUTH__REDIRECT'
 }
 
 export enum themeActions {
