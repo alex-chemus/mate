@@ -1,5 +1,6 @@
 const express = require('express')
 const history = require('connect-history-api-fallback')
+require('dotenv').config()
 
 const app = express()
 const PORT = process.env.PORT || 80
