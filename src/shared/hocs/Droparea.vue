@@ -15,6 +15,11 @@ const emit = defineEmits<{
 const inputRef = ref<HTMLInputElement | null>(null)
 const isDragover = ref(false)
 
+const setDragover = (event: DragEvent) => {
+  if (event.dataTransfer && event.dataTransfer.types.includes('Files'))
+    isDragover.value = true
+}
+
 const { debounced: removeDragover } = useDebounce(() => {
   isDragover.value = false
 }, 100)
@@ -40,7 +45,7 @@ const onClick = () => {
   <!-- eslint-disable -->
   <div class="droparea"
     @click="onClick"
-    @dragover.prevent="isDragover = true"
+    @dragover.prevent="setDragover"
     @dragleave="removeDragover"
 
     @dragend="removeDragover"
