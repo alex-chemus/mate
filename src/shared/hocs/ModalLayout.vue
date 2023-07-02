@@ -34,6 +34,8 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   padding: 20px;
   border-radius: 13px;
   position: relative;
+  height: 90vh;
+  overflow: hidden;
 
   &.light {
     background-color: var(--light);

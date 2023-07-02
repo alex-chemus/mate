@@ -19,8 +19,16 @@ const emit = defineEmits<{
 const { theme } = useTheme()
 const width = ref(1000)
 watch(() => props.currentTab, () => {
-  if (props.currentTab === 'projects') width.value = 1200
-  else width.value = 1000
+  switch (props.currentTab) {
+    case 'projects':
+    case 'profile':
+      width.value = 1200
+      break
+
+    default:
+      width.value = 1000
+      break
+  }
 })
 </script>
 
@@ -76,9 +84,12 @@ watch(() => props.currentTab, () => {
 .modal-container {
   display: grid;
   grid-template-columns: 260px 1fr;
+  grid-template-rows: 100%;
   grid-gap: 55px;
-  padding-right: 20px;
+  padding-right: 50px;
   min-height: 700px;
+  height: 100%;
+  overflow: hidden;
 }
 
 aside {
@@ -95,6 +106,10 @@ aside h6 {
   @include flex(flex-start, stretch, column);
   gap: 30px;
   padding-top: 10px;
+  max-height: 100%;
+  overflow: scroll;
+  @include scrollbar;
+  padding-right: 15px;
 }
 
 .save-button-wrapper {

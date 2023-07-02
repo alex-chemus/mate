@@ -50,6 +50,7 @@ $sm: 480px;
   &::-webkit-scrollbar {
     width: $width;
     background-color: transparent;
+    height: 100%;
   }
 
   &::-webkit-scrollbar-track {
@@ -59,6 +60,14 @@ $sm: 480px;
   &::-webkit-scrollbar-thumb {
     border-radius: 100vmax;
     background-color: #bbb;
+  }
+
+  &::-webkit-scrollbar-button {
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
   }
 }
 

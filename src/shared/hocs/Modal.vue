@@ -76,6 +76,7 @@ onBeforeUnmount(() => {
   width: max-content;
   max-width: 90vw;
   max-height: 90vh;
+  overflow: hidden;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
