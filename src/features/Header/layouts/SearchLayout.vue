@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits, ref } from 'vue'
 import { Popover } from '@/shared/hocs'
 import { useTheme } from '@/shared/utils'
 
@@ -12,6 +12,8 @@ const emit = defineEmits<{
   (e: 'input', payload: string): void,
 }>()
 
+const inputRef = ref<HTMLInputElement | null>(null)
+
 const { theme } = useTheme()
 </script>
 
@@ -21,22 +23,24 @@ const { theme } = useTheme()
     placement="bottom-right"
   >
     <template #button>
-      <div class="search-wrapper" :class="theme">
+      <!-- eslint-disable -->
+      <div class="search-wrapper" :class="theme" @click="inputRef?.focus()">
         <button class="button">
           <svg width="20" height="20" viewBox="0 0 20 20">
             <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
           </svg>
         </button>
 
-        <!-- eslint-disable-next-line -->
         <input
           type="text"
           class="search-input"
           placeholder="Поиск"
+          ref="inputRef"
           @input="p => emit('input', (p.target as HTMLInputElement).value)"
           @focus="emit('toggle-popup', true)"
         />
       </div>
+      <!-- eslint-enable -->
     </template>
 
     <template #content>
