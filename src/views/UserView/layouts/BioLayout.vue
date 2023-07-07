@@ -76,7 +76,7 @@ const getText = computed(() => {
   }
 
   p {
-    @include findcreek-medium(13px, currentColor);
+    @include findcreek(13px, currentColor);
     line-height: 160%;
     letter-spacing: -2%;
     margin-bottom: 6px;
