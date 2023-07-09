@@ -40,14 +40,19 @@ const getText = useTextWithLinks(computedText)
   @include findcreek(13px, var(--heading-color-2));
   line-height: 140%;
   letter-spacing: -3.3%;
+}
 
-  a {
-    text-decoration: none;
+.text :deep(a) {
+  text-decoration: none;
+  color: var(--accent);
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
   }
 
-  a:hover,
-  a:focus {
-    text-decoration: underline;
+  &:visited {
+    color: var(--accent);
   }
 }
 
