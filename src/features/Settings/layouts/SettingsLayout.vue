@@ -35,7 +35,7 @@ watch(() => props.currentTab, () => {
 <template>
   <modal
     :visible="visible" @update:visible="payload => emit('toggle', payload)"
-    :width="width"
+    :width="width" :fixed-height="true"
   >
     <modal-layout @close="emit('toggle', false)">
       <section class="modal-container">
@@ -88,6 +88,7 @@ watch(() => props.currentTab, () => {
   grid-gap: 55px;
   padding-right: 50px;
   min-height: 700px;
+  max-height: 100%;
   height: 100%;
   overflow: hidden;
 }

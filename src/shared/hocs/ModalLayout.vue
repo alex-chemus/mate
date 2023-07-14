@@ -15,7 +15,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 </script>
 
 <template>
-  <section class="modal" :class="theme">
+  <section class="modal-layout" :class="theme">
     <button @click="emit('close')" class="close-button">
       <svg width="30" height="30" viewBox="0 0 30 30">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-x" />
@@ -29,13 +29,14 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
 
-.modal {
+.modal-layout {
   margin: 0 auto;
   padding: 20px;
   border-radius: 13px;
   position: relative;
-  height: 90vh;
+  max-height: 90vh;
   overflow: hidden;
+  height: 100%;
 
   &.light {
     background-color: var(--light);

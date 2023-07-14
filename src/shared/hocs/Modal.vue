@@ -8,7 +8,8 @@ import BackdropTransition from './BackdropTransition.vue'
 const props = defineProps<{
   visible: boolean,
   width?: number | string,
-  zIndexFactor?: number
+  zIndexFactor?: number,
+  fixedHeight?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -59,7 +60,8 @@ onBeforeUnmount(() => {
     <popup-transition>
       <div v-if="visible" class="modal" :style="[
         width ? `width: ${width}px` : '',
-        zIndexFactor ? `z-index: ${1000 + zIndexFactor * 2}` : ''
+        zIndexFactor ? `z-index: ${1000 + zIndexFactor * 2}` : '',
+        fixedHeight ? 'height: 90vh; min-height: 0' : ''
       ].join(';')">
         <slot />
       </div>
@@ -75,12 +77,12 @@ onBeforeUnmount(() => {
   //z-index: 1000;
   width: max-content;
   max-width: 90vw;
-  max-height: 90vh;
   overflow: hidden;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   overscroll-behavior: contain;
+  max-height: 90vh;
 }
 
 .backdrop {
