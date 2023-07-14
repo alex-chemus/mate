@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <section v-if="loading" class="loader">
-    <loader :size="100" />
+    <loader />
   </section>
 
   <main v-else class="main-section">
@@ -23,7 +23,7 @@ defineProps<{
 
 .loader {
   @include flex(center, center);
-  height: 100vh;
+
 }
 
 // .main-section {

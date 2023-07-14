@@ -18,7 +18,7 @@ const getCreatedProjectsCount = computed(() => {
 </script>
 
 <template>
-  <projects-list-layout>
+  <projects-list-layout :loading="!projects || !authorsInfo">
     <template #projects v-if="projects && authorsInfo">
       <project-card
         v-for="projectInfo in projects" :key="projectInfo.id"
