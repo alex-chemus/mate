@@ -7,11 +7,11 @@ defineProps<{
   fullName: string,
   img?: string,
   banner?: string,
-  followers: string,
-  following: string,
   nickname: string,
   canEdit?: boolean,
-  isSubscribed?: boolean
+  isSubscribed?: boolean,
+  subscribers?: number,
+  subscriptions?: number
 }>()
 
 const emit = defineEmits<{
@@ -37,8 +37,18 @@ const { openSettings } = useSettings()
 
     <div class="profile-container">
       <div class="content-container">
+        <p class="subs-info-wrapper">
+          <strong>{{ subscribers ?? 0 }}</strong>
+          <span>Подписчиков</span>
+        </p>
+
         <img v-if="img" :src="img" :alt="fullName" class="avatar" />
         <div v-else class="placeholder" />
+
+        <p class="subs-info-wrapper">
+          <strong>{{ subscriptions ?? 0 }}</strong>
+          <span>Подписок</span>
+        </p>
       </div>
 
       <h3 class="fullname" :class="theme">{{ fullName }}</h3>
@@ -130,7 +140,8 @@ const { openSettings } = useSettings()
   // align-self: stretch;
   // margin: 32px 0 12px;
   margin-bottom: 12px;
-  @include flex(center, center);
+  width: 100%;
+  @include flex(space-between, center);
 }
 
 .content-wrapper {
@@ -262,5 +273,18 @@ const { openSettings } = useSettings()
   margin: 18px 0;
   line-height: 160%;
   @include findcreek(14px, var(--heading-color-2));
+}
+
+.subs-info-wrapper {
+  @include flex(flex-start, center, column);
+  gap: 4px;
+
+  span {
+    @include findcreek-medium(13px, var(--text-color-1));
+  }
+
+  strong {
+    @include noto-sans-bold(16px, var(--heading-color-2));
+  }
 }
 </style>

@@ -56,8 +56,8 @@ const partners = ref<Partner[]>([
       <profile-card
         :full-name="`${user.firstName} ${user.lastName}`"
         :img="user.avatar.avatarCompressed"
-        :followers="'followers'"
-        :following="'following'"
+        :subscribers="user.subscribersNumber"
+        :subscriptions="user.subscriptionsNumber"
         :nickname="user.textID"
         :banner="user.profileCover ? user.profileCover : undefined"
         :can-edit="isMe(user.findcreekID)"
