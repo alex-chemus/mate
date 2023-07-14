@@ -110,7 +110,7 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
 .buttons-container {
   margin-bottom: 12px;
   @include flex(flex-start, center);
-  gap: 9px;
+  gap: 13px;
 }
 
 .editing-wrapper {

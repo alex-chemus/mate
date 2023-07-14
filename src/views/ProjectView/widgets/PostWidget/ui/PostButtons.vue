@@ -4,6 +4,9 @@ import {
 } from 'vue'
 import { useTheme } from '@/shared/utils'
 import { Popover } from '@/shared/hocs'
+import {
+  ThumbUp, ThumbUpFilled, ThumbDown, ThumbDownFilled
+} from '@/shared/icons'
 import PostPopupLayout from './PostPopupLayout.vue'
 import LikeSvg from './LikeSvg.vue'
 import DislikeSvg from './DislikeSvg.vue'
@@ -57,12 +60,14 @@ const getDislikes = computed(() => {
 <template>
   <div class="buttons-container">
     <button @click="emit('like')" :class="[theme, { 'active': reaction === 1 }]" class="button">
-      <like-svg :active="reaction === 1" />
+      <thumb-up-filled v-if="reaction === 1" />
+      <thumb-up v-else />
       <span>{{ getLikes }}</span>
     </button>
 
     <button @click="emit('dislike')" :class="[theme, { 'active': reaction === -1 }]" class="button">
-      <dislike-svg :active="reaction === -1" />
+      <thumb-down-filled v-if="reaction === -1" />
+      <thumb-down v-else />
       <span>{{ getDislikes }}</span>
     </button>
 

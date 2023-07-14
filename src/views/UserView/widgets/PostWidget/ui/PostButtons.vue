@@ -4,6 +4,9 @@ import {
 } from 'vue'
 import { useTheme } from '@/shared/utils'
 import { Popover } from '@/shared/hocs'
+import {
+  ThumbUp, ThumbUpFilled, ThumbDown, ThumbDownFilled
+} from '@/shared/icons'
 import PostPopupLayout from './PostPopupLayout.vue'
 
 const { theme } = useTheme()
@@ -54,17 +57,15 @@ const getDislikes = computed(() => {
 
 <template>
   <div class="buttons-container">
-    <button @click="emit('like')" :class="[theme, { 'active': reaction === 1 }]" class="button">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-thumb-up" />
-      </svg>
+    <button @click="emit('like')" :class="[theme]" class="button">
+      <thumb-up-filled v-if="reaction === 1" />
+      <thumb-up v-else />
       <span>{{ getLikes }}</span>
     </button>
 
-    <button @click="emit('dislike')" :class="[theme, { 'active': reaction === -1 }]" class="button">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-thumb-down" />
-      </svg>
+    <button @click="emit('dislike')" :class="[theme]" class="button">
+      <thumb-down-filled v-if="reaction === -1" />
+      <thumb-down v-else />
       <span>{{ getDislikes }}</span>
     </button>
 

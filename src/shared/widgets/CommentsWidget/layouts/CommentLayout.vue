@@ -127,7 +127,7 @@ const isRepliesOpen = ref(false)
 .buttons-container {
   margin-bottom: 12px;
   @include flex(flex-start, center);
-  gap: 9px;
+  gap: 13px;
 }
 
 .edit-button {
