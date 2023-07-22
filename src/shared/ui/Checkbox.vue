@@ -29,7 +29,7 @@ const theme = props.theme
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-check" />
       </svg>
     </div>
-    {{ value }}
+    <span>{{ value }}</span>
   </button>
 </template>
 
@@ -38,49 +38,12 @@ const theme = props.theme
 @import '@/assets/styles/style.scss';
 
 .checkbox-button {
-  // width: 100%;
-  // height: 40px;
-  //padding: 0 40px;
   @include flex(flex-start, center);
   gap: 8px;
-  //border-radius: 8px;
   transition: var(--fast, $fast);
   position: relative;
-  font-family: var(--findcreek, $findcreek);
-  font-size: 13px;
+  @include findcreek(14px, var(--text-color-1));
   background-color: transparent;
-  color: var(--heading-color-2, $heading-color-2);
-  //background-color: var(--bg-color-2, $bg-color-2);
-  //border: var(--border-1, $border-1);
-
-  // &:focus {
-  //   outline: none;
-  // }
-
-  &:hover,
-  &.focused {
-    //border: 1px solid var(--accent, $accent);
-  }
-
-  // &::before {
-  //   content: '';
-  //   display: block;
-  //   position: absolute;
-  //   top: 50%;
-  //   transform: translateY(-50%);
-  //   left: 13px;
-  //   width: 16px;
-  //   aspect-ratio: 1;
-  //   border-radius: 2px;
-  // }
-
-  // &.light::before {
-  //   border: 2px solid color.change($gray-1, $alpha: .7);
-  // }
-
-  // &.dark::before {
-  //   border: 2px solid #bbb;
-  // }
 }
 
 .checkbox {
@@ -89,14 +52,7 @@ const theme = props.theme
   box-sizing: content-box;
   border-radius: 5px;
   transition: var(--fast);
-
-  &.light {
-    border: 1.5px solid color.change($gray-1, $alpha: .7);
-  }
-
-  &.dark {
-    border: 1.5px solid #bbb;
-  }
+  border: 1px solid var(--text-color-2);
 
   svg {
     pointer-events: none;
@@ -108,25 +64,7 @@ const theme = props.theme
   border-color: var(--accent);
 }
 
-.checkbox-button.selected {
+.checkbox-button.selected .checkbox {
   color: var(--accent, $accent);
-
-  // &::before {
-  //   border-color: currentColor;
-  // }
-
-  // &::after {
-  //   content: '';
-  //   display: block;
-  //   height: 16px;
-  //   aspect-ratio: 1;
-  //   //background-color: currentColor;
-  //   background-image: url('@/assets/imgs/tabler-sprite.svg#tabler-check');
-  //   position: absolute;
-  //   top: 50%;
-  //   transform: translateY(-50%);
-  //   left: 18px;
-  //   //border-radius: 100vmax;
-  // }
 }
 </style>

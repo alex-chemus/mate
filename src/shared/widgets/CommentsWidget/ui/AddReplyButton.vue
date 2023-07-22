@@ -17,7 +17,7 @@ const emit = defineEmits<{
 @import '@/assets/styles/style.scss';
 
 .add-reply-button {
-  @include findcreek(11px, var(--text-color-1));
+  @include findcreek(12px, var(--text-color-1));
   transition: var(--fast);
 
   &:hover,

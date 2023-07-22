@@ -57,9 +57,10 @@ defineProps<{
   padding: 25px 38px 63px;
   flex-grow: 2;
 
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
   border-radius: 13px;
-  border: .5px solid color.change($gray-1, $alpha: .25);
+  // border: .5px solid color.change($gray-1, $alpha: .25);
+  border: var(--border-2);
   overflow: hidden;
 }
 

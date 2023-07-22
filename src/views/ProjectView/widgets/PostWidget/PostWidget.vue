@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {
-  defineEmits, defineProps, computed
+  defineEmits, defineProps, computed, ref
 } from 'vue'
 import {
   FullProjectPost, FullProject, FullUser
@@ -14,9 +14,9 @@ import {
 } from './ui'
 
 const props = defineProps<{
-  postInfo: FullProjectPost,
-  authorInfo: FullUser,
-  projectInfo: FullProject
+  post: FullProjectPost,
+  author: FullUser,
+  project: FullProject
 }>()
 
 const emit = defineEmits<{
@@ -24,25 +24,27 @@ const emit = defineEmits<{
 }>()
 
 const { uploadLike, uploadDislike } = useLikes({
-  onUpdate: () => emit('reload', props.postInfo.id)
+  onUpdate: () => emit('reload', props.post.id)
 })
 
 const date = useDate({
-  timestamp: computed(() => props.postInfo.date.unixTime * 1000)
+  timestamp: computed(() => props.post.date.unixTime * 1000)
 })
 
 const getImages = computed(() => {
-  const images = props.postInfo.media.filter((f) => f.additionalData.fileType === 'image')
+  const images = props.post.media.filter((f) => f.additionalData.fileType === 'image')
   return images
 })
 
 const { viewImage, nextImage, prevImage } = useViewer({ getImages })
 
 const getReaction = computed(() => {
-  if (props.postInfo.isLiked) return 1
-  if (props.postInfo.isDisliked) return -1
+  if (props.post.isLiked) return 1
+  if (props.post.isDisliked) return -1
   return 0
 })
+
+const showComments = ref(false)
 </script>
 
 <template>
@@ -54,20 +56,19 @@ const getReaction = computed(() => {
     @next="nextImage"
   />
 
-  <widget-layout>
+  <widget-layout :show-comments="showComments">
     <template #header>
       <post-header
-        :title="postInfo.title"
-        :author="`${authorInfo.firstName} ${authorInfo.lastName}`"
-        :avatar="projectInfo.avatar.avatarCompressed ?? projectInfo.avatar.avatar"
-        :author-id="authorInfo.findcreekID"
-        :text-id="projectInfo.textID"
+        :author="`${author.firstName} ${author.lastName}`"
+        :avatar="project.avatar.avatarCompressed ?? project.avatar.avatar"
+        :author-id="author.findcreekID"
+        :text-id="project.textID"
         :date-string="date"
       />
     </template>
 
     <template #text>
-      <post-text :text="postInfo.description" />
+      <post-text :text="post.description" />
     </template>
 
     <template #gallery>
@@ -79,17 +80,19 @@ const getReaction = computed(() => {
 
     <template #buttons>
       <post-buttons
-        :likes="postInfo.likesNumber"
-        :dislikes="postInfo.dislikesNumber"
+        :likes="post.likesNumber"
+        :dislikes="post.dislikesNumber"
         :reaction="getReaction"
-        @like="uploadLike(postInfo.id, postInfo.isLiked, postInfo.isDisliked)"
-        @dislike="uploadDislike(postInfo.id, postInfo.isLiked, postInfo.isDisliked)"
+        :comments="post.comments.length"
+        @like="uploadLike(post.id, post.isLiked, post.isDisliked)"
+        @dislike="uploadDislike(post.id, post.isLiked, post.isDisliked)"
+        @comment="showComments = !showComments"
       />
     </template>
 
     <template #comments-widget>
       <comments-widget
-        :post-id="postInfo.id"
+        :post-id="post.id"
         post-type="project"
       />
     </template>

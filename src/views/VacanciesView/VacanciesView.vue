@@ -53,25 +53,6 @@ const currentVacancy = useCurrentVacancy({ vacancies })
         }"
         @close="currentVacancy = null"
       />
-
-      <!-- <cards-container
-        :vacancies="vacancies"
-        :projects-info="projects"
-        v-slot="{ info }"
-      >
-        <card
-          v-for="vacancy in info" :key="vacancy.vacancy.id"
-          :vacancy="vacancy.vacancy"
-          :project-info="vacancy.project"
-          :is-current="!!currentVacancy && vacancy.vacancy.id === currentVacancy.vacancy.id"
-          @toggle-like="p => toggleLike({ id: vacancy.vacancy.id, value: p })"
-          @view="() => {
-            currentVacancy = vacancy
-            view(vacancy.vacancy)
-          }"
-          @close="currentVacancy = null"
-        />
-      </cards-container> -->
     </template>
 
     <template v-else-if="vacancies && vacancies.length === 0" #cards>
@@ -92,7 +73,6 @@ const currentVacancy = useCurrentVacancy({ vacancies })
         <template #like-button>
           <like-button
             :vacancy="currentVacancy.vacancy"
-            :project="currentVacancy.project"
             @toggle-like="p => toggleLike({ id: currentVacancy!.vacancy.id, value: p })"
           />
         </template>

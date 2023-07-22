@@ -19,6 +19,7 @@
   @include flex(center, center, column);
   gap: 14px;
   color: var(--accent);
+  background-color: var(--bg-color-2);
   text-decoration: none;
 
   &:hover,

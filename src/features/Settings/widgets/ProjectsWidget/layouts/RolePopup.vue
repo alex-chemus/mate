@@ -79,13 +79,13 @@ const getText = computed(() => {
 
 .modal-section {
   @include flex(flex-start, stretch, column);
-  gap: 20px;
+  gap: 30px;
   padding: 5px 10px;
 }
 
 .main-title {
-  @include findcreek-bold(14px, var(--heading-color-1));
-  letter-spacing: -0.02em;
+  @include findcreek-medium(16px, var(--heading-color-1));
+  // letter-spacing: -0.02em;
 }
 
 .name-container {
@@ -103,18 +103,20 @@ const getText = computed(() => {
 
 .name-title {
   @include findcreek-medium(14px, var(--heading-color-1));
-  letter-spacing: -0.02em;
+  // letter-spacing: -0.02em;
   margin-bottom: 2px;
 }
 
 .role {
-  @include findcreek(12px, var(--text-color-1));
-  letter-spacing: -0.02em;
+  @include findcreek(12px, var(--text-color-2));
+  // letter-spacing: -0.02em;
 }
 
 .warning-container {
   padding: 8px 11px;
-  border: 1px solid color.change($gray-1, $alpha: .4);
+  // border: 1px solid color.change($gray-1, $alpha: .4);
+  background-color: var(--bg-color-2);
+  border: var(--border-2);
   border-radius: 8px;
   @include flex(flex-start, flex-start);
   gap: 10px;
@@ -124,27 +126,28 @@ const getText = computed(() => {
     color: var(--accent);
   }
 
-  &.light {
-    background-color: #F7F9FA;
-  }
+  // &.light {
+  //   background-color: #F7F9FA;
+  // }
 
-  &.dark {
-    background-color: #262837;
-  }
+  // &.dark {
+  //   background-color: #262837;
+  // }
 }
 
 .warning-text {
-  @include findcreek(12px, var(--heading-color-2));
-  letter-spacing: -0.02em;
-  line-height: 1.3em;
+  @include findcreek(13px, var(--text-color-1));
+  // letter-spacing: -0.02em;
+  // line-height: 1.3em;
 
   strong {
     font-family: var(--findcreek-bold);
+    color: var(--heading-color-1);
   }
 }
 
 .save-button-wrapper {
-  margin-top: 15px;
+  // margin-top: 15px;
   z-index: 0;
 }
 </style>

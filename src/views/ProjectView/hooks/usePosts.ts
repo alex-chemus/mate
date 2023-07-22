@@ -80,6 +80,7 @@ const usePosts = (
     const body = new FormData()
     body.append('token', authState.value.token as string)
     body.append('postsIDs', id.toString())
+    body.append('returnComment', '1')
 
     const res = (await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projectPosts.getInfo/`,

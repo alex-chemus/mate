@@ -30,15 +30,9 @@ const getDate = computed(() => {
         </div>
       </div>
       <p class="date">{{ getDate }}</p>
-      <slot name="like-button" />
-      <!-- <button
-        class="like-button" :class="{ 'liked': vacancy.isLiked }"
-        @click="emit('toggle-like', !vacancy.isLiked)"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-heart" />
-        </svg>
-      </button> -->
+      <div class="like-wrapper">
+        <slot name="like-button" />
+      </div>
     </div>
 
     <div class="content-container">
@@ -77,10 +71,11 @@ const getDate = computed(() => {
   border: 1px solid var(--accent);
   border-radius: 8px;
   align-self: start;
+  background-color: var(--bg-color-3);
 }
 
 .top-container {
-  @include flex(space-between, center);
+  @include flex(space-between, flex-start);
 }
 
 .project {
@@ -99,21 +94,25 @@ const getDate = computed(() => {
   gap: 4px;
 
   h6 {
-    @include findcreek-medium(14px, var(--heading-color-2));
+    @include findcreek-medium(14px, var(--heading-color-1));
     margin: 0;
   }
 
   p {
     margin: 0;
-    @include findcreek-medium(12.5px, var(--heading-color-2));
+    @include findcreek(12px, var(--text-color-1));
   }
 }
 
 .date {
-  margin-left: 25px;
+  margin-left: 18px;
   margin-right: auto;
-  @include findcreek(13px, var(--text-color-1));
-  letter-spacing: -0.03em;
+  @include findcreek(12px, var(--text-color-1));
+  // letter-spacing: -0.03em;
+}
+
+.like-wrapper {
+  align-self: center;
 }
 
 // .like-button {
@@ -132,20 +131,23 @@ const getDate = computed(() => {
 
 .content-container {
   padding: 20px;
+  padding-top: 30px;
 }
 
 .title {
   @include findcreek-medium(20px, var(--heading-color-2));
   margin: 0;
+  margin-bottom: 25px;
 }
 
 .skills-wrapper {
   @include flex(flex-start, baseline);
   gap: 12px;
+  margin-bottom: 20px;
 
   p {
     @include findcreek-medium(14px, var(--heading-color-1));
-    letter-spacing: -0.03em;
+    // letter-spacing: -0.03em;
   }
 }
 
@@ -164,14 +166,14 @@ const getDate = computed(() => {
   background-color: var(--accent);
   @include findcreek-medium(11px, var(--light));
   border-radius: 100vmax;
-  margin: 26px 0 18px;
+  // margin: 26px 0 18px;
 }
 
 .text {
   @include findcreek-medium(14px, var(--text-color-1));
-  letter-spacing: -0.02em;
+  // letter-spacing: -0.02em;
   line-height: 1.4em;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .files-wrapper {

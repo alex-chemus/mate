@@ -119,7 +119,7 @@ const { theme } = useTheme()
         class="icon" :class="theme"
         width="24" height="24" viewBox="0 0 24 24"
       >
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-id-badge-2" />
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-barbell" />
       </svg>
 
       <div class="skills-wrapper">
@@ -142,17 +142,18 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .title {
-  @include findcreek-medium(14px, var(--heading-color-1));
+  @include findcreek-medium(16px, var(--heading-color-1));
   margin-bottom: 25px;
+  padding: 0 12px;
 }
 
 .content-list {
   @include flex(flex-start, stretch, column);
-  gap: 15px;
+  gap: 16px;
   list-style: none;
-  padding: 0;
   margin: 0;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
+  padding: 0 12px;
 }
 
 .icon {
@@ -161,7 +162,7 @@ const { theme } = useTheme()
 
 .content-item {
   @include flex(flex-start, flex-start);
-  gap: 12px;
+  gap: 10px;
 
   svg {
     flex-shrink: 0;
@@ -170,13 +171,13 @@ const { theme } = useTheme()
 
 .content-wrapper {
   @include flex(flex-start, flex-start, column);
-  gap: 5px;
+  gap: 4px;
   overflow: hidden;
 }
 
 .content-wrapper h6,
 .skills-wrapper h6 {
-  @include findcreek-bold(14px, var(--heading-color-2));
+  @include findcreek-medium(14px, var(--heading-color-1));
   letter-spacing: .01em;
   text-overflow: ellipsis;
   max-width: 100%;
@@ -184,7 +185,7 @@ const { theme } = useTheme()
 }
 
 .content-wrapper p {
-  @include findcreek(13px, var(--text-color-1));
+  @include findcreek(14px, var(--text-color-2));
   line-height: 1.6em;
   text-overflow: ellipsis;
   max-width: 100%;
@@ -199,13 +200,13 @@ const { theme } = useTheme()
   display: grid;
   grid-template-columns: 150px 1fr;
   grid-auto-flow: row;
-  grid-gap: 5px;
+  grid-gap: 4px;
 }
 
 .skills-container {
   @include flex(flex-start, flex-start);
-  gap: 12px;
-  padding: 18px;
+  gap: 10px;
+  padding: 12px;
   border-radius: 13px;
   border: 1px solid color.change($gray-1, $alpha: .25);
 }
@@ -228,8 +229,10 @@ const { theme } = useTheme()
   height: 30px;
   padding: 0 10px;
   border-radius: 8px;
-  border: 1px solid color.change($gray-1, $alpha: .25);
+  // border: 1px solid color.change($gray-1, $alpha: .25);
+  border: var(--border-1);
   @include flex(center, center);
-  @include noto-sans-medium(12px, var(--heading-color-1))
+  @include noto-sans-medium(12px, var(--heading-color-1));
+  background-color: var(--bg-color-2);
 }
 </style>

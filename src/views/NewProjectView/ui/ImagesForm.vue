@@ -32,7 +32,7 @@ const setCover = (e: FileList) => {
   <div class="images-container">
     <droparea @set="setCover" :is-stretch="true" :is-images="true">
       <div class="cover" :class="theme" :style="`
-        background: ${ updatedCover ? `url(${updatedCover})` : 'var(--gray-1)' };
+        background: ${ updatedCover ? `url(${updatedCover})` : 'var(--bg-color-3)' };
         background-position: center;
         background-size: cover;
         box-shadow: inset 0 0 0 100vmax ${ updatedCover ? 'rgb(0 0 0 / .4)' : 'var(--gray-1)' };
@@ -47,7 +47,7 @@ const setCover = (e: FileList) => {
     <div class="avatar-wrapper">
       <droparea @set="setAvatar" :is-images="true">
         <div class="avatar" :class="theme" :style="`
-          background: ${ updatedAvatar ? `url(${updatedAvatar})` : 'var(--gray-1)' };
+          background: ${ updatedAvatar ? `url(${updatedAvatar})` : 'var(--bg-color-3)' };
           background-position: center;
           background-size: cover;
           box-shadow:
@@ -70,6 +70,7 @@ const setCover = (e: FileList) => {
 .avatar {
   width: 100px;
   height: 100px;
+  // background-color: var(--bg-color-3);
 }
 
 .cover {
@@ -81,6 +82,7 @@ const setCover = (e: FileList) => {
   @include flex(center, center);
   gap: 9px;
   border: 1px dashed var(--bg-color-1);
+  // background-color: var(--bg-color-3);
 }
 
 .avatar {

@@ -17,7 +17,7 @@ const emit = defineEmits<{
     @click="emit('toggle-like', !vacancy.isLiked)"
   >
     <svg width="24" height="24" viewBox="0 0 24 24">
-      <use href="@/assets/imgs/tabler-sprite.svg#tabler-heart" />
+      <use href="@/assets/imgs/tabler-sprite.svg#tabler-heart-filled" />
     </svg>
   </button>
 </template>
@@ -32,9 +32,11 @@ const emit = defineEmits<{
   aspect-ratio: 1;
   color: var(--text-color-1);
   transition: var(--fast);
+  padding: 0;
+  margin: 0;
 
   &.liked {
-    color: var(--light);
+    color: white;
     background-color: var(--red);
   }
 }

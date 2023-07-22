@@ -52,6 +52,7 @@ const selectOpen = ref(false)
         emit('select', id)
         selectOpen = false
       }"
+      :z-index="1001"
     />
 
     <ul class="specialties-list">

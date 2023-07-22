@@ -29,11 +29,12 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   width: 100%;
   @include flex(center, center);
   border-radius: 8px;
-  background-color: var(--accent-1, $accent-1);
-  color: var(--light, $light);
-  font-family: var(--findcreek-medium, $findcreek-medium);
-  font-weight: var(--medium, $medium);
-  font-size: 16px;
+  background-color: var(--light-accent, $accent);
+  @include findcreek-medium(16px, white);
+  // color: var(--light, $light);
+  // font-family: var(--findcreek-medium, $findcreek-medium);
+  // font-weight: var(--medium, $medium);
+  // font-size: 16px;
   transition: var(--fast, $fast);
 
   &.light:hover,

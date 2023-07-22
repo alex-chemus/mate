@@ -60,14 +60,19 @@ const name = computed(() => {
     letter-spacing: -0.033em;
   }
 
-  &.selected,
-  &:hover {
-    box-shadow: 0 0 2px 0 rgb(0 0 0 / .25);
+  &.selected {
+    background-color: var(--bg-color-3);
+    border: var(--border-1);
   }
 
-  &.dark.selected,
-  &.dark:hover {
-    background-color: var(--dark-theme-color-2);
-  }
+  // &.selected,
+  // &:hover {
+  //   box-shadow: 0 0 2px 0 rgb(0 0 0 / .25);
+  // }
+
+  // &.dark.selected,
+  // &.dark:hover {
+  //   background-color: var(--dark-theme-color-2);
+  // }
 }
 </style>

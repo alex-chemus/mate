@@ -1,5 +1,10 @@
 <script lang="ts" setup>
 import { useTheme } from '@/shared/utils'
+import { defineProps } from 'vue'
+
+defineProps<{
+  showComments?: boolean
+}>()
 
 const { theme } = useTheme()
 </script>
@@ -11,7 +16,10 @@ const { theme } = useTheme()
     <slot name="text" />
     <slot name="gallery" />
     <slot name="buttons" />
-    <slot name="comments-widget" />
+    <template v-if="showComments">
+      <div class="line-separator" />
+      <slot name="comments-widget" />
+    </template>
   </article>
 </template>
 
@@ -23,9 +31,15 @@ const { theme } = useTheme()
   border-radius: 13px;
   position: relative;
   overflow: hidden;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
   @include flex(flex-start, stretch, column);
-  gap: 15px;
-  padding: 15px;
+  gap: 17px;
+  padding: 20px;
+}
+
+.line-separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--bg-color-3);
 }
 </style>

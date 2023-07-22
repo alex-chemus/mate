@@ -39,11 +39,12 @@ const theme = props.theme
   border-radius: 8px;
   transition: var(--fast, $fast);
   position: relative;
-  font-family: var(--findcreek, $findcreek);
-  font-size: 13px;
+  // font-family: var(--findcreek, $findcreek);
+  // font-size: 13px;
   background-color: transparent;
-  color: var(--heading-color-2, $heading-color-2);
-  background-color: var(--bg-color-2, $bg-color-2);
+  // color: var(--text-color-1, $text-color-1);
+  @include findcreek(14px, var(--text-color-1));
+  background-color: var(--bg-color-3, $bg-color-3);
   border: var(--border-1);
 
   &:focus {
@@ -77,10 +78,8 @@ const theme = props.theme
 }
 
 .radio-button.selected {
-  color: var(--accent, $accent);
-
   &::before {
-    border-color: currentColor;
+    border-color: var(--accent);
   }
 
   &::after {
@@ -88,7 +87,7 @@ const theme = props.theme
     display: block;
     height: 6px;
     aspect-ratio: 1;
-    background-color: currentColor;
+    background-color: var(--accent);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

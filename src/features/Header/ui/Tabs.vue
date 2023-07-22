@@ -54,22 +54,23 @@ const { theme } = useTheme()
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 70px;
-  border: 1px solid color.change($gray-1, $alpha: .25);
+  // border: 1px solid color.change($gray-1, $alpha: .25);
   border-radius: 10px;
   overflow: hidden;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
+  border: var(--border-2);
 
-  &.light {
-    color: #4C4F56;
-  }
+  // &.light {
+  //   color: #4C4F56;
+  // }
 
-  &.dark {
-    color: var(--gray-3);
-  }
+  // &.dark {
+  //   color: var(--gray-3);
+  // }
 }
 
 .tab {
-  color: currentColor;
+  color: var(--text-color-1);
   position: relative;
   transition: var(--fast);
 

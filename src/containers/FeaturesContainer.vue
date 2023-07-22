@@ -16,10 +16,10 @@ import { Alert, Settings, Header } from '@/features'
 
 .main-section {
   @include container;
-  padding: 50px 0;
+  padding: 35px 0;
 
   @include flex(flex-start, stretch, column);
-  gap: 40px;
+  gap: 25px;
   min-height: 100vh;
 }
 </style>

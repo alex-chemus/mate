@@ -74,7 +74,7 @@ onBeforeUnmount(() => {
 
 .modal {
   position: fixed;
-  //z-index: 1000;
+  z-index: 1000;
   width: max-content;
   max-width: 90vw;
   overflow: hidden;
@@ -89,7 +89,7 @@ onBeforeUnmount(() => {
   position: fixed;
   top: 0;
   left: 0;
-  //z-index: 999;
+  z-index: 999;
   width: 100vw;
   height: 100vw;
   background-color: rgb(41 43 56 / .7);

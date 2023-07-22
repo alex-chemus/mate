@@ -75,32 +75,24 @@ const getRole = computed(() => {
 }
 
 .full-name {
-  @include findcreek-medium(13px);
+  @include findcreek-medium(14px, var(--heading-color-1));
   margin: 0;
-
-  &.light {
-    color: #242424;
-  }
-
-  &.dark {
-    color: var(--light);
-  }
 }
 
 .text-id {
-  @include findcreek(12px);
+  @include findcreek(12px, var(--text-color-2));
 
-  &.light {
-    color: rgb(50 50 50 / .5);
-  }
+  // &.light {
+  //   color: rgb(50 50 50 / .5);
+  // }
 
-  &.dark {
-    color: rgb(153 153 153 / .8);
-  }
+  // &.dark {
+  //   color: rgb(153 153 153 / .8);
+  // }
 }
 
 .role {
-  @include findcreek(13px, var(--text-color-1));
+  @include findcreek(12px, var(--text-color-2));
 }
 
 .change-button {
@@ -109,16 +101,15 @@ const getRole = computed(() => {
   padding: 0 12px;
   @include flex(center, center);
   border-radius: 100vmax;
-  @include findcreek(12px, var(--accent));
+  @include findcreek(13px, var(--accent));
   border: 1px solid currentColor;
   background-color: transparent;
   transition: var(--fast);
 
-  &:hover,
-  &:focus {
-    color: var(--light);
-    background-color: var(--accent-1);
+  &:is(:hover, :focus) {
+    background-color: var(--accent);
     border-color: transparent;
+    color: white;
   }
 }
 </style>

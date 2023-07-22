@@ -53,5 +53,6 @@ const emitSelect = (i: number) => {
     @update:visible="p => emit('update:visible', p)"
     @update:input-value="emitInput"
     @select="emitSelect"
+    label-text="Локация"
   />
 </template>

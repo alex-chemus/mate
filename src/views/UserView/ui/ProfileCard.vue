@@ -82,9 +82,10 @@ const { openSettings } = useSettings()
 .card-section {
   border-radius: 13px;
   overflow: hidden;
-  border: 1px solid color.change($gray-1, $alpha: .25);
+  // border: 1px solid color.change($gray-1, $alpha: .25);
+  border: var(--border-2);
   position: relative;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
 }
 
 // .more-button {
@@ -128,8 +129,9 @@ const { openSettings } = useSettings()
 
 .profile-container {
   @include flex(flex-start, center, column);
-  padding: 17px;
-  padding-top: 32px;
+  // padding: 17px;
+  // padding-top: 32px;
+  padding: 32px 16px 19px;
 }
 
 .content-container {
@@ -139,7 +141,7 @@ const { openSettings } = useSettings()
   // align-items: center;
   // align-self: stretch;
   // margin: 32px 0 12px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   width: 100%;
   @include flex(space-between, center);
 }
@@ -150,7 +152,7 @@ const { openSettings } = useSettings()
   h5 {
     margin: 0;
     margin-bottom: 10px;
-    @include noto-sans-bold(16px, var(--heading-color-2));
+    @include noto-sans-bold(16px, var(--heading-color-1));
   }
 
   p {
@@ -175,15 +177,15 @@ const { openSettings } = useSettings()
 }
 
 .fullname {
-  @include findcreek-medium(16px, var(--heading-color-2));
+  @include findcreek-medium(16px, var(--heading-color-1));
   margin: 0;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .nickname {
-  @include noto-sans(12px, var(--text-color-2));
+  @include noto-sans(13px, var(--text-color-2));
   margin: 0;
-  margin-bottom: 18px;
+  margin-bottom: 32px;
 }
 
 .button {
@@ -193,27 +195,28 @@ const { openSettings } = useSettings()
   align-self: stretch;
   padding: 7px;
   transition: var(--fast);
+  border: var(--border-2);
 
   &:not(:last-child) {
     margin-bottom: 10px;
   }
 
   strong {
-    color: var(--heading-color-2);
+    color: var(--heading-color-1);
   }
 
-  &.light {
-    border: 1px solid color.change($gray-1, $alpha: .2);
-  }
+  // &.light {
+  //   border: 1px solid color.change($gray-1, $alpha: .2);
+  // }
 
   &.light:hover,
   &.light:focus {
     box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);
   }
 
-  &.dark {
-    border: 1px solid color.change($gray-3, $alpha: .5);
-  }
+  // &.dark {
+  //   border: 1px solid color.change($gray-3, $alpha: .5);
+  // }
 
   &.dark:hover,
   &.dark:focus {
@@ -247,19 +250,22 @@ const { openSettings } = useSettings()
 
 .edit-button {
   border-radius: 10px;
-  padding: 16px 0;
+  // padding: 16px 0;
+  height: 40px;
+  @include findcreek-medium(14px, var(--text-color-1));
+  background-color: var(--bg-color-3);
 
-  span {
-    @include findcreek(14px);
-  }
+  // span {
+  //   @include findcreek(14px);
+  // }
 
-  &.dark span {
-    color: var(--light);
-  }
+  // &.dark span {
+  //   color: var(--light);
+  // }
 
-  &.light span {
-    color: #4d4d4d;
-  }
+  // &.light span {
+  //   color: #4d4d4d;
+  // }
 }
 
 .separator {
@@ -272,7 +278,7 @@ const { openSettings } = useSettings()
   text-align: center;
   margin: 18px 0;
   line-height: 160%;
-  @include findcreek(14px, var(--heading-color-2));
+  @include findcreek(14px, var(--heading-color-1));
 }
 
 .subs-info-wrapper {
@@ -280,11 +286,11 @@ const { openSettings } = useSettings()
   gap: 4px;
 
   span {
-    @include findcreek-medium(13px, var(--text-color-1));
+    @include findcreek(13px, var(--text-color-2));
   }
 
   strong {
-    @include noto-sans-bold(16px, var(--heading-color-2));
+    @include noto-sans-bold(16px, var(--heading-color-1));
   }
 }
 </style>

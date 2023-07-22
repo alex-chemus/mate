@@ -21,7 +21,8 @@ const props = defineProps<{
   placeholder?: string,
   zIndexFactor?: number,
   defaultText?: string,
-  width?: 'auto' | 'button'
+  width?: 'auto' | 'button',
+  zIndex?: number
 }>()
 
 const emit = defineEmits<{
@@ -189,7 +190,10 @@ const getStyle = () => {
       <div
         v-if="visible" ref="dropdownRef"
         class="select-dropdown" :class="theme"
-        :style="getStyle() ?? ''"
+        :style="[
+          getStyle() ?? '',
+          zIndex ? `z-index: ${zIndex}` : ''
+        ]"
         @click="onDropdownClick"
       >
         <popup-transition :group="true">
@@ -254,7 +258,7 @@ const getStyle = () => {
   width: max-content;
   max-height: 150px;
   overflow-y: scroll;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-3);
   overscroll-behavior: contain;
 
   &::-webkit-scrollbar {
@@ -269,16 +273,16 @@ ul {
 }
 
 .item {
-  height: 32px;
+  height: 35px;
   border-radius: 5px;
   padding: 0 4px;
   @include flex(flex-start, center);
   transition: var(--fast);
-  color: var(--heading-color-2);
+  color: var(--text-color-1);
 
   &.focused,
   &.selected {
-    background-color: var(--bg-color-2);
+    background-color: var(--bg-color-1);
   }
 
   &.selected {
@@ -286,9 +290,9 @@ ul {
   }
 
   &.title {
-    color: var(--text-color-1);
     margin-left: 10px;
-    font-size: 13px;
+    @include findcreek-medium(14px, var(--text-color-1));
+    // margin: 0 0 7px 10px;
   }
 }
 
@@ -298,12 +302,12 @@ ul {
   color: inherit;
   outline: none;
   border: none;
-  @include findcreek(12px, var(--heading-color-1));
+  @include findcreek(14px, var(--text-color-1));
 }
 
 .dropdown-text {
-  @include findcreek(15px, var(--heading-color-1));
-  letter-spacing: -0.01em;
+  @include findcreek(16px, var(--text-color-1));
+  // letter-spacing: -0.01em;
 }
 
 .loader {

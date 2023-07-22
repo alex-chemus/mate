@@ -35,7 +35,8 @@ defineProps<{
 .main-section {
   margin: 40px auto 100px;
   flex-grow: 1;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
+  border: var(--border-2);
   border-radius: 13px;
   padding: 60px 130px;
   max-width: 900px;

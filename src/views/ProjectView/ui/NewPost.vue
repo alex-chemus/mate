@@ -12,8 +12,9 @@ const { openPostEditor } = usePostEditor()
 
 <template>
   <button class="new-post" :class="theme" @click="openPostEditor">
-    <img v-if="img" :src="img" alt="" class="icon" :class="theme" />
-    <div v-else class="icon" :class="theme" />
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <use href="@/assets/imgs/tabler-sprite.svg#tabler-edit" />
+    </svg>
     <span>Расскажите, что произошло...</span>
 
     <!-- <div class="content-wrapper --align-start">
@@ -90,14 +91,15 @@ const { openPostEditor } = usePostEditor()
 @import '@/assets/styles/style.scss';
 
 .new-post {
-  border: 1px solid color.change($gray-1, $alpha: .25);
-  padding: 15px;
+  // border: 1px solid color.change($gray-1, $alpha: .25);
+  border: var(--border-2);
+  padding: 11px 23px;
   width: 100%;
   @include flex(flex-start, center);
-  gap: 13px;
+  gap: 9px;
   border-radius: 13px;
-  background-color: var(--bg-color-1);
-  @include findcreek(13px, var(--heading-color-2));
+  background-color: var(--bg-color-2);
+  @include findcreek(14px, var(--heading-color-1));
 }
 
 .content-wrapper {

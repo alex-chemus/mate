@@ -26,18 +26,22 @@ const emit = defineEmits<{
   height: 30px;
   width: 100%;
   @include flex(center, center);
-  border: 1px solid rgba(118 118 118 / .5);
+  // border: 1px solid rgba(118 118 118 / .5);
+  border: var(--border-1);
   border-radius: 6px;
   background-color: transparent;
   transition: all .15s;
+  background-color: var(--bg-color-3);
 
   font-family: var(--findcreek-medium, $findcreek-medium);
   font-size: 13px;
   letter-spacing: .2%;
-  color: var(--accent, $accent);
+  // color: var(--accent, $accent);
+  @include findcreek-medium(14px, var(--heading-color-1));
 
   &.light:hover {
     box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);
+    color: var(--accent);
   }
 
   &.dark:hover {

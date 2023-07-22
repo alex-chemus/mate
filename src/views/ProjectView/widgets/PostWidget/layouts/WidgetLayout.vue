@@ -2,10 +2,9 @@
 import { defineProps } from 'vue'
 import { useTheme } from '@/shared/utils'
 
-// defineProps<{
-//   img?: string,
-//   date: string,
-// }>()
+defineProps<{
+  showComments?: boolean
+}>()
 
 const { theme } = useTheme()
 </script>
@@ -40,7 +39,10 @@ const { theme } = useTheme()
     <slot name="text" />
     <slot name="gallery" />
     <slot name="buttons" />
-    <slot name="comments-widget" />
+    <template v-if="showComments">
+      <div class="line-separator" />
+      <slot name="comments-widget" />
+    </template>
   </article>
 </template>
 
@@ -53,50 +55,15 @@ const { theme } = useTheme()
   border-radius: 13px;
   position: relative;
   overflow: hidden;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
   @include flex(flex-start, stretch, column);
-  gap: 15px;
-  padding: 15px;
+  gap: 17px;
+  padding: 20px;
 }
 
-.date-wrapper {
-  height: 20px;
-  width: fit-content;
-  padding: 0 12px;
-  @include flex(center, center);
-  border-radius: 10px;
-  background-color: rgba(224 224 224 / .2);
-  @include findcreek-medium(10px, rgba(190 190 190 / .7));
-  letter-spacing: -3%;
-  position: absolute;
-  top: 14px;
-  right: 14px;
-}
-
-.image {
-  object-fit: cover;
-  max-height: 300px;
+.line-separator {
   width: 100%;
-
-  &.placeholder {
-    height: 282px;
-    background-color: color.change($gray-1, $alpha: .25);
-  }
-}
-
-.post-container {
-  padding: 14px;
-}
-
-.text {
-  margin-bottom: 12px;
-}
-
-.author-container {
-  margin-bottom: 16px;
-}
-
-.buttons-wrapper {
-  margin-bottom: 18px;
+  height: 1px;
+  background-color: var(--bg-color-3);
 }
 </style>

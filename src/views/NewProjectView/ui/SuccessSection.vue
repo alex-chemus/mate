@@ -20,7 +20,7 @@
 }
 
 .heading {
-  @include findcreek-bold(40px, var(--heading-color-2));
+  @include findcreek-bold(30px, var(--heading-color-1));
   text-align: center;
 }
 </style>

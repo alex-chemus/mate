@@ -15,8 +15,8 @@ const emit = defineEmits<{ (e: 'click'): void }>()
   height: 48px;
   @include flex(center, center);
   border-radius: 8px;
-  background-color: var(--accent-1);
-  @include findcreek-bold(16px, var(--light));
+  background-color: var(--light-accent);
+  @include findcreek-bold(16px, white);
   flex-grow: 1;
 }
 </style>

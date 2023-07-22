@@ -3,6 +3,7 @@ import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
 import { FullProject, FullVacancy } from '@/shared/types'
+import LikeButton from './LikeButton.vue'
 
 const props = defineProps<{
   vacancy: FullVacancy,
@@ -46,7 +47,7 @@ const isHovered = ref(false)
           <p>@{{ projectInfo.textID }}</p>
         </div>
       </router-link>
-      <button
+      <!-- <button
         class="like-button" :class="{ 'liked': vacancy.isLiked }"
         @click="emit('toggle-like', !vacancy.isLiked)"
       >
@@ -56,7 +57,8 @@ const isHovered = ref(false)
         <svg v-else width="24" height="24" viewBox="0 0 24 24">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-heart" />
         </svg>
-      </button>
+      </button> -->
+      <like-button :vacancy="vacancy" />
     </div>
 
     <!-- eslint-disable -->
@@ -69,7 +71,7 @@ const isHovered = ref(false)
       <div class="title-wrapper">
         <p class="theme">{{ vacancy.themeName }}</p>
         <p
-          class="title" :class="isHovered ? 'underline' : ''"
+          class="title"
           :title="vacancy.title"
         >{{ vacancy.title }}</p>
       </div>
@@ -95,14 +97,14 @@ const isHovered = ref(false)
 
 .card-vacancy {
   border-radius: 8px;
-  border: var(--border-2);
-  background-color: var(--bg-color-2);
+  border: var(--border-1);
+  background-color: var(--bg-color-3);
   padding: 19px;
   width: 478px;
   //height: 175px;
-  height: 190px;
+  height: 200px;
   @include flex(flex-start, stretch, column);
-  gap: 11px;
+  gap: 17px;
   // cursor: pointer;
   // text-align: left;
 
@@ -119,6 +121,7 @@ const isHovered = ref(false)
 .project {
   @include flex(flex-start, center);
   gap: 11px;
+  text-decoration: none;
 }
 
 .project-logo {
@@ -132,13 +135,13 @@ const isHovered = ref(false)
   gap: 4px;
 
   h6 {
-    @include findcreek-medium(14px, var(--heading-color-2));
+    @include findcreek-medium(14px, var(--heading-color-1));
     margin: 0;
   }
 
   p {
     margin: 0;
-    @include findcreek(12.5px, var(--heading-color-2));
+    @include findcreek(12px, var(--text-color-1));
   }
 }
 
@@ -172,7 +175,7 @@ const isHovered = ref(false)
 }
 
 .theme {
-  @include findcreek-medium(10px, var(--text-color-1));
+  @include findcreek-medium(12px, var(--text-color-1));
 }
 
 .title {
@@ -181,16 +184,11 @@ const isHovered = ref(false)
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-
-  &.underline {
-    text-decoration: underline;
-  }
 }
 
 .date {
   grid-row: 2;
-  @include findcreek(13px, var(--text-color-1));
-  letter-spacing: -0.03em;
+  @include findcreek(14px, var(--text-color-1));
 }
 
 .view-tag {

@@ -19,7 +19,7 @@ const { theme } = useTheme()
         class="skill-item" :class="theme"
       >{{ skill }}</li>
     </ul>
-    <h6 v-else :class="theme">Что вы умеете?</h6>
+    <p v-else :class="theme">Что вы умеете?</p>
   </section>
 </template>
 
@@ -31,12 +31,12 @@ const { theme } = useTheme()
   padding: 23px;
   border-radius: 13px;
   border: 1px solid color.change($gray-1, $alpha: .25);
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
 }
 
 .title {
-  @include findcreek-medium(14px, var(--heading-color-2));
-  margin-bottom: 26px;
+  @include findcreek-medium(16px, var(--heading-color-1));
+  margin-bottom: 21px;
 }
 
 .skills-list {
@@ -52,10 +52,11 @@ const { theme } = useTheme()
   @include flex(center, center);
   height: 30px;
   padding: 0 9px;
-  border: 1px solid color.change($gray-1, $alpha: .4);
+  border: var(--border-2);
   background-color: transparent;
   border-radius: 8px;
   @include noto-sans-medium(12px, var(--heading-color-1));
+  background-color: var(--bg-color-3);
 }
 
 h6 {

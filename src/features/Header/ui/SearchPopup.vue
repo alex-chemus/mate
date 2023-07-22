@@ -102,7 +102,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
   width: 550px;
   height: 340px;
   overflow: hidden;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
 
   &.dark {
     border: 1px solid #615478;
@@ -113,7 +113,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
   padding: 15px 0;
   @include flex(center, center);
   width: 550px;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
   box-shadow: var(--popup-shadow);
   border-radius: 10px;
 

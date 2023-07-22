@@ -2,6 +2,7 @@
 import { defineProps, ref } from 'vue'
 import { Comment } from '@/shared/types'
 import { useTimeUtils, useUserState } from '@/shared/utils'
+import CloseButton from '../ui/CloseButton.vue'
 
 defineProps<{
   comment: Comment,
@@ -30,10 +31,12 @@ const isRepliesOpen = ref(false)
     <router-link :to="`/user/${comment.authorID}`" class="heading-container">
       <img class="avatar" :src="comment.authorData.avatar.avatarCompressed" alt="" />
       <div class="heading-wrapper">
-        <h6 class="name">{{ comment.authorData.firstName }} {{ comment.authorData.lastName }}</h6>
+        <div class="name-wrapper">
+          <h6 class="name">{{ comment.authorData.firstName }} {{ comment.authorData.lastName }}</h6>
+          <p class="time">{{ getTime({ unixTime: comment.date.unixTime, date: comment.date.date }) }}</p>
+        </div>
         <p class="name-tag">@{{ comment.authorData.textID }}</p>
       </div>
-      <p class="time">{{ getTime({ unixTime: comment.date.unixTime, date: comment.date.date }) }}</p>
     </router-link>
 
     <div
@@ -62,11 +65,12 @@ const isRepliesOpen = ref(false)
 
     <template v-if="comment.answers && comment.answersNumber > 0">
       <div v-if="isRepliesOpen" class="replies-section">
-        <button class="close-button" @click="isRepliesOpen = false">
+        <!-- <button class="close-button" @click="isRepliesOpen = false">
           <svg width="24" height="24" viewBox="0 0 24 24">
             <use href="@/assets/imgs/tabler-sprite.svg#tabler-chevron-up" />
           </svg>
-        </button>
+        </button> -->
+        <close-button @close="isRepliesOpen = false" />
 
         <div class="replies-container">
           <slot name="replies" :replies="comment.answers" />
@@ -101,22 +105,26 @@ const isRepliesOpen = ref(false)
   object-fit: cover;
 }
 
+.name-wrapper {
+  @include flex(flex-start, baseline);
+  gap: 12px;
+}
+
 .name {
-  margin-bottom: 1px;
-  @include findcreek-medium(14px, var(--heading-color-2));
+  margin-bottom: 2px;
+  @include findcreek-medium(14px, var(--heading-color-1));
 }
 
 .name-tag {
-  @include findcreek(11px, var(--text-color-1));
+  @include findcreek(12px, var(--text-color-2));
 }
 
 .time {
-  @include findcreek(10px, var(--text-color-1));
-  align-self: flex-start;
+  @include findcreek(12px, var(--text-color-2));
 }
 
 .comment-text {
-  @include findcreek(13px, var(--heading-color-1));
+  @include findcreek(14px, var(--heading-color-1));
   margin-bottom: 10px;
 }
 
@@ -125,7 +133,7 @@ const isRepliesOpen = ref(false)
 }
 
 .buttons-container {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   @include flex(flex-start, center);
   gap: 13px;
 }
@@ -153,15 +161,15 @@ const isRepliesOpen = ref(false)
 }
 
 .comment-editor-wrapper {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .replies-button {
-  @include findcreek-medium(11px, var(--accent));
+  @include findcreek-medium(12px, var(--accent));
 }
 
 .reply-button {
-  @include findcreek(11px, var(--text-color-1));
+  @include findcreek(12px, var(--text-color-1));
   transition: var(--fast);
 
   &:hover,
@@ -175,6 +183,7 @@ const isRepliesOpen = ref(false)
   padding-top: 15px;
   display: grid;
   grid-template-columns: 35px 1fr;
+  justify-items: start;
 }
 
 .close-button {

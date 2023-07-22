@@ -31,7 +31,7 @@ const emit = defineEmits<{
           <div v-else class="icon" />
 
           <div class="content-container">
-            <slot name="title" />
+            <!-- <slot name="title" /> -->
             <slot name="description" />
             <!-- <slot name="file-input" /> -->
             <slot name="files" />

@@ -35,7 +35,7 @@ const getSortedEmployess = computed(() => {
   <section class="employees-section" :class="theme">
     <h4 class="employees-title" :class="theme">
       Сотрудники компании&#32;&#32;
-      <span>{{ employees.length }}</span>
+      <!-- <span>{{ employees.length }}</span> -->
     </h4>
 
     <ul class="employees-list">
@@ -61,29 +61,34 @@ const getSortedEmployess = computed(() => {
 @import '@/assets/styles/style.scss';
 
 .employees-section {
-  padding: 25px 18px;
-  border: 1px solid color.change($gray-1, $alpha: .25);
+  // padding: 25px 18px;
+  padding: 23px;
+  // border: 1px solid color.change($gray-1, $alpha: .25);
+  border: var(--border-2);
   border-radius: 13px;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
 }
 
 .employees-title {
-  margin-bottom: 26px;
-  @include findcreek-medium(14px, var(--heading-color-2));
+  // margin-bottom: 26px;
+  @include findcreek-medium(16px, var(--heading-color-1));
+  margin-bottom: 21px;
 
-  span {
-    @include noto-sans-bold(inherit, var(--text-color-1));
-  }
+  // span {
+  //   @include noto-sans-bold(inherit, var(--text-color-1));
+  // }
 }
 
 .employees-list {
   padding: 0;
   margin: 0;
   list-style: none;
+  @include flex(flex-start, stretch, column);
+  gap: 16px;
 
-  & > *:not(:last-child) {
-    margin-bottom: 12px;
-  }
+  // & > *:not(:last-child) {
+  //   margin-bottom: 12px;
+  // }
 }
 
 .employee-container {
@@ -95,8 +100,9 @@ const getSortedEmployess = computed(() => {
 }
 
 .icon {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  aspect-ratio: 1;
+  // height: 40px;
   border-radius: 100vmax;
   object-fit: cover;
   margin-right: 12px;
@@ -110,14 +116,12 @@ const getSortedEmployess = computed(() => {
   text-decoration: none;
 
   h5 {
-    @include findcreek-bold(14px, var(--heading-color-2));
-    letter-spacing: -3%;
-    margin: 0;
+    @include findcreek-medium(14px, var(--heading-color-1));
+    margin-bottom: 4;
   }
 
   p {
-    @include findcreek(12px, var(--text-color-1));
-    letter-spacing: -3%;
+    @include findcreek(12px, var(--text-color-2));
   }
 }
 </style>

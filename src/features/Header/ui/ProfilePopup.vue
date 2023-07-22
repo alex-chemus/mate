@@ -76,15 +76,17 @@ const { theme, toggleTheme } = useTheme()
   justify-content: start;
   align-items: stretch;
   grid-gap: 13px;
-  background-color: var(--bg-color-1);
+  // background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
+  border: var(--border-2);
 
-  &.light {
-    border: 1px solid color.change($gray-1, $alpha: .4);
-  }
+  // &.light {
+  //   border: 1px solid color.change($gray-1, $alpha: .4);
+  // }
 
-  &.dark {
-    border: 1px solid #615478;
-  }
+  // &.dark {
+  //   border: 1px solid #615478;
+  // }
 }
 
 .name-wrapper {
@@ -101,7 +103,7 @@ const { theme, toggleTheme } = useTheme()
 }
 
 h6 {
-  @include findcreek-medium(16px, var(--heading-color-2));
+  @include findcreek-medium(16px, var(--heading-color-1));
   margin: 0;
 }
 
@@ -116,7 +118,7 @@ small {
   display: grid;
   @include flex(flex-start, center);
   gap: 12px;
-  @include findcreek(12px, var(--heading-color-2));
+  @include findcreek(12px, var(--heading-color-1));
 
   &.menu-item {
     font-size: 13px;

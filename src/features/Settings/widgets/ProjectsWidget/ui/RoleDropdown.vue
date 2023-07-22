@@ -52,8 +52,9 @@ const getText = computed(() => {
 
 <template>
   <div class="role-container" :class="theme">
-    <h6 class="title" :class="theme">Выберите должность</h6>
+    <!-- <h6 class="title" :class="theme">Выберите должность</h6> -->
     <dropdown
+      label-text="Выберите должность"
       :items="values.map((i) => ({ id: i.id, value: i.value }))"
       v-model:visible="isOpen"
       :selected="values.find((i) => i.key === value)?.id"

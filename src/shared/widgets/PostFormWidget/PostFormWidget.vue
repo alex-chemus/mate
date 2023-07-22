@@ -3,7 +3,7 @@ import { defineProps, defineEmits } from 'vue'
 import { usePostEditor } from '@/shared/utils'
 import { Textarea } from '@/shared/ui'
 import { WidgetLayout } from './layouts'
-import { FilesList, SubmitButton, TitleInput } from './ui'
+import { FilesList, SubmitButton, TextInput } from './ui'
 import { useFiles, useUploadPost } from './hooks'
 
 const props = defineProps<{
@@ -48,19 +48,20 @@ const submitPost = async () => {
     @set-files="addFiles"
     :img="img"
   >
-    <template #title>
+    <!-- <template #title>
       <title-input
         :get-title="getTitle"
         :set-title="setTitle"
       />
-    </template>
+    </template> -->
 
     <template #description>
-      <Textarea
+      <!-- <textarea
         label-text="Описание"
         placeholder="Описание"
-        v-model:value="description"
-      />
+        v-model="description"
+      /> -->
+      <text-input v-model:value="description" />
     </template>
 
     <template #files>

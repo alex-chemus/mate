@@ -4,7 +4,7 @@ export type FullProjectPost = {
   id: number,
   projectID: number,
   authorID: number,
-  title: string,
+  // title: string,
   description: string,
   media: FileInfo[],
   likes: number[],
@@ -26,5 +26,6 @@ export type FullProjectPost = {
     unixDate: number
   },
   isLiked: boolean,
-  isDisliked: boolean
+  isDisliked: boolean,
+  comments: any[]
 }

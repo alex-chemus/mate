@@ -16,18 +16,10 @@ const emit = defineEmits<{
 .submit-button {
   width: min(250px, 100%);
   height: 30px;
-  border-radius: 5px;
-  border: 1px solid currentColor;
-  background-color: transparent;
+  width: 142px;
+  border-radius: 13px;
+  background-color: var(--accent);
   transition: var(--fast);
-  @include findcreek(12px, var(--accent));
-  letter-spacing: -0.05em;
-
-  &:hover,
-  &:focus {
-    color: var(--light);
-    border-color: transparent;
-    background-color: var(--accent);
-  }
+  @include findcreek-medium(14px, white);
 }
 </style>

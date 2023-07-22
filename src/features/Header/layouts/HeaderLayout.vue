@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 import { Logo } from '@/shared/ui'
+import { useTheme } from '@/shared/utils'
+
+const { theme } = useTheme()
 </script>
 
 <template>
-  <header class="header-container">
+  <header class="header-container" :class="theme">
     <button class="logo-wrapper">
       <logo />
     </button>
@@ -24,9 +27,17 @@ import { Logo } from '@/shared/ui'
 .header-container {
   display: grid;
   //align-items: start;
-  grid-template-columns: 325px 1fr 325px;
-  grid-gap: 24px;
-  position: relative;
+  grid-template-columns: 340px 1fr 340px;
+  grid-gap: 30px;
+  // position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 15px 0;
+
+  &.dark { background-color: var(--bg-color-1); }
+  &.light { background-color: #f5f5f5 }
+  // box-shadow: 0 0 10px 7px var(--dark-bg-color-1);
 }
 
 .logo-wrapper {

@@ -39,30 +39,19 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   padding: 12px 14px;
   border-radius: 8px;
   transition: var(--fast);
-  font-family: var(--findcreek, $findcreek);
-  font-size: 13px;
   width: 100%;
-  color: var(--heading-color-2, $heading-color-2);
-  background-color: var(--bg-color-2, $bg-color-2);
+  @include findcreek(14px, var(--text-color-1));
+  background-color: var(--bg-color-3, $bg-color-3);
   border: var(--border-1);
 
-  &.light:hover,
-  &.light:focus {
-    border: 1px solid var(--accent-1, $accent-1);
-    outline: none;
-  }
-
-  &.dark:hover,
-  &.dark:focus {
-    border: 1px solid #55B1FF;
+  &:is(:hover, :focus) {
+    border: 1px solid var(--accent);
     outline: none;
   }
 }
 
 .label {
-  font-family: var(--findcreek-medium, $findcreek-medium);
-  font-size: 13px;
-  margin: 0 0 6px 10px;
-  color: var(--text-color-1);
+  @include findcreek-medium(14px, var(--text-color-1));
+  margin: 0 0 7px 10px;
 }
 </style>

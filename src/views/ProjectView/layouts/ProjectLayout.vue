@@ -67,8 +67,8 @@ defineProps<{
 
 .main-container {
   display: grid;
-  grid-template-columns: 325px minmax(0, 1fr) 325px;
-  grid-gap: 24px;
+  grid-template-columns: 340px minmax(0, 1fr) 340px;
+  grid-gap: 30px;
   // margin-top: 40px;
 }
 
@@ -94,6 +94,6 @@ aside {
 
 .posts-wrapper {
   @include flex(flex-start, stretch, column);
-  gap: 25px;
+  gap: 20px;
 }
 </style>

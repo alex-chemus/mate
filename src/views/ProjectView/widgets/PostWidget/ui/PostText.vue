@@ -37,12 +37,11 @@ const getText = useTextWithLinks(computedText)
 
 .text {
   display: inline;
-  @include findcreek(13px, var(--heading-color-2));
+  @include findcreek(14px, var(--heading-color-2));
   line-height: 140%;
-  letter-spacing: -3.3%;
 }
 
-.text :deep(a) {
+.text:deep(a) {
   text-decoration: none;
   color: var(--accent);
 
@@ -58,8 +57,7 @@ const getText = useTextWithLinks(computedText)
 
 .more-button {
   display: inline;
-  @include findcreek(13px, var(--accent));
+  @include findcreek(14px, var(--accent));
   line-height: 140%;
-  letter-spacing: -3.3%;
 }
 </style>

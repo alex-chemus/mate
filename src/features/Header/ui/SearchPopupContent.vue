@@ -119,7 +119,7 @@ const navigate = () => {
 }
 
 .full-name {
-  @include findcreek-medium(16px, var(--heading-color-2));
+  @include findcreek-medium(16px, var(--heading-color-1));
   margin: 0;
 }
 

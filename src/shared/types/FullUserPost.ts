@@ -3,7 +3,7 @@ import { FileInfo } from './FileInfo'
 export type FullUserPost = {
   id: number,
   authorID: number,
-  title: string,
+  // title: string,
   description: string,
   media: FileInfo[],
   likes: number[],
@@ -24,5 +24,6 @@ export type FullUserPost = {
     unixDate: number
   },
   isLiked: boolean,
-  isDisliked: boolean
+  isDisliked: boolean,
+  comments: any[]
 }

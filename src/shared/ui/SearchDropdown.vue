@@ -16,7 +16,8 @@ const props = defineProps<{
   selected?: number,
   inputValue: string
   labelText?: string,
-  placeholder?: string
+  placeholder?: string,
+  zIndex?: number
 }>()
 
 const emit = defineEmits<{
@@ -136,7 +137,13 @@ onBeforeUnmount(() => {
     />
  
     <popup-transition>
-      <div v-if="visible" class="dropdown" :class="theme" @click="onDropdownClick">
+      <div
+        v-if="visible"
+        class="dropdown"
+        :class="theme"
+        @click="onDropdownClick"
+        :style="zIndex ? `z-index: ${zIndex}` : ''"
+      >
         <div v-if="loading" class="loader">
           <loader />
         </div>
@@ -189,7 +196,7 @@ onBeforeUnmount(() => {
   width: 100%;
   max-height: 150px;
   overflow-y: scroll;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-3);
 
   &::-webkit-scrollbar {
     width: 0;
@@ -203,16 +210,16 @@ ul {
 }
 
 .item {
-  height: 32px;
+  height: 35px;
   border-radius: 5px;
   padding: 0 4px;
   @include flex(flex-start, center);
   transition: var(--fast);
-  color: var(--heading-color-2);
+  color: var(--text-color-1);
 
   &.focused,
   &.selected {
-    background-color: var(--bg-color-2);
+    background-color: var(--bg-color-1);
   }
 
   &.selected {
@@ -226,12 +233,11 @@ ul {
   color: inherit;
   outline: none;
   border: none;
-  @include findcreek(12px, var(--heading-color-1));
+  @include findcreek(42px, var(--text-color-1));
 }
 
 .dropdown-text {
-  @include findcreek(15px, var(--heading-color-1));
-  letter-spacing: -0.01em;
+  @include findcreek(16px, var(--text-color-1));
 }
 
 .loader {

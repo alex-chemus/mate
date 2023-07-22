@@ -48,7 +48,7 @@ defineExpose({ buttonRef: containerRef })
   gap: 12px;
   border-radius: 8px;
   transition: var(--fast, $fast);
-  background-color: var(--bg-color-2, $bg-color-2);
+  background-color: var(--bg-color-3, $bg-color-2);
   border: var(--border-1);
 
   &:focus {
@@ -64,11 +64,9 @@ defineExpose({ buttonRef: containerRef })
 .text {
   text-align: left;
   flex-grow: 2;
-  font-family: var(--findcreek, $findcreek);
-  font-size: 13px;
+  @include findcreek(14px, var(--text-color-1));
   background-color: transparent;
   border: none;
-  color: var(--heading-color-2, $heading-color-2);
 
   &:hover,
   &:focus {
@@ -77,9 +75,7 @@ defineExpose({ buttonRef: containerRef })
 }
 
 .label {
-  font-family: var(--findcreek-medium, $findcreek-medium);
-  font-size: 13px;
-  margin: 0 0 6px 10px;
-  color: var(--text-color-1);
+  @include findcreek-medium(14px, var(--heading-color-1));
+  margin: 0 0 7px 10px;
 }
 </style>

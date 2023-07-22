@@ -21,22 +21,19 @@ const { theme } = useTheme()
 
 .about-section {
   border-radius: 13px;
-  border: 1px solid rgba(118 118 118 / .25);
-  padding: 11px 19px;
-  color: var(--heading-color-2);
-  background-color: var(--bg-color-1);
+  // border: 1px solid rgba(118 118 118 / .25);
+  border: var(--border-2);
+  padding: 23px;
+  background-color: var(--bg-color-2);
 
   h5 {
-    @include findcreek-medium(14px, currentColor);
-    letter-spacing: 1%;
-    margin: 0;
-    margin-bottom: 12px;
+    @include findcreek-medium(16px, var(--heading-color-1));
+    margin-bottom: 21px;
   }
 
   p {
-    @include findcreek-medium(13px, currentColor);
+    @include findcreek-medium(13px, var(--text-color-1));
     line-height: 160%;
-    letter-spacing: -2%;
   }
 }
 </style>

@@ -45,8 +45,8 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   gap: 3px;
   border-radius: 13px;
   transition: var(--fast);
-  color: var(--heading-color-1);
-  background-color: var(--bg-color-2);
+  color: var(--text-color-1);
+  background-color: var(--bg-color-3);
   border: var(--border-1);
 
   &.round {

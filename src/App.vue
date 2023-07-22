@@ -16,7 +16,9 @@ import { MainContainer } from '@/containers'
   width: 100%;
 
   &.dark {
-    background-image: linear-gradient(105.91deg, #282A37 49.48vh, #353840 100%);
+    // background-image: linear-gradient(105.91deg, #282A37 49.48vh, #353840 100%);
+    // background-image: linear-gradient(to left bottom, #161A22, #25282D);
+    background-color: var(--bg-color-1);
   }
 
   &.light {

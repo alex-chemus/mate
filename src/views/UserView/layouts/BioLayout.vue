@@ -33,16 +33,21 @@ const getText = computed(() => {
 </script>
 
 <template>
-  <section class="bio-section" :class="theme">
-    <h5>О себе</h5>
+  <button class="bio-section" :class="theme" @click="isOpen = true">
+    <div class="title-wrapper">
+      <h5>О себе</h5>
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-info-circle" />
+      </svg>
+    </div>
     <p>{{ getText }}</p>
-    <button class="info-button" :class="theme" @click="isOpen = true">
+    <!-- <button class="info-button" :class="theme" @click="isOpen = true">
       <svg width="16" height="16" viewBox="0 0 16 16">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-info-circle" />
       </svg>
       <span>Подробнее</span>
-    </button>
-  </section>
+    </button> -->
+  </button>
 
   <modal v-model:visible="isOpen" width="600">
     <profile-layout
@@ -62,25 +67,30 @@ const getText = computed(() => {
 @import '@/assets/styles/style.scss';
 
 .bio-section {
+  width: 100%;
   border-radius: 13px;
-  border: 1px solid rgba(118 118 118 / .25);
-  padding: 15px 19px;
+  // border: 1px solid rgba(118 118 118 / .25);
+  border: var(--border-2);
+  padding: 23px;
   color: var(--heading-color-2);
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
+  @include flex(flex-start, stretch, column);
+  gap: 21px;
+  text-align: left;
 
   h5 {
-    @include findcreek-medium(14px, currentColor);
-    letter-spacing: 1%;
+    @include findcreek-medium(16px, currentColor);
     margin: 0;
-    margin-bottom: 12px;
   }
 
   p {
-    @include findcreek(13px, currentColor);
+    @include findcreek(14px, currentColor);
     line-height: 160%;
-    letter-spacing: -2%;
-    margin-bottom: 6px;
   }
+}
+
+.title-wrapper {
+  @include flex(space-between, center);
 }
 
 .info-button {

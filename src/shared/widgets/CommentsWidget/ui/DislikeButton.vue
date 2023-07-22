@@ -18,8 +18,7 @@ const emit = defineEmits<{
     class="dislike-button" :class="{ 'active': isDisliked }"
     @click="emit('dislike')"
   >
-    <thumb-down-filled v-if="isDisliked" />
-    <thumb-down v-else />
+    <thumb-down-filled />
     <span>{{ dislikesNumber }}</span>
   </button>
 </template>
@@ -28,26 +27,20 @@ const emit = defineEmits<{
 @import '@/assets/styles/style.scss';
 
 .dislike-button {
-  @include findcreek-medium(11px, var(--text-color-1));
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 100vmax;
+  @include findcreek(12px, var(--text-color-1));
   @include flex(flex-start, center);
   gap: 6px;
   transition: var(--fast);
+  background-color: var(--bg-color-3);
 
   &:hover,
   &:focus,
   &.active {
-    color: var(--accent);
-  }
-
-  span {
-    background-color: var(--bg-color-3);
-    color: var(--text-color-1);
-    border-radius: 100vmax;
-    padding: 1px 7px;
-  }
-
-  &:is(:hover, :focus) span {
-    color: var(--accent);
+    color: var(--bg-color-2);
+    background-color: var(--text-color-1);
   }
 }
 </style>

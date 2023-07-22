@@ -73,8 +73,8 @@ defineProps<{
 
 .main-section {
   display: grid;
-  grid-template-columns: 325px minmax(0, 1fr) 325px;
-  grid-gap: 24px;
+  grid-template-columns: 340px minmax(0, 1fr) 340px;
+  grid-gap: 30px;
 }
 
 aside {
@@ -83,8 +83,9 @@ aside {
   }
 }
 
-.new-post-wrapper {
-  margin: 18px 0 28px;
+.center-container {
+  @include flex(flex-start, stretch, column);
+  gap: 25px;
 }
 
 .projects-aside {
@@ -93,12 +94,8 @@ aside {
   }
 }
 
-.bio-wrapper {
-  margin-bottom: 23px;
-}
-
 .posts-wrapper {
   @include flex(flex-start, stretch, column);
-  gap: 25px;
+  gap: 20px;
 }
 </style>

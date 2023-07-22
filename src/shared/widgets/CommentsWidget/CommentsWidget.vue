@@ -128,11 +128,19 @@ const { uploadLike, uploadDislike } = useLikes({
             </template>
 
             <template #like-button>
-              <like-button @like="uploadLike(reply)" />
+              <like-button
+                :is-liked="reply.isLiked"
+                :likes-number="reply.likesNumber"
+                @like="uploadLike(reply)"
+              />
             </template>
 
             <template #dislike-button>
-              <dislike-button @dislike="uploadDislike(reply)" />
+              <dislike-button
+                :is-disliked="reply.isDisliked"
+                :dislikes-number="reply.dislikesNumber"
+                @dislike="uploadDislike(reply)"
+              />
             </template>
 
             <template #add-reply-form>

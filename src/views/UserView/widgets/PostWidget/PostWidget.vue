@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits, computed } from 'vue'
+import {
+  defineProps, defineEmits, computed, ref
+} from 'vue'
 import { FullUser, FullUserPost } from '@/shared/types'
 import { CommentsWidget } from '@/shared/widgets'
 import { WidgetLayout } from './layouts'
 import { useDate, useViewer, useLikes } from './hooks'
 import {
   ImageViewer, PostText, PostHeader, PostGallery,
-  PostButtons, PostHeading
+  PostButtons
 } from './ui'
 
 const props = defineProps<{
@@ -38,6 +40,8 @@ const getReaction = computed(() => {
   if (props.post.isDisliked) return -1
   return 0
 })
+
+const showComments = ref(false)
 </script>
 
 <template>
@@ -49,7 +53,7 @@ const getReaction = computed(() => {
     @next="nextImage"
   />
 
-  <widget-layout>
+  <widget-layout :show-comments="showComments">
     <template #header>
       <post-header
         :avatar="author.avatar.avatarCompressed ?? author.avatar.avatar"
@@ -71,17 +75,19 @@ const getReaction = computed(() => {
       <post-text :text="post.description" />
     </template>
 
-    <template #heading>
+    <!-- <template #heading>
       <post-heading :heading="post.title" />
-    </template>
+    </template> -->
 
     <template #buttons>
       <post-buttons
         :reaction="getReaction"
         :likes="post.likesNumber"
         :dislikes="post.dislikesNumber"
+        :comments="post.comments.length"
         @like="uploadLike(post.id, post.isLiked, post.isDisliked)"
         @dislike="uploadDislike(post.id, post.isLiked, post.isDisliked)"
+        @comment="showComments = !showComments"
       />
     </template>
 
@@ -93,7 +99,3 @@ const getReaction = computed(() => {
     </template>
   </widget-layout>
 </template>
-
-<style lang="scss" scoped>
-@import '@/assets/styles/style.scss';
-</style>

@@ -71,7 +71,7 @@ defineProps<{
 
 .project-section {
   @include flex(flex-start, stretch, column);
-  gap: 13px;
+  gap: 30px;
 }
 
 .members-section {

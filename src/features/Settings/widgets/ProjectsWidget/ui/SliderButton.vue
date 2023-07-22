@@ -28,18 +28,29 @@ const { theme } = useTheme()
   @include flex(center, center);
   border: 1px solid transparent;
   @include findcreek(14px, var(--text-color-1));
-  letter-spacing: -0.03em;
   transition: var(--fast);
+  border-radius: 6px;
+  // background-color: var(--bg-color-2);
+  // border: var(--border-1);
 
-  &:hover,
+  // &:hover,
+  // &.selected {
+  //   border: 1px solid #DCE1E6;
+  //   border-radius: 6px;
+  //   box-shadow: 0 0 8px 0 rgb(0 0 0 / .1);
+  // }
+
+  // &:hover,
+  // &.selected {
+  //   color: var(--accent);
+  // }
+
   &.selected {
-    border: 1px solid #DCE1E6;
-    border-radius: 6px;
-    box-shadow: 0 0 8px 0 rgb(0 0 0 / .1);
+    background-color: var(--bg-color-3);
+    border: var(--border-1);
   }
 
-  &:hover,
-  &.selected {
+  &:is(:hover, :focus) {
     color: var(--accent);
   }
 }

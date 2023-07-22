@@ -86,9 +86,10 @@ const { openSettings } = useSettings()
 .card-section {
   border-radius: 13px;
   overflow: hidden;
-  border: 1px solid color.change($gray-1, $alpha: .25);
+  // border: 1px solid color.change($gray-1, $alpha: .25);
+  border: var(--border-2);
   position: relative;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
 }
 
 // .more-button {
@@ -142,7 +143,7 @@ const { openSettings } = useSettings()
   // align-items: center;
   // align-self: stretch;
   // margin: 32px 0 12px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   @include flex(center, center);
 }
 
@@ -177,15 +178,15 @@ const { openSettings } = useSettings()
 }
 
 .fullname {
-  @include findcreek-medium(16px, var(--heading-color-2));
+  @include findcreek-medium(16px, var(--heading-color-1));
   margin: 0;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .nickname {
-  @include noto-sans(12px, var(--text-color-2));
+  @include findcreek(13px, var(--text-color-2));
   margin: 0;
-  margin-bottom: 18px;
+  margin-bottom: 32px;
 }
 
 .button {
@@ -249,19 +250,9 @@ const { openSettings } = useSettings()
 
 .edit-button {
   border-radius: 10px;
-  padding: 16px 0;
-
-  span {
-    @include findcreek(14px);
-  }
-
-  &.dark span {
-    color: var(--light);
-  }
-
-  &.light span {
-    color: #4d4d4d;
-  }
+  height: 40px;
+  @include findcreek-medium(14px, var(--text-color-1));
+  background-color: var(--bg-color-3);
 }
 
 .separator {

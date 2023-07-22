@@ -49,7 +49,7 @@
   grid-auto-flow: row;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-auto-rows: 1fr;
-  grid-gap: 15px;
+  grid-gap: 30px 13px;
 }
 
 .input-wrapper {

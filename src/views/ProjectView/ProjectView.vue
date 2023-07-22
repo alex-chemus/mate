@@ -100,11 +100,11 @@ const ownsProject = computed(() => {
       />
     </template>
 
-    <template #partners>
+    <!-- <template #partners>
       <Partners
         :partners="partners"
       />
-    </template>
+    </template> -->
 
     <template #about v-if="project.description.length">
       <About :text="project.description" />
@@ -117,9 +117,9 @@ const ownsProject = computed(() => {
     <template #posts v-if="getPosts && authors">
       <post-widget
         v-for="post in getPosts" :key="post.date.unixTime"
-        :post-info="post"
-        :project-info="project"
-        :author-info="authors!.find((i) => i.postID === post.id)!.author"
+        :post="post"
+        :project="project"
+        :author="authors!.find((i) => i.postID === post.id)!.author"
         @reload="updatePost"
       />
     </template>

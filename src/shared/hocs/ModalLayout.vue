@@ -37,14 +37,15 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   max-height: 90vh;
   overflow: hidden;
   height: 100%;
+  background-color: var(--bg-color-1);
 
-  &.light {
-    background-color: var(--light);
-  }
+  // &.light {
+  //   background-color: var(--light);
+  // }
 
-  &.dark {
-    background-color: #1F1D2C;
-  }
+  // &.dark {
+  //   background-color: #1F1D2C;
+  // }
 }
 
 .close-button {

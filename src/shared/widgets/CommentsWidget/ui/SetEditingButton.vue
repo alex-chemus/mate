@@ -22,5 +22,10 @@ const emit = defineEmits<{
 
 .set-editing-button {
   color: var(--text-color-1);
+  transition: var(--fast);
+
+  &:is(:hover, :focus) {
+    color: var(--accent);
+  }
 }
 </style>

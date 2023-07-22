@@ -25,7 +25,7 @@ const computedProjects = computed(() => {
   <section v-if="projects.length" class="projects-section" :class="theme">
     <h4 class="projects-title" :class="theme">
       Последние проекты
-      <span>{{ projects.length }}</span>
+      <!-- <span>{{ projects.length }}</span> -->
     </h4>
 
     <div v-if="!projects.length">У вас нет проектов</div>
@@ -83,15 +83,18 @@ const computedProjects = computed(() => {
 @import '@/assets/styles/style.scss';
 
 .projects-section {
-  padding: 25px 18px;
-  border: 1px solid color.change($gray-1, $alpha: .25);
+  // padding: 25px 18px;
+  padding: 23px;
+  // border: 1px solid color.change($gray-1, $alpha: .25);
+  border: var(--border-2);
   border-radius: 13px;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
+  @include flex(flex-start, stretch, column);
+  gap: 21px;
 }
 
 .projects-title {
-  margin-bottom: 26px;
-  @include findcreek-medium(14px, var(--heading-color-2));
+  @include findcreek-medium(16px, var(--heading-color-1));
 
   span {
     @include noto-sans-bold(inherit, var(--text-color-1));
@@ -150,7 +153,7 @@ const computedProjects = computed(() => {
 }
 
 .project-wrapper {
-  color: var(--heading-color-2);
+  color: var(--heading-color-1);
 
   h5 {
     @include montserrat-bold(14px, currentColor);
@@ -166,10 +169,6 @@ const computedProjects = computed(() => {
   small span {
     font-family: var(--noto-sans);
   }
-}
-
-.more-button-wrapper {
-  margin-top: 20px;
 }
 
 .project-form-link {

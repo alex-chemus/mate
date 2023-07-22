@@ -55,12 +55,13 @@ const { theme } = useTheme()
 
 .search-wrapper {
   //color: var(--gray-1);
-  border: 1px solid color.change($gray-1, $alpha: 0.25);
+  // border: 1px solid color.change($gray-1, $alpha: 0.25);
+  border: var(--border-1);
   border-radius: 10px;
   padding: 10px;
   height: 40px;
   @include flex(flex-start, stretch);
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
   color: var(--text-color-1);
 
   & > *:not(:last-child) {

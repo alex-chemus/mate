@@ -2,7 +2,6 @@
 import { defineProps } from 'vue'
 
 defineProps<{
-  title: string,
   avatar: string,
   author: string,
   authorId: number,
@@ -16,12 +15,12 @@ defineProps<{
     <div class="title-container">
       <img :src="avatar" alt="" class="avatar" />
 
-      <div class="title-wrapper">
-        <h6 class="title">{{ title }}</h6>
-        <p class="author">
+      <div class="author-wrapper">
+        <h6 class="author">
           <router-link :to="`/user/${authorId}`">{{ author }}</router-link>
-          от лица
-          <strong>@{{ textId }}</strong>
+        </h6>
+        <p class="text-id">
+          @{{ textId }}
         </p>
       </div>
     </div>
@@ -39,7 +38,7 @@ header {
 
 .title-container {
   @include flex(flex-start, center);
-  gap: 11px;
+  gap: 10px;
 }
 
 .avatar {
@@ -50,31 +49,25 @@ header {
   background-color: var(--gray-1);
 }
 
-.title-wrapper {
+.author-wrapper {
   & > *:not(:last-child) {
     margin-bottom: 3px;
   }
 }
 
-.title {
-  @include findcreek-medium(13px, var(--heading-color-2));
-  margin: 0;
-}
-
 .author {
-  @include findcreek(11px, var(--text-color-1));
-  letter-spacing: -0.025em;
+  @include findcreek-medium(14px, var(--heading-color-1));
+  margin: 0;
+  margin-bottom: 4px;
 
   a {
     text-decoration: none;
     color: inherit;
   }
+}
 
-  strong {
-    font-family: var(--findcreek-medium);
-    font-weight: 500;
-    color: var(--heading-color-2)
-  }
+.text-id {
+  @include findcreek(12px, var(--text-color-2));
 }
 
 .date-tag {
@@ -82,8 +75,7 @@ header {
   height: 20px;
   padding: 0 10px;
   @include flex(center, center);
-  @include findcreek(11px, var(--text-color-1));
-  letter-spacing: -0.03em;
+  @include findcreek(11px, var(--text-color-2));
   border-radius: 100vmax;
 }
 </style>

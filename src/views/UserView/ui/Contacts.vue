@@ -23,7 +23,7 @@ const { theme } = useTheme()
         class="media-logo"
       />
       <div v-else class="media-logo">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+        <svg width="27" height="27" viewBox="0 0 24 24">
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-world-question" />
         </svg>
       </div>
@@ -45,7 +45,7 @@ const { theme } = useTheme()
   grid-auto-rows: 1fr;
   grid-auto-flow: row;
   justify-items: center;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-2);
   // border: 1px solid color.change($gray-1, $alpha: .4);
   border: var(--border-2);
 }
@@ -56,7 +56,8 @@ const { theme } = useTheme()
   border-radius: 15px;
   @include flex(center, center);
   transition: var(--fast);
-  border: var(--border-1);
+  border: var(--border-2);
+  background-color: var(--bg-color-3);
 
   &:hover,
   &:focus {
@@ -70,7 +71,7 @@ const { theme } = useTheme()
   object-fit: contain;
   object-position: 50% 50%;
   @include flex;
-  color: var(--heading-color-2);
+  color: var(--heading-color-1);
 
   &.placeholder {
     border-radius: 100vmax;

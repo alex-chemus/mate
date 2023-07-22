@@ -58,11 +58,11 @@ const emit = defineEmits<{
 
 .filter-button {
   @include findcreek-medium(14px, var(--text-color-1));
-  letter-spacing: -0.03em;
   height: 30px;
   padding: 0 18px;
   border-radius: 6px;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-3);
+  border: var(--border-1);
 
   &.selected {
     color: var(--accent);

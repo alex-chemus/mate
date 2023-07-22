@@ -38,7 +38,7 @@ header {
 
 .author-container {
   @include flex(flex-start, center);
-  gap: 11px;
+  gap: 10px;
 }
 
 .avatar {
@@ -56,8 +56,9 @@ header {
 }
 
 .author {
-  @include findcreek-medium(13px, var(--heading-color-2));
+  @include findcreek-medium(14px, var(--heading-color-1));
   margin: 0;
+  margin-bottom: 4px;
 
   a {
     text-decoration: none;
@@ -66,8 +67,7 @@ header {
 }
 
 .text-id {
-  @include findcreek(11px, var(--heading-color-2));
-  letter-spacing: -0.025em;
+  @include findcreek(12px, var(--text-color-2));
 }
 
 // .author {
@@ -93,10 +93,11 @@ header {
   height: 20px;
   padding: 0 10px;
   @include flex(center, center);
-  font-family: var(--findcreek);
-  font-size: 11px;
-  letter-spacing: -0.03em;
-  color: var(--text-color-1);
+  @include findcreek(11px, var(--text-color-2));
+  // font-family: var(--findcreek);
+  // font-size: 11px;
+  // letter-spacing: -0.03em;
+  // color: var(--text-color-1);
   border-radius: 100vmax;
 }
 </style>

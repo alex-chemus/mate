@@ -41,7 +41,6 @@ watch(() => props.currentTab, () => {
       <section class="modal-container">
         <aside>
           <slot name="user-card" />
-          <h6 :class="theme">Меню</h6>
           <slot name="tabs" />
         </aside>
 

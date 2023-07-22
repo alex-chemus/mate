@@ -25,14 +25,16 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
 </script>
 
 <template>
-  <div class="reply-comment">
+  <div class="reply-comment" :class="replyToId === reply.id ? 'active-form' : ''">
     <router-link :to="`/user/${reply.authorID}`" class="heading-container">
       <img class="avatar" :src="reply.authorData.avatar.avatarCompressed" alt="" />
       <div class="heading-wrapper">
-        <h6 class="name">{{ reply.authorData.firstName }} {{ reply.authorData.lastName }}</h6>
+        <div class="name-wrapper">
+          <h6 class="name">{{ reply.authorData.firstName }} {{ reply.authorData.lastName }}</h6>
+          <p class="time">{{ getTime({ unixTime: reply.date.unixTime, date: reply.date.date }) }}</p>
+        </div>
         <p class="name-tag">@{{ reply.authorData.textID }}</p>
       </div>
-      <p class="time">{{ getTime({ unixTime: reply.date.unixTime, date: reply.date.date }) }}</p>
     </router-link>
 
     <div
@@ -53,7 +55,7 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
       </p>
     </template>
 
-    <div class="buttons-container">
+    <div class="buttons-container" :class="replyToId === reply.id ? 'active-form' : ''">
       <slot name="add-reply-button" />
 
       <slot name="set-editing-button" />
@@ -74,6 +76,12 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
 
+.reply-comment {
+  &.active-form {
+    margin-bottom: 10px;
+  }
+}
+
 .heading-container {
   @include flex(flex-start, center);
   gap: 10px;
@@ -88,29 +96,36 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
   object-fit: cover;
 }
 
+.name-wrapper {
+  @include flex(flex-start, baseline);
+  gap: 12px;
+}
+
 .name {
-  margin-bottom: 1px;
-  @include findcreek-medium(14px, var(--heading-color-2));
+  margin-bottom: 2px;
+  @include findcreek-medium(14px, var(--heading-color-1));
 }
 
 .name-tag {
-  @include findcreek(11px, var(--text-color-1));
+  @include findcreek(12px, var(--text-color-2));
 }
 
 .time {
-  @include findcreek(10px, var(--text-color-1));
-  align-self: flex-start;
+  @include findcreek(12px, var(--text-color-2));
 }
 
 .comment-text {
-  @include findcreek(13px, var(--heading-color-1));
+  @include findcreek(14px, var(--heading-color-1));
   margin-bottom: 10px;
 }
 
 .buttons-container {
-  margin-bottom: 12px;
   @include flex(flex-start, center);
   gap: 13px;
+
+  &.active-form {
+    margin-bottom: 15px;
+  }
 }
 
 .editing-wrapper {
@@ -144,7 +159,7 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
 }
 
 .reply-button {
-  @include findcreek(11px, var(--text-color-1));
+  @include findcreek(12px, var(--text-color-1));
   transition: var(--fast);
 
   &:hover,

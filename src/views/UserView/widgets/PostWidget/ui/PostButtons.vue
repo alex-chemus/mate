@@ -1,19 +1,14 @@
 <script lang="ts" setup>
-import {
-  defineProps, defineEmits, ref, computed
-} from 'vue'
+import { defineProps, defineEmits, computed } from 'vue'
 import { useTheme } from '@/shared/utils'
-import { Popover } from '@/shared/hocs'
-import {
-  ThumbUp, ThumbUpFilled, ThumbDown, ThumbDownFilled
-} from '@/shared/icons'
-import PostPopupLayout from './PostPopupLayout.vue'
+import { ThumbDownFilled } from '@/shared/icons'
 
 const { theme } = useTheme()
 
 const props = defineProps<{
   likes: number,
   dislikes: number,
+  comments: number,
   // comments: string,
   reaction: 0 | 1 | -1
 }>()
@@ -23,8 +18,6 @@ const emit = defineEmits<{
   (e: 'dislike'): void,
   (e: 'comment'): void
 }>()
-
-const isOpen = ref(false)
 
 const getLikes = computed(() => {
   if (props.likes < 1_000) return props.likes.toString()
@@ -57,16 +50,23 @@ const getDislikes = computed(() => {
 
 <template>
   <div class="buttons-container">
-    <button @click="emit('like')" :class="[theme]" class="button">
-      <thumb-up-filled v-if="reaction === 1" />
-      <thumb-up v-else />
+    <button @click="emit('like')" :class="[theme, { active: reaction === 1 }]" class="button like">
+      <svg width="16" height="16" viewBox="0 0 24 24">
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-heart-filled" />
+      </svg>
       <span>{{ getLikes }}</span>
     </button>
 
-    <button @click="emit('dislike')" :class="[theme]" class="button">
-      <thumb-down-filled v-if="reaction === -1" />
-      <thumb-down v-else />
+    <button @click="emit('dislike')" :class="[theme, { active: reaction === -1 }]" class="button dislike">
+      <thumb-down-filled />
       <span>{{ getDislikes }}</span>
+    </button>
+
+    <button @click="emit('comment')" class="button">
+      <svg width="16" height="16" viewBox="0 0 24 24">
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-message" />
+      </svg>
+      <span>{{ comments }}</span>
     </button>
 
     <!-- <button @click="emit('comment')" :class="theme" class="button --offset">
@@ -112,12 +112,24 @@ const getDislikes = computed(() => {
 }
 
 .button {
-  height: 33px;
-  border-radius: 30px;
+  height: 28px;
+  border-radius: 100vmax;
   padding: 0 9px;
   border: 1px solid transparent;
   transition: var(--fast);
   background-color: var(--bg-color-3);
+  gap: 7px;
+  @include findcreek(12px, var(--text-color-2));
+
+  &.like.active {
+    background-color: var(--red);
+    color: white;
+  }
+
+  &.dislike.active {
+    background-color: var(--text-color-1);
+    color: var(--bg-color-2);
+  }
 
   &.--round {
     padding: 0;
@@ -129,32 +141,12 @@ const getDislikes = computed(() => {
     margin-right: auto;
   }
 
-  &.active {
-    color: var(--accent) !important;
-  }
-
-  &.light {
-    color: #0f0f0f;
-  }
-
-  &.dark {
-    color: var(--light);
-  }
-
-  & > *:not(:last-child) {
-    margin-right: 6px;
-  }
+  // &.active {
+  //   color: var(--accent);
+  // }
 
   span {
-    @include noto-sans-bold(11px);
-  }
-
-  &.light span {
-    color: #8D9095;
-  }
-
-  &.dark span {
-    color: var(--light);
+    @include findcreek-medium(12px, currentColor);
   }
 
   &:hover {

@@ -52,6 +52,7 @@ const getSubsTitle = computed(() => {
   border-radius: 6px;
   transition: var(--fast);
   border: var(--border-2);
+  background-color: var(--bg-color-2);
   overflow: hidden;
   @include flex(flex-start, stretch, column);
 
@@ -71,9 +72,9 @@ const getSubsTitle = computed(() => {
 }
 
 .title-container {
-  padding: 10px 20px;
+  padding: 11px 20px;
   @include flex(flex-start, center);
-  gap: 8px;
+  gap: 10px;
 }
 
 .avatar {
@@ -86,12 +87,12 @@ const getSubsTitle = computed(() => {
 .title-wrapper {
   h6 {
     margin: 0;
-    margin-bottom: 1px;
-    @include findcreek-medium(13px, var(--heading-color-2));
+    margin-bottom: 2px;
+    @include findcreek-medium(14px, var(--heading-color-1));
   }
 
   p {
-    @include noto-sans(11px, var(--text-color-1));
+    @include findcreek(12px, var(--text-color-2));
   }
 }
 
