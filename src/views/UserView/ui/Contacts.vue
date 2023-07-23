@@ -59,10 +59,14 @@ const { theme } = useTheme()
   border: var(--border-2);
   background-color: var(--bg-color-3);
 
-  &:hover,
-  &:focus {
-    box-shadow: 0 6px 17px 4px rgb(0 0 0 / .1);
+  &:is(:hover, :focus) {
+    box-shadow: var(--hover-element-shadow);
   }
+
+  // &:hover,
+  // &:focus {
+  //   box-shadow: 0 6px 17px 4px rgb(0 0 0 / .1);
+  // }
 }
 
 .media-logo {

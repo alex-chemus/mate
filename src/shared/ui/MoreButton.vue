@@ -38,14 +38,19 @@ const emit = defineEmits<{
   letter-spacing: .2%;
   // color: var(--accent, $accent);
   @include findcreek-medium(14px, var(--heading-color-1));
+  // box-shadow: var(--hover-element-shadow);
 
-  &.light:hover {
-    box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);
-    color: var(--accent);
+  &:is(:hover, :focus) {
+    box-shadow: var(--hover-element-shadow);
   }
 
-  &.dark:hover {
-    box-shadow: 0 0 10px 0 rgba(0 0 0 / .5);
-  }
+  // &.light:hover {
+  //   box-shadow: 0 2px 6px 0 rgba(0 0 0 / .25);
+  //   color: var(--accent);
+  // }
+
+  // &.dark:hover {
+  //   box-shadow: 0 2px 12px 0 rgba(0 0 0 / .5);
+  // }
 }
 </style>

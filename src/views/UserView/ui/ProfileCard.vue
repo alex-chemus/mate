@@ -196,6 +196,11 @@ const { openSettings } = useSettings()
   padding: 7px;
   transition: var(--fast);
   border: var(--border-2);
+  // box-shadow: var(--hover-element-shadow);
+
+  &:is(:hover, :focus) {
+    box-shadow: var(--hover-element-shadow);
+  }
 
   &:not(:last-child) {
     margin-bottom: 10px;
@@ -209,19 +214,19 @@ const { openSettings } = useSettings()
   //   border: 1px solid color.change($gray-1, $alpha: .2);
   // }
 
-  &.light:hover,
-  &.light:focus {
-    box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);
-  }
+  // &.light:hover,
+  // &.light:focus {
+  //   box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);
+  // }
 
   // &.dark {
   //   border: 1px solid color.change($gray-3, $alpha: .5);
   // }
 
-  &.dark:hover,
-  &.dark:focus {
-    box-shadow: 0 0 10px 0 rgba(0 0 0 / .5);
-  }
+  // &.dark:hover,
+  // &.dark:focus {
+  //   box-shadow: 0 0 10px 0 rgba(0 0 0 / .5);
+  // }
 
   .logo {
     position: absolute;

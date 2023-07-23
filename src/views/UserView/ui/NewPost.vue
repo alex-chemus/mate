@@ -101,6 +101,11 @@ const { openPostEditor } = usePostEditor()
   border-radius: 13px;
   background-color: var(--bg-color-2);
   @include findcreek(14px, var(--heading-color-1));
+  transition: var(--fast);
+
+  &:is(:hover, :focus) {
+    box-shadow: var(--hover-block-shadow);
+  }
 }
 
 .content-wrapper {
