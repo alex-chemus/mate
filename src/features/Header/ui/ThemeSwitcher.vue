@@ -50,7 +50,7 @@ const { theme } = useTheme()
   // top: 3px;
 
   &.light {
-    background-color: var(--light);
+    background-color: white;
     color: #737278;
     // right: 3px;
     transform: translateX(6.5px);
