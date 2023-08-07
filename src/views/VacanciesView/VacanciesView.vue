@@ -33,7 +33,7 @@ const currentVacancy = useCurrentVacancy({ vacancies })
         :selected-theme="selectedTheme"
         :themes="themes"
         @select-theme="theme => {
-          selectedTheme = theme
+          selectedTheme = selectedTheme?.id === theme.id ? null : theme
           currentVacancy = null
         }"
         @input="onType"
