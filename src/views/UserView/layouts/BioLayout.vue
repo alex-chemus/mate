@@ -69,7 +69,6 @@ const getText = computed(() => {
 .bio-section {
   width: 100%;
   border-radius: 13px;
-  // border: 1px solid rgba(118 118 118 / .25);
   border: var(--border-2);
   padding: 23px;
   color: var(--heading-color-2);
@@ -77,6 +76,11 @@ const getText = computed(() => {
   @include flex(flex-start, stretch, column);
   gap: 21px;
   text-align: left;
+  transition: var(--fast);
+
+  &:is(:hover, :focus) {
+    box-shadow: var(--hover-block-shadow);
+  }
 
   h5 {
     @include findcreek-medium(16px, currentColor);

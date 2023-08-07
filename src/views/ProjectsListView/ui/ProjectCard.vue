@@ -55,6 +55,11 @@ const getSubsTitle = computed(() => {
   background-color: var(--bg-color-2);
   overflow: hidden;
   @include flex(flex-start, stretch, column);
+  transition: var(--fast);
+
+  &:is(:hover, :focus) {
+    box-shadow: var(--hover-block-shadow);
+  }
 
   &:hover {
     border: 1px solid var(--accent);

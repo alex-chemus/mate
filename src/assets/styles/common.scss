@@ -78,8 +78,8 @@
   --text-color-2: var(--light-text-color-2);
   --border-1: 1px solid rgb(118 118 118 / .3);
   --border-2: 1px solid rgb(118 118 118 / .2);
-  --hover-element-shadow: 0 2px 6px 0 rgba(0 0 0 / .15);
-  --hover-block-shadow: 0 2px 6px 0 rgba(0 0 0 / .25);
+  --hover-element-shadow: 0 2px 6px 0 rgba(0 0 0 / .1);
+  --hover-block-shadow: 0 2px 6px 0 rgba(0 0 0 / .15);
 
   color-scheme: light;
 }
@@ -104,7 +104,7 @@
   --border-1: 1px solid rgb(118 118 118 / .4);
   --border-2: 1px solid rgb(118 118 118 / .3);
   --hover-element-shadow: 0 2px 12px 0 rgba(0 0 0 / .5);
-  --hover-block-shadow: 0 2px 14px 0 rgba(0 0 0 / .7);
+  --hover-block-shadow: 0 2px 14px 0 rgba(0 0 0 / .8);
 
   color-scheme: dark;
 }

@@ -63,6 +63,11 @@ const emit = defineEmits<{
   border-radius: 6px;
   background-color: var(--bg-color-3);
   border: var(--border-1);
+  transition: var(--fast);
+
+  &:is(:hover, :focus) {
+    box-shadow: var(--hover-element-shadow);
+  }
 
   &.selected {
     color: var(--accent);

@@ -105,8 +105,11 @@ const isHovered = ref(false)
   height: 200px;
   @include flex(flex-start, stretch, column);
   gap: 17px;
-  // cursor: pointer;
-  // text-align: left;
+  transition: var(--fast);
+
+  &:is(:hover, :focus) {
+    box-shadow: var(--hover-element-shadow);
+  }
 
   &.current {
     border: 1px solid var(--accent);

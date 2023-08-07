@@ -37,14 +37,18 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
   // font-size: 16px;
   transition: var(--fast, $fast);
 
-  &.light:hover,
-  &.light:focus {
-    box-shadow: 0 0 12px 0 color.change($accent-1, $alpha: .4);
+  &:is(:hover, :focus) {
+    box-shadow: 0 2px 12px 0 var(--light-accent);
   }
 
-  &.dark:hover,
-  &.dark:focus {
-    box-shadow: 0 0 12px 0 color.change($accent-1, $alpha: .7);
-  }
+  // &.light:hover,
+  // &.light:focus {
+  //   box-shadow: 0 0 12px 0 color.change($accent-1, $alpha: .4);
+  // }
+
+  // &.dark:hover,
+  // &.dark:focus {
+  //   box-shadow: 0 0 12px 0 color.change($accent-1, $alpha: .7);
+  // }
 }
 </style>
