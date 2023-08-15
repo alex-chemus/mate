@@ -35,7 +35,7 @@ const authModule: Module<AuthModuleState, RootState> = {
     [authActions.REDIRECT]() {
       const redirectPath = encodeURIComponent(`${window.location.protocol}//${window.location.hostname}/redirect`)
       const href = `
-        https://id.findcreek.com/auth/?redirectTo=${redirectPath}&returnToken=true
+        ${process.env.VUE_APP_REDIRECT_URL}/auth/?redirectTo=${redirectPath}&returnToken=true
       `
       window.location.href = href
     }
