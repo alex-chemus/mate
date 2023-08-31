@@ -37,7 +37,7 @@ const authModule: Module<AuthModuleState, RootState> = {
       const href = `
         ${process.env.VUE_APP_REDIRECT_URL}/auth/?redirectTo=${redirectPath}&returnToken=true
       `
-      window.location.href = href
+      // window.location.href = href
     }
   }
 }

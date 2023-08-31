@@ -12,7 +12,10 @@ const useAuthors = (
   const fetchFullUsers = useFetchFullUsers('[views/ProjectsListView/useAuthors] Failed to fetch project authors')
 
   const getAuthors = async () => {
-    if (projects.value === null || projects.value.length === 0) return
+    if (projects.value === null || projects.value.length === 0) {
+      authors.value = []
+      return
+    }
 
     const authorIDs = [
       ...new Set(projects.value.map((p) => p.founderID))

@@ -48,6 +48,11 @@ const { theme } = useTheme()
   background-color: var(--bg-color-2);
   // border: 1px solid color.change($gray-1, $alpha: .4);
   border: var(--border-2);
+
+  @include xl {
+    padding: 12px;
+    background-color: transparent;
+  }
 }
 
 .media-item {
@@ -61,6 +66,10 @@ const { theme } = useTheme()
 
   &:is(:hover, :focus) {
     box-shadow: var(--hover-element-shadow);
+  }
+
+  @include xl {
+    width: 40px;
   }
 
   // &:hover,

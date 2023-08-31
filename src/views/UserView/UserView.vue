@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { PostFormWidget } from '@/shared/widgets'
-import { ViewLayout, BioLayout } from './layouts'
+import { useWindowWidth } from '@/shared/utils'
 import { PostWidget } from './widgets'
+import ViewLayout from './ViewLayout.vue'
 import {
-  Partners, ProfileCard,
+  ProfileCard, Bio,
   Projects, Skills, Contacts, NewPost,
   Subscriptions, PostsObserver
 } from './ui'
 import {
   usePageInfo, useSubscribe, useSubscriptions, usePosts
 } from './hooks'
-import { Partner } from './types'
 
 const { uploadSubscribe, uploadUnsubscribe, subUpdate } = useSubscribe()
 const { fullUsers, fullProjects, isMe } = usePageInfo({
@@ -32,16 +32,12 @@ const skills = computed(() => {
   return fullUsers.value[0].skills.split(', ')
 })
 
-const partners = ref<Partner[]>([
-  { link: '/google', id: 0 },
-  { link: '/yandex', id: 1 },
-  { link: '/facebook', id: 2 },
-  { link: '/vk', id: 3 },
-  { link: '/tesla', id: 4 },
-  { link: '/apple', id: 5 },
-  { link: '/profile', id: 6 },
-  { link: '/profile', id: 7 }
-])
+const { windowWidth, breakpoints } = useWindowWidth()
+
+const bioRefresher = ref(Symbol())
+const openBioModal = () => {
+  bioRefresher.value = Symbol()
+}
 </script>
 
 <template>
@@ -62,23 +58,27 @@ const partners = ref<Partner[]>([
         :banner="user.profileCover ? user.profileCover : undefined"
         :can-edit="isMe(user.findcreekID)"
         :is-subscribed="user.isSubscribed"
+        :bio="user.bio"
+        :projects-count="fullProjects?.length"
         @subscribe="uploadSubscribe(fullUsers![0].findcreekID)"
         @unsubscribe="uploadUnsubscribe(fullUsers![0].findcreekID)"
+        @name-click="openBioModal"
       />
     </template>
 
     <template #contacts>
       <contacts
+        v-if="windowWidth >= breakpoints.xl"
         :media="user.contacts.socialNetworks"
       />
     </template>
 
     <template #skills>
-      <Skills v-if="skills" :is-me="isMe(user.findcreekID)" :skills="skills" />
+      <Skills v-if="skills && windowWidth >= breakpoints.xl" :is-me="isMe(user.findcreekID)" :skills="skills" />
     </template>
 
     <template #bio>
-      <bio-layout
+      <bio
         :bio="user.bio"
         :is-me="isMe(user.findcreekID)"
         :emails="user.contacts.emailAddresses"
@@ -87,26 +87,17 @@ const partners = ref<Partner[]>([
         :phones="user.contacts.phoneNumbers"
         :city="user.address.cityRusName"
         :skills="user.skills"
+        :media="windowWidth < breakpoints.xl ? user.contacts.socialNetworks : undefined"
+        :refresher="bioRefresher"
       />
     </template>
-
-    <!-- <template #partners>
-      <Partners :partners="partners"  />
-    </template> -->
 
     <template #new-post>
       <new-post
         v-if="isMe(user.findcreekID)"
         :img="user.avatar.avatarCompressed ?? user.avatar.avatar"
       />
-      <!-- <post-editor
-        v-if="isMe(user.findcreekID)"
-        type="user" :img="user.avatar.avatarCompressed ?? user.avatar.avatar" /> -->
     </template>
-
-    <!-- <template #post>
-      <post />
-    </template> -->
 
     <template #posts v-if="posts">
       <post-widget

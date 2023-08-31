@@ -1,10 +1,13 @@
 <script lang="ts" setup>
-import { Alert, Settings, Header } from '@/features'
+import {
+  Alert, Settings, Header, MobileNavbar
+} from '@/features'
 </script>
 
 <template>
   <alert />
   <settings />
+  <mobile-navbar />
   <section class="main-section">
     <Header />
     <slot />
@@ -17,6 +20,14 @@ import { Alert, Settings, Header } from '@/features'
 .main-section {
   @include container;
   padding: 35px 0;
+
+  @include xl {
+    padding-inline: 15px;
+  }
+
+  @include sm {
+    padding-inline: 5px;
+  }
 
   @include flex(flex-start, stretch, column);
   gap: 25px;

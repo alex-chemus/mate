@@ -13,23 +13,15 @@ defineProps<{
   </section>
 
   <section v-else class="main-section">
-    <!--<Header />-->
-    <!-- <slot name="header" /> -->
-
     <main class="main-container">
       <aside>
         <div>
           <slot name="profile-card" />
         </div>
-        <!-- <div>
-          <slot name="subscriptions" />
-        </div> -->
       </aside>
 
-      <section class="center-container">
-        <div class="bio-wrapper">
-          <slot name="about" />
-        </div>
+      <section class="center-container | flex flex-col lg:gap-[25px] gap-[20px]">
+        <slot name="about" />
         <slot name="partners" />
         <div class="new-post-wrapper">
           <slot name="new-post" />
@@ -40,10 +32,7 @@ defineProps<{
         </div>
       </section>
 
-      <aside class="project-aside">
-        <!-- <div>
-          <slot name="projects" />
-        </div> -->
+      <aside class="projects-aside">
         <div>
           <slot name="employees" />
         </div>
@@ -56,12 +45,8 @@ defineProps<{
 @import '@/assets/styles/style.scss';
 
 .main-section {
-  // @include container;
-  // padding-top: 50px;
-
   &.--loading {
     @include flex(center, center);
-    // height: 100vh;
   }
 }
 
@@ -69,7 +54,27 @@ defineProps<{
   display: grid;
   grid-template-columns: 340px minmax(0, 1fr) 340px;
   grid-gap: 30px;
-  // margin-top: 40px;
+
+  @include xl {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    grid-template-rows: min-content 1fr;
+  }
+
+  @include lg {
+    @include flex(flex-start, stretch, column);
+    gap: 20px;
+  }
+}
+
+.center-container {
+  @include xl {
+    width: max(80%, 550px);
+    margin: 0 auto;
+  }
+
+  @include md {
+    width: 100%;
+  }
 }
 
 aside {
@@ -78,22 +83,18 @@ aside {
   }
 }
 
-.new-post-wrapper {
-  margin: 18px 0 28px;
-}
-
 .projects-aside {
   & > *:not(:last-child) {
     margin-bottom: 23px;
   }
-}
 
-.bio-wrapper {
-  margin-bottom: 23px;
-}
+  @include xl {
+    grid-row: 1 / span 2;
+    grid-column: 2 / 3;
+  }
 
-.posts-wrapper {
-  @include flex(flex-start, stretch, column);
-  gap: 20px;
+  @include lg {
+    display: none;
+  }
 }
 </style>

@@ -72,6 +72,10 @@ const getThemes = computed(() => {
 .heading {
   @include findcreek-bold(30px, var(--heading-color-2));
   margin-bottom: 28px;
+
+  @include lg {
+    font-size: 24px;
+  }
 }
 
 .text {

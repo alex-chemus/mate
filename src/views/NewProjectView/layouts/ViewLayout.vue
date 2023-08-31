@@ -45,6 +45,14 @@ defineProps<{
   align-self: center;
   @include flex(flex-start, center, column);
   gap: 30px;
+
+  @include lg {
+    padding: 50px 40px;
+  }
+
+  @include sm {
+    padding: 25px 20px;
+  }
 }
 
 .content-wrapper {
@@ -60,6 +68,16 @@ defineProps<{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 28px;
+
+    @include md {
+      display: flex;
+      grid-gap: 10px;
+    }
+  }
+
+  @include md {
+    @include flex(flex-start, stretch, column);
+    gap: 10px;
   }
 }
 </style>

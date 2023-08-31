@@ -1,9 +1,10 @@
-<script lang="ts" setup>
+<script lang="tsx" setup>
 import { defineProps, defineEmits } from 'vue'
-import { Logo } from '@/shared/ui'
-import { useTheme, useSettings } from '@/shared/utils'
+import { IconPencil } from '@tabler/icons-vue'
+import { Logo } from '@/shared/ui';
+import { useTheme, useSettings, useWindowWidth } from '@/shared/utils'
 
-defineProps<{
+const props = defineProps<{
   name: string,
   img?: string,
   banner?: string,
@@ -11,7 +12,8 @@ defineProps<{
   following: string,
   nickname: string,
   ownsProject?: boolean,
-  isSubscribed?: boolean
+  isSubscribed?: boolean,
+  about?: string
 }>()
 
 const emit = defineEmits<{
@@ -21,16 +23,26 @@ const emit = defineEmits<{
 
 const { theme } = useTheme()
 const { openSettings } = useSettings()
+const { windowWidth, breakpoints } = useWindowWidth()
+
+const EditOrSubButton = () => {
+  return props.ownsProject ? (
+    <button onClick={() => openSettings('projects')} class={`button edit-button ${theme.value} | xl:w-full`}>
+      <span>{windowWidth.value > breakpoints.sm ? 'Редактировать профиль' : <IconPencil />}</span>
+    </button>
+  ) : (
+    <button class={`button logo-button ${theme.value} | xl:w-full`} onClick={() => props.isSubscribed ? emit('unsubscribe') : emit('subscribe')}>
+      <div class="logo">
+        <Logo height="19" width="15" />
+      </div>
+      <strong>{ props.isSubscribed ? 'Отписаться' : 'Подписаться' }</strong>
+    </button>
+  )
+}
 </script>
 
 <template>
   <section class="card-section" :class="theme">
-    <!-- <button class="more-button">
-      <svg width="25" height="25" viewBox="0 0 25 25">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-dots-vertical" />
-      </svg>
-    </button> -->
-
     <div v-if="banner" class="cover-container">
       <img :src="banner" :alt="name" class="banner-img" />
 
@@ -42,39 +54,21 @@ const { openSettings } = useSettings()
     </div>
 
     <div class="profile-container">
-      <div class="content-container">
-        <!-- <div class="content-wrapper" :class="theme">
-          <h5>{{ followers }}</h5>
-          <p>Подписчиков</p>
-        </div> -->
-
+      <div class="content-container | xl:mb-[14px] xl:mr-0 mr-[14px]">
         <img v-if="img" :src="img" :alt="name" class="avatar" />
         <div v-else class="placeholder" />
-
-        <!-- <div class="content-wrapper" :class="theme">
-          <h5>{{ following }}</h5>
-          <p>Подписок</p>
-        </div> -->
       </div>
 
-      <h3 class="fullname" :class="theme">{{ name }}</h3>
-      <p class="nickname" :class="theme">@{{ nickname }}</p>
+      <div class="flex flex-col xl:items-center items-start gap-[4px] mr-auto xl:mr-0 xl:mb-[32px]">
+        <h3 class="fullname" :class="theme">{{ name }}</h3>
+        <p class="nickname" :class="theme">@{{ nickname }}</p>
+      </div>
 
-      <button
-        v-if="!ownsProject" class="button logo-button" :class="theme"
-        @click="isSubscribed ? emit('unsubscribe') : emit('subscribe')"
-      >
-        <div class="logo">
-          <logo height="19" width="15" />
-        </div>
-        <strong>{{ isSubscribed ? 'Отписаться' : 'Подписаться' }}</strong>
-      </button>
+      <edit-or-sub-button />
+    </div>
 
-      <button v-if="ownsProject" @click="openSettings('projects')" class="button edit-button" :class="theme">
-        <span>Редактировать профиль</span>
-      </button>
-
-      <!-- <div class="separator" /> -->
+    <div v-if="windowWidth < breakpoints.xl" class="p-[17px] pt-0 font-findcreek text-[14px] text-text-color-1">
+      {{ about ?? 'Тут пока ничего нет' }}
     </div>
   </section>
 </template>
@@ -86,21 +80,10 @@ const { openSettings } = useSettings()
 .card-section {
   border-radius: 13px;
   overflow: hidden;
-  // border: 1px solid color.change($gray-1, $alpha: .25);
   border: var(--border-2);
   position: relative;
   background-color: var(--bg-color-2);
 }
-
-// .more-button {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   border-radius: 0 0 0 10px;
-//   padding: 6px;
-//   background-color: color.change($gray-1, $alpha: .1);
-//   color: var(--gray-1);
-// }
 
 .cover-button {
   position: absolute;
@@ -134,16 +117,13 @@ const { openSettings } = useSettings()
 .profile-container {
   @include flex(flex-start, center, column);
   padding: 17px;
+
+  @include xl {
+    @include flex(space-between, center, row);
+  }
 }
 
 .content-container {
-  //@include flex(space-between, center);
-  // display: grid;
-  // grid-template-columns: 1fr max-content 1fr;
-  // align-items: center;
-  // align-self: stretch;
-  // margin: 32px 0 12px;
-  margin-bottom: 14px;
   @include flex(center, center);
 }
 
@@ -186,14 +166,13 @@ const { openSettings } = useSettings()
 .nickname {
   @include findcreek(13px, var(--text-color-2));
   margin: 0;
-  margin-bottom: 32px;
 }
 
 .button {
   background-color: transparent;
   @include flex(center, center);
   position: relative;
-  align-self: stretch;
+  /* align-self: stretch; */
   padding: 7px;
   transition: var(--fast);
 

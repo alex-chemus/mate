@@ -31,5 +31,15 @@ defineProps<{
   grid-template-columns: repeat(3, 1fr);
   grid-auto-columns: 1fr;
   grid-gap: 30px;
+  
+  @include lg {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+
+  @include sm {
+    @include flex(flex-start, stretch, column);
+    gap: 15px;
+  }
 }
 </style>

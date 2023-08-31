@@ -4,8 +4,10 @@ import { FullProject, FullUser } from '@/shared/types'
 
 const props = defineProps<{
   project: FullProject,
-  author: FullUser
+  author?: FullUser
 }>()
+
+console.log('props.author', props.author)
 
 const getSubsTitle = computed(() => {
   if (props.project.subscribersNumber === 1) return 'подписчик'
@@ -26,11 +28,8 @@ const getSubsTitle = computed(() => {
       <div v-else class="banner" />
 
       <div class="title-container">
-        <img
-          class="avatar"
-          :src="author.avatar.avatarCompressed ?? author.avatar.avatar"
-          alt=""
-        />
+        <img v-if="author" class="avatar" :src="author.avatar.avatarCompressed ?? author.avatar.avatar" alt="" />
+        <div v-else class="avatar" />
         <div class="title-wrapper">
           <h6>{{ project.name }}</h6>
           <p>{{ project.subscribersNumber }} {{ getSubsTitle }}</p>
@@ -63,6 +62,10 @@ const getSubsTitle = computed(() => {
 
   &:hover {
     border: 1px solid var(--accent);
+  }
+
+  @include md {
+    height: 170px;
   }
 }
 

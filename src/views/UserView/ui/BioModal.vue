@@ -1,9 +1,11 @@
-<script lang="ts" setup>
+<script lang="tsx" setup>
 import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/shared/utils'
 import { ModalLayout } from '@/shared/hocs'
+import { SocialMedia } from '@/shared/types'
+import Contacts from './Contacts.vue'
 
-defineProps<{
+const props = defineProps<{
   bio: string,
   emails: {
     id: number,
@@ -16,7 +18,8 @@ defineProps<{
     phoneNumber: string
   }[],
   city: string,
-  skills: string
+  skills: string,
+  media?: SocialMedia[]
 }>()
 
 const emit = defineEmits<{
@@ -24,11 +27,92 @@ const emit = defineEmits<{
 }>()
 
 const { theme } = useTheme()
+
+const dataList = [
+  {
+    id: 0,
+    useIcon: () => <use href='@/assets/imgs/tabler-sprite.svg#tabler-notes' />,
+    title: 'О себе',
+    render: () => <p>{props.bio}</p>
+  },
+  {
+    id: 1,
+    // icon: 'mail',
+    useIcon: () => <use href='@/assets/imgs/tabler-sprite.svg#tabler-mail' />,
+    title: 'Электронная почта',
+    render: () => (<>{
+      props.emails.map(({ id, emailAddress }) => (
+        <p key={id}>{emailAddress}</p>
+      ))
+    }</>)
+  },
+  {
+    id: 2,
+    // icon: 'hammer',
+    useIcon: () => <use href='@/assets/imgs/tabler-sprite.svg#tabler-hammer' />,
+    title: 'Специальности',
+    render: () => <p>{props.specialties.join(', ')}</p>
+  },
+  {
+    id: 3,
+    // icon: 'registered',
+    useIcon: () => <use href='@/assets/imgs/tabler-sprite.svg#tabler-registered' />,
+    title: 'Был зарегистрирован на платформе',
+    render: () => <p>{props.registrationDate}</p>
+  },
+  {
+    id: 4,
+    // icon: 'id-badge-2',
+    useIcon: () => <use href='@/assets/imgs/tabler-sprite.svg#tabler-id-badge-2' />,
+    title: 'Личная информация',
+    render: () => (
+      <div class="personal-info-wrapper">
+        {
+          props.phones.length && (<>
+            <p class={theme}>Номера телефона:</p>
+            <div>
+              {
+                props.phones.map(({ id, phoneNumber }) => (
+                  <p key={id}>{phoneNumber}</p>
+                ))
+              }
+            </div>
+          </>)
+        }
+        {
+          props.city && (<>
+            <p class={theme}>Город:</p>
+            <p class={`colored ${theme}`}>{props.city}</p>
+          </>)
+        }
+      </div>
+    )
+  }
+]
+
+const RenderDataList = () => {
+  return (
+    <ul class="content-list">{
+      dataList.map(item => (
+        <li key={item.id} class="content-item">
+          <svg class={`icon ${theme}`} width="24" height="24" viewBox="0 0 24 24">
+            {/* <use href={`@/assets/imgs/tabler-sprite.svg#tabler-${item.icon}`} /> */}
+            <item.useIcon />
+          </svg>
+          <h6>{item.title}</h6>
+          <item.render />
+        </li>
+      ))
+    }</ul>
+  )
+}
 </script>
 
 <template>
   <modal-layout @close="emit('close')">
     <h5 class="title" :class="theme">Подробная информация о пользователе</h5>
+
+    <!-- <render-data-list /> -->
 
     <ul class="content-list">
       <li v-if="bio.length" class="content-item">
@@ -134,6 +218,8 @@ const { theme } = useTheme()
         </ul>
       </div>
     </div>
+
+    <contacts v-if="media" :media="media" />
   </modal-layout>
 </template>
 

@@ -1,9 +1,9 @@
-<script lang="ts" setup>
+<script lang="tsx" setup>
 import { defineProps, defineEmits } from 'vue'
 import { Logo } from '@/shared/ui'
-import { useTheme, useSettings } from '@/shared/utils'
+import { useTheme, useSettings, useWindowWidth } from '@/shared/utils'
 
-defineProps<{
+const props = defineProps<{
   fullName: string,
   img?: string,
   banner?: string,
@@ -11,31 +11,71 @@ defineProps<{
   canEdit?: boolean,
   isSubscribed?: boolean,
   subscribers?: number,
-  subscriptions?: number
+  subscriptions?: number,
+  bio?: string,
+  projectsCount?: number
 }>()
 
 const emit = defineEmits<{
   (e: 'subscribe'): void,
-  (e: 'unsubscribe'): void
+  (e: 'unsubscribe'): void,
+  (e: 'name-click'): void
 }>()
 
 const { theme } = useTheme()
 const { openSettings } = useSettings()
+const { windowWidth, breakpoints } = useWindowWidth()
+
+const EditOrSubButton = () => {
+  const handleSubscriptionClick = () => {
+    if (props.isSubscribed) emit('unsubscribe')
+    else emit('subscribe')
+  }
+
+  if (props.canEdit) {
+    // return (
+    //   <button onClick={() => openSettings('profile')} class={`button edit-button ${theme.value} | xl:w-full xl:mt-[30px]`}>
+    //     <span>{windowWidth.value < breakpoints.sm ? 'Редактировать' : 'Редактировать профиль'}</span>
+    //   </button>
+    // )
+    return null
+  }
+
+  return (
+    <button class={`button logo-button ${theme.value} | xl:w-full xl:mt-[30px]`} onClick={handleSubscriptionClick}>
+      <div class="logo">
+        <Logo height="19" width="15" />
+      </div>
+      <strong>{ props.isSubscribed ? 'Отписаться' : 'Подписаться' }</strong>
+    </button>
+  )
+}
+
+const UserStatisticsList = () => {
+  const dataList = [
+    { title: 'Проектов', value: props.projectsCount ?? 0, id: 0 },
+    { title: 'Подписчиков', value: props.subscribers ?? 0, id: 1 },
+    { title: 'Подписок', value: props.subscriptions ?? 0, id: 2 }
+  ] as const
+
+  return (
+    <div class="w-1/2 flex items-baseline justify-between gap-[13px]">
+      {dataList.map(({ title, value, id }) => (
+        <p key={id} class="font-findcreek text-[14px] flex gap-[4px]">
+          <span class="text-light-text-color-1 dark:text-dark-text-color-1">{value}</span>
+          <span class="text-light-text-color-2 dark:text-dark-text-color-2">{title}</span>
+        </p>
+      ))}
+    </div>
+  )
+}
 </script>
 
 <template>
   <section class="card-section" :class="theme">
-    <div class="cover-container">
-      <img :src="banner ?? img" :alt="fullName" class="banner-img" />
+    <img :src="banner ?? img" :alt="fullName" class="banner-img" />
 
-      <button class="cover-button">
-        <svg width="20" height="20" viewBox="0 0 20 20">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-camera" />
-        </svg>
-      </button>
-    </div>
-
-    <div class="profile-container">
+    <div v-if="windowWidth > breakpoints.xl" class="profile-container">
       <div class="content-container">
         <p class="subs-info-wrapper">
           <strong>{{ subscribers ?? 0 }}</strong>
@@ -52,25 +92,29 @@ const { openSettings } = useSettings()
       </div>
 
       <h3 class="fullname" :class="theme">{{ fullName }}</h3>
-      <p class="nickname" :class="theme">@{{ nickname }}</p>
+      <p class="nickname | mb-[32px]" :class="theme">@{{ nickname }}</p>
 
-      <button
-        v-if="!canEdit" class="button logo-button" :class="theme"
-        @click="isSubscribed ? emit('unsubscribe') : emit('subscribe')"
-      >
-        <div class="logo">
-          <logo height="19" width="15" />
+      <edit-or-sub-button />
+    </div>
+
+    <div v-else-if="windowWidth <= breakpoints.xl" class="profile-container">
+      <div class="w-full flex justify-between items-end mt-[-63.5px]">
+        <!-- eslint-disable -->
+        <div @click="emit('name-click')" class="cursor-pointer">
+          <img v-if="img" :src="img" :alt="fullName" class="avatar" />
+          <div v-else class="placeholder" />
+
+          <h3 class="fullname" :class="theme">{{ fullName }}</h3>
+          <p class="nickname" :class="theme">@{{ nickname }}</p>
         </div>
-        <strong>{{ isSubscribed ? 'Отписаться' : 'Подписаться' }}</strong>
-      </button>
+        <!-- eslint-enable -->
 
-      <button
-        v-if="canEdit"
-        @click="openSettings('profile')"
-        class="button edit-button" :class="theme"
-      >
-        <span>Редактировать профиль</span>
-      </button>
+        <edit-or-sub-button />
+      </div>
+
+      <p class="font-findcreek text-[15px] text-light-text-color-1 dark:text-dark-text-color-1">{{ bio }}</p>
+
+      <user-statistics-list />
     </div>
   </section>
 </template>
@@ -82,42 +126,10 @@ const { openSettings } = useSettings()
 .card-section {
   border-radius: 13px;
   overflow: hidden;
-  // border: 1px solid color.change($gray-1, $alpha: .25);
   border: var(--border-2);
   position: relative;
   background-color: var(--bg-color-2);
 }
-
-// .more-button {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   border-radius: 0 0 0 10px;
-//   padding: 6px;
-//   background-color: color.change($gray-1, $alpha: .1);
-//   color: var(--gray-1);
-// }
-
-.cover-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  border-radius: 100vmax;
-  height: 40px;
-  width: 40px;
-  @include flex(center, center);
-  background-color: color.change($gray-1, $alpha: .1);
-  color: #5C5C5C;
-  display: none;
-}
-
-.cover-container:hover .cover-button {
-  display: flex;
-}
-
-// .cover-container {
-//   margin-bottom: 32px;
-// }
 
 .banner-img {
   max-height: 140px;
@@ -129,21 +141,23 @@ const { openSettings } = useSettings()
 
 .profile-container {
   @include flex(flex-start, center, column);
-  // padding: 17px;
-  // padding-top: 32px;
   padding: 32px 16px 19px;
+
+  @include xl {
+    padding-top: 16px;
+    gap: 12px;
+    align-items: flex-start;
+  }
 }
 
 .content-container {
-  //@include flex(space-between, center);
-  // display: grid;
-  // grid-template-columns: 1fr max-content 1fr;
-  // align-items: center;
-  // align-self: stretch;
-  // margin: 32px 0 12px;
   margin-bottom: 14px;
   width: 100%;
   @include flex(space-between, center);
+
+  @include xl {
+    width: auto;
+  }
 }
 
 .content-wrapper {
@@ -180,19 +194,23 @@ const { openSettings } = useSettings()
   @include findcreek-medium(16px, var(--heading-color-1));
   margin: 0;
   margin-bottom: 4px;
+
+  @include xl {
+    @include findcreek-bold(20px, var(--heading-color-1))
+  }
 }
 
 .nickname {
   @include noto-sans(13px, var(--text-color-2));
-  margin: 0;
-  margin-bottom: 32px;
+  // margin: 0;
+  // margin-bottom: 32px;
 }
 
-.button {
+:deep(.button) {
   background-color: transparent;
   @include flex(center, center);
   position: relative;
-  align-self: stretch;
+  // align-self: stretch;
   padding: 7px;
   transition: var(--fast);
   border: var(--border-2);
@@ -210,24 +228,6 @@ const { openSettings } = useSettings()
     color: var(--heading-color-1);
   }
 
-  // &.light {
-  //   border: 1px solid color.change($gray-1, $alpha: .2);
-  // }
-
-  // &.light:hover,
-  // &.light:focus {
-  //   box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);
-  // }
-
-  // &.dark {
-  //   border: 1px solid color.change($gray-3, $alpha: .5);
-  // }
-
-  // &.dark:hover,
-  // &.dark:focus {
-  //   box-shadow: 0 0 10px 0 rgba(0 0 0 / .5);
-  // }
-
   .logo {
     position: absolute;
     top: 50%;
@@ -241,7 +241,7 @@ const { openSettings } = useSettings()
   }
 }
 
-.logo-button {
+:deep(.logo-button) {
   border-radius: 8px;
 
   &.dark :is(span, strong) {
@@ -260,17 +260,10 @@ const { openSettings } = useSettings()
   @include findcreek-medium(14px, var(--text-color-1));
   background-color: var(--bg-color-3);
 
-  // span {
-  //   @include findcreek(14px);
-  // }
-
-  // &.dark span {
-  //   color: var(--light);
-  // }
-
-  // &.light span {
-  //   color: #4d4d4d;
-  // }
+  @include xl {
+    width: max-content;
+    margin-left: auto;
+  }
 }
 
 .separator {

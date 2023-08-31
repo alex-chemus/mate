@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { PostFormWidget } from '@/shared/widgets'
 import { useFullAccount } from '@/shared/api'
+import { useWindowWidth } from '@/shared/utils'
 import type { Company, Partner } from './types'
 import { PostWidget, VacancyFormWidget } from './widgets'
 import {
@@ -11,23 +12,14 @@ import {
 import { ProjectLayout } from './layouts'
 import { useProject, useSubscribe, usePosts } from './hooks'
 
-//const bio = ref('Привет, я являюсь представителем компании FINDCREEK, а также создателем платформы FINDCREEK Mate. Изо дня в день мы трудимся только ради вас! ')
+const { windowWidth, breakpoints } = useWindowWidth()
+
 const followers = ref('6 млн')
 const following = ref('67')
 const subscriptions = ref<Company[]>([
   { name: 'Yandex', followers: '800 тыс. подписчиков', id: 0 },
   { name: 'Google', followers: '8 млн подписчиков', id: 1 },
   { name: 'Tesla', followers: '1 млн подписчиков', id: 2 }
-])
-const partners = ref<Partner[]>([
-  { link: '/google', id: 0 },
-  { link: '/yandex', id: 1 },
-  { link: '/facebook', id: 2 },
-  { link: '/vk', id: 3 },
-  { link: '/tesla', id: 4 },
-  { link: '/apple', id: 5 },
-  { link: '/profile', id: 6 },
-  { link: '/profile', id: 7 }
 ])
 
 const fullAccount = useFullAccount('[views/ProjectView] Failed to fetch account info')
@@ -53,11 +45,6 @@ const ownsProject = computed(() => {
 </script>
 
 <template>
-  <!-- <settings
-    v-if="fullAccountInfo"
-    :full-account-info="fullAccountInfo"
-  /> -->
-
   <post-form-widget
     v-if="project"
     type="project"
@@ -71,14 +58,6 @@ const ownsProject = computed(() => {
   />
 
   <project-layout v-if="fullAccount && project" :loading="!fullAccount || !project">
-    <!-- <template #header>
-      <Header
-        :img="fullAccountInfo.avatar.avatarCompressed"
-        :full-name="`${fullAccountInfo.firstName} ${fullAccountInfo.lastName}`"
-        :email="fullAccountInfo.email"
-      />
-    </template> -->
-
     <template #profile-card>
       <ProfileCard
         :name="project.name"
@@ -89,6 +68,7 @@ const ownsProject = computed(() => {
         :banner="project.profileCover"
         :owns-project="ownsProject"
         :is-subscribed="project.isSubscribed"
+        :about="Projects.description || 'Тут пока ничего нет'"
         @subscribe="subscribe(project!.id)"
         @unsubscribe="unsubscribe(project!.id)"
       />
@@ -100,14 +80,8 @@ const ownsProject = computed(() => {
       />
     </template>
 
-    <!-- <template #partners>
-      <Partners
-        :partners="partners"
-      />
-    </template> -->
-
-    <template #about v-if="project.description.length">
-      <About :text="project.description" />
+    <template #about v-if="windowWidth > breakpoints.xl">
+      <About :text="project.description || 'Тут пока ничего нет'" />
     </template>
 
     <template #new-post>

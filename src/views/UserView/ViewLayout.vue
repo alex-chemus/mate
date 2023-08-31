@@ -28,9 +28,7 @@ defineProps<{
     </aside>
 
     <section class="center-container">
-      <div class="bio-wrapper">
-        <slot name="bio" />
-      </div>
+      <slot name="bio" />
       <!-- <slot name="partners" /> -->
       <div class="new-post-wrapper">
         <slot name="new-post" />
@@ -41,7 +39,7 @@ defineProps<{
       </div>
     </section>
 
-    <aside class="project-aside">
+    <aside class="projects-aside">
       <div>
         <slot name="projects" />
       </div>
@@ -61,20 +59,20 @@ defineProps<{
   height: 100vh;
 }
 
-// .main-section {
-//   @include container;
-//   padding-top: 50px;
-
-//   &.--loading {
-//     @include flex(center, center);
-//     height: 100vh;
-//   }
-// }
-
 .main-section {
   display: grid;
   grid-template-columns: 340px minmax(0, 1fr) 340px;
   grid-gap: 30px;
+
+  @include xl {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    grid-template-rows: min-content 1fr;
+  }
+
+  @include lg {
+    @include flex(flex-start, stretch, column);
+    gap: 5px;
+  }
 }
 
 aside {
@@ -92,10 +90,31 @@ aside {
   & > *:not(:last-child) {
     margin-bottom: 23px;
   }
+
+  @include xl {
+    grid-row: 1 / span 2;
+    grid-column: 2 / 3;
+  }
+
+  @include lg {
+    display: none;
+  }
 }
 
 .posts-wrapper {
   @include flex(flex-start, stretch, column);
   gap: 20px;
+}
+
+.new-post-wrapper,
+.posts-wrapper {
+  @include xl {
+    width: max(80%, 550px);
+    margin: 0 auto;
+  }
+
+  @include md {
+    width: 100%;
+  }
 }
 </style>

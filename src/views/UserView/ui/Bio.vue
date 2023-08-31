@@ -1,8 +1,12 @@
 <script lang="ts" setup>
-import { defineProps, ref, computed } from 'vue'
+import {
+  defineProps, ref, computed, watch
+} from 'vue'
 import { Modal } from '@/shared/hocs'
-import { useTheme } from '@/shared/utils'
-import ProfileLayout from './ProfileLayout.vue'
+import { useTheme, useWindowWidth } from '@/shared/utils'
+import { SocialMedia } from '@/shared/types'
+import BioModal from './BioModal.vue'
+import Media from './Media.vue'
 
 const props = defineProps<{
   bio: string,
@@ -18,12 +22,17 @@ const props = defineProps<{
   }[],
   city: string,
   skills: string,
-  isMe?: boolean
+  isMe?: boolean,
+  media?: SocialMedia[],
+  refresher?: symbol
 }>()
 
 const { theme } = useTheme()
 
 const isOpen = ref(false)
+watch(() => props.refresher, () => {
+  isOpen.value = true
+})
 
 const getText = computed(() => {
   if (props.bio.length) return props.bio
@@ -50,7 +59,7 @@ const getText = computed(() => {
   </button>
 
   <modal v-model:visible="isOpen" width="600">
-    <profile-layout
+    <bio-modal
       :bio="bio"
       :emails="emails"
       :specialties="specialties"
@@ -58,6 +67,7 @@ const getText = computed(() => {
       :phones="phones"
       :city="city"
       :skills="skills"
+      :media="media"
       @close="isOpen = false"
     />
   </modal>
@@ -90,6 +100,10 @@ const getText = computed(() => {
   p {
     @include findcreek(14px, currentColor);
     line-height: 160%;
+  }
+
+  @include xl {
+    display: none;
   }
 }
 

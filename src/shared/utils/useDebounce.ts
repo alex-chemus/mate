@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 const useDebounce = (func: (...args: any[]) => void, wait: number) => {
-  const timeout = ref<NodeJS.Timeout | null>(null)
+  const timeout = ref<ReturnType<typeof setTimeout> | null>(null) // eslint-disable-line
   const debouncing = ref(false)
 
   const debounced = (...args: any[]) => {

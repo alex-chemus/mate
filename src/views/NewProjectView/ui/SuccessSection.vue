@@ -22,5 +22,9 @@
 .heading {
   @include findcreek-bold(30px, var(--heading-color-1));
   text-align: center;
+
+  @include lg {
+    font-size: 24px;
+  }
 }
 </style>

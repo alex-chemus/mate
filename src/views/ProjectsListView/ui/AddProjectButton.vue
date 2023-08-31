@@ -26,6 +26,10 @@
   &:focus {
     border: 1px solid var(--accent);
   }
+
+  @include md {
+    height: 170px;
+  }
 }
 
 p {

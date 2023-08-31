@@ -15,6 +15,13 @@ const getCreatedProjectsCount = computed(() => {
   return projects.value
     .filter(project => project.founderID === userState.value.id).length
 })
+
+const getAuthor = (authors: any[], project: any) => {
+  console.log(authors)
+  console.log(project)
+  console.log(authors.find((a) => a.findcreekID === project.founderID))
+  return authors.find((a) => a.findcreekID === project.founderID)
+}
 </script>
 
 <template>
@@ -23,7 +30,7 @@ const getCreatedProjectsCount = computed(() => {
       <project-card
         v-for="projectInfo in projects" :key="projectInfo.id"
         :project="projectInfo"
-        :author="authorsInfo!.find((a) => a.findcreekID === projectInfo.founderID)!"
+        :author="getAuthor(authorsInfo, projectInfo)!"
       />
     </template>
 

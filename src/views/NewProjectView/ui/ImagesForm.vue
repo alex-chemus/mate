@@ -107,6 +107,10 @@ const setCover = (e: FileList) => {
   gap: 16px;
   margin-top: -46px;
   margin-left: 51px;
+
+  @include md {
+    margin-left: 25px;
+  }
 }
 
 .name {

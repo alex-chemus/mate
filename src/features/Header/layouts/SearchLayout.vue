@@ -2,6 +2,7 @@
 import { defineProps, defineEmits, ref } from 'vue'
 import { Popover } from '@/shared/hocs'
 import { useTheme } from '@/shared/utils'
+import { Logo } from '@/shared/ui'
 
 defineProps<{
   popupOpen: boolean
@@ -25,11 +26,14 @@ const { theme } = useTheme()
     <template #button>
       <!-- eslint-disable -->
       <div class="search-wrapper" :class="theme" @click="inputRef?.focus()">
-        <button class="button">
+        <!-- <button class="button">
           <svg width="20" height="20" viewBox="0 0 20 20">
             <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
           </svg>
-        </button>
+        </button> -->
+        <div class="logo-wrapper">
+          <logo />
+        </div>
 
         <input
           type="text"
@@ -69,8 +73,18 @@ const { theme } = useTheme()
   }
 }
 
-.button {
-  color: currentColor;
+// .button {
+//   color: currentColor;
+// }
+
+.logo-wrapper {
+  width: 20px;
+  aspect-ratio: 1;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .search-input {
