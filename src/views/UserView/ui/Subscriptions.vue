@@ -21,12 +21,7 @@ const getSubs = computed(() => {
 <template>
   <section v-if="subscriptions.length" class="subscriptions-section" :class="theme">
     <div class="title-wrapper" :class="theme">
-      <h4 class="title" :class="theme">Подписки</h4>
-      <!-- <button class="search-button">
-        <svg width="25" height="25" viewBox="0 0 25 25">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-search" />
-        </svg>
-      </button> -->
+      <h4 class="title | text-[14px] text-heading-color-1 font-semibold">Подписки</h4>
     </div>
 
     <ul class="subscriptions-list">
@@ -44,7 +39,7 @@ const getSubs = computed(() => {
         <div v-else class="avatar" />
 
         <div class="item-content-wrapper" :class="theme">
-          <h6>{{ item.name }}</h6>
+          <h6 class="text-findcreek text-[14px] font-medium m-0 mb-[2px]">{{ item.name }}</h6>
           <small>{{ item.subscribers.users.length }} подписчиков</small>
         </div>
       </router-link>
@@ -62,13 +57,13 @@ const getSubs = computed(() => {
 
 .subscriptions-section {
   // padding: 20px 16px 12px 17px;
-  padding: 23px;
-  border-radius: 13px;
+  padding: 15px;
+  border-radius: 14px;
   // border: 1px solid color.change($gray-1, $alpha: .25);
   border: var(--border-2);
   background-color: var(--bg-color-2);
   @include flex(flex-start, stretch, column);
-  gap: 21px;
+  gap: 20px;
 }
 
 .title-wrapper {
@@ -77,7 +72,7 @@ const getSubs = computed(() => {
 }
 
 .title {
-  @include findcreek-medium(16px, var(--heading-color-1));
+  @include findcreek-medium(14px, var(--heading-color-1));
 }
 
 .search-button {
@@ -118,15 +113,9 @@ const getSubs = computed(() => {
 }
 
 .item-content-wrapper {
-  h6 {
-    margin: 0;
-    margin-bottom: 2px;
-    @include noto-sans(14px, var(--heading-color-1));
-  }
-
   small {
     margin: 0;
-    @include noto-sans(12px, var(--text-color-2));
+    @include noto-sans(13px, var(--text-color-2));
   }
 }
 

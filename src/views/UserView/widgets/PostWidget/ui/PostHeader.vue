@@ -25,7 +25,7 @@ defineProps<{
       </div>
     </div>
 
-    <p class="date-tag">{{ dateString }}</p>
+    <p class="date-tag | text-roboto text-[11px] text-text-color-2">{{ dateString }}</p>
   </header>
 </template>
 
@@ -58,7 +58,6 @@ header {
 .author {
   @include findcreek-medium(14px, var(--heading-color-1));
   margin: 0;
-  margin-bottom: 4px;
 
   a {
     text-decoration: none;
@@ -67,37 +66,14 @@ header {
 }
 
 .text-id {
-  @include findcreek(12px, var(--text-color-2));
+  @include findcreek(13px, var(--text-color-2));
 }
-
-// .author {
-//   font-family: var(--findcreek);
-//   font-size: 11px;
-//   color: var(--text-color-1);
-//   letter-spacing: -0.025em;
-
-//   a {
-//     text-decoration: none;
-//     color: inherit;
-//   }
-
-//   strong {
-//     font-family: var(--findcreek-medium);
-//     font-weight: 500;
-//     color: var(--heading-color-2)
-//   }
-// }
 
 .date-tag {
   background-color: var(--bg-color-3);
   height: 20px;
   padding: 0 10px;
   @include flex(center, center);
-  @include findcreek(11px, var(--text-color-2));
-  // font-family: var(--findcreek);
-  // font-size: 11px;
-  // letter-spacing: -0.03em;
-  // color: var(--text-color-1);
   border-radius: 100vmax;
 }
 </style>

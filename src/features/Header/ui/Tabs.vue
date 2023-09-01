@@ -54,7 +54,7 @@ const { theme } = useTheme()
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 70px;
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
   background-color: var(--bg-color-2);
   border: var(--border-2);

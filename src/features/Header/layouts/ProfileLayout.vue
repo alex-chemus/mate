@@ -55,11 +55,12 @@ const { theme } = useTheme()
 
 .popup-button {
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 14px;
   // border: 1px solid color.change($gray-1, $alpha: .25);
   border: var(--border-2);
   @include findcreek-medium(16px, var(--heading-color-1));
   background-color: var(--bg-color-2);
+  height: 40px;
 
   & > *:not(:last-child) {
     margin-right: 10px;

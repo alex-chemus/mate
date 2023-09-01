@@ -42,7 +42,7 @@ const EditOrSubButton = () => {
   }
 
   return (
-    <button class={`button logo-button ${theme.value} | xl:w-full xl:mt-[30px]`} onClick={handleSubscriptionClick}>
+    <button class={`button logo-button ${theme.value} | xl:w-full xl:mt-[15px]`} onClick={handleSubscriptionClick}>
       <div class="logo">
         <Logo height="19" width="15" />
       </div>
@@ -141,7 +141,7 @@ const UserStatisticsList = () => {
 
 .profile-container {
   @include flex(flex-start, center, column);
-  padding: 32px 16px 19px;
+  padding: 30px 15px 15px 15px;
 
   @include xl {
     padding-top: 16px;
@@ -151,7 +151,7 @@ const UserStatisticsList = () => {
 }
 
 .content-container {
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   width: 100%;
   @include flex(space-between, center);
 
@@ -211,9 +211,9 @@ const UserStatisticsList = () => {
   @include flex(center, center);
   position: relative;
   // align-self: stretch;
-  padding: 7px;
+  padding: 8px;
   transition: var(--fast);
-  border: var(--border-2);
+  /* border: var(--border-2); */
   // box-shadow: var(--hover-element-shadow);
 
   &:is(:hover, :focus) {
@@ -237,7 +237,7 @@ const UserStatisticsList = () => {
   }
 
   strong {
-    @include montserrat-bold(13px);
+    @include findcreek-bold(13px);
   }
 }
 

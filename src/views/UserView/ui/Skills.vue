@@ -16,7 +16,7 @@ const { theme } = useTheme()
     <ul  v-if="skills.length" class="skills-list">
       <li
         v-for="(skill, i) in skills" :key="i"
-        class="skill-item" :class="theme"
+        class="skill-item | text-roboto text-[13px] text-heading-color-1 bg-bg-color-2" :class="theme"
       >{{ skill }}</li>
     </ul>
     <p v-else :class="theme">Что вы умеете?</p>
@@ -28,15 +28,16 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .skills-section {
-  padding: 23px;
-  border-radius: 13px;
-  border: 1px solid color.change($gray-1, $alpha: .25);
+  padding: 15px;
+  border-radius: 14px;
+  /* border: 1px solid color.change($gray-1, $alpha: .25); */
+  border: var(--border-2);
   background-color: var(--bg-color-2);
 }
 
 .title {
-  @include findcreek-medium(16px, var(--heading-color-1));
-  margin-bottom: 21px;
+  @include findcreek-medium(14px, var(--heading-color-1));
+  margin-bottom: 20px;
 }
 
 .skills-list {
@@ -55,8 +56,7 @@ const { theme } = useTheme()
   border: var(--border-2);
   background-color: transparent;
   border-radius: 8px;
-  @include noto-sans-medium(12px, var(--heading-color-1));
-  background-color: var(--bg-color-3);
+  /* background-color: var(--bg-color-3); */
 }
 
 h6 {

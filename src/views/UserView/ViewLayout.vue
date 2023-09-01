@@ -40,13 +40,9 @@ defineProps<{
     </section>
 
     <aside class="projects-aside">
-      <div>
-        <slot name="projects" />
-      </div>
+      <slot name="projects" />
 
-      <div>
-        <slot name="subscriptions" />
-      </div>
+      <slot name="subscriptions" />
     </aside>
   </main>
 </template>
@@ -62,7 +58,7 @@ defineProps<{
 .main-section {
   display: grid;
   grid-template-columns: 340px minmax(0, 1fr) 340px;
-  grid-gap: 30px;
+  grid-gap: 15px;
 
   @include xl {
     grid-template-columns: minmax(0, 1fr) 340px;
@@ -76,21 +72,16 @@ defineProps<{
 }
 
 aside {
-  & > *:not(:last-child) {
-    margin-bottom: 23px;
-  }
+  @include flex(flex-start, stretch, column);
+  gap: 15px;
 }
 
 .center-container {
   @include flex(flex-start, stretch, column);
-  gap: 25px;
+  gap: 15px;
 }
 
 .projects-aside {
-  & > *:not(:last-child) {
-    margin-bottom: 23px;
-  }
-
   @include xl {
     grid-row: 1 / span 2;
     grid-column: 2 / 3;
@@ -103,7 +94,7 @@ aside {
 
 .posts-wrapper {
   @include flex(flex-start, stretch, column);
-  gap: 20px;
+  gap: 15px;
 }
 
 .new-post-wrapper,

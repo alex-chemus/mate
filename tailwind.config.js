@@ -20,6 +20,7 @@ module.exports = {
       fontFamily: {
         findcreek: 'Findcreek, sans-serif',
         montserrat: 'Montserrat, sans-serif',
+        roboto: 'Roboto, sans-serif',
         'noto-sans': 'Noto Sans, sans-serif'
       },
       boxShadow: {

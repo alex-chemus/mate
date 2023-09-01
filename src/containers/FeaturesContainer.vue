@@ -19,7 +19,10 @@ import {
 
 .main-section {
   @include container;
-  padding: 35px 0;
+  padding: 15px 0 30px;
+  @include flex(flex-start, stretch, column);
+  gap: 15px;
+  min-height: 100vh;
 
   @include xl {
     padding-inline: 15px;
@@ -28,9 +31,5 @@ import {
   @include sm {
     padding-inline: 5px;
   }
-
-  @include flex(flex-start, stretch, column);
-  gap: 25px;
-  min-height: 100vh;
 }
 </style>

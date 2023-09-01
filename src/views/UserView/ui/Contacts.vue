@@ -37,8 +37,8 @@ const { theme } = useTheme()
 
 .media-section {
   //width: fit-content;
-  padding: 17px;
-  border-radius: 13px;
+  padding: 15px;
+  border-radius: 14px;
   display: grid;
   grid-template-columns: repeat(4, min-content);
   grid-gap: 29px;

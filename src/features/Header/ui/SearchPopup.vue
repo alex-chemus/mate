@@ -164,7 +164,6 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
   list-style: none;
   margin: 0;
   @include flex(flex-start, stretch, column);
-  gap: 6px;
   border-right: 0.5px solid color.change($gray-1, $alpha: .25);
   @include scrollbar;
 }
@@ -188,7 +187,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
 }
 
 .item-avatar {
-  width: 18px;
+  width: 27px;
   aspect-ratio: 1;
   border-radius: 100vmax;
   object-fit: cover;
@@ -196,7 +195,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
 }
 
 .full-name {
-  @include findcreek(11px, var(--heading-color-1));
+  @include findcreek(14px, var(--heading-color-1));
 }
 
 .nothing-found {

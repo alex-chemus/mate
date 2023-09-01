@@ -60,8 +60,8 @@ const { theme } = useTheme()
 .search-wrapper {
   //color: var(--gray-1);
   // border: 1px solid color.change($gray-1, $alpha: 0.25);
-  border: var(--border-1);
-  border-radius: 10px;
+  border: var(--border-2);
+  border-radius: 14px;
   padding: 10px;
   height: 40px;
   @include flex(flex-start, stretch);
@@ -88,7 +88,7 @@ const { theme } = useTheme()
 }
 
 .search-input {
-  @include findcreek(14px, currentColor);
+  @include findcreek(13px, currentColor);
   background-color: transparent;
   border: none;
   outline: none;

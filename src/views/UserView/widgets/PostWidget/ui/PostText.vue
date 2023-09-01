@@ -26,7 +26,7 @@ const getText = useTextWithLinks(computedText)
 
 <template>
   <div v-if="text.length" class="text-wrapper">
-    <p class="text" :class="theme" v-html="getText" />
+    <p class="text | text-roboto text-[14px] text-text-color-1" :class="theme" v-html="getText" />
     <button
       v-if="shouldClip && isClipped"
       @click="isClipped = false"
@@ -42,9 +42,7 @@ const getText = useTextWithLinks(computedText)
 
 .text {
   display: inline;
-  @include findcreek(14px, var(--heading-color-2));
   line-height: 140%;
-  // letter-spacing: -3.3%;
 }
 
 .text:deep(a) {

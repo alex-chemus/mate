@@ -28,13 +28,13 @@ const { theme } = useTheme()
 
 .post-section {
   border: var(--border-2);
-  border-radius: 13px;
+  border-radius: 14px;
   position: relative;
   overflow: hidden;
   background-color: var(--bg-color-2);
   @include flex(flex-start, stretch, column);
-  gap: 17px;
-  padding: 20px;
+  gap: 10px;
+  padding: 15px;
 }
 
 .line-separator {

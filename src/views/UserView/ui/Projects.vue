@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="tsx" setup>
 import { ref, defineProps, computed } from 'vue'
 import { useTheme } from '@/shared/utils'
 import { MoreButton } from '@/shared/ui'
@@ -19,14 +19,17 @@ const computedProjects = computed(() => {
     ? props.projects.slice(0, 3)
     : props.projects
 })
+
+const Title = () => (
+  <h4 class={"text-findcreek text-[14px] text-heading-color-1 font-semibold"}>
+    Последние проекты
+  </h4>
+)
 </script>
 
 <template>
   <section v-if="projects.length" class="projects-section" :class="theme">
-    <h4 class="projects-title" :class="theme">
-      Последние проекты
-      <!-- <span>{{ projects.length }}</span> -->
-    </h4>
+    <Title />
 
     <div v-if="!projects.length">У вас нет проектов</div>
 
@@ -45,7 +48,7 @@ const computedProjects = computed(() => {
             <div v-else class="icon placeholder" />
 
             <div class="project-wrapper" :class="theme">
-              <h5>{{ project.name }}</h5>
+              <h5 class="text-findcreek text-[14px] font-medium m-0">{{ project.name }}</h5>
               <small>
                 Начало работ:&#32;
                 <span v-if="project.foundationDate">{{ project.foundationDate }}</span>
@@ -56,17 +59,18 @@ const computedProjects = computed(() => {
         </li>
       </ul>
       <div v-if="shouldTrimProjects && projects.length > 3" class="more-button-wrapper">
-        <more-button @click="shouldTrimProjects = false">Ещё</more-button>
+        <more-button @click="shouldTrimProjects = false">
+          Ещё
+        </more-button>
       </div>
     </template>
   </section>
 
   <section v-else-if="isMe" class="projects-section" :class="theme">
-    <h4 class="projects-title" :class="theme">
-      Последние проекты
-    </h4>
-
-    <router-link to="/new-project" class="project-form-link">Создайте свой первый проект</router-link>
+    <Title />
+    <router-link to="/new-project" class="project-form-link">
+      Создайте свой первый проект
+    </router-link>
   </section>
 
   <section v-else class="projects-section" :class="theme">
@@ -84,17 +88,17 @@ const computedProjects = computed(() => {
 
 .projects-section {
   // padding: 25px 18px;
-  padding: 23px;
+  padding: 15px;
   // border: 1px solid color.change($gray-1, $alpha: .25);
   border: var(--border-2);
-  border-radius: 13px;
+  border-radius: 14px;
   background-color: var(--bg-color-2);
   @include flex(flex-start, stretch, column);
-  gap: 21px;
+  gap: 20px;
 }
 
 .projects-title {
-  @include findcreek-medium(16px, var(--heading-color-1));
+  @include findcreek-medium(14px, var(--heading-color-1));
 
   span {
     @include noto-sans-bold(inherit, var(--text-color-1));
@@ -117,21 +121,22 @@ const computedProjects = computed(() => {
   text-decoration: none;
 
   &.light {
-    border-top: 1px solid color.change($gray-1, $alpha: .25);
-    border-bottom: 1px solid color.change($gray-1, $alpha: .25);
+    /* border-top: 1px solid color.change($gray-1, $alpha: .25);
+    border-bottom: 1px solid color.change($gray-1, $alpha: .25); */
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
+    background-color: var(--bg-color-3);
   }
 
-  &.light:hover,
+  /* &.light:hover,
   &.light:focus {
     border-left: 1px solid color.change($gray-1, $alpha: .25);
     border-right: 1px solid color.change($gray-1, $alpha: .25);
-  }
+  } */
 
   &.dark {
     background-color: #2D303B;
-    border: 1px solid color.change($gray-1, $alpha: .25);
+    /* border: 1px solid color.change($gray-1, $alpha: .25); */
   }
 
   &.dark:hover,
@@ -154,12 +159,6 @@ const computedProjects = computed(() => {
 
 .project-wrapper {
   color: var(--heading-color-1);
-
-  h5 {
-    @include montserrat-bold(14px, currentColor);
-    letter-spacing: -3%;
-    margin: 0;
-  }
 
   small {
     @include findcreek(13px, var(--text-color-1));

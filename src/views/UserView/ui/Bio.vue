@@ -49,7 +49,7 @@ const getText = computed(() => {
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-info-circle" />
       </svg>
     </div>
-    <p>{{ getText }}</p>
+    <p class="text-roboto">{{ getText }}</p>
     <!-- <button class="info-button" :class="theme" @click="isOpen = true">
       <svg width="16" height="16" viewBox="0 0 16 16">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-info-circle" />
@@ -78,13 +78,13 @@ const getText = computed(() => {
 
 .bio-section {
   width: 100%;
-  border-radius: 13px;
+  border-radius: 14px;
   border: var(--border-2);
-  padding: 23px;
+  padding: 15px;
   color: var(--heading-color-2);
   background-color: var(--bg-color-2);
   @include flex(flex-start, stretch, column);
-  gap: 21px;
+  gap: 10px;
   text-align: left;
   transition: var(--fast);
 
@@ -93,12 +93,13 @@ const getText = computed(() => {
   }
 
   h5 {
-    @include findcreek-medium(16px, currentColor);
+    @include findcreek-medium(14px, currentColor);
     margin: 0;
   }
 
   p {
-    @include findcreek(14px, currentColor);
+    font-size: 14px;
+    color: currentColor;
     line-height: 160%;
   }
 
