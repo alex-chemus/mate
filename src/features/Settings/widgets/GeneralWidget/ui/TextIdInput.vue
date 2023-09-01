@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineEmits, defineProps } from 'vue';
-import { Input } from '@/ui'
+import { Input } from '@/shared/ui'
 
 defineProps<{
   value: string

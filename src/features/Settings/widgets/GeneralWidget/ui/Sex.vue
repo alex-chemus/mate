@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineEmits, defineProps } from 'vue'
-import { RadioButton } from '@/ui'
-import { useTheme } from '@/utils'
+import { RadioButton } from '@/shared/ui'
+import { useTheme } from '@/shared/utils'
 
 defineProps<{
   sex: 1 | 2

@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { fetchActions } from '@/store/constants'
-import { useApiState, useAuthState, useDispatch } from '@/utils'
-import { FileInfo } from '@/types'
+import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import { FileInfo } from '@/shared/types'
 
 const useUploadAvatar = () => {
   const apiState = useApiState()
@@ -27,7 +27,8 @@ const useUploadAvatar = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/GeneralWidget/useUploadAvatar] Failed to upload avatar'
     })) as FileInfo[])[0].fileID
   }
 

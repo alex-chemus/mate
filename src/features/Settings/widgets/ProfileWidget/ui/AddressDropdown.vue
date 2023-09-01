@@ -2,8 +2,8 @@
 import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
-import { Location } from '@/types'
-import { SearchDropdown } from '@/ui'
+import { Location } from '@/shared/types'
+import { SearchDropdown } from '@/shared/ui'
 
 const props = defineProps<{
   locations: Location[] | null,
@@ -53,5 +53,6 @@ const emitSelect = (i: number) => {
     @update:visible="p => emit('update:visible', p)"
     @update:input-value="emitInput"
     @select="emitSelect"
+    label-text="Локация"
   />
 </template>

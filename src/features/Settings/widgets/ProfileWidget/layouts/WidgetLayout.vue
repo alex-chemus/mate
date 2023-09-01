@@ -41,9 +41,12 @@
 .fields-container {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-gap: 16px 13px;
+  // grid-gap: 16px 13px;
+  grid-gap: 30px 13px;
   grid-auto-flow: row;
   grid-auto-rows: min-content;
+  // overflow-y: scroll;
+  // @include scrollbar;
 }
 
 .images-wrapper,

@@ -2,9 +2,9 @@
 import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
-import { useTheme } from '@/utils'
-import { Tag, GroupedDropdown } from '@/ui'
-import { Specialty, SpecialtiesList } from '@/types';
+import { useTheme } from '@/shared/utils'
+import { Tag, GroupedDropdown } from '@/shared/ui'
+import { Specialty, SpecialtiesList } from '@/shared/types';
 
 const props = defineProps<{
   allSpecialties: SpecialtiesList
@@ -12,8 +12,8 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'select', payload: number): void,
-  (e: 'remove', payload: number): void
+  (e: 'select', id: number): void,
+  (e: 'remove', id: number): void
 }>()
 
 const { theme } = useTheme()
@@ -48,7 +48,11 @@ const selectOpen = ref(false)
       placeholder="Выберите специальность..."
       :items="getSpecialties"
       v-model:visible="selectOpen"
-      @select="p => emit('select', p)"
+      @select="id => {
+        emit('select', id)
+        selectOpen = false
+      }"
+      :z-index="1001"
     />
 
     <ul class="specialties-list">

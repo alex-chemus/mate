@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { useTheme } from '@/utils'
+import { useTheme } from '@/shared/utils'
 
 defineProps<{
   fullName: string,
@@ -29,14 +29,15 @@ const { theme } = useTheme()
   border-radius: 19px;
   @include flex(flex-start, center);
   gap: 15px;
+  background-color: var(--bg-color-2);
 
-  &.light {
-    background-color: #F9FBFC;
-  }
+  // &.light {
+  //   background-color: #F9FBFC;
+  // }
 
-  &.dark {
-    background-color: #262837;
-  }
+  // &.dark {
+  //   background-color: #262837;
+  // }
 }
 
 .icon {
@@ -62,21 +63,21 @@ const { theme } = useTheme()
 }
 
 .name {
-  @include findcreek-medium(16px);
+  @include findcreek-medium(16px, var(--heading-color-1));
   margin-bottom: 2px;
 
-  &.light {
-    color: #212121;
-  }
+  // &.light {
+  //   color: #212121;
+  // }
 
-  &.dark {
-    color: var(--light);
-  }
+  // &.dark {
+  //   color: var(--light);
+  // }
 }
 
 .email {
   display: block;
-  @include noto-sans-medium(12px, var(--text-color-1));
-  letter-spacing: -0.03em;
+  @include findcreek(13px, var(--text-color-2));
+  // letter-spacing: -0.03em;
 }
 </style>

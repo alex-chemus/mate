@@ -1,5 +1,5 @@
 import { watch } from 'vue'
-import { useFetchState } from '@/utils'
+import { useFetchState } from '@/shared/utils'
 import { useRouter } from 'vue-router'
 
 const useErrorsProcess = () => {

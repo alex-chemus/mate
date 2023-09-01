@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, ref, computed } from 'vue'
-import { FullAccountInfo } from '@/types'
-import { Textarea, SaveButton } from '@/ui'
+import { FullAccount } from '@/shared/types'
+import { Textarea, SaveButton } from '@/shared/ui'
 import {
   ImagesForm, Media, Skills, Specialties,
   AddressDropdown
@@ -13,11 +13,13 @@ import {
 } from './hooks'
 
 const props = defineProps<{
-  fullAccount: FullAccountInfo,
+  fullAccount: FullAccount,
 }>()
 
 const { setAvatar, setCover, uploadImage } = useImages()
-const { allSpecialties, selectedSpecialties, uploadSpecialties } = useSpecialties()
+const {
+  allSpecialties, addedSpecialties, deletedSpecialties, uploadSpecialties, selectedSpecialties
+} = useSpecialties({ fullAccount: props.fullAccount })
 const {
   fetchLocations, locationsLoading, allLocations, addressValue, onSelect, selectedLocation
 } = useAddress()
@@ -90,14 +92,12 @@ const getAddress = computed(() => {
         :all-specialties="allSpecialties"
         :selected-specialties="selectedSpecialties ?? fullAccount.specialties.map((s) => s.id)"
         @select="id => {
-          if (!selectedSpecialties)
-            selectedSpecialties = [...fullAccount.specialties.map((s) => s.id), id]
-          else if (!selectedSpecialties.includes(id))
-            selectedSpecialties.push(id)
+          addedSpecialties.add(id)
+          selectedSpecialties = [...new Set([...selectedSpecialties, ...addedSpecialties])]
         }"
         @remove="id => {
-          if (selectedSpecialties?.includes(id))
-            selectedSpecialties = selectedSpecialties.filter(s => s !== id)
+          deletedSpecialties.add(id)
+          selectedSpecialties = selectedSpecialties.filter(s => !deletedSpecialties.has(s))
         }"
       />
     </template>

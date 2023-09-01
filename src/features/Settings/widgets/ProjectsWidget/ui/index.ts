@@ -1,0 +1,7 @@
+export { default as SettingsTabs } from './SettingsTabs.vue'
+export { default as ProjectsSlider } from './ProjectsSlider.vue'
+export { default as ImagesForm } from './ImagesForm.vue'
+export { default as MemberItem } from './MemberItem.vue'
+export { default as MembersSearch } from './MembersSearch.vue'
+export { default as RoleDropdown } from './RoleDropdown.vue'
+export { default as Media } from './Media.vue'

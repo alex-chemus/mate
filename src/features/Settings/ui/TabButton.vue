@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { useTheme } from '@/utils'
+import { useTheme } from '@/shared/utils'
 
 defineProps<{
   selected?: boolean,
@@ -34,56 +34,34 @@ const { theme } = useTheme()
 
 .tab-button {
   height: 60px;
-  //padding: 0 20px;
   @include flex(flex-start, center);
-  gap: 15px;
+  gap: 12px;
+  padding: 0 12px;
   position: relative;
+  width: 100%;
+  border-radius: 13px;
+  color: var(--text-color-1);
+  transition: var(--fast);
 }
 
-.tab-button:hover,
-.tab-button:focus,
+.tab-button:is(:hover, :focus) .text {
+  color: var(--accent);
+}
+
 .tab-button.selected {
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 2px;
-    height: 100%;
-    top: 0;
-    left: -20px;
-    border-radius: 100vmax;
-    box-shadow: 2px 0 10px 2px color.change($accent-1, $alpha: .4);
-  }
-
-  &.light::before {
-    background-color: var(--accent-1);
-  }
-
-  &.dark::before {
-    background-color: var(--light);
-  }
+  background-color: var(--bg-color-3);
 }
 .icon-wrapper {
   width: 32px;
   aspect-ratio: 1;
   border-radius: 10px;
   background-color: transparent;
-  color: var(--light);
+  color: white;
   @include flex(center, center);
 }
 
 .text {
-  @include findcreek-medium(14px, var(--text-color-1));
+  @include findcreek-medium(14px);
   transition: var(--fast);
-}
-
-.selected .text {
-  &.light {
-    color: var(--accent-1);
-  }
-
-  &.dark {
-    color: var(--light);
-  }
 }
 </style>

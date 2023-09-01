@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { FullAccountInfo } from '@/types'
-import { Input, SaveButton, DateInput } from '@/ui'
+import { FullAccount } from '@/shared/types'
+import { Input, SaveButton, DateInput } from '@/shared/ui'
 // import GeneralSettingsLayout from './GeneralSettingsLayout.vue'
 import { WidgetLayout } from './layouts'
 import { Sex, AvatarForm, TextIdInput } from './ui'
 import { useUploadAvatar, useSettings } from './hooks'
 
 defineProps<{
-  fullAccount: FullAccountInfo,
+  fullAccount: FullAccount,
 }>()
 
 const { setAvatar, uploadAvatar } = useUploadAvatar()
@@ -85,7 +85,7 @@ const {
     <template #date-of-birth>
       <date-input
         :value="getBirthday ?? fullAccount.birthday.split('.').reverse().join('-')"
-        @update:value="birthday => setBirthday(birthday)"
+        @update:value="setBirthday"
         label="Дата рождения"
       />
     </template>

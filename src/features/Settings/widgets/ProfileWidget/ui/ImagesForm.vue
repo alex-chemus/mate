@@ -2,8 +2,8 @@
 import {
   defineProps, defineEmits, computed, ref
 } from 'vue'
-import { useTheme } from '@/utils'
-import { Droparea } from '@/hocs'
+import { useTheme } from '@/shared/utils'
+import { Droparea } from '@/shared/hocs'
 
 const props = defineProps<{
   avatar: string,
@@ -45,7 +45,7 @@ const setCover = (e: FileList) => {
 
 <template>
   <div class="images-container">
-    <droparea @set="setCover" :stretch="true">
+    <droparea @set="setCover" :is-stretch="true" :is-images="true">
       <div class="cover" :class="theme" :style="`
         background: ${ getCover && `url('${getCover}');` };
         background-position: center;
@@ -60,7 +60,7 @@ const setCover = (e: FileList) => {
     </droparea>
 
     <div class="avatar-wrapper">
-      <droparea @set="setAvatar">
+      <droparea @set="setAvatar" :is-images="true">
         <div class="avatar" :class="theme" :style="`
           background: ${ getAvatar && `url('${getAvatar}');` };
           background-position: center;
@@ -81,6 +81,12 @@ const setCover = (e: FileList) => {
 
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
+
+.images-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
 
 .cover,
 .avatar {

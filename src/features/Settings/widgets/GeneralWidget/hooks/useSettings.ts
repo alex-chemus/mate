@@ -2,8 +2,7 @@ import { ref, computed } from 'vue'
 import { fetchActions } from '@/store/constants'
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate, useAlert
-} from '@/utils'
-import { FullAccountInfo } from '@/types'
+} from '@/shared/utils'
 
 const useSettings = ({
   uploadAvatar
@@ -55,7 +54,8 @@ const useSettings = ({
         info: {
           method: 'POST',
           body
-        }
+        },
+        errorMessage: '[features/Settings/GeneralWidget/useSettings] Failed to upload settings'
       })
     }
 

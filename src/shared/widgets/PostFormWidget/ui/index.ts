@@ -1,0 +1,6 @@
+export { default as FilesField } from './FilesField.vue'
+export { default as FilesList } from './FilesList.vue'
+export { default as FormPopup } from './FormPopup.vue'
+export { default as SubmitButton } from './SubmitButton.vue'
+export { default as TitleInput } from './TitleInput.vue'
+export { default as TextInput } from './TextInput.vue'

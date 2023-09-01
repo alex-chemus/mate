@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, ref } from 'vue'
-import { useTheme } from '@/utils'
-import { SocialMedia } from '@/types'
-import { Input, Tag } from '@/ui'
+import { useTheme } from '@/shared/utils'
+import { SocialMedia } from '@/shared/types'
+import { Input, Tag } from '@/shared/ui'
 
 defineProps<{
   media: SocialMedia[]

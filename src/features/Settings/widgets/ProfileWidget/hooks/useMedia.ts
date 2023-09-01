@@ -1,6 +1,6 @@
 import {
   useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/utils'
+} from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
 
 const useMedia = () => {
@@ -20,7 +20,8 @@ const useMedia = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProfileWidget/useMedia] Failed to upload contact'
     })
 
     if (!noUpdate) setGlobalAccountUpdate()
@@ -37,7 +38,8 @@ const useMedia = () => {
       info: {
         method: 'POST',
         body
-      }
+      },
+      errorMessage: '[features/Settings/ProfileWidget/useMedia] Failed to delete contact'
     })
 
     if (!noUpdate) setGlobalAccountUpdate()

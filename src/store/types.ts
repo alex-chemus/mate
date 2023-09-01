@@ -7,8 +7,8 @@ export type ThemeModuleState = {
 }
 
 export type ApiModuleState = {
-  apiUrl: 'https://api.findcreek.com',
-  cloudUlr: 'https://cloud.findcreek.com'
+  apiUrl: string,
+  cloudUlr: string
 }
 
 export type FetchModuleState = {

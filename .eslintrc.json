@@ -6,7 +6,6 @@
   "extends": [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
-    "@vue/airbnb",
     "@vue/typescript",
     "@vue/typescript/recommended"
   ],
@@ -15,32 +14,6 @@
     "ecmaVersion": 2020
   },
   "rules": {
-    "curly": "off",
-    "space-before-function-paren": "off",
-    "no-multiple-empty-lines": "off",
-    "linebreak-style": "off",
-    "semi": "off",
-    "nonblock-statement-body-position": "off",
-    "operator-linebreak": "off",
-    "comma-dangle": "off",
-    "import/newline-after-import": "off",
-    "max-len": "off",
-    "vue/multi-word-component-names": "off",
-    "import/prefer-default-export": "off",
-    "no-spaced-func": "off",
-    "func-call-spacing": "off",
-    "no-plusplus": "off",
-    "spaced-comment": "off",
-    "no-confusing-arrow": "off",
-    "implicit-arrow-linebreak": "off",
-    "import/extensions": "off",
-    "no-shadow": "off",
-    "arrow-body-style": "off",
-    "quotes": "warn",
-    "symbol-description": "off",
-    "import/no-unresolved": "off",
-    "vuejs-accessibility/form-control-has-label": "off",
-    "vuejs-accessibility/label-has-for": "off",
-    "arrow-parens": "off"
+    "vue/multi-word-component-names": "off"
   }
 }
