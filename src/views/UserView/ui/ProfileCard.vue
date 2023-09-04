@@ -2,6 +2,7 @@
 import { defineProps, defineEmits } from 'vue'
 import { Logo } from '@/shared/ui'
 import { useTheme, useSettings, useWindowWidth } from '@/shared/utils'
+import { IconPencil } from '@tabler/icons-vue'
 
 const props = defineProps<{
   fullName: string,
@@ -33,12 +34,11 @@ const EditOrSubButton = () => {
   }
 
   if (props.canEdit) {
-    // return (
-    //   <button onClick={() => openSettings('profile')} class={`button edit-button ${theme.value} | xl:w-full xl:mt-[30px]`}>
-    //     <span>{windowWidth.value < breakpoints.sm ? 'Редактировать' : 'Редактировать профиль'}</span>
-    //   </button>
-    // )
-    return null
+    return (
+      <button onClick={() => openSettings('profile')} class={`button edit-button ${theme.value} | xl:w-full xl:mt-[30px]`}>
+        <span>{windowWidth.value < breakpoints.sm ? <IconPencil /> : 'Редактировать профиль'}</span>
+      </button>
+    )
   }
 
   return (
