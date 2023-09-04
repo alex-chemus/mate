@@ -17,7 +17,7 @@ const emit = defineEmits<{
 const popover = ref<HTMLDivElement | null>(null)
 const popoverWrapper = ref<HTMLDivElement | null>(null)
 
-const clickHandler = (e: MouseEvent) => {
+const handlePageClick = (e: MouseEvent) => {
   const target = e.target as HTMLElement
   if (!props.visible || popoverWrapper.value === null) return
 
@@ -26,71 +26,85 @@ const clickHandler = (e: MouseEvent) => {
   }
 }
 
+const handlePageScroll = () => {
+  calcPopoverPosition()
+}
+
 onMounted(() => {
-  document.addEventListener('click', clickHandler)
+  calcPopoverPosition()
+  document.addEventListener('click', handlePageClick)
+  document.addEventListener('scroll', handlePageScroll)
 })
 
 onBeforeUnmount(() => {
-  document.removeEventListener('click', clickHandler)
+  document.removeEventListener('click', handlePageClick)
+  document.removeEventListener('scroll', handlePageScroll)
 })
 
-const getPosition = () => {
+const position = ref<string | null>(null)
+
+const calcPopoverPosition = () => {
   if (!popoverWrapper.value) return null
 
-  const position = popoverWrapper.value.getBoundingClientRect()
-  const top = position.top + window.scrollY
-  const bottom = position.bottom + window.scrollY
-  const left = position.left + window.scrollX
-  const right = position.right + window.scrollX
+  const wrapperPosition = popoverWrapper.value.getBoundingClientRect()
+  const top = wrapperPosition.top + window.scrollY
+  const bottom = wrapperPosition.bottom + window.scrollY
+  const left = wrapperPosition.left + window.scrollX
+  const right = wrapperPosition.right + window.scrollX
 
   switch (props.placement) {
-    case 'top': return `
+    case 'top': position.value = `
       top: ${top - 10}px;
       left: ${left + (right - left) / 2}px;
       transform: translate(-50%, -100%);
     `
+    break
 
-    case 'top-right': return `
+    case 'top-right': position.value = `
       top: ${top - 10}px;
       left: ${left}px;
       transform: translateY(-100%);
     `
+    break
 
-    case 'right': return `
+    case 'right': position.value = `
       top: ${top}px;
       left: ${right + 10}px;
     `
+    break
 
-    case 'bottom-right': return `
+    case 'bottom-right': position.value = `
       top: ${bottom + 10}px;
       left: ${left}px;
     `
+    break
 
-    case 'bottom': return `
+    case 'bottom': position.value = `
       top: ${bottom + 10}px;
       left: ${left + (right - left) / 2}px;
       transform: translateX(-50%);
     `
+    break
 
-    case 'bottom-left': return `
+    case 'bottom-left': position.value = `
       top: ${bottom + 10}px;
       left: ${right}px;
       transform: translateX(-100%);
     `
+    break
 
-    case 'left': return `
+    case 'left': position.value = `
       top: ${top}px;
       left: ${left - 10}px;
       transform: translateX(-100%);
     `
+    break
 
-    case 'top-left': return `
+    case 'top-left': position.value = `
       top: ${top - 10}px;
       left: ${right}px;
       transform: translate(-100%, -100%);
     `
-
-    default: return null
   }
 }
 </script>
@@ -102,7 +116,7 @@ const getPosition = () => {
       <div
         ref="popover"
         class="popover" :class="placement"
-        :style="getPosition() ?? ''"
+        :style="position ?? ''"
       >
         <popup-transition>
           <slot v-if="visible" name="content" />

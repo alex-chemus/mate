@@ -233,7 +233,7 @@ ul {
   color: inherit;
   outline: none;
   border: none;
-  @include findcreek(42px, var(--text-color-1));
+  @include findcreek(13px, var(--text-color-1));
 }
 
 .dropdown-text {
