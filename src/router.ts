@@ -23,4 +23,6 @@ const router = createRouter({
   routes
 })
 
+alert("alert in router.ts")
+
 export default router
