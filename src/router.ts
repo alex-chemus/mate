@@ -5,6 +5,8 @@ import {
 } from '@/views'
 
 const routes: Array<RouteRecordRaw> = [
+  { path: '/', component: MainView },
+
   { path: '/landing', component: LandingPage },
   { path: '/error', component: ErrorPage },
   { path: '/project/:id', component: ProjectView },
@@ -14,8 +16,6 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/projects-list', component: ProjectsListView },
   { path: '/new-project', component: NewProjectView },
   { path: '/global-search', component: GlobalSearchView },
-
-  { path: '/', component: MainView }
 ]
 
 const router = createRouter({
