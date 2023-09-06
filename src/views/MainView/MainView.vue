@@ -7,8 +7,11 @@ import { Loader } from '@/shared/ui';
 const userState = useUserState()
 const router = useRouter()
 
+alert("alert from MainView.vue")
+
 const handleRedirect = () => {
-  alert("alert from MainView.vue")
+  alert("alert from MainView.vue / handleRedirect")
+  console.log("userState.value.id", userState.value.id)
   if (userState.value.id) {
     router.push(`/user/${userState.value.id}`)
   }
