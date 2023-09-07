@@ -9,5 +9,3 @@ createApp(App)
   .use(store)
   .use(router)
   .mount('#app')
-
-alert("alert from main.ts")

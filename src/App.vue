@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import { MainContainer } from '@/containers'
-
-alert("alert from App.vue")
 </script>
 
 <template>
