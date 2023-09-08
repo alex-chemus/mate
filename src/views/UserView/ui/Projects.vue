@@ -87,9 +87,7 @@ const Title = () => (
 @import '@/assets/styles/style.scss';
 
 .projects-section {
-  // padding: 25px 18px;
   padding: 15px;
-  // border: 1px solid color.change($gray-1, $alpha: .25);
   border: var(--border-2);
   border-radius: 14px;
   background-color: var(--bg-color-2);
@@ -119,24 +117,11 @@ const Title = () => (
   @include flex(flex-start, center);
   transition: var(--fast);
   text-decoration: none;
+  background-color: var(--bg-color-3);
 
   &.light {
-    /* border-top: 1px solid color.change($gray-1, $alpha: .25);
-    border-bottom: 1px solid color.change($gray-1, $alpha: .25); */
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
-    background-color: var(--bg-color-3);
-  }
-
-  /* &.light:hover,
-  &.light:focus {
-    border-left: 1px solid color.change($gray-1, $alpha: .25);
-    border-right: 1px solid color.change($gray-1, $alpha: .25);
-  } */
-
-  &.dark {
-    background-color: #2D303B;
-    /* border: 1px solid color.change($gray-1, $alpha: .25); */
   }
 
   &.dark:hover,

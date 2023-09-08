@@ -97,4 +97,9 @@ aside {
     display: none;
   }
 }
+
+.posts-wrapper {
+  @include flex(flex-start, stretch, column);
+  gap: 15px;
+}
 </style>

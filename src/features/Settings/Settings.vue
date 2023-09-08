@@ -1,15 +1,8 @@
 <script lang="ts" setup>
-// import {
-//   ProfileSettings, ProjectsSettings, PrivacySettings
-// } from '@/shared/widgets'
-import {
-  GeneralWidget, ProjectsWidget, ProfileWidget, PrivacyWidget
-} from './widgets'
+import { GeneralWidget, ProjectsWidget, ProfileWidget } from './widgets'
 import { SettingsLayout } from './layouts'
 import { useTabs, useAccount } from './hooks'
-import {
-  UserCard, Tabs
-} from './ui'
+import { UserCard, Tabs } from './ui'
 import { Tab } from './types'
 
 const account = useAccount()
@@ -47,37 +40,16 @@ const {
       {{ currentTitle }}
     </template>
 
-    <!-- <template #save-button>
-      <save-button @click="onUpdate" />
-    </template> -->
-
     <template #general-settings>
-      <!-- <general-settings
-        :full-account-info="account"
-        :update="localUpdate"
-        @was-updated="updated('general')"
-      /> -->
-      <general-widget
-        :full-account="account"
-      />
+      <general-widget :full-account="account" />
     </template>
 
     <template #profile-settings>
-      <profile-widget
-        :full-account="account"
-      />
+      <profile-widget :full-account="account" />
     </template>
 
     <template #projects-settings>
-      <projects-widget
-        :full-account="account"
-      />
-    </template>
-
-    <template #privacy-settings>
-      <privacy-widget
-        :full-account="account"
-      />
+      <projects-widget :full-account="account" />
     </template>
   </settings-layout>
 </template>
