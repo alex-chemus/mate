@@ -1,1 +1,1 @@
-export type Tab = 'general' | 'profile' | 'projects' | 'privacy'
+export type Tab = 'general' | 'profile' | 'projects' //| 'privacy'

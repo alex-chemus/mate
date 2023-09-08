@@ -56,20 +56,6 @@ const emit = defineEmits<{
         <template #text>Профиль проекта</template>
       </tab-button>
     </li>
-
-    <li>
-      <tab-button
-        :selected="currentTab === 'privacy'" color="#455DF6"
-        @click="emit('change', 'privacy')"
-      >
-        <template #icon>
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <use href="@/assets/imgs/tabler-sprite.svg#tabler-lock" />
-          </svg>
-        </template>
-        <template #text>Безопасность</template>
-      </tab-button>
-    </li>
   </ul>
 </template>
 

@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
   z-index: 999;
   width: 100vw;
   height: 100vw;
-  background-color: rgb(41 43 56 / .7);
+  background-color: rgba(25, 26, 32, 0.75);
   overscroll-behavior: contain;
 }
 </style>

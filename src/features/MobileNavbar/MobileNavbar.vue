@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IconListSearch, IconBriefcase, IconUserCircle, IconSearch, IconSettings } from '@tabler/icons-vue'
+import { IconBriefcase, IconUserCircle, IconSearch } from '@tabler/icons-vue'
 import { useUserState } from '@/shared/utils'
 import { useRouting } from './hooks'
 
@@ -9,9 +9,6 @@ const { currentTab } = useRouting()
 
 <template>
   <section class="mobile-nav" :class="[{ active: currentTab === 'vacancies' }]">
-    <!-- <router-link to="/vacancies" class="nav-button">
-      <icon-list-search />
-    </router-link> -->
 
     <router-link to="/projects-list" class="nav-button" :class="[{ active: currentTab === 'projects' }]">
       <icon-briefcase />
@@ -24,10 +21,6 @@ const { currentTab } = useRouting()
     <router-link :to="`/user/${userState.id}`" class="nav-button" :class="[{ active: currentTab === 'profile' }]">
       <icon-user-circle />
     </router-link>
-
-    <!-- <router-link to="#" class="nav-button">
-      <icon-settings />
-    </router-link> -->
   </section>
 </template>
 
@@ -44,6 +37,7 @@ const { currentTab } = useRouting()
   background-color: var(--bg-color-2);
   border-top: var(--border-2);
   box-shadow: var(--hover-block-shadow);
+  z-index: 2;
 
   & > * {
     flex-grow: 1;

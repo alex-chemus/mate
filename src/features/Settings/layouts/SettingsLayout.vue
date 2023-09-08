@@ -105,11 +105,13 @@ aside h6 {
 .main-section {
   @include flex(flex-start, stretch, column);
   gap: 30px;
-  padding-top: 10px;
+  /* padding-top: 10px; */
   max-height: 100%;
   overflow: scroll;
   @include scrollbar;
-  padding-right: 15px;
+  /* padding-right: 15px; */
+  /* padding: 10px; */
+  padding: 15px 15px 15px 12px;
 }
 
 .save-button-wrapper {

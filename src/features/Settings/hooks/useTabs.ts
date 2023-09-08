@@ -1,4 +1,4 @@
-import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import {
   ref, onMounted, computed, watch
 } from 'vue'
@@ -43,10 +43,6 @@ const useTabs = ({ account }: { account: ReturnType<typeof useAccountInfo> }) =>
           currentTab.value = 'profile'
           break
 
-        case 'privacy':
-          currentTab.value = 'privacy'
-          break
-
         case 'projects':
           currentTab.value = 'projects'
           break
@@ -62,10 +58,6 @@ const useTabs = ({ account }: { account: ReturnType<typeof useAccountInfo> }) =>
 
         case 'profile':
           currentTab.value = 'profile'
-          break
-
-        case 'privacy':
-          currentTab.value = 'privacy'
           break
 
         default:
@@ -95,10 +87,6 @@ const useTabs = ({ account }: { account: ReturnType<typeof useAccountInfo> }) =>
           currentTab.value = 'profile'
           break
 
-        case 'privacy':
-          currentTab.value = 'privacy'
-          break
-
         case 'projects':
           currentTab.value = 'projects'
           break
@@ -114,10 +102,6 @@ const useTabs = ({ account }: { account: ReturnType<typeof useAccountInfo> }) =>
 
         case 'profile':
           currentTab.value = 'profile'
-          break
-
-        case 'privacy':
-          currentTab.value = 'privacy'
           break
 
         default:
@@ -145,9 +129,6 @@ const useTabs = ({ account }: { account: ReturnType<typeof useAccountInfo> }) =>
 
       case 'projects':
         return 'Редактировать профиль проекта'
-
-      case 'privacy':
-        return 'Безопасность'
 
       default:
         return null
