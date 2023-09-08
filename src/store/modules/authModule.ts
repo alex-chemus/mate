@@ -18,14 +18,16 @@ const authModule: Module<AuthModuleState, RootState> = {
     [authActions.GET_LOCAL_TOKEN]({ commit, dispatch }) {
       const token = localStorage.getItem('token')
 
+      if (process.env.NODE_ENV === "development" && token === null) return
+
       if (token === null) {
-        // const redirectPath = encodeURIComponent(`${window.location.protocol}//${window.location.hostname}/redirect`)
-        // const href = `
-        //   https://id.findcreek.com/auth/?redirectTo=${redirectPath}&returnToken=true
-        // `
-        // window.location.href = href
+        const redirectPath = encodeURIComponent(`${window.location.protocol}//${window.location.hostname}/redirect`)
+        const href = `
+          https://id.findcreek.com/auth/?redirectTo=${redirectPath}&returnToken=true
+        `
+        window.location.href = href
         dispatch(authActions.REDIRECT)
-      } else if (token.trim().length > 0) {
+      } else if (token!.trim().length > 0) {
         commit(authActions.SET_TOKEN, token)
       } else {
         alert('Ошибка авторизации') // eslint-disable-line
@@ -37,7 +39,7 @@ const authModule: Module<AuthModuleState, RootState> = {
       const href = `
         ${process.env.VUE_APP_REDIRECT_URL}/auth/?redirectTo=${redirectPath}&returnToken=true
       `
-      // window.location.href = href
+      window.location.href = href
     }
   }
 }
