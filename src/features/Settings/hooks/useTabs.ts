@@ -1,7 +1,5 @@
 import { useRoute, useRouter } from 'vue-router'
-import {
-  ref, onMounted, computed, watch
-} from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { Tab } from '../types'
 import useAccountInfo from './useAccount'
 
@@ -113,25 +111,16 @@ const useTabs = ({ account }: { account: ReturnType<typeof useAccountInfo> }) =>
   })
 
   const toggleTabs = (tab: Tab | null) => {
-    if (tab)
-      router.push({ path: `${route.path}`, query: { settings: tab } })
-    else
-      router.push({ path: route.path })
+    if (tab) router.push({ path: `${route.path}`, query: { settings: tab } })
+    else router.push({ path: route.path })
   }
 
   const currentTitle = computed(() => {
     switch (currentTab.value) {
-      case 'general':
-        return 'Редактировать основную информацию'
-
-      case 'profile':
-        return 'Редактировать профиль'
-
-      case 'projects':
-        return 'Редактировать профиль проекта'
-
-      default:
-        return null
+      case 'general': return 'Редактировать основную информацию'
+      case 'profile': return 'Редактировать профиль'
+      case 'projects': return 'Редактировать профиль проекта'
+      default: return null
     }
   })
 
