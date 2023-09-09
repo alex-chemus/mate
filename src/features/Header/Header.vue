@@ -1,15 +1,9 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { useSettings } from '@/shared/utils'
-import {
-  HeaderLayout, ProfileLayout, NotificationsLayout, SearchLayout
-} from './layouts'
-import {
-  Tabs, ProfilePopup, NotificationsPopup, SearchPopup
-} from './ui'
-import {
-  useAccount, useTabs, useGlobalSearch, useSubscribe
-} from './hooks'
+import useSettings from '@/features/Settings/useSettings'
+import { HeaderLayout, ProfileLayout, SearchLayout } from './layouts'
+import { Tabs, ProfilePopup, SearchPopup } from './ui'
+import { useAccount, useTabs, useGlobalSearch, useSubscribe } from './hooks'
 import { Notice } from './types'
 
 const account = useAccount()

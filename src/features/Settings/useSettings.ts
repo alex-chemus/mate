@@ -1,5 +1,6 @@
 import { useRoute, useRouter } from 'vue-router'
-import { Tab } from '@/features/Settings/types'
+
+type Tab = 'general' | 'profile' | 'projects'
 
 const useSettings = () => {
   const router = useRouter()

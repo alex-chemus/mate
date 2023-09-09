@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, computed } from 'vue'
-import { ModalLayout, Modal } from '@/shared/hocs'
+import { Modal } from '@/shared/hocs'
 import { useTheme } from '@/shared/utils'
 import { SaveButton } from '@/shared/ui'
 import { Member } from '../types'

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { ModalLayout, Modal, Droparea } from '@/shared/hocs'
+import { Modal, Droparea } from '@/shared/hocs'
 import { FormPopup } from '../ui'
 
 defineProps<{

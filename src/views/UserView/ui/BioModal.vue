@@ -1,7 +1,6 @@
 <script lang="tsx" setup>
 import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/shared/utils'
-import { ModalLayout } from '@/shared/hocs'
 import { SocialMedia } from '@/shared/types'
 import Contacts from './Contacts.vue'
 
