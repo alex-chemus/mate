@@ -1,3 +1,5 @@
+import { FullAccount } from "@/shared/types"
+
 export type AuthModuleState = {
   token: string | null,
 }
@@ -29,7 +31,7 @@ export type AlertModuleState = {
 }
 
 export type UserModuleState = {
-  id: number | null
+  info: FullAccount | null
 }
 
 export type RootState = {

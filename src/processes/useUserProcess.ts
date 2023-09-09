@@ -3,6 +3,7 @@ import { useStore } from 'vuex'
 import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
 import { fetchActions, userActions } from '@/store/constants'
 import { RootState } from '@/store/types'
+import { FullAccount } from '@/shared/types'
 
 const useUserProcess = () => {
   const dispatch = useDispatch()
@@ -15,7 +16,6 @@ const useUserProcess = () => {
 
     const body = new FormData()
     body.append('token', authState.value.token as string)
-    body.append('fields', 'findcreekID')
 
     const res = await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/account.getInfo/`,
@@ -23,7 +23,7 @@ const useUserProcess = () => {
       errorMessage: '[processes/useUserProcess] Failed to fetch account info'
     })
 
-    store.commit(userActions.SET_ID, res.findcreekID as number)
+    store.commit(userActions.SET_INFO, res as FullAccount)
   }
 
   onMounted(fetchUserID)

@@ -38,7 +38,7 @@ const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {
     </router-link>
 
     <div
-      v-if="reply.authorID === userState.id && editingId === reply.id"
+      v-if="reply.authorID === userState?.findcreekID && editingId === reply.id"
       class="editing-wrapper"
     >
       <slot name="edit-reply-form" />

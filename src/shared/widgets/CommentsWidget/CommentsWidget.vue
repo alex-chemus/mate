@@ -69,7 +69,7 @@ const { uploadLike, uploadDislike } = useLikes({
 
         <template #set-editing-button>
           <set-editing-button
-            v-if="userState.id === comment.authorID"
+            v-if="userState?.findcreekID === comment.authorID"
             @set-editing="editingID = editingID === comment.id ? null : comment.id"
           />
         </template>
@@ -122,7 +122,7 @@ const { uploadLike, uploadDislike } = useLikes({
 
             <template #set-editing-button>
               <set-editing-button
-                v-if="userState.id === reply.authorID"
+                v-if="userState?.findcreekID === reply.authorID"
                 @set-editing="editingID = editingID === reply.id ? null : reply.id"
               />
             </template>
