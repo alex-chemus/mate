@@ -48,43 +48,41 @@ const getIconColor = (tab: Tab) => {
     :visible="!!currentTab" @update:visible="toggleTabs(null)"
     :width="modalWidth" :fixed-height="true"
   >
-    <modal-layout @close="toggleTabs(null)">
-      <section class="settings-container">
-        <aside>
-          <div class="user-card">
-            <img class="user-card__avatar" :src="account?.avatar.avatarCompressed ?? account?.avatar.avatar" />
-            <div class="user-card__text-wrapper">
-              <h6 class="user-card__name">{{ account?.firstName }} {{ account?.lastName }}</h6>
-              <small class="user-card__email">{{ account?.email }}</small>
+    <section class="settings-container">
+      <aside>
+        <div class="user-card">
+          <img class="user-card__avatar" :src="account?.avatar.avatarCompressed ?? account?.avatar.avatar" />
+          <div class="user-card__text-wrapper">
+            <h6 class="user-card__name">{{ account?.firstName }} {{ account?.lastName }}</h6>
+            <small class="user-card__email">{{ account?.email }}</small>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button
+            v-for="tab in tabsList" :key="tab"
+            class="tabs__button" :class="{ 'selected': currentTab == tab }"
+            @click="toggleTabs(tab)"
+          >
+            <div class="tabs__icon-wrapper" :style="`background-color: ${getIconColor(tab)}`">
+              <icon-id v-if="tab === 'general'" width="20" height="20" />
+              <icon-user v-if="tab === 'profile'" width="20" height="20" />
+              <icon-users v-if="tab == 'projects'" width="20" height="20" />
             </div>
-          </div>
+            <p class="tabs__text">{{ getTabButtonText(tab) }}</p>
+          </button>
+        </div>
+      </aside>
 
-          <div class="tabs">
-            <button
-              v-for="tab in tabsList" :key="tab"
-              class="tabs__button" :class="{ 'selected': currentTab == tab }"
-              @click="toggleTabs(tab)"
-            >
-              <div class="tabs__icon-wrapper" :style="`background-color: ${getIconColor(tab)}`">
-                <icon-id v-if="tab === 'general'" width="20" height="20" />
-                <icon-user v-if="tab === 'profile'" width="20" height="20" />
-                <icon-users v-if="tab == 'projects'" width="20" height="20" />
-              </div>
-              <p class="tabs__text">{{ getTabButtonText(tab) }}</p>
-            </button>
-          </div>
-        </aside>
-
-        <section v-if="account" class="tab-content">
-          <h2 class="tab-content__heading">{{ currentTitle }}</h2>
-          <div class="tab-content__content-wrapper">
-            <general-widget v-if="currentTab === 'general'" :full-account="account" />
-            <profile-widget v-if="currentTab === 'profile'" :full-account="account" />
-            <projects-widget v-if="currentTab === 'projects' && hasProjects" :full-account="account" />
-          </div>
-        </section>
+      <section v-if="account" class="tab-content">
+        <h2 class="tab-content__heading">{{ currentTitle }}</h2>
+        <div class="tab-content__content-wrapper">
+          <general-widget v-if="currentTab === 'general'" :full-account="account" />
+          <profile-widget v-if="currentTab === 'profile'" :full-account="account" />
+          <projects-widget v-if="currentTab === 'projects' && hasProjects" :full-account="account" />
+        </div>
       </section>
-    </modal-layout>
+    </section>
   </modal>
 </template>
 

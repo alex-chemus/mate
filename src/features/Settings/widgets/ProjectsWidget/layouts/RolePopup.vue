@@ -41,35 +41,33 @@ const getText = computed(() => {
     :visible="visible" @update:visible="p => emit('toggle', p)"
     width="470" :z-index-factor="1"
   >
-    <modal-layout @close="emit('toggle', false)">
-      <div class="modal-section">
-        <h5 class="main-title" :class="theme">Редактировать должность</h5>
+    <div class="modal-section">
+      <h5 class="main-title" :class="theme">Редактировать должность</h5>
 
-        <div class="name-container">
-          <img v-if="member.avatar" class="avatar" :src="member.avatar.avatarCompressed ?? member.avatar.avatar" alt="" />
-          <div v-else class="avatar" />
-          <div class="name-wrapper">
-            <h6 class="name-title" :class="theme">{{ member.firstName }} {{ member.lastName }}</h6>
-            <p class="role" :class="theme">{{ getRole }}</p>
-          </div>
-        </div>
-
-        <div class="warning-container" :class="theme">
-          <svg width="30" height="30" viewBox="0 0 30 30">
-            <use href="@/assets/imgs/tabler-sprite.svg#tabler-alert-circle" />
-          </svg>
-          <p class="warning-text" :class="theme">
-            Пользователь занимает должность <strong>{{ getRole }}</strong> в Вашем проекте. {{ getText }}
-          </p>
-        </div>
-
-        <slot />
-
-        <div class="save-button-wrapper">
-          <save-button @click="emit('change-role')" />
+      <div class="name-container">
+        <img v-if="member.avatar" class="avatar" :src="member.avatar.avatarCompressed ?? member.avatar.avatar" alt="" />
+        <div v-else class="avatar" />
+        <div class="name-wrapper">
+          <h6 class="name-title" :class="theme">{{ member.firstName }} {{ member.lastName }}</h6>
+          <p class="role" :class="theme">{{ getRole }}</p>
         </div>
       </div>
-    </modal-layout>
+
+      <div class="warning-container" :class="theme">
+        <svg width="30" height="30" viewBox="0 0 30 30">
+          <use href="@/assets/imgs/tabler-sprite.svg#tabler-alert-circle" />
+        </svg>
+        <p class="warning-text" :class="theme">
+          Пользователь занимает должность <strong>{{ getRole }}</strong> в Вашем проекте. {{ getText }}
+        </p>
+      </div>
+
+      <slot />
+
+      <div class="save-button-wrapper">
+        <save-button @click="emit('change-role')" />
+      </div>
+    </div>
   </modal>
 </template>
 
