@@ -83,7 +83,7 @@ const notFound = computed(() => props.searchItems && props.searchItems.length ==
         />
       </template>
 
-      <div v-else class="nothing-found">Уфф.. Ничего не найдено</div>
+      <div v-else class="nothing-found">Ничего не найдено</div>
     </div>
   </section>
 
