@@ -1,0 +1,106 @@
+@import '@/assets/styles/style.scss';
+
+.settings-container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 100%;
+  grid-gap: 55px;
+  padding-right: 50px;
+  min-height: min(700px, 90vh);
+  max-height: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+aside {
+  @include flex(flex-start, stretch, column);
+  gap: 20px;
+}
+
+.user-card {
+  padding: 12px;
+  border-radius: 19px;
+  @include flex(flex-start, center);
+  gap: 15px;
+  background-color: var(--bg-color-2);
+
+  &__avatar {
+    border-radius: 100vmax;
+    height: 50px;
+    width: 50px;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  &__text-wrapper {
+    max-width: calc(100% - 65px);
+  }
+
+  &__name,
+  &__email {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__name {
+    @include findcreek-medium(16px, var(--heading-color-1));
+    margin-bottom: 2px;
+  }
+
+  &__email {
+    display: block;
+    @include findcreek(13px, var(--text-color-2));
+  }
+}
+
+.tabs {
+  &__button {
+    height: 60px;
+    @include flex(flex-start, center);
+    gap: 12px;
+    padding: 0 12px;
+    position: relative;
+    width: 100%;
+    border-radius: 13px;
+    color: var(--text-color-1);
+    transition: var(--fast);
+
+    &.selected {
+      background-color: var(--bg-color-3);
+    }
+  }
+
+  &__button:is(:hover, :focus) {
+    color: var(--accent);
+  }
+
+  &__icon-wrapper {
+    width: 32px;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    @include flex(center, center);
+  }
+}
+
+.tab-content {
+  @include flex(flex-start, stretch, column);
+  gap: 30px;
+  max-height: 100%;
+  overflow: scroll;
+  @include scrollbar;
+  padding: 15px 15px 15px 12px;
+
+  &__heading {
+    @include findcreek-medium(18px, var(--heading-color-1));
+  }
+
+  &__content-wrapper {
+    flex-grow: 2;
+    display: grid;
+    grid-area: 1fr / 1fr;
+  }
+}

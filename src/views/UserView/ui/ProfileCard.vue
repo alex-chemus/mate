@@ -1,7 +1,7 @@
 <script lang="tsx" setup>
 import { defineProps, defineEmits } from 'vue'
-import { Logo } from '@/shared/ui'
-import { useTheme, useSettings, useWindowWidth } from '@/shared/utils'
+import { useTheme, useWindowWidth } from '@/shared/utils'
+import useSettings from '@/features/Settings/useSettings'
 import { IconPencil } from '@tabler/icons-vue'
 
 const props = defineProps<{
