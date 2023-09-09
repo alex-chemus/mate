@@ -12,7 +12,7 @@ const emit = defineEmits<{
 
 <template>
   <textarea
-    placeholder="Что произошло?"
+    placeholder="Чем вы хотели поделиться?"
     @change="e => emit('update:value', (e.target as HTMLTextAreaElement).value)"
     rows="5"
   />

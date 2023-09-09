@@ -38,7 +38,7 @@ const { theme } = useTheme()
         <input
           type="text"
           class="search-input"
-          placeholder="Поиск"
+          placeholder="Найти"
           ref="inputRef"
           @input="p => emit('input', (p.target as HTMLInputElement).value)"
           @focus="emit('toggle-popup', true)"

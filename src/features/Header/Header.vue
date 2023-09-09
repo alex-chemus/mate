@@ -80,11 +80,11 @@ const isProfileOpen = ref(false)
       <tabs :current-tab="currentTab" @switch="switchTabs" />
     </template>
 
-    <template #notifications>
+    <!-- <template #notifications>
       <notifications-layout>
         <notifications-popup :notices="notices" />
       </notifications-layout>
-    </template>
+    </template> -->
 
     <template #profile>
       <profile-layout
