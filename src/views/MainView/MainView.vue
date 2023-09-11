@@ -7,17 +7,13 @@ import { Loader } from '@/shared/ui';
 const userState = useUserState()
 const router = useRouter()
 
-onMounted(() => {
+const handleRedirect = () => {
   if (userState.value.id) {
     router.push(`/user/${userState.value.id}`)
   }
-})
-
-watch(() => userState.value.id, () => {
-  if (userState.value.id) {
-    router.push(`/user/${userState.value.id}`)
-  }
-})
+}
+onMounted(handleRedirect)
+watch(() => userState.value.id, handleRedirect)
 </script>
 
 <template>

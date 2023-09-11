@@ -27,5 +27,5 @@ export enum alertActions {
 }
 
 export enum userActions {
-  SET_ID = 'SET_ID'
+  SET_INFO = 'SET_INFO'
 }

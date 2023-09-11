@@ -13,13 +13,10 @@ const authorsInfo = useAuthors({ projects })
 const getCreatedProjectsCount = computed(() => {
   if (projects.value === null || projects.value.length === 0) return 0
   return projects.value
-    .filter(project => project.founderID === userState.value.id).length
+    .filter(project => project.founderID === userState.value?.findcreekID).length
 })
 
 const getAuthor = (authors: any[], project: any) => {
-  console.log(authors)
-  console.log(project)
-  console.log(authors.find((a) => a.findcreekID === project.founderID))
   return authors.find((a) => a.findcreekID === project.founderID)
 }
 </script>

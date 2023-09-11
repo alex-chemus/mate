@@ -3,10 +3,10 @@ import { ref, computed } from 'vue'
 import { PostFormWidget } from '@/shared/widgets'
 import { useFullAccount } from '@/shared/api'
 import { useWindowWidth } from '@/shared/utils'
-import type { Company, Partner } from './types'
+import type { Company } from './types'
 import { PostWidget, VacancyFormWidget } from './widgets'
 import {
-  ProfileCard, Subscriptions, Partners, About,
+  ProfileCard, Subscriptions, About,
   NewPost, Projects, Employees, PostsObserver
 } from './ui'
 import { ProjectLayout } from './layouts'

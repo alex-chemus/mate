@@ -2,7 +2,8 @@
 import { defineProps, defineEmits } from 'vue'
 import { IconPencil } from '@tabler/icons-vue'
 import { Logo } from '@/shared/ui';
-import { useTheme, useSettings, useWindowWidth } from '@/shared/utils'
+import useSettings from '@/features/Settings/useSettings'
+import { useTheme, useWindowWidth } from '@/shared/utils'
 
 const props = defineProps<{
   name: string,

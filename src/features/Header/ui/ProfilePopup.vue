@@ -168,7 +168,7 @@ small {
   transition: var(--fast);
 
   &:hover {
-    color: var(--light);
+    color: white;
     background-color: var(--accent);
     border: none;
   }

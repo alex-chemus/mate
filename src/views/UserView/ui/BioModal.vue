@@ -1,7 +1,6 @@
 <script lang="tsx" setup>
 import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/shared/utils'
-import { ModalLayout } from '@/shared/hocs'
 import { SocialMedia } from '@/shared/types'
 import Contacts from './Contacts.vue'
 
@@ -109,118 +108,116 @@ const RenderDataList = () => {
 </script>
 
 <template>
-  <modal-layout @close="emit('close')">
-    <h5 class="title" :class="theme">Подробная информация о пользователе</h5>
+  <h5 class="title" :class="theme">Подробная информация о пользователе</h5>
 
-    <!-- <render-data-list /> -->
+  <!-- <render-data-list /> -->
 
-    <ul class="content-list">
-      <li v-if="bio.length" class="content-item">
-        <svg
-          class="icon" :class="theme"
-          width="24" height="24" viewBox="0 0 24 24"
-        >
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-notes" />
-        </svg>
-        <div class="content-wrapper">
-          <h6 :class="theme">О себе</h6>
-          <p :class="theme">{{ bio }}</p>
-        </div>
-      </li>
-
-      <li v-if="emails.length" class="content-item">
-        <svg
-          class="icon" :class="theme"
-          width="24" height="24" viewBox="0 0 24 24"
-        >
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-mail" />
-        </svg>
-        <div class="content-wrapper">
-          <h6 :class="theme">Электронная почта</h6>
-          <p
-            v-for="email in emails" :key="email.id"
-            :class="theme"
-          >{{ email.emailAddress }}</p>
-        </div>
-      </li>
-
-      <li v-if="specialties.length" class="content-item">
-        <svg
-          class="icon" :class="theme"
-          width="24" height="24" viewBox="0 0 24 24"
-        >
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-hammer" />
-        </svg>
-        <div class="content-wrapper">
-          <h6 :class="theme">Специальности</h6>
-          <p :class="theme">{{ specialties.join(', ') }}</p>
-        </div>
-      </li>
-
-      <li v-if="registrationDate" class="content-item">
-        <svg
-          class="icon" :class="theme"
-          width="24" height="24" viewBox="0 0 24 24"
-        >
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-registered" />
-        </svg>
-        <div class="content-wrapper">
-          <h6 :class="theme">Был зарегистрирован на платформе</h6>
-          <p :class="theme">{{ registrationDate }}</p>
-        </div>
-      </li>
-
-      <li v-if="city.length | phones.length" class="content-item">
-        <svg
-          class="icon" :class="theme"
-          width="24" height="24" viewBox="0 0 24 24"
-        >
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-id-badge-2" />
-        </svg>
-        <div class="content-wrapper">
-          <h6 :class="theme">Личная информация</h6>
-          <div class="personal-info-wrapper">
-            <template v-if="phones.length">
-              <p :class="theme">Номера телефона:</p>
-              <div>
-                <p
-                  v-for="phone in phones" :key="phone.id"
-                  class="colored" :class="theme"
-                >{{ phone.phoneNumber }}</p>
-              </div>
-            </template>
-            <template v-if="city">
-              <p :class="theme">Город:</p>
-              <p class="colored" :class="theme">{{ city }}</p>
-            </template>
-          </div>
-        </div>
-      </li>
-    </ul>
-
-    <div v-if="skills.length" class="skills-container">
+  <ul class="content-list">
+    <li v-if="bio.length" class="content-item">
       <svg
         class="icon" :class="theme"
         width="24" height="24" viewBox="0 0 24 24"
       >
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-barbell" />
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-notes" />
       </svg>
-
-      <div class="skills-wrapper">
-        <h6 :class="theme">Навыки</h6>
-        <ul class="skills-list">
-          <li
-            v-for="(skill, i) in skills.split(', ')" :key="i"
-            class="skill-item" :class="theme"
-          >
-            {{ skill }}
-          </li>
-        </ul>
+      <div class="content-wrapper">
+        <h6 :class="theme">О себе</h6>
+        <p :class="theme">{{ bio }}</p>
       </div>
-    </div>
+    </li>
 
-    <contacts v-if="media" :media="media" />
-  </modal-layout>
+    <li v-if="emails.length" class="content-item">
+      <svg
+        class="icon" :class="theme"
+        width="24" height="24" viewBox="0 0 24 24"
+      >
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-mail" />
+      </svg>
+      <div class="content-wrapper">
+        <h6 :class="theme">Электронная почта</h6>
+        <p
+          v-for="email in emails" :key="email.id"
+          :class="theme"
+        >{{ email.emailAddress }}</p>
+      </div>
+    </li>
+
+    <li v-if="specialties.length" class="content-item">
+      <svg
+        class="icon" :class="theme"
+        width="24" height="24" viewBox="0 0 24 24"
+      >
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-hammer" />
+      </svg>
+      <div class="content-wrapper">
+        <h6 :class="theme">Специальности</h6>
+        <p :class="theme">{{ specialties.join(', ') }}</p>
+      </div>
+    </li>
+
+    <li v-if="registrationDate" class="content-item">
+      <svg
+        class="icon" :class="theme"
+        width="24" height="24" viewBox="0 0 24 24"
+      >
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-registered" />
+      </svg>
+      <div class="content-wrapper">
+        <h6 :class="theme">Был зарегистрирован на платформе</h6>
+        <p :class="theme">{{ registrationDate }}</p>
+      </div>
+    </li>
+
+    <li v-if="city.length | phones.length" class="content-item">
+      <svg
+        class="icon" :class="theme"
+        width="24" height="24" viewBox="0 0 24 24"
+      >
+        <use href="@/assets/imgs/tabler-sprite.svg#tabler-id-badge-2" />
+      </svg>
+      <div class="content-wrapper">
+        <h6 :class="theme">Личная информация</h6>
+        <div class="personal-info-wrapper">
+          <template v-if="phones.length">
+            <p :class="theme">Номера телефона:</p>
+            <div>
+              <p
+                v-for="phone in phones" :key="phone.id"
+                class="colored" :class="theme"
+              >{{ phone.phoneNumber }}</p>
+            </div>
+          </template>
+          <template v-if="city">
+            <p :class="theme">Город:</p>
+            <p class="colored" :class="theme">{{ city }}</p>
+          </template>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div v-if="skills.length" class="skills-container">
+    <svg
+      class="icon" :class="theme"
+      width="24" height="24" viewBox="0 0 24 24"
+    >
+      <use href="@/assets/imgs/tabler-sprite.svg#tabler-barbell" />
+    </svg>
+
+    <div class="skills-wrapper">
+      <h6 :class="theme">Навыки</h6>
+      <ul class="skills-list">
+        <li
+          v-for="(skill, i) in skills.split(', ')" :key="i"
+          class="skill-item" :class="theme"
+        >
+          {{ skill }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <contacts v-if="media" :media="media" />
 </template>
 
 <style lang="scss" scoped>

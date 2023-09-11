@@ -20,20 +20,20 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .header-container {
-  display: grid;
-  grid-template-columns: 340px 1fr 340px;
-  grid-gap: 30px;
   position: sticky;
   top: 0;
   z-index: 2;
   padding: 15px 0;
+
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr) 340px;
+  grid-gap: 15px;
 
   @include xl {
     grid-template-columns: 2fr 1fr 340px;
   }
 
   @include lg {
-    // @include flex(space-between, center);
     display: none;
   }
 

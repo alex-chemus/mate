@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { Modal, ModalLayout, Droparea } from '@/shared/hocs'
+import { Modal, Droparea } from '@/shared/hocs'
 
 defineProps<{
   visible: boolean,
@@ -19,40 +19,38 @@ const emit = defineEmits<{
     @update:visible="p => emit('update:visible', p)"
     :width="710"
   >
-    <modal-layout @close="emit('update:visible', false)">
-      <droparea
-        @set="files => emit('set-files', files)"
-        :is-stretch="true"
-        :is-click-disabled="true"
-      >
-        <section class="modal-container">
-          <div class="title-wrapper">
-            <slot name="title" />
-          </div>
+    <droparea
+      @set="files => emit('set-files', files)"
+      :is-stretch="true"
+      :is-click-disabled="true"
+    >
+      <section class="modal-container">
+        <div class="title-wrapper">
+          <slot name="title" />
+        </div>
 
-          <div class="name-wrapper">
-            <slot name="name-input" />
-          </div>
+        <div class="name-wrapper">
+          <slot name="name-input" />
+        </div>
 
-          <div class="description-input-wrapper">
-            <slot name="description-input" />
-          </div>
+        <div class="description-input-wrapper">
+          <slot name="description-input" />
+        </div>
 
-          <div class="select-container">
-            <slot name="theme" />
-            <slot name="skills" />
-          </div>
+        <div class="select-container">
+          <slot name="theme" />
+          <slot name="skills" />
+        </div>
 
-          <div class="files-container" :class="hasFiles ? 'margin' : ''">
-            <slot name="files-list" />
-          </div>
+        <div class="files-container" :class="hasFiles ? 'margin' : ''">
+          <slot name="files-list" />
+        </div>
 
-          <div class="buttons-container">
-            <slot name="buttons" />
-          </div>
-        </section>
-      </droparea>
-    </modal-layout>
+        <div class="buttons-container">
+          <slot name="buttons" />
+        </div>
+      </section>
+    </droparea>
   </modal>
 </template>
 

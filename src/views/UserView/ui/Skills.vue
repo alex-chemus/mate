@@ -54,9 +54,9 @@ const { theme } = useTheme()
   height: 30px;
   padding: 0 9px;
   border: var(--border-2);
-  background-color: transparent;
+  /* background-color: transparent; */
   border-radius: 8px;
-  /* background-color: var(--bg-color-3); */
+  background-color: var(--bg-color-3);
 }
 
 h6 {

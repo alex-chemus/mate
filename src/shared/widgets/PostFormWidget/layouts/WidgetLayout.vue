@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
-import { ModalLayout, Modal, Droparea } from '@/shared/hocs'
+import { Modal, Droparea } from '@/shared/hocs'
 import { FormPopup } from '../ui'
 
 defineProps<{
@@ -16,32 +16,29 @@ const emit = defineEmits<{
 
 <template>
   <modal
-    :visible="visible" @update:visible="payload => emit('toggle', payload)"
-    width="800"
+    :visible="visible" @update:visible="payload => emit('toggle', payload)" width="800"
   >
-    <modal-layout @close="emit('toggle', false)">
-      <droparea
-        v-slot="{ over }"
-        @set="files => emit('set-files', files)"
-        :is-stretch="true"
-        :is-click-disabled="true"
-      >
-        <section class="post-editor">
-          <img v-if="img" :src="img" alt="" class="icon" />
-          <div v-else class="icon" />
+    <droparea
+      v-slot="{ over }"
+      @set="files => emit('set-files', files)"
+      :is-stretch="true"
+      :is-click-disabled="true"
+    >
+      <section class="post-editor">
+        <img v-if="img" :src="img" alt="" class="icon" />
+        <div v-else class="icon" />
 
-          <div class="content-container">
-            <!-- <slot name="title" /> -->
-            <slot name="description" />
-            <!-- <slot name="file-input" /> -->
-            <slot name="files" />
-            <slot name="submit-button" />
-          </div>
+        <div class="content-container">
+          <!-- <slot name="title" /> -->
+          <slot name="description" />
+          <!-- <slot name="file-input" /> -->
+          <slot name="files" />
+          <slot name="submit-button" />
+        </div>
 
-          <form-popup :visible="over" />
-        </section>
-      </droparea>
-    </modal-layout>
+        <form-popup :visible="over" />
+      </section>
+    </droparea>
   </modal>
 </template>
 

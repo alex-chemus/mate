@@ -1,0 +1,37 @@
+@import '@/assets/styles/style.scss';
+
+.mobile-navbar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: var(--bg-color-2);
+  border-top: var(--border-2);
+  box-shadow: var(--hover-block-shadow);
+  z-index: 2;
+
+  & > * {
+    flex-grow: 1;
+  }
+
+  @include lg {
+    @include flex(space-between, stretch);
+  }
+
+  &__button {
+    transition: var(--fast);
+    color: var(--heading-color-1);
+    @include flex(center, center);
+  
+    &:is(:hover, :active, .active) {
+      color: var(--accent);
+    }
+  
+    &.disabled {
+      color: var(--text-color-1);
+      cursor: not-allowed;
+    }
+  }
+}

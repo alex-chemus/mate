@@ -260,6 +260,7 @@ const getStyle = () => {
   overflow-y: scroll;
   background-color: var(--bg-color-3);
   overscroll-behavior: contain;
+  z-index: 1001;
 
   &::-webkit-scrollbar {
     width: 0;

@@ -1,7 +1,7 @@
 <script lang="tsx" setup>
 import { defineProps, defineEmits } from 'vue'
-import { Logo } from '@/shared/ui'
-import { useTheme, useSettings, useWindowWidth } from '@/shared/utils'
+import { useTheme, useWindowWidth } from '@/shared/utils'
+import useSettings from '@/features/Settings/useSettings'
 import { IconPencil } from '@tabler/icons-vue'
 
 const props = defineProps<{
@@ -43,9 +43,9 @@ const EditOrSubButton = () => {
 
   return (
     <button class={`button logo-button ${theme.value} | xl:w-full xl:mt-[15px]`} onClick={handleSubscriptionClick}>
-      <div class="logo">
+      {/* <div class="logo">
         <Logo height="19" width="15" />
-      </div>
+      </div> */}
       <strong>{ props.isSubscribed ? 'Отписаться' : 'Подписаться' }</strong>
     </button>
   )
@@ -207,13 +207,14 @@ const UserStatisticsList = () => {
 }
 
 :deep(.button) {
-  background-color: transparent;
+  // background-color: transparent;
+  background-color: var(--bg-color-3);
   @include flex(center, center);
   position: relative;
   // align-self: stretch;
   padding: 8px;
   transition: var(--fast);
-  /* border: var(--border-2); */
+  // border: var(--border-2);
   // box-shadow: var(--hover-element-shadow);
 
   &:is(:hover, :focus) {

@@ -40,7 +40,7 @@ const isRepliesOpen = ref(false)
     </router-link>
 
     <div
-      v-if="comment.authorID === userState.id && editingId === comment.id"
+      v-if="comment.authorID === userState?.findcreekID && editingId === comment.id"
       class="editing-wrapper"
     >
       <slot name="edit-comment-form" />

@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/new-project', component: NewProjectView },
   { path: '/global-search', component: GlobalSearchView },
 
-  { path: '/', component: MainView }
+  { path: '/', component: MainView },
 ]
 
 const router = createRouter({

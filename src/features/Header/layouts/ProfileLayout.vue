@@ -54,7 +54,7 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .popup-button {
-  padding: 5px;
+  padding: 5px 8px;
   border-radius: 14px;
   // border: 1px solid color.change($gray-1, $alpha: .25);
   border: var(--border-2);

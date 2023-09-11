@@ -1,0 +1,42 @@
+@import '@/assets/styles/style.scss';
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  width: max-content;
+  max-width: 90vw;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overscroll-behavior: contain;
+  max-height: 90vh;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 13px;
+  background-color: var(--bg-color-1);
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vw;
+    background-color: rgba(25, 26, 32, 0.75);
+    overscroll-behavior: contain;
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    color: var(--gray-2);
+    transition: var(--fast);
+  
+    &:is(:hover, :focus) {
+      color: var(--gray-1)
+    }
+  }
+}

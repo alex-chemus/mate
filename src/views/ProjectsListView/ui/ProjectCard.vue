@@ -7,8 +7,6 @@ const props = defineProps<{
   author?: FullUser
 }>()
 
-console.log('props.author', props.author)
-
 const getSubsTitle = computed(() => {
   if (props.project.subscribersNumber === 1) return 'подписчик'
   if (props.project.subscribersNumber > 1 && props.project.subscribersNumber < 5) return 'подписчика'
