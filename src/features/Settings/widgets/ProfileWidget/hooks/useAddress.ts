@@ -1,14 +1,11 @@
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { fetchActions } from '@/store/constants'
-import {
-  useApiState, useAuthState, useDispatch, useDebounce
-} from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
+import { useDebounce } from '@/shared/utils'
 import { Location, ExcludeProperties } from '@/shared/types'
 
 const useAddress = () => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const addressValue = ref<ExcludeProperties<Location, 'endpointName'> | null>(null)
   const allLocations = ref<Location[] | null>(null)

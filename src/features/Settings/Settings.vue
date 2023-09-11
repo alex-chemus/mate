@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useUserState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { IconId, IconUser, IconUsers } from '@tabler/icons-vue'
 import { Modal } from '@/shared/hocs'
 import { GeneralWidget, ProjectsWidget, ProfileWidget } from './widgets'
@@ -10,7 +10,7 @@ const router = useRouter()
 
 const route = useRoute()
 
-const userState = useUserState()
+const { userState } = useAppStore()
 
 export type TabType = 'general' | 'profile' | 'projects'
 const currentTab = computed<TabType | null>(() => {

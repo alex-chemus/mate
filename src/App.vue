@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { useAuthState, useDispatch, useCommit, useFetchState, useTheme, useApiState } from '@/shared/utils'
+import { useTheme } from '@/shared/utils'
 import { authActions, themeActions, fetchActions, userActions } from '@/store/constants'
+import useAppStore from '@/store/useAppStore'
 import { computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { Alert, Settings, Header, MobileNavbar } from '@/features'
@@ -8,12 +9,7 @@ import { FullAccount } from './shared/types'
 
 const router = useRouter()
 
-const commit = useCommit()
-const dispatch = useDispatch()
-
-const apiState = useApiState()
-const fetchState = useFetchState()
-const authState = useAuthState()
+const { commit, dispatch, apiState, fetchState, authState } = useAppStore()
 
 watch(
   () => fetchState.value.errorCode,

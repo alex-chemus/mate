@@ -1,8 +1,7 @@
 import { ref, Ref, ComputedRef } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, useAlert
-} from '@/shared/utils'
+import { useAlert } from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
+import useAppStore from '@/store/useAppStore'
 import { FileInfo } from '@/shared/types'
 import { IFile } from '../types'
 
@@ -12,9 +11,8 @@ const useVacancy = ({
   getFiles: ComputedRef<IFile[] | null> | Ref<IFile[] | null>,
   projectID: number
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
+  
   const { setDangerMessage, setSuccessMessage } = useAlert()
 
   const name = ref<string | null>(null)

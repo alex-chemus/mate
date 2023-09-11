@@ -2,12 +2,10 @@ import { ref, onMounted } from 'vue'
 import { useFetchFullProjects } from '@/shared/api'
 import { fetchActions } from '@/store/constants'
 import { FullProject } from '@/shared/types'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 
 const useProjects = () => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const fetchFullProjects = useFetchFullProjects('[views/ProjectsListView/useProjects] Failed to fetch projects')
 

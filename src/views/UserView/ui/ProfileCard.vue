@@ -136,7 +136,6 @@ const UserStatisticsList = () => {
   width: 100%;
   object-fit: cover;
   border-bottom: 1px solid color.change($gray-1, $alpha: .25);
-  background-color: var(--light);
 }
 
 .profile-container {

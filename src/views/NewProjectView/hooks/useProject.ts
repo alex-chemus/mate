@@ -1,12 +1,9 @@
 import { ref } from 'vue'
-import { useAuthState, useDispatch, useApiState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
-import { FileInfo } from '@/shared/types'
 
 const useProject = ({ uploadImage }: { uploadImage(type: 'avatar' | 'cover'): Promise<number | null> }) => {
-  const authState = useAuthState()
-  const apiState = useApiState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const name = ref<string | null>(null)
   const nametag = ref<string | null>(null)

@@ -1,7 +1,6 @@
 import { ComputedRef, ref, computed } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, useAlert
-} from '@/shared/utils'
+import { useAlert } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 import { FileInfo } from '@/shared/types'
 import { IFile } from '../types'
@@ -14,9 +13,7 @@ const useUploadPost = ({
   getFiles: ComputedRef<IFile[] | null>,
   onAdd: () => void
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { setSuccessMessage } = useAlert()
 
   const title = ref<string | null>(null)

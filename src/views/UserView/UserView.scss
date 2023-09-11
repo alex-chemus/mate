@@ -1,0 +1,237 @@
+@use 'sass:color';
+@import '@/assets/styles/style.scss';
+
+.loader {
+  @include flex(center, center);
+  height: 100vh;
+}
+
+aside,
+.user-view__center-container {
+  @include flex(flex-start, stretch, column);
+  gap: 15px;
+}
+
+.user-view {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr) 340px;
+  grid-gap: 15px;
+
+  @include xl {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    grid-template-rows: min-content 1fr;
+  }
+
+  @include lg {
+    @include flex(flex-start, stretch, column);
+    gap: 5px;
+  }
+}
+
+.profile-card {
+  border-radius: 13px;
+  overflow: hidden;
+  border: var(--border-2);
+  position: relative;
+  background-color: var(--bg-color-2);
+
+  &__banner {
+    max-height: 140px;
+    width: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid color.change($gray-1, $alpha: .25);
+  }
+
+  &__container {
+    @include flex(flex-start, center, column);
+    padding: 30px 15px 15px 15px;
+
+    @include xl {
+      padding-top: 16px;
+      gap: 12px;
+      align-items: flex-start;
+    }
+  }
+
+  &__content-wrapper {
+    margin-bottom: 10px;
+    width: 100%;
+    @include flex(space-between, center);
+  
+    @include xl {
+      width: auto;
+    }
+  }
+
+  &__avatar {
+    border-radius: 100vmax;
+    width: 95px;
+    height: 95px;
+    object-fit: cover;
+    background-color: var(--gray-1);
+  }
+
+  &__subs-info {
+    @include flex(flex-start, center, column);
+    gap: 4px;
+
+    span {
+      @include findcreek(13px, var(--text-color-2));
+    }
+
+    strong {
+      @include noto-sans-bold(16px, var(--heading-color-1));
+    }
+  }
+
+  &__fullname {
+    @include findcreek-medium(16px, var(--heading-color-1));
+    margin: 0;
+    margin-bottom: 4px;
+  
+    @include xl {
+      @include findcreek-bold(20px, var(--heading-color-1))
+    }
+  }
+
+  &__nametag {
+    @include noto-sans(13px, var(--text-color-2));
+    margin-bottom: 32px;
+
+    @include xl {
+      margin-bottom: 0;
+    }
+  }
+
+  &__mobile-container {
+    @include flex(flex-start, flex-start, column);
+    padding: 16px 15px 15px 15px;
+    gap: 12px;
+  }
+
+  &__mobile-content-wrapper {
+    width: 100%;
+    @include flex(space-between, flex-end);
+    margin-top: -63.5px;
+  }
+
+  &__mobile-bio {
+    @include findcreek(15px, var(--text-color-1))
+  }
+
+  &__statistics-list {
+    width: 50%;
+    @include flex(space-between, baseline);
+    gap: 13px;
+  }
+
+  &__statistics-item {
+    @include findcreek(14px, var(--text-color-2));
+    @include flex;
+    gap: 4px;
+
+    strong {
+      font-weight: normal;
+      color: var(--text-color-1);
+    }
+  }
+}
+
+.desktop-social-media {
+  @include xl {
+    display: none;
+  }
+}
+
+.skills {
+  @include xl {
+    display: none;
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    @include flex(flex-start, flex-start);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__item {
+    @include flex(center, center);
+    height: 30px;
+    padding: 0 9px;
+    border: var(--border-2);
+    border-radius: 8px;
+    background-color: var(--bg-color-3);
+  }
+}
+
+.bio {
+  text-align: left;
+  cursor: pointer;
+
+  :deep(.card) {
+    gap: 10px;
+  }
+
+  @include xl {
+    display: none;
+  }
+
+  &__text {
+    @include findcreek(14px, currentColor);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+}
+
+.create-post-button {
+  padding: 11px 23px;
+  @include flex(flex-start, center);
+  gap: 9px;
+  border: var(--border-2);
+  background-color: var(--bg-color-2);
+  transition: var(--fast);
+  border-radius: 14px;
+  @include findcreek(14px, var(--heading-color-1));
+
+  &:is(:hover, :active) {
+    box-shadow: var(--hover-block-shadow);
+  }
+}
+
+.projects-list {
+  &__item {
+    background-color: var(--bg-color-3);
+    border-radius: 15px;
+    padding: 20px 23px;
+    @include flex(flex-start, center);
+    gap: 12px;
+    transition: var(--fast);
+
+    &:is(:active, :hover) {
+      box-shadow: var(--hover-element-shadow);
+    }
+  }
+
+  &__icon {
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 100vmax;
+    object-fit: cover;
+    background-color: hsla(0,0%,46%,.25);
+  }
+
+  &__name {
+    margin-bottom: 0;
+    @include findcreek(14px, var(--heading-color-1));
+    font-weight: 500;
+  }
+
+  &__name-descritpion {
+    @include findcreek(13px, var(--text-color-1));
+  }
+}

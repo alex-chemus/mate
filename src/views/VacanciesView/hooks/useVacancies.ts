@@ -1,11 +1,8 @@
-import {
-  onMounted, Ref, ref, watch, computed
-} from 'vue'
-import {
-  useApiState, useAuthState, useDebounce, useDispatch
-} from '@/shared/utils'
+import { onMounted, Ref, ref, watch, computed } from 'vue'
+import { useDebounce } from '@/shared/utils'
 import { FullVacancy } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
+import useAppStore from '@/store/useAppStore'
 import { Theme } from '../types'
 
 const useVacancies = (
@@ -15,9 +12,7 @@ const useVacancies = (
     update?: Ref<symbol | null> | Ref<symbol | null>[]
   }
 ) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const searchText = ref<string | null>(null)
   const limit = ref({ from: 0, amount: 20 })

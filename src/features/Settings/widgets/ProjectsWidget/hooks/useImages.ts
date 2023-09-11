@@ -1,14 +1,12 @@
 import { ref, Ref, computed } from 'vue'
 import { fetchActions } from '@/store/constants'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { FileInfo } from '@/shared/types'
 
 const useImages = ({ currentProjectID }: {
   currentProjectID: Ref<number | null>
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const allProjectImages = ref<{
     [index: number]: {

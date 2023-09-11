@@ -1,0 +1,40 @@
+@import '@/assets/styles/style.scss';
+
+.social-media-list {
+  display: grid;
+  grid-template-columns: repeat(4, min-content);
+  grid-gap: 29px;
+  grid-auto-flow: row;
+  justify-items: center;
+
+  @include xl {
+    padding: 12px;
+  }
+
+  &__item {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 15px;
+    @include flex(center, center);
+    transition: var(--fast);
+    border: var(--border-2);
+    background-color: var(--bg-color-3);
+  
+    &:is(:hover, :focus) {
+      box-shadow: var(--hover-element-shadow);
+    }
+  
+    @include xl {
+      width: 40px;
+    }
+  }
+
+  &__logo {
+    width: 25px;
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: 50% 50%;
+    @include flex;
+    color: var(--heading-color-1);
+  }
+}

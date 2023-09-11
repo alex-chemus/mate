@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { defineProps, ref } from 'vue'
 import { Comment } from '@/shared/types'
-import { useTimeUtils, useUserState } from '@/shared/utils'
+import { useTimeUtils } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import CloseButton from '../ui/CloseButton.vue'
 
 defineProps<{
@@ -10,7 +11,7 @@ defineProps<{
   editingId: number | null
 }>()
 
-const userState = useUserState()
+const { userState } = useAppStore()
 const { isToday, isYesterday } = useTimeUtils()
 
 const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {

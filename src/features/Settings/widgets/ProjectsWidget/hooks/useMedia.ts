@@ -1,7 +1,6 @@
 import { ComputedRef } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/shared/utils'
+import { useGlobalUpdate } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { FullProject } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
 
@@ -10,9 +9,7 @@ const useMedia = ({
 }: {
   currentProject: ComputedRef<FullProject | null>
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { setGlobalProjectsUpdate } = useGlobalUpdate()
 
   const onAdd = async (link: string, noUpdate?: boolean) => {
@@ -25,10 +22,7 @@ const useMedia = ({
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projects.addContact/`,
-      info: {
-        method: 'POST',
-        body
-      },
+      info: { method: 'POST', body },
       errorMessage: '[features/Settings/ProjectsWidget/useMedia] Failed to add contact'
     })
 
@@ -45,10 +39,7 @@ const useMedia = ({
 
     await dispatch(fetchActions.FETCH, {
       url: `${apiState.value.apiUrl}/mate/projects.deleteContact/`,
-      info: {
-        method: 'POST',
-        body
-      },
+      info: { method: 'POST', body },
       errorMessage: '[features/Settings/ProjectsWidget/useMedia] Failed to delete contact'
     })
 

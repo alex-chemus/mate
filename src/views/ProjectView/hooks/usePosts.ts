@@ -1,10 +1,6 @@
-import {
-  Ref, ref, watch, computed
-} from 'vue'
+import { Ref, ref, watch, computed } from 'vue'
 import { FullProject, FullProjectPost, FullUser } from '@/shared/types'
-import {
-  useApiState, useAuthState, useDispatch,
-} from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 import { useFetchFullUsers } from '@/shared/api'
 
@@ -15,16 +11,11 @@ const usePosts = (
     update?: Ref<symbol | null> | Ref<symbol | null>[]
   }
 ) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const posts = ref<FullProjectPost[] | null>(null)
   const getPosts = computed(() => {
     return posts.value
-    // return posts.value !== null
-    //   ? posts.value.reverse()
-    //   : null
   })
 
   const authors = ref<{

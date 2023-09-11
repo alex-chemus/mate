@@ -1,12 +1,10 @@
 import { onMounted, ref } from 'vue'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 import { Theme } from '../types'
 
 const useThemes = () => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const themes = ref<Theme[] | null>(null)
   const selectedTheme = ref<Theme | null>(null)

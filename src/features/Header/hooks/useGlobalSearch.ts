@@ -1,16 +1,11 @@
-import {
-  ref, computed, watch, Ref
-} from 'vue'
-import {
-  useDebounce, useApiState, useAuthState, useDispatch
-} from '@/shared/utils'
+import { ref, computed, watch, Ref } from 'vue'
+import { useDebounce } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 import { SearchItem, KeyedSearchItem, SearchFilters } from '../types'
 
 const useGlobalSearch = ({ update }: { update: Ref<symbol> }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const searchItems = ref<SearchItem[] | null>(null)
   const isLoading = ref(false)

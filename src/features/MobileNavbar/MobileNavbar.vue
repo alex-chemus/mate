@@ -2,11 +2,11 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { IconBriefcase, IconUserCircle, IconSearch } from '@tabler/icons-vue'
-import { useUserState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 
 const route = useRoute()
 
-const userState = useUserState()
+const { userState } = useAppStore()
 
 type TabsListItem = {
   type: "profile" | "vacancies" | "projects" | "search" | "settings",

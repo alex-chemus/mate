@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useUserState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { useProjects, useAuthors } from './hooks'
 import { ProjectCard, AddProjectButton } from './ui'
 import { ProjectsListLayout } from './layouts'
 
-const userState = useUserState()
+const { userState } = useAppStore()
 
 const projects = useProjects()
 const authorsInfo = useAuthors({ projects })

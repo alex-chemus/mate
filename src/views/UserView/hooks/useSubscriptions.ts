@@ -1,5 +1,5 @@
 import { Ref, ref, watch } from 'vue'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { FullUser } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
 import { Subscription } from '../types'
@@ -7,9 +7,7 @@ import { Subscription } from '../types'
 const useSubscriptions = (
   { fullUsers }: { fullUsers: Ref<FullUser[] | null> }
 ) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const subscriptions = ref<Subscription[] | null>(null)
 

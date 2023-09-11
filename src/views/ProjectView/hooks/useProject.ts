@@ -1,18 +1,14 @@
-import {
-  onMounted, ref, watch, Ref
-} from 'vue'
+import { onMounted, ref, watch, Ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate,
-} from '@/shared/utils'
+import { useGlobalUpdate, } from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
+import useAppStore from '@/store/useAppStore'
 import { FullProject } from '@/shared/types'
 import type { Employee, Role } from '../types'
 
 const useProject = ({ update }: { update: Ref<symbol> }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
+
   const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
 
   const route = useRoute()

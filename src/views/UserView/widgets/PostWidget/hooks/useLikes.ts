@@ -1,13 +1,11 @@
 import { fetchActions } from '@/store/constants'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 
 const useLikes = (
   { onUpdate }:
   { onUpdate: () => void }
 ) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const localFetch = async (id: number, method: 'like' | 'dislike' | 'removeLike' | 'removeDislike') => {
     const body = new FormData()
