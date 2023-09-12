@@ -75,6 +75,13 @@ $sm: 480px;
   }
 }
 
+@mixin roboto($fz, $color: initial) {
+  font-family: var(--roboto);
+  font-size: $fz;
+  font-weight: normal;
+  color: $color;
+}
+
 @mixin findcreek($fz, $color: initial) {
   font-family: var(--findcreek);
   font-size: $fz;

@@ -3,6 +3,7 @@ import { defineProps, defineEmits, computed } from 'vue'
 import { FileInfo } from '@/shared/types'
 import PostSlider from './PostSlider.vue'
 
+// width?, height?
 const props = defineProps<{
   images: FileInfo[]
 }>()

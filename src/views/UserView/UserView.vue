@@ -10,6 +10,7 @@ import { IconEdit } from '@tabler/icons-vue'
 import UserActionsButton from './UserActionsButton/UserActionsButton.vue'
 import Card from './Card/Card.vue'
 import SocialMediaList from './SocialMediaList/SocialMediaList.vue'
+import UserPosts from './UserPosts/UserPosts.vue'
 
 const router = useRouter()
 
@@ -50,6 +51,9 @@ onMounted(fetchProjects)
 watch(getProjectIds, fetchProjects)
 
 const showAllProjects = ref(false)
+watch(projects, () => {
+  if (projects.value && projects.value.length <= 3) showAllProjects.value = true
+})
 const getProjectsList = computed(() => {
   switch (true) {
     case projects.value === null: return null
@@ -78,6 +82,16 @@ const getUserStatistics = computed(() => [
   { title: 'Подписчиков', value: user.value?.subscribersNumber ?? 0 },
   { title: 'Подписок', value: user.value?.subscriptionsNumber ?? 0 }
 ])
+
+// потом пнуть саню, чтобы сделал одним методом или сразу присылал из апишки
+const getSubscriptions = computed(() => {
+  return user.value === null
+    ? null
+    : [...user.value.subscriptions.projects, ...user.value.subscriptions.users]
+})
+
+type Subscription = FullUser | FullProject
+const subscriptions = ref<Subscription[] | null>(null)
 </script>
 
 <template>
@@ -175,12 +189,21 @@ const getUserStatistics = computed(() => [
         <icon-edit />
         <span>Расскажите, что произошло</span>
       </button>
+
+      <user-posts
+        :user-avatar="user.avatar.avatarCompressed || user.avatar.avatar"
+        :user-name="`${user.firstName} ${user.lastName}`"
+        :user-tag="user.textID"
+      />
     </section>
 
-    <aside>
+    <aside class="user-view__left-aside">
       <card v-if="projects" title="Последние проекты">
-        <div class="projects-list" v-for="project in getProjectsList" :key="project.id">
-          <router-link class="projects-list__item" :to="`/project/${project.id}`">
+        <div class="projects-list">
+          <router-link
+            class="projects-list__item" :to="`/project/${project.id}`"
+            v-for="project in getProjectsList" :key="project.id"
+          >
             <placeholder-img img-class="projects-list__icon" :src="project.avatar.avatarCompressed" />
             <div>
               <h5 class="projects-list__name">{{ project.name }}</h5>
@@ -192,7 +215,10 @@ const getUserStatistics = computed(() => [
           </router-link>
         </div>
 
-        <button @click="showAllProjects = true">Еще</button>
+        <button
+          class="projects-list__more-button"
+          v-if="!showAllProjects" @click="showAllProjects = true"
+        >Еще</button>
       </card>
     </aside>
   </section>
