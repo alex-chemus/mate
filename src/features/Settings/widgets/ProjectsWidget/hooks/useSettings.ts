@@ -15,6 +15,8 @@ const useSettings = ({ uploadImage, currentProjectID }: {
   const { setGlobalProjectsUpdate } = useGlobalUpdate()
   const { setSuccessMessage } = useAlert()
 
+  const disabled = ref(false)
+
   const allProjectsInfo = ref<{
     [index: number]: {
       slogan: string | null,
@@ -54,6 +56,8 @@ const useSettings = ({ uploadImage, currentProjectID }: {
   }
 
   const uploadSettings = async () => {
+    disabled.value = true
+
     const body = new FormData()
     body.append('token', authState.value.token as string)
 
@@ -85,6 +89,8 @@ const useSettings = ({ uploadImage, currentProjectID }: {
 
     setGlobalProjectsUpdate()
     setSuccessMessage('Сохранено')
+
+    disabled.value = false
   }
 
   return {
@@ -93,7 +99,8 @@ const useSettings = ({ uploadImage, currentProjectID }: {
     setFoundationDate,
     getFoundationDate,
     uploadSettings,
-    currentProject
+    currentProject,
+    disabled
   }
 }
 

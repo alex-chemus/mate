@@ -26,6 +26,8 @@ const useUploadPost = ({
     else title.value = s
   }
 
+  const disabled = ref(false)
+
   const description = ref<string | undefined>(undefined)
   const uploadingFile = ref<number | null>(null)
 
@@ -43,6 +45,7 @@ const useUploadPost = ({
     })) as FileInfo[]
 
     uploadingFile.value = null
+
     return res[0]
   }
 
@@ -60,6 +63,8 @@ const useUploadPost = ({
   }
 
   const uploadPost = async () => {
+    disabled.value = true
+
     const body = new FormData()
     body.append('token', authState.value.token as string)
 
@@ -90,10 +95,12 @@ const useUploadPost = ({
 
     onAdd()
     setSuccessMessage('Опубликовано')
+
+    disabled.value = false
   }
 
   return {
-    setTitle, getTitle, description, uploadPost, uploadingFile
+    setTitle, getTitle, description, uploadPost, uploadingFile, disabled
   }
 }
 

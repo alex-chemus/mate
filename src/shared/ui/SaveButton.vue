@@ -3,7 +3,8 @@ import { defineEmits, ref, defineProps } from 'vue'
 import { useTheme } from '@/shared/utils'
 
 const props = defineProps<{
-  theme?: 'light' | 'dark'
+  theme?: 'light' | 'dark',
+  disabled?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -15,7 +16,7 @@ const theme = props.theme ? ref(props.theme) : useTheme().theme
 </script>
 
 <template>
-  <button class="save-button" :class="theme" @click="emit('click')">
+  <button class="save-button" :class="theme" @click="emit('click')" :disabled="disabled">
     Сохранить
   </button>
 </template>

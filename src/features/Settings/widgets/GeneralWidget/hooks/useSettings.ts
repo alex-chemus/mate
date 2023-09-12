@@ -21,6 +21,8 @@ const useSettings = ({
   const textID = ref<string | null>(null)
   const sex = ref<1 | 2 | null>(null)
   const birthday = ref<string | null>()
+  
+  const disabled = ref(false)
 
   const getBirthday = computed(() => {
     if (!birthday.value) return null
@@ -32,6 +34,8 @@ const useSettings = ({
   }
 
   const uploadSettings = async () => {
+    disabled.value = true
+
     const body = new FormData()
     body.append('token', authState.value.token as string)
 
@@ -61,6 +65,8 @@ const useSettings = ({
 
     setGlobalAccountUpdate()
     setSuccessMessage('Сохранено')
+
+    disabled.value = false
   }
 
   return {
@@ -71,7 +77,8 @@ const useSettings = ({
     textID,
     sex,
     getBirthday,
-    setBirthday
+    setBirthday,
+    disabled
   }
 }
 

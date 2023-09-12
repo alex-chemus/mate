@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import { defineEmits } from 'vue'
+import { defineEmits, defineProps } from 'vue'
+
+defineProps<{
+  disabled?: boolean
+}>()
 
 const emit = defineEmits<{
   (e: 'submit'): void,
@@ -8,7 +12,7 @@ const emit = defineEmits<{
 
 <template>
   <div class="buttons-container">
-    <button @click="emit('submit')" class="button">
+    <button @click="emit('submit')" class="button" :disabled="disabled">
       Опубликовать
     </button>
   </div>

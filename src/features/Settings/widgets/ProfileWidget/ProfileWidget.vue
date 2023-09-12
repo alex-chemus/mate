@@ -25,7 +25,7 @@ const {
 } = useAddress()
 const { uploadMedia, removeMedia, editMedia } = useMedia()
 const {
-  uploadSettings, bio, skills
+  uploadSettings, bio, skills, disabled
 } = useSettings({ uploadImage, uploadSpecialties, address: addressValue })
 
 const addressOpened = ref(false)
@@ -117,7 +117,7 @@ const getAddress = computed(() => {
     </template>
 
     <template #save-button>
-      <save-button @click="uploadSettings" />
+      <save-button :disabled="disabled" @click="uploadSettings" />
     </template>
   </widget-layout>
 </template>

@@ -20,11 +20,15 @@ const useRoles = () => {
 
   const selectedRole = ref<Role | null>(null)
 
+  const disabled = ref(false)
+
   const onSelect = (role: Role) => {
     selectedRole.value = role
   }
 
   const updateRole = async () => {
+    disabled.value = true
+
     if (!selectedRole.value) return null
 
     const body = new FormData()
@@ -46,10 +50,12 @@ const useRoles = () => {
     setGlobalProjectsUpdate()
     setSuccessMessage('Должность изменена')
 
+    disabled.value = false
+
     return null
   }
 
-  return { onSelect, updateRole }
+  return { onSelect, updateRole, disabled }
 }
 
 export default useRoles

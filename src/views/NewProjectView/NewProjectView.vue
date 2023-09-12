@@ -13,7 +13,7 @@ const currentPage = ref<1 | 2 | 3>(1)
 const themes = useThemes()
 const { setAvatar, setCover, uploadImage } = useImages()
 const {
-  name, nametag, themeID, description, uploadProject
+  name, nametag, themeID, description, uploadProject, disabled
 } = useProject({ uploadImage })
 </script>
 
@@ -56,7 +56,7 @@ const {
 
       <template v-if="currentPage === 3">
         <prev-button @click="currentPage = 2" />
-        <finish-button @click="uploadProject" />
+        <finish-button :disabled="disabled" @click="uploadProject" />
       </template>
     </template>
   </view-layout>

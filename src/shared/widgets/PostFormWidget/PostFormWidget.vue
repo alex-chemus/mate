@@ -25,7 +25,7 @@ const {
 } = usePostEditor()
 
 const {
-  setTitle, getTitle, description, uploadPost, uploadingFile
+  setTitle, disabled, description, uploadPost, uploadingFile
 } = useUploadPost({
   type: props.type,
   id: props.id,
@@ -73,7 +73,7 @@ const submitPost = async () => {
     </template>
 
     <template #submit-button>
-      <submit-button @click="submitPost" />
+      <submit-button :disabled="disabled" @click="submitPost" />
     </template>
   </widget-layout>
 </template>

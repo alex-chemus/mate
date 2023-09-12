@@ -25,9 +25,12 @@ const useSettings = ({
   const bio = ref<string | null>(null)
   const media = ref<null | {[index: string]: string}>(null)
   const skills = ref<string[] | null>(null)
+  const disabled = ref(false)
   //const address = ref<Location | null>(null)
 
   const uploadAvatar = async (avatarID: number) => {
+    disabled.value = true
+
     const body = new FormData()
     body.append('token', authState.value.token as string)
     body.append('avatarImage', `${avatarID}`)
@@ -40,6 +43,8 @@ const useSettings = ({
       },
       errorMessage: '[features/Settings/ProfileWidget/useSettings] Failed to set avatar image'
     })
+
+    disabled.value = false
   }
 
   const uploadSettings = async () => {
@@ -84,7 +89,8 @@ const useSettings = ({
     bio,
     media,
     skills,
-    address
+    address,
+    disabled
   }
 }
 

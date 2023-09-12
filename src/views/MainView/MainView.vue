@@ -8,12 +8,12 @@ const userState = useUserState()
 const router = useRouter()
 
 const handleRedirect = () => {
-  if (userState.value.id) {
-    router.push(`/user/${userState.value.id}`)
+  if (userState.value?.findcreekID) {
+    router.push(`/user/${userState.value.findcreekID}`)
   }
 }
 onMounted(handleRedirect)
-watch(() => userState.value.id, handleRedirect)
+watch(userState, handleRedirect)
 </script>
 
 <template>

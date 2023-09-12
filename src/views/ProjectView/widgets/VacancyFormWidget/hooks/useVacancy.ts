@@ -22,6 +22,8 @@ const useVacancy = ({
   const themeID = ref<number | null>(null)
   const skills = ref<string[]>([])
 
+  const disabled = ref(false)
+
   const isUploadingFile = ref<number | null>(null)
 
   const uploadFile = async (file: IFile) => {
@@ -42,14 +44,16 @@ const useVacancy = ({
   }
 
   const uploadFiles = async (files: IFile[]) => {
+    disabled.value = true
+
     const res: number[] = []
 
-    /* eslint-disable */
     for (const file of files) {
       const fileInfo = await uploadFile(file)
       if (fileInfo) res.push(fileInfo.fileID)
     }
-    /* eslint-enable */
+
+    disabled.value = false
 
     return res
   }
@@ -93,7 +97,7 @@ const useVacancy = ({
   }
 
   return {
-    name, description, themeID, skills, uploadVacancy, uploadFile, isUploadingFile
+    name, description, themeID, skills, uploadVacancy, uploadFile, isUploadingFile, disabled
   }
 }
 

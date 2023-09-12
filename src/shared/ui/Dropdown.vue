@@ -22,7 +22,8 @@ const props = defineProps<{
   zIndexFactor?: number,
   defaultText?: string,
   width?: 'auto' | 'button',
-  zIndex?: number
+  zIndex?: number,
+  disabled?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -188,7 +189,7 @@ const getStyle = () => {
     
     <teleport to="body">
       <div
-        v-if="visible" ref="dropdownRef"
+        v-if="visible && !disabled" ref="dropdownRef"
         class="select-dropdown" :class="theme"
         :style="[
           getStyle() ?? '',

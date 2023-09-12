@@ -10,7 +10,7 @@ const userState = useUserState()
 const { setAvatar, uploadAvatar } = useUploadAvatar()
 const {
   uploadSettings, sex, firstName, lastName,
-  patronymic, textID, getBirthday, setBirthday
+  patronymic, textID, getBirthday, setBirthday, disabled
 } = useSettings({ uploadAvatar })
 </script>
 
@@ -75,7 +75,7 @@ const {
     </template>
 
     <template #upload-button>
-      <save-button @click="uploadSettings" />
+      <save-button :disabled="disabled" @click="uploadSettings" />
     </template>
   </widget-layout>
 </template>
