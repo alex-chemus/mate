@@ -61,22 +61,16 @@ const getSortedEmployess = computed(() => {
 @import '@/assets/styles/style.scss';
 
 .employees-section {
-  // padding: 25px 18px;
-  padding: 23px;
-  // border: 1px solid color.change($gray-1, $alpha: .25);
+  padding: 15px;
   border: var(--border-2);
-  border-radius: 13px;
+  border-radius: 14px;
   background-color: var(--bg-color-2);
+  @include flex(flex-start, stretch, column);
+  gap: 20px;
 }
 
 .employees-title {
-  // margin-bottom: 26px;
-  @include findcreek-medium(16px, var(--heading-color-1));
-  margin-bottom: 21px;
-
-  // span {
-  //   @include noto-sans-bold(inherit, var(--text-color-1));
-  // }
+  @include findcreek-medium(14px, var(--heading-color-1));
 }
 
 .employees-list {
@@ -85,10 +79,6 @@ const getSortedEmployess = computed(() => {
   list-style: none;
   @include flex(flex-start, stretch, column);
   gap: 16px;
-
-  // & > *:not(:last-child) {
-  //   margin-bottom: 12px;
-  // }
 }
 
 .employee-container {

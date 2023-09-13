@@ -36,7 +36,7 @@ const emit = defineEmits<{
   margin: 0;
 
   &.liked {
-    color: white;
+    color: white !important;
     background-color: var(--red);
   }
 }

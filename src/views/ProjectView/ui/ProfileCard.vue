@@ -79,7 +79,7 @@ const EditOrSubButton = () => {
 @import '@/assets/styles/style.scss';
 
 .card-section {
-  border-radius: 13px;
+  border-radius: 14px;
   overflow: hidden;
   border: var(--border-2);
   position: relative;

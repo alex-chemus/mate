@@ -20,7 +20,7 @@ defineProps<{
         </div>
       </aside>
 
-      <section class="center-container | flex flex-col lg:gap-[25px] gap-[20px]">
+      <section class="center-container">
         <slot name="about" />
         <slot name="partners" />
         <div class="new-post-wrapper">
@@ -53,7 +53,7 @@ defineProps<{
 .main-container {
   display: grid;
   grid-template-columns: 340px minmax(0, 1fr) 340px;
-  grid-gap: 30px;
+  grid-gap: 15px;
 
   @include xl {
     grid-template-columns: minmax(0, 1fr) 340px;
@@ -67,6 +67,9 @@ defineProps<{
 }
 
 .center-container {
+  @include flex(flex-start, stretch, column);
+  gap: 15px;
+
   @include xl {
     width: max(80%, 550px);
     margin: 0 auto;

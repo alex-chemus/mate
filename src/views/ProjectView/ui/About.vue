@@ -20,19 +20,21 @@ const { theme } = useTheme()
 @import '@/assets/styles/style.scss';
 
 .about-section {
-  border-radius: 13px;
+  border-radius: 14px;
   // border: 1px solid rgba(118 118 118 / .25);
   border: var(--border-2);
-  padding: 23px;
+  padding: 15px;
   background-color: var(--bg-color-2);
+  @include flex(flex-start, stretch, column);
+  gap: 10px;
 
   h5 {
-    @include findcreek-medium(16px, var(--heading-color-1));
-    margin-bottom: 21px;
+    @include findcreek-medium(14px, var(--heading-color-1));
+    /* margin-bottom: 21px; */
   }
 
   p {
-    @include findcreek-medium(13px, var(--text-color-1));
+    @include findcreek(14px, var(--text-color-1));
     line-height: 160%;
   }
 }

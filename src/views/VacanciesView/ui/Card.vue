@@ -58,7 +58,7 @@ const isHovered = ref(false)
           <use href="@/assets/imgs/tabler-sprite.svg#tabler-heart" />
         </svg>
       </button> -->
-      <like-button :vacancy="vacancy" />
+      <like-button :vacancy="vacancy" @toggle-like="emit('toggle-like', !vacancy.isLiked)" />
     </div>
 
     <!-- eslint-disable -->
