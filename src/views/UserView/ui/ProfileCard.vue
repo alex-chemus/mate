@@ -207,15 +207,11 @@ const UserStatisticsList = () => {
 }
 
 :deep(.button) {
-  // background-color: transparent;
   background-color: var(--bg-color-3);
   @include flex(center, center);
   position: relative;
-  // align-self: stretch;
   padding: 8px;
   transition: var(--fast);
-  // border: var(--border-2);
-  // box-shadow: var(--hover-element-shadow);
 
   &:is(:hover, :focus) {
     box-shadow: var(--hover-element-shadow);
