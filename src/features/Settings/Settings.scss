@@ -10,6 +10,11 @@
   max-height: 100%;
   height: 100%;
   overflow: hidden;
+
+  @include xl {
+    grid-gap: 35px;
+    grid-template-columns: min-content 1fr;
+  }
 }
 
 aside {
@@ -23,6 +28,10 @@ aside {
   @include flex(flex-start, center);
   gap: 15px;
   background-color: var(--bg-color-2);
+
+  @include xl {
+    display: none;
+  }
 
   &__avatar {
     border-radius: 100vmax;
@@ -84,6 +93,12 @@ aside {
     color: white;
     @include flex(center, center);
   }
+
+  &__text {
+    @include xl {
+      display: none;
+    }
+  }
 }
 
 .tab-content {
@@ -102,5 +117,17 @@ aside {
     flex-grow: 2;
     display: grid;
     grid-area: 1fr / 1fr;
+  }
+}
+
+.placeholder-container {
+  height: 100%;
+  @include findcreek-medium(24px, var(--heading-color-1));
+  text-align: center;
+  @include flex(center, center, column);
+  gap: 20px;
+
+  @include sm {
+    font-size: 16px;
   }
 }
