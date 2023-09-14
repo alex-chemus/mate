@@ -7,3 +7,4 @@ export { default as ProjectsListView } from './ProjectsListView/ProjectsListView
 export { default as NewProjectView } from './NewProjectView/NewProjectView.vue'
 export { default as MainView } from './MainView/MainView.vue'
 export { default as GlobalSearchView } from './GlobalSearchView/GlobalSearchView.vue'
+export { default as PostsFeedView } from './PostsFeedView/PostsFeedView.vue'

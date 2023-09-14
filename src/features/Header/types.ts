@@ -28,7 +28,7 @@ export type Account = {
   textID: string
 }
 
-export type Tab = 'profile' | 'vacancies' | 'projects' | null
+export type Tab = 'profile' | 'vacancies' | 'projects' | 'feed' | null
 
 // export type SearchItem = {
 //   avatar?: string;
