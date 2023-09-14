@@ -217,7 +217,9 @@ const RenderDataList = () => {
     </div>
   </div>
 
-  <contacts v-if="media" :media="media" />
+  <div class="contacts-wrapper" v-if="media">
+    <contacts :media="media" />
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -317,5 +319,9 @@ const RenderDataList = () => {
   @include flex(center, center);
   @include noto-sans-medium(12px, var(--heading-color-1));
   background-color: var(--bg-color-2);
+}
+
+.contacts-wrapper {
+  margin-top: 16px;
 }
 </style>

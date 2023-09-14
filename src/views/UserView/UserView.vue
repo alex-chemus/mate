@@ -3,6 +3,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { PostFormWidget } from '@/shared/widgets'
 import { useWindowWidth, useFetchApi, usePostEditor } from '@/shared/utils'
+import { Modal } from '@/shared/hocs'
 import useAppStore from '@/store/useAppStore'
 import { Loader, PlaceholderImg } from '@/shared/ui'
 import { FullProject, FullUser } from '@/shared/types'
@@ -10,9 +11,9 @@ import { IconEdit } from '@tabler/icons-vue'
 import UserActionsButton from './UserActionsButton/UserActionsButton.vue'
 import Card from './Card/Card.vue'
 import SocialMediaList from './SocialMediaList/SocialMediaList.vue'
-import UserPosts from './UserPosts/UserPosts.vue'
 import { usePosts } from './hooks'
 import { PostsObserver } from './ui'
+import BioModal from './ui/BioModal.vue'
 import { PostWidget } from './widgets'
 
 const router = useRouter()
@@ -78,10 +79,12 @@ const { windowWidth, breakpoints } = useWindowWidth()
 
 const { openPostEditor } = usePostEditor()
 
-const bioRefresher = ref(Symbol())
-const openBioModal = () => {
-  bioRefresher.value = Symbol()
-}
+// const bioRefresher = ref(Symbol())
+// const openBioModal = () => {
+//   bioRefresher.value = Symbol()
+// }
+
+const isBioOpen = ref(false)
 
 const getUserStatistics = computed(() => [
   { title: 'Проектов', value: getProjectIds.value?.length ?? 0 },
@@ -106,6 +109,20 @@ const subscriptions = ref<Subscription[] | null>(null)
     :img="user.avatar.avatarCompressed ?? user.avatar.avatar"
     type="user"
   />
+
+  <modal v-if="user" width="600" v-model:visible="isBioOpen">
+    <bio-modal
+      :bio="user.bio"
+      :emails="user.contacts.emailAddresses"
+      :specialties="user.specialties.map(s => s.rusName)"
+      :registration-date="user.registrationDate"
+      :phones="user.contacts.phoneNumbers"
+      :city="user.address.cityRusName"
+      :skills="user.skills"
+      :media="windowWidth < breakpoints.xl ? user.contacts.socialNetworks : undefined"
+      @close="isBioOpen = false"
+    />
+  </modal>
 
   <section v-if="!user" class="loader">
     <loader />
@@ -143,7 +160,7 @@ const subscriptions = ref<Subscription[] | null>(null)
 
         <div v-else-if="windowWidth <= breakpoints.xl" class="profile-card__mobile-container">
           <div class="profile-card__mobile-content-wrapper">
-            <div @click="openBioModal" style="cursor: pointer">
+            <div @click="isBioOpen = true" style="cursor: pointer">
               <img :src="user.avatar.avatarCompressed ?? user.avatar.avatar" class="profile-card__avatar" />
             
               <h3 class="profile-card__fullname">{{ user.firstName }} {{ user.lastName }}</h3>
@@ -185,7 +202,7 @@ const subscriptions = ref<Subscription[] | null>(null)
     </aside>
 
     <section class="user-view__center-container">
-      <button class="bio" @click="openBioModal">
+      <button class="bio" @click="isBioOpen = true">
         <card title="О себе">
           <p class="bio__text">{{ user.bio }}</p>
         </card>
