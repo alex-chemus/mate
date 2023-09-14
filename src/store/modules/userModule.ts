@@ -1,6 +1,6 @@
-import type { Module } from 'vuex'
+import { Module } from 'vuex'
 import { FullAccount } from '@/shared/types'
-import type { UserModuleState, RootState } from '../types'
+import { UserModuleState, RootState } from '../types'
 import { userActions } from '../constants'
 
 const userModule: Module<UserModuleState, RootState> = {

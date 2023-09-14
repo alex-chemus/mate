@@ -1,9 +1,8 @@
 import {
   ComputedRef, watch, ref, computed
 } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/shared/utils'
+import { useGlobalUpdate } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { ExcludeProperties, FullProject } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
 import { Member } from '../types'
@@ -11,9 +10,7 @@ import { Member } from '../types'
 const useCurrentProjectMembers = ({ currentProject }: {
   currentProject: ComputedRef<FullProject | null>
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
 
   const fetchMembers = async (usersIDs: number[]) => {

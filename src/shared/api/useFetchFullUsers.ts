@@ -1,11 +1,9 @@
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 import { FullUser } from '@/shared/types'
 
 const useFetchFullUsers = (logErrorMessage?: string) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const fetchUsers = async (usersIDs: number[]) => {
     const body = new FormData()

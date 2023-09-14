@@ -1,0 +1,14 @@
+@import '@/assets/styles/style.scss';
+
+.card {
+  padding: 15px;
+  border-radius: 14px;
+  border: var(--border-2);
+  background-color: var(--bg-color-2);
+  @include flex(flex-start, stretch, column);
+  gap: 20px;
+
+  &__title {
+    @include findcreek-medium(14px, var(--heading-color-1));
+  }
+}

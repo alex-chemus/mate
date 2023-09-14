@@ -1,12 +1,9 @@
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/shared/utils'
+import { useGlobalUpdate } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 
 const useMedia = () => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { setGlobalAccountUpdate } = useGlobalUpdate()
 
   const uploadMedia = async (payload: string, noUpdate?: boolean) => {

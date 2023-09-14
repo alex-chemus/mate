@@ -1,16 +1,17 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useUserState, useWindowWidth } from '@/shared/utils'
-import { IconId, IconUser, IconUsers, IconDevicesOff } from '@tabler/icons-vue'
+import useAppStore from '@/store/useAppStore'
+import { IconId, IconUser, IconUsers } from '@tabler/icons-vue'
 import { Modal } from '@/shared/hocs'
+import { useWindowWidth } from '@/shared/utils'
 import { GeneralWidget, ProjectsWidget, ProfileWidget } from './widgets'
 
 const router = useRouter()
 
 const route = useRoute()
 
-const userState = useUserState()
+const { userState } = useAppStore()
 
 const { windowWidth, breakpoints } = useWindowWidth()
 

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { useTimeUtils, useUserState } from '@/shared/utils'
+import { useTimeUtils } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { Comment, Reply } from '@/shared/types'
 
 defineProps<{
@@ -10,7 +11,7 @@ defineProps<{
   editingId: number | null
 }>()
 
-const userState = useUserState()
+const { userState } = useAppStore()
 const { isToday, isYesterday } = useTimeUtils()
 
 const getTime = ({ unixTime, date }: { unixTime: number, date: string }) => {

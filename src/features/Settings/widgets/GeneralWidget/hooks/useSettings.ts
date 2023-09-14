@@ -1,17 +1,14 @@
 import { ref, computed } from 'vue'
 import { fetchActions } from '@/store/constants'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate, useAlert
-} from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
+import { useGlobalUpdate, useAlert } from '@/shared/utils'
 
 const useSettings = ({
   uploadAvatar
 }: {
   uploadAvatar?: () => Promise<null | number>,
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { setGlobalAccountUpdate } = useGlobalUpdate()
   const { setSuccessMessage } = useAlert()
 

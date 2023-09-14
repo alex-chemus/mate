@@ -1,14 +1,11 @@
 import { ref, onMounted, watch } from 'vue'
 import { fetchActions } from '@/store/constants'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate
-} from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
+import { useGlobalUpdate } from '@/shared/utils'
 import { FullAccount } from '@/shared/types'
 
 const useFullAccount = (logErrorMessage?: string) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
 
   const fetchAccount = async () => {

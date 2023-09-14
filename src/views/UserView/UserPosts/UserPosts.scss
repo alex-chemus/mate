@@ -1,0 +1,39 @@
+@import '@/assets/styles/style.scss';
+
+.user-posts {
+  @include flex(flex-start, stretch, column);
+  gap: 15px;
+
+  &__post {
+    gap: 15px;
+  }
+
+  &__author {
+    @include flex(flex-start, flex-end);
+    gap: 10px;
+  }
+
+  &__avatar {
+    width: 40px;
+    aspect-ratio: 1;
+  }
+
+  &__author-heading {
+    @include findcreek-medium(14px, var(--heading-color-1));
+    margin-bottom: 3px;
+  }
+
+  &__author-nametag {
+    @include findcreek(13px, var(--text-color-2));
+  }
+
+  &__post-date {
+    background-color: var(--bg-color-3);
+    height: 20px;
+    padding: 0 10px;
+    @include flex(center, center);
+    border-radius: 100vmax;
+    margin-left: auto;
+    @include roboto(11px, var(--text-color-2));
+  }
+}

@@ -7,7 +7,7 @@ import { useGlobalUpdate } from '@/shared/utils'
 import { FullProject, FullUser } from '@/shared/types'
 import useIsMe from './useIsMe'
 
-const useViewInfo = ({ update }: { update: Ref<symbol> }) => {
+const useViewInfo = ({ update }: { update?: Ref<symbol> }) => {
   const router = useRouter()
   const route = useRoute()
   const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()

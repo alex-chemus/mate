@@ -1,8 +1,6 @@
 import { ref } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  useAlert
-} from '@/shared/utils'
+import { useGlobalUpdate, useAlert } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 
 type Role = {
@@ -12,9 +10,7 @@ type Role = {
 }
 
 const useRoles = () => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { setGlobalProjectsUpdate } = useGlobalUpdate()
   const { setSuccessMessage } = useAlert()
 

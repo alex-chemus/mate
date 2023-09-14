@@ -1,11 +1,9 @@
 import { fetchActions } from '@/store/constants'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { FullProject } from '@/shared/types'
 
 const useFetchFullProjects = (logErrorMessage?: string) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const fetchFullProjects = async (projectsIDs: number[]) => {
     const body = new FormData()

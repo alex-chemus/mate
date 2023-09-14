@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useFetchState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore';
 
-const fetchState = useFetchState()
+const { fetchState } = useAppStore()
 </script>
 
 <template>

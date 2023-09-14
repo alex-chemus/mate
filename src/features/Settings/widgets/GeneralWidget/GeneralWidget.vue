@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { useUserState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { Input, SaveButton, DateInput } from '@/shared/ui'
 import { WidgetLayout } from './layouts'
 import { Sex, AvatarForm, TextIdInput } from './ui'
 import { useUploadAvatar, useSettings } from './hooks'
 
-const userState = useUserState()
+const { userState } = useAppStore()
 
 const { setAvatar, uploadAvatar } = useUploadAvatar()
 const {

@@ -1,9 +1,7 @@
 import { ref, Ref } from 'vue'
 import { fetchActions } from '@/store/constants'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  useAlert
-} from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
+import { useGlobalUpdate, useAlert } from '@/shared/utils'
 
 const useSettings = ({
   uploadImage, uploadSpecialties, address
@@ -16,9 +14,7 @@ const useSettings = ({
     countryID: number
   } | null>
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { setGlobalAccountUpdate } = useGlobalUpdate()
   const { setSuccessMessage } = useAlert()
 
@@ -70,10 +66,7 @@ const useSettings = ({
     if (bio.value || media.value || skills.value || address.value || coverID) {
       await dispatch(fetchActions.FETCH, {
         url: `${apiState.value.apiUrl}/mate/account.setInfo/`,
-        info: {
-          method: 'POST',
-          body
-        },
+        info: { method: 'POST', body },
         errorMessage: '[features/Settings/ProfileWidget/useSettings] Failed to upload settings'
       })
     }
