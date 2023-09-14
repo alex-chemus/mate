@@ -39,6 +39,14 @@ aside,
       width: 80%;
       margin: 0 auto;
     }
+
+    @include lg {
+      gap: 5px;
+    }
+
+    @include md {
+      width: 100%;
+    }
   }
 }
 

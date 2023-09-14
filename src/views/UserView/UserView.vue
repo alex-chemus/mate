@@ -11,6 +11,9 @@ import UserActionsButton from './UserActionsButton/UserActionsButton.vue'
 import Card from './Card/Card.vue'
 import SocialMediaList from './SocialMediaList/SocialMediaList.vue'
 import UserPosts from './UserPosts/UserPosts.vue'
+import { usePosts } from './hooks'
+import { PostsObserver } from './ui'
+import { PostWidget } from './widgets'
 
 const router = useRouter()
 
@@ -61,6 +64,9 @@ const getProjectsList = computed(() => {
     default: return projects.value!.slice(0, 3)
   }
 })
+
+// временное решение, вынести всю логику в UserPosts во время рефакторинга
+const { posts, updatePost, next } = usePosts({ userInfo: user })
 
 const skills = computed(() => {
   if (!user.value) return null
@@ -190,11 +196,19 @@ const subscriptions = ref<Subscription[] | null>(null)
         <span>Расскажите, что произошло</span>
       </button>
 
-      <user-posts
+      <!-- <user-posts
         :user-avatar="user.avatar.avatarCompressed || user.avatar.avatar"
         :user-name="`${user.firstName} ${user.lastName}`"
         :user-tag="user.textID"
+      /> -->
+      <post-widget
+        v-for="post in posts" :key="post.date.unixTime"
+        :post="post"
+        :author="user"
+        @reload="updatePost"
       />
+
+      <posts-observer @intersect="next()" />
     </section>
 
     <aside class="user-view__left-aside">
