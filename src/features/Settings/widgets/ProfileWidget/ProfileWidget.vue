@@ -103,18 +103,19 @@ const getAddress = computed(() => {
     </template>
 
     <template #skills>
-      <Skills
-        :skills="skills ?? fullAccount.skills.split(', ')"
-        @add="skill => {
-          if (skills) skills.push(skill)
-          else skills = [...fullAccount.skills, skill]
-        }"
-        @remove="skill => {
-          if (skills) skills = skills.filter(s => s !== skill)
-          else skills = [...fullAccount.skills.split(', ')].filter(s => s !== skill)
-        }"
-      />
-    </template>
+  <Skills
+    :skills="skills || fullAccount.skills.split(', ').filter(Boolean)"
+    @add="skill => {
+      if (skills) skills.push(skill)
+      else skills = [...fullAccount.skills, skill]
+    }"
+    @remove="skill => {
+      if (skills) skills = skills.filter(s => s !== skill)
+      else skills = [...fullAccount.skills.split(', ')].filter(s => s !== skill)
+    }"
+  />
+</template>
+
 
     <template #save-button>
       <save-button :disabled="disabled" @click="uploadSettings" />
