@@ -3,7 +3,7 @@ import {
   defineEmits, defineProps, computed, ref
 } from 'vue'
 import {
-  FullProjectPost, FullProject, FullUser
+  FullProjectPost, Avatar
 } from '@/shared/types'
 import { CommentsWidget } from '@/shared/widgets'
 import { useDate, useLikes, useViewer } from './hooks'
@@ -13,10 +13,21 @@ import {
   ImageViewer
 } from './ui'
 
+type ProjectProps = {
+  textID: string,
+  avatar: Avatar
+}
+
+type UserProps = {
+  firstName: string,
+  lastName: string,
+  findcreekID: number
+}
+
 const props = defineProps<{
   post: FullProjectPost,
-  author: FullUser,
-  project: FullProject
+  author: UserProps,
+  project: ProjectProps
 }>()
 
 const emit = defineEmits<{
@@ -38,7 +49,9 @@ const getImages = computed(() => {
 
 const { viewImage, nextImage, prevImage } = useViewer({ getImages })
 
+const localReaction = ref<1 | 0 | -1 | null>(null)
 const getReaction = computed(() => {
+  if (localReaction.value !== null) return localReaction.value
   if (props.post.isLiked) return 1
   if (props.post.isDisliked) return -1
   return 0
@@ -84,8 +97,14 @@ const showComments = ref(false)
         :dislikes="post.dislikesNumber"
         :reaction="getReaction"
         :comments="post.comments.length"
-        @like="uploadLike(post.id, post.isLiked, post.isDisliked)"
-        @dislike="uploadDislike(post.id, post.isLiked, post.isDisliked)"
+        @like="() => {
+          localReaction = localReaction === 1 ? 0 : 1
+          uploadLike(post.id, post.isLiked, post.isDisliked)
+        }"
+        @dislike="() => {
+          localReaction= localReaction === -1 ? 0 : -1
+          uploadDislike(post.id, post.isLiked, post.isDisliked)
+        }"
         @comment="showComments = !showComments"
       />
     </template>

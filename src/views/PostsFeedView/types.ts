@@ -14,12 +14,13 @@ export type ProjectPost = {
   media: FileInfo[],
   likes: number[],
   likesNumber: number,
-  dislikes: number,
+  dislikes: number[],
   dislikesNumber: number,
   date: Date,
   lastEditingInfo: {
     userID: number,
-    date: Date
+    date: Date,
+    unixDate: number
   },
   isLiked: boolean,
   isDisliked: boolean,
@@ -33,6 +34,12 @@ export type ProjectPost = {
     slogan: string,
     isSubscribed: boolean
   },
+  authorData: {
+    firstName: string,
+    lastName: string,
+    textID: string,
+    id: number
+  }
   postType: 'projectPost'
 }
 
@@ -67,3 +74,4 @@ export type UserPost = {
   postType: 'userPost'
 }
 
+export type IPost = UserPost | ProjectPost

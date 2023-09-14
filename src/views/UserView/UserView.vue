@@ -188,13 +188,13 @@ const subscriptions = ref<Subscription[] | null>(null)
         </div>
       </section>
 
-      <card card-class="desktop-social-media">
+      <card card-class="desktop-social-media" v-if="user.contacts.socialNetworks.length">
         <social-media-list :items="user.contacts.socialNetworks" />
       </card>
 
-      <card title="Навыки" card-class="skills">
+      <card title="Навыки" card-class="skills" v-if="skills && skills.length">
         <ul class="skills__list">
-          <li v-for="skill in skills!" :key="skill" class="skills__item">
+          <li v-for="skill in skills" :key="skill" class="skills__item">
             {{ skill }}
           </li>
         </ul>
@@ -202,7 +202,7 @@ const subscriptions = ref<Subscription[] | null>(null)
     </aside>
 
     <section class="user-view__center-container">
-      <button class="bio" @click="isBioOpen = true">
+      <button class="bio" @click="isBioOpen = true" v-if="user.bio">
         <card title="О себе">
           <p class="bio__text">{{ user.bio }}</p>
         </card>
