@@ -1,7 +1,7 @@
 import { onMounted, ref, watch } from 'vue'
 import { fetchActions } from '@/store/constants'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
 import { Comment } from '@/shared/types'
+import useAppStore from '@/store/useAppStore'
 import { PostType } from '../types'
 
 const useComments = (
@@ -14,9 +14,7 @@ const useComments = (
     addCallback: () => void
   }
 ) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const comments = ref<Comment[] | null>(null)
   const commentsUpdate = ref<symbol | null>(null)

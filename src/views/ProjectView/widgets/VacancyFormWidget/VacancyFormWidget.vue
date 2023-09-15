@@ -23,7 +23,7 @@ const { addFiles, removeFiles, getFiles } = useFiles()
 
 const themes = useThemes()
 const {
-  name, description, themeID, skills, isUploadingFile, uploadVacancy
+  name, description, themeID, skills, isUploadingFile, uploadVacancy, disabled
 } = useVacancy({ getFiles, projectID: props.fullProject.id })
 
 const hasFiles = computed(() => {
@@ -74,7 +74,7 @@ const hasFiles = computed(() => {
     </template>
 
     <template #buttons>
-      <bottom-button @submit="uploadVacancy" />
+      <bottom-button :disabled="disabled" @submit="uploadVacancy" />
     </template>
   </widget-layout>
 </template>

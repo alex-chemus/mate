@@ -1,16 +1,19 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useUserState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { IconId, IconUser, IconUsers } from '@tabler/icons-vue'
 import { Modal } from '@/shared/hocs'
+import { useWindowWidth } from '@/shared/utils'
 import { GeneralWidget, ProjectsWidget, ProfileWidget } from './widgets'
 
 const router = useRouter()
 
 const route = useRoute()
 
-const userState = useUserState()
+const { userState } = useAppStore()
+
+const { windowWidth, breakpoints } = useWindowWidth()
 
 export type TabType = 'general' | 'profile' | 'projects'
 const currentTab = computed<TabType | null>(() => {
@@ -109,7 +112,7 @@ const getTitle = computed(() => {
     :visible="!!isOpen" @update:visible="toggleTabs(null)"
     :width="modalWidth" :fixed-height="true"
   >
-    <section class="settings-container">
+    <section class="settings-container" v-if="windowWidth > breakpoints.lg">
       <aside>
         <div class="user-card">
           <img class="user-card__avatar" :src="userState?.avatar.avatarCompressed ?? userState?.avatar.avatar" />
@@ -143,6 +146,11 @@ const getTitle = computed(() => {
           <projects-widget v-if="currentTab === 'projects' && hasProjects" :full-account="userState" />
         </div>
       </section>
+    </section>
+
+    <section class="placeholder-container" v-else>
+      Настройки недоступны на вашем устройстве
+      <icon-devices-off width="60px" height="60px" />
     </section>
   </modal>
 </template>

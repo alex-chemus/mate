@@ -1,12 +1,10 @@
 import { ref, Ref } from 'vue'
 import { fetchActions } from '@/store/constants'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  useAlert
-} from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
+import { useGlobalUpdate, useAlert } from '@/shared/utils'
 
 const useSettings = ({
-  uploadImage, uploadSpecialties, address
+  uploadImage, uploadSpecialties, address, bio: bioProp
 }: {
   uploadImage?: (type: 'avatar' | 'cover') => Promise<null | number>,
   uploadSpecialties?: () => Promise<void>,
@@ -14,20 +12,22 @@ const useSettings = ({
     cityID: number,
     regionID: number,
     countryID: number
-  } | null>
+  } | null>,
+  bio: string
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { setGlobalAccountUpdate } = useGlobalUpdate()
   const { setSuccessMessage } = useAlert()
 
-  const bio = ref<string | null>(null)
+  const bio = ref<string | null>(bioProp)
   const media = ref<null | {[index: string]: string}>(null)
   const skills = ref<string[] | null>(null)
+  const disabled = ref(false)
   //const address = ref<Location | null>(null)
 
   const uploadAvatar = async (avatarID: number) => {
+    disabled.value = true
+
     const body = new FormData()
     body.append('token', authState.value.token as string)
     body.append('avatarImage', `${avatarID}`)
@@ -40,6 +40,8 @@ const useSettings = ({
       },
       errorMessage: '[features/Settings/ProfileWidget/useSettings] Failed to set avatar image'
     })
+
+    disabled.value = false
   }
 
   const uploadSettings = async () => {
@@ -49,7 +51,8 @@ const useSettings = ({
     const avatarID = uploadImage ? await uploadImage('avatar') : null
     const coverID = uploadImage ? await uploadImage('cover') : null
 
-    if (bio.value) body.append('bio', bio.value)
+    // if (bio.value) body.append('bio', bio.value)
+    body.append('bio', bio.value || ' ')
     if (media.value) body.append('media', JSON.stringify(media.value))
     if (skills.value) body.append('skills', skills.value.join(', '))
 
@@ -62,16 +65,11 @@ const useSettings = ({
 
     if (uploadSpecialties) await uploadSpecialties()
 
-    if (bio.value || media.value || skills.value || address.value || coverID) {
-      await dispatch(fetchActions.FETCH, {
-        url: `${apiState.value.apiUrl}/mate/account.setInfo/`,
-        info: {
-          method: 'POST',
-          body
-        },
-        errorMessage: '[features/Settings/ProfileWidget/useSettings] Failed to upload settings'
-      })
-    }
+    await dispatch(fetchActions.FETCH, {
+      url: `${apiState.value.apiUrl}/mate/account.setInfo/`,
+      info: { method: 'POST', body },
+      errorMessage: '[features/Settings/ProfileWidget/useSettings] Failed to upload settings'
+    })
 
     setGlobalAccountUpdate()
     setSuccessMessage('Сохранено')
@@ -84,7 +82,8 @@ const useSettings = ({
     bio,
     media,
     skills,
-    address
+    address,
+    disabled
   }
 }
 

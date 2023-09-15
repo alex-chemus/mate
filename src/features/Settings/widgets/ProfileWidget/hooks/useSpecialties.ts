@@ -1,13 +1,11 @@
 import { ref, watch } from 'vue'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { useAllSpecialties } from '@/shared/api'
 import { fetchActions } from '@/store/constants'
 import { FullAccount } from '@/shared/types'
 
 const useSpecialties = ({ fullAccount }: { fullAccount: FullAccount }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const allSpecialties = useAllSpecialties('[features/Settings/ProfileWidget/useSpecialties] Failed to fetch specialties')
 

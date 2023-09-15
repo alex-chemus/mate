@@ -20,7 +20,7 @@ const fetchModule: Module<FetchModuleState, RootState> = {
     async [fetchActions.SET_ERROR]({ dispatch, state }, { logError, fetchError }: SetErrorPayload) {
       if (![3, 4, 5].includes(fetchError.error_code)) return
 
-      if (fetchError.error_msg === 'Invalid token') {
+      if (fetchError.error_msg === 'Invalid token' && process.env.NODE_ENV !== "development" ) {
         // state.errorCode = fetchError.error_code
         // state.errorMsg = 'Ошибка авторизации'
         dispatch(authActions.REDIRECT)

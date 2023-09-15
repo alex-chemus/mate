@@ -1,11 +1,15 @@
 <script lang="ts" setup>
-import { defineEmits } from 'vue'
+import { defineEmits, defineProps } from 'vue'
+
+defineProps<{
+  disabled?: boolean
+}>()
 
 const emit = defineEmits<{ (e: 'click'): void }>()
 </script>
 
 <template>
-  <button class="finish-button" @click="emit('click')">Создать проект</button>
+  <button class="finish-button" @click="emit('click')" :disabled="disabled">Создать проект</button>
 </template>
 
 <style lang="scss" scoped>

@@ -1,8 +1,6 @@
 import { ref } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate,
-  useAlert
-} from '@/shared/utils'
+import { useGlobalUpdate, useAlert } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 
 type Role = {
@@ -12,19 +10,21 @@ type Role = {
 }
 
 const useRoles = () => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { setGlobalProjectsUpdate } = useGlobalUpdate()
   const { setSuccessMessage } = useAlert()
 
   const selectedRole = ref<Role | null>(null)
+
+  const disabled = ref(false)
 
   const onSelect = (role: Role) => {
     selectedRole.value = role
   }
 
   const updateRole = async () => {
+    disabled.value = true
+
     if (!selectedRole.value) return null
 
     const body = new FormData()
@@ -46,10 +46,12 @@ const useRoles = () => {
     setGlobalProjectsUpdate()
     setSuccessMessage('Должность изменена')
 
+    disabled.value = false
+
     return null
   }
 
-  return { onSelect, updateRole }
+  return { onSelect, updateRole, disabled }
 }
 
 export default useRoles

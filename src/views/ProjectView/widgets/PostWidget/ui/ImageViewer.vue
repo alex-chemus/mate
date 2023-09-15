@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <modal :visible="isOpen" @update:visible="onUpdate">
+  <modal :visible="isOpen" @update:visible="onUpdate" :no-styling="true">
     <div class="image-wrapper">
       <img v-if="src" :src="src" alt="" class="image" />
     </div>

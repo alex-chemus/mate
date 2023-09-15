@@ -2,6 +2,7 @@
 import { defineProps, defineEmits } from 'vue'
 import { useTheme } from '@/shared/utils'
 import { Tab } from '../types'
+import { IconNews } from '@tabler/icons-vue'
 
 defineProps<{
   currentTab: Tab
@@ -41,6 +42,10 @@ const { theme } = useTheme()
       <svg width="28" height="28" viewBox="0 0 30 30">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-briefcase" />
       </svg>
+    </button>
+
+    <button :class="['tab', { current: currentTab === 'feed' }]" @click="emit('switch', 'feed')">
+      <icon-news width="28" height="28" />
     </button>
   </div>
 </template>

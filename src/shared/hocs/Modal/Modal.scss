@@ -39,4 +39,13 @@
       color: var(--gray-1)
     }
   }
+
+  &.no-styling {
+    padding: 0;
+    border-radius: 0;
+  }
+
+  &.no-styling &__close-button {
+    display: none;
+  }
 }

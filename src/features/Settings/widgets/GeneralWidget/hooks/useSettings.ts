@@ -1,17 +1,14 @@
 import { ref, computed } from 'vue'
 import { fetchActions } from '@/store/constants'
-import {
-  useApiState, useAuthState, useDispatch, useGlobalUpdate, useAlert
-} from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
+import { useGlobalUpdate, useAlert } from '@/shared/utils'
 
 const useSettings = ({
   uploadAvatar
 }: {
   uploadAvatar?: () => Promise<null | number>,
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
   const { setGlobalAccountUpdate } = useGlobalUpdate()
   const { setSuccessMessage } = useAlert()
 
@@ -21,6 +18,8 @@ const useSettings = ({
   const textID = ref<string | null>(null)
   const sex = ref<1 | 2 | null>(null)
   const birthday = ref<string | null>()
+  
+  const disabled = ref(false)
 
   const getBirthday = computed(() => {
     if (!birthday.value) return null
@@ -32,6 +31,8 @@ const useSettings = ({
   }
 
   const uploadSettings = async () => {
+    disabled.value = true
+
     const body = new FormData()
     body.append('token', authState.value.token as string)
 
@@ -61,6 +62,8 @@ const useSettings = ({
 
     setGlobalAccountUpdate()
     setSuccessMessage('Сохранено')
+
+    disabled.value = false
   }
 
   return {
@@ -71,7 +74,8 @@ const useSettings = ({
     textID,
     sex,
     getBirthday,
-    setBirthday
+    setBirthday,
+    disabled
   }
 }
 

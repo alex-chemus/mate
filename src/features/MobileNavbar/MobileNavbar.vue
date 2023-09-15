@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { IconBriefcase, IconUserCircle, IconSearch } from '@tabler/icons-vue'
-import { useUserState } from '@/shared/utils'
+import { IconBriefcase, IconUserCircle, IconSearch, IconNews } from '@tabler/icons-vue'
+import useAppStore from '@/store/useAppStore'
 
 const route = useRoute()
 
-const userState = useUserState()
+const { userState } = useAppStore()
 
 type TabsListItem = {
-  type: "profile" | "vacancies" | "projects" | "search" | "settings",
+  type: "profile" | "vacancies" | "projects" | "search" | "settings" | "feed",
   disabled: boolean,
   active: boolean,
   navigate: string
@@ -17,6 +17,12 @@ type TabsListItem = {
 
 const tabsList = computed<TabsListItem[]>(() => {
   return [
+    {
+      type: 'feed',
+      disabled: false,
+      active: route.path.startsWith('/feed'),
+      navigate: '/feed'
+    },
     {
       type: 'projects',
       disabled: false,
@@ -48,6 +54,7 @@ const tabsList = computed<TabsListItem[]>(() => {
       <icon-briefcase v-if="tab.type === 'projects'" />
       <icon-search v-if="tab.type === 'search'" />
       <icon-user-circle v-if="tab.type === 'profile'" />
+      <icon-news v-if="tab.type === 'feed'" />
     </router-link>
   </section>
 </template>

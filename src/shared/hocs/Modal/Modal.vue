@@ -8,7 +8,8 @@ const props = defineProps<{
   visible: boolean,
   width?: number | string,
   zIndexFactor?: number,
-  fixedHeight?: boolean
+  fixedHeight?: boolean,
+  noStyling?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -67,7 +68,7 @@ const getModalStyle = computed(() => [
     </backdrop-transition>
 
     <popup-transition>
-      <div v-if="visible" class="modal" :style="getModalStyle">
+      <div v-if="visible" :class="['modal', { 'no-styling': noStyling }]" :style="getModalStyle">
         <button class="modal__close-button" @click="emit('update:visible', false)">
           <icon-x width="30" height="30" />
         </button>

@@ -136,7 +136,6 @@ const UserStatisticsList = () => {
   width: 100%;
   object-fit: cover;
   border-bottom: 1px solid color.change($gray-1, $alpha: .25);
-  background-color: var(--light);
 }
 
 .profile-container {
@@ -207,15 +206,11 @@ const UserStatisticsList = () => {
 }
 
 :deep(.button) {
-  // background-color: transparent;
   background-color: var(--bg-color-3);
   @include flex(center, center);
   position: relative;
-  // align-self: stretch;
   padding: 8px;
   transition: var(--fast);
-  // border: var(--border-2);
-  // box-shadow: var(--hover-element-shadow);
 
   &:is(:hover, :focus) {
     box-shadow: var(--hover-element-shadow);

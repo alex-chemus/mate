@@ -1,13 +1,23 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useTheme, usePostEditor } from '@/shared/utils'
+import { IconUserSearch } from '@tabler/icons-vue'
 
 defineProps<{
   img?: string
 }>()
 
+const route = useRoute()
+
+const router = useRouter()
+
 const { theme } = useTheme()
 const { openPostEditor } = usePostEditor()
+
+const openVacancyForm = () => {
+  router.push({ path: route.path, query: { 'vacancy-form': null } })
+}
 </script>
 
 <template>
@@ -15,74 +25,12 @@ const { openPostEditor } = usePostEditor()
     <svg width="24" height="24" viewBox="0 0 24 24">
       <use href="@/assets/imgs/tabler-sprite.svg#tabler-edit" />
     </svg>
-    <span>Расскажите, что произошло...</span>
+    <span>Расскажите, что произошло</span>
+  </button>
 
-    <!-- <div class="content-wrapper --align-start">
-      <img v-if="img" :src="img" alt="" class="icon" :class="theme" />
-      <div v-else class="icon placeholder" :class="theme" />
-      <button>Расскажите, что произошло...</button>
-      <input
-        type="text" placeholder="Расскажите, что произошло..."
-        class="input" :class="theme"
-      />
-    </div> -->
-
-    <!-- <div class="content-wrapper">
-      <button class="new-button" :class="theme" @click="openPostEditor()">
-        <svg width="20" height="20" viewBox="0 0 20 20">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
-        </svg>
-        <span>Добавить партнёра к записи</span>
-      </button>
-
-      <button class="icon-button" :class="theme">
-        <svg width="25" height="25" viewBox="0 0 25 25">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-camera-plus" />
-        </svg>
-      </button>
-
-      <button class="icon-button" :class="theme">
-        <svg width="25" height="25" viewBox="0 0 25 25">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-video-plus" />
-        </svg>
-      </button>
-
-      <button class="icon-button" :class="theme">
-        <svg width="25" height="25" viewBox="0 0 25 25">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-template" />
-        </svg>
-      </button>
-
-      <button class="icon-button" :class="theme">
-        <svg width="25" height="25" viewBox="0 0 25 25">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-gps" />
-        </svg>
-      </button>
-
-      <button class="icon-button" :class="theme">
-        <svg width="25" height="25" viewBox="0 0 25 25">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-file-plus" />
-        </svg>
-      </button>
-
-      <button class="icon-button" :class="theme">
-        <svg width="25" height="25" viewBox="0 0 25 25">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-device-desktop-analytics" />
-        </svg>
-      </button>
-
-      <button class="icon-button" :class="theme">
-        <svg width="25" height="25" viewBox="0 0 25 25">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-shopping-cart" />
-        </svg>
-      </button>
-
-      <button class="icon-button" :class="theme">
-        <svg width="25" height="25" viewBox="0 0 25 25">
-          <use href="@/assets/imgs/tabler-sprite.svg#tabler-clock-hour-4" />
-        </svg>
-      </button>
-    </div> -->
+  <button class="new-post hide-md" @click="openVacancyForm">
+    <icon-user-search />
+    <span>Расскажите, кто вам нужен</span>
   </button>
 </template>
 
@@ -104,6 +52,12 @@ const { openPostEditor } = usePostEditor()
 
   &:is(:hover, :focus) {
     box-shadow: var(--hover-block-shadow)
+  }
+
+  &.hide-md {
+      @include md {
+      display: none;
+    }
   }
 }
 

@@ -45,8 +45,9 @@ defineProps<{
 @import '@/assets/styles/style.scss';
 
 .subscriptions-section {
-  padding: 20px 16px 12px 17px;
-  border-radius: 13px;
+  /* padding: 20px 16px 12px 17px; */
+  padding: 15px;
+  border-radius: 14px;
   border: 1px solid color.change($gray-1, $alpha: .25);
   background-color: var(--bg-color-1);
 }

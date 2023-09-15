@@ -1,19 +1,20 @@
 import { ref } from 'vue'
-import { useAuthState, useDispatch, useApiState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
-import { FileInfo } from '@/shared/types'
 
 const useProject = ({ uploadImage }: { uploadImage(type: 'avatar' | 'cover'): Promise<number | null> }) => {
-  const authState = useAuthState()
-  const apiState = useApiState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const name = ref<string | null>(null)
   const nametag = ref<string | null>(null)
   const themeID = ref<number | null>(null)
   const description = ref<string | null>(null)
 
+  const disabled = ref(false)
+
   const uploadProject = async () => {
+    disabled.value = true
+
     const body = new FormData()
     body.append('token', authState.value.token as string)
 
@@ -46,10 +47,12 @@ const useProject = ({ uploadImage }: { uploadImage(type: 'avatar' | 'cover'): Pr
       info: { method: 'POST', body },
       errorMessage: '[views/NewProjectView/useProject] Failed to upload project info'
     })
+
+    disabled.value = false
   }
 
   return {
-    name, nametag, themeID, description, uploadProject
+    name, nametag, themeID, description, uploadProject, disabled
   }
 }
 

@@ -7,7 +7,8 @@ import { Dropdown } from '@/shared/ui'
 import { Member } from '../types'
 
 const props = defineProps<{
-  member: Member
+  member: Member,
+  disabled: boolean
 }>()
 
 const emit = defineEmits<{
@@ -62,6 +63,7 @@ const getText = computed(() => {
       :z-index-factor="3"
       width="button"
       @select="onSelect"
+      :disabled="disabled"
     />
   </div>
 </template>

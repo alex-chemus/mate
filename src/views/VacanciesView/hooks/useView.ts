@@ -1,12 +1,10 @@
 import { ref } from 'vue'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 import { FullVacancy } from '@/shared/types'
 
 const useView = () => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const viewUpdate = ref<symbol | null>(null)
 

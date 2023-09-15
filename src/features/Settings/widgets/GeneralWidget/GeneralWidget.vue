@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { useUserState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { Input, SaveButton, DateInput } from '@/shared/ui'
 import { WidgetLayout } from './layouts'
 import { Sex, AvatarForm, TextIdInput } from './ui'
 import { useUploadAvatar, useSettings } from './hooks'
 
-const userState = useUserState()
+const { userState } = useAppStore()
 
 const { setAvatar, uploadAvatar } = useUploadAvatar()
 const {
   uploadSettings, sex, firstName, lastName,
-  patronymic, textID, getBirthday, setBirthday
+  patronymic, textID, getBirthday, setBirthday, disabled
 } = useSettings({ uploadAvatar })
 </script>
 
@@ -75,7 +75,7 @@ const {
     </template>
 
     <template #upload-button>
-      <save-button @click="uploadSettings" />
+      <save-button :disabled="disabled" @click="uploadSettings" />
     </template>
   </widget-layout>
 </template>

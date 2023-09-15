@@ -1,14 +1,10 @@
 import { ref, onMounted, watch } from 'vue'
 import { fetchActions } from '@/store/constants'
-import {
-  useApiState, useAuthState, useDispatch
-} from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { SpecialtiesList } from '@/shared/types'
 
 const useAllSpecialties = (logErrorMessage?: string) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const fetchAllSpecialties = async () => {
     const body = new FormData()

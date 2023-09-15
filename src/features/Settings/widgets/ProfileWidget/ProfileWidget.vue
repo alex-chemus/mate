@@ -25,8 +25,8 @@ const {
 } = useAddress()
 const { uploadMedia, removeMedia, editMedia } = useMedia()
 const {
-  uploadSettings, bio, skills
-} = useSettings({ uploadImage, uploadSpecialties, address: addressValue })
+  uploadSettings, bio, skills, disabled
+} = useSettings({ uploadImage, uploadSpecialties, address: addressValue, bio: props.fullAccount.bio })
 
 const addressOpened = ref(false)
 const getAddress = computed(() => {
@@ -104,10 +104,10 @@ const getAddress = computed(() => {
 
     <template #skills>
       <Skills
-        :skills="skills ?? fullAccount.skills.split(', ')"
+        :skills="skills || fullAccount.skills.split(', ').filter(Boolean)"
         @add="skill => {
           if (skills) skills.push(skill)
-          else skills = [...fullAccount.skills, skill]
+          else skills = [...fullAccount.skills.split(', ').filter(Boolean), skill]
         }"
         @remove="skill => {
           if (skills) skills = skills.filter(s => s !== skill)
@@ -116,8 +116,9 @@ const getAddress = computed(() => {
       />
     </template>
 
+
     <template #save-button>
-      <save-button @click="uploadSettings" />
+      <save-button :disabled="disabled" @click="uploadSettings" />
     </template>
   </widget-layout>
 </template>

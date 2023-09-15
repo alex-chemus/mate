@@ -1,19 +1,19 @@
 <script lang="ts" setup>
 import { watch, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useUserState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { Loader } from '@/shared/ui';
 
-const userState = useUserState()
+const { userState } = useAppStore()
 const router = useRouter()
 
 const handleRedirect = () => {
-  if (userState.value.id) {
-    router.push(`/user/${userState.value.id}`)
+  if (userState.value?.findcreekID) {
+    router.push(`/user/${userState.value.findcreekID}`)
   }
 }
 onMounted(handleRedirect)
-watch(() => userState.value.id, handleRedirect)
+watch(userState, handleRedirect)
 </script>
 
 <template>

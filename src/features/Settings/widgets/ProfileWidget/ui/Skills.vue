@@ -14,13 +14,20 @@ const emit = defineEmits<{
 
 const { theme } = useTheme()
 const inputValue = ref('')
+
+const addSkill = () => {
+  if (inputValue.value.trim() !== '') {
+    emit('add', inputValue.value)
+    inputValue.value = '' // Очистить поле ввода после добавления навыка
+  }
+}
 </script>
 
 <template>
   <div class="skills-container">
     <Input label-text="Навыки" placeholder="Введите навык" v-model:value="inputValue">
       <template #after>
-        <button class="add-button" :class="theme" @click="emit('add', inputValue)">
+        <button class="add-button" :class="theme" @click="addSkill">
           <svg width="24" height="24" viewBox="0 0 24 24">
             <use href="@/assets/imgs/tabler-sprite.svg#tabler-plus" />
           </svg>

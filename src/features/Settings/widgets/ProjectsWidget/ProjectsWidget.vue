@@ -32,10 +32,10 @@ const {
 const {
   setAvatar, setCover, getAvatar, getCover, uploadImage
 } = useImages({ currentProjectID })
-const { onSelect, updateRole } = useRoles()
+const { onSelect, updateRole, disabled: roleDisabled } = useRoles()
 const {
   setFoundationDate, getFoundationDate, getSlogan, setSlogan,
-  uploadSettings
+  uploadSettings, disabled
 } = useSettings({ uploadImage, currentProjectID })
 </script>
 
@@ -96,7 +96,7 @@ const {
     </template>
 
     <template #save-button>
-      <save-button @click="uploadSettings" />
+      <save-button :disabled="disabled" @click="uploadSettings" />
     </template>
 
     <template #members-search>
@@ -123,6 +123,7 @@ const {
       >
         <role-dropdown
           :member="selectedMember"
+          :disabled="roleDisabled"
           @select="role => onSelect({
             projectID: currentProjectID!,
             userID: selectedMember!.findcreekID,

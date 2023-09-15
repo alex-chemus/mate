@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
-import { useUserState } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { useFullAccount } from '@/shared/api'
 import { CommentLayout, ReplyLayout, WidgetLayout } from './layouts'
 import {
@@ -17,7 +17,7 @@ const props = defineProps<{
 
 const account = useFullAccount('[widgets/CommentsWidget] Failed to fetch account info')
 
-const userState = useUserState()
+const { userState } = useAppStore()
 
 const replyToID = ref<number | null>(null)
 const editingID = ref<number | null>(null)

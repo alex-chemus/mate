@@ -1,0 +1,34 @@
+@import '@/assets/styles/style.scss';
+
+.button {
+  background-color: var(--bg-color-3);
+  @include flex(center, center);
+  position: relative;
+  padding: 8px;
+  transition: var(--fast);
+  border-radius: 10px;
+  height: 40px;
+  width: 100%;
+  @include findcreek-medium(14px, var(--text-color-1));
+
+  @include xl {
+    width: max-content;
+    margin-left: auto;
+    align-self: flex-end;
+    margin-bottom: 10px;
+  }
+
+  strong {
+    @include findcreek-bold(13px);
+  }
+
+  &.subscribe:is(:hover, :active) {
+    background-color: var(--accent);
+    color: white;
+  }
+
+  &.unsubscribe:is(:hover, :active) {
+    background-color: var(--red);
+    color: white;
+  }
+}

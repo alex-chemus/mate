@@ -79,7 +79,7 @@ const EditOrSubButton = () => {
 @import '@/assets/styles/style.scss';
 
 .card-section {
-  border-radius: 13px;
+  border-radius: 14px;
   overflow: hidden;
   border: var(--border-2);
   position: relative;
@@ -169,38 +169,23 @@ const EditOrSubButton = () => {
   margin: 0;
 }
 
-.button {
-  background-color: transparent;
+:deep(.button) {
+  background-color: var(--bg-color-3);
   @include flex(center, center);
   position: relative;
-  /* align-self: stretch; */
-  padding: 7px;
+  padding: 8px;
   transition: var(--fast);
+
+  &:is(:hover, :focus) {
+    box-shadow: var(--hover-element-shadow);
+  }
 
   &:not(:last-child) {
     margin-bottom: 10px;
   }
 
   strong {
-    color: var(--heading-color-2);
-  }
-
-  &.light {
-    border: 1px solid color.change($gray-1, $alpha: .2);
-  }
-
-  &.light:hover,
-  &.light:focus {
-    box-shadow: 0 0 5px 0 rgba(0 0 0 / .25);
-  }
-
-  &.dark {
-    border: 1px solid color.change($gray-3, $alpha: .5);
-  }
-
-  &.dark:hover,
-  &.dark:focus {
-    box-shadow: 0 0 10px 0 rgba(0 0 0 / .5);
+    color: var(--heading-color-1);
   }
 
   .logo {
@@ -212,11 +197,11 @@ const EditOrSubButton = () => {
   }
 
   strong {
-    @include montserrat-bold(13px);
+    @include findcreek-bold(13px);
   }
 }
 
-.logo-button {
+:deep(.logo-button) {
   border-radius: 8px;
 
   &.dark :is(span, strong) {
@@ -228,11 +213,17 @@ const EditOrSubButton = () => {
   }
 }
 
-.edit-button {
+:deep(.edit-button) {
   border-radius: 10px;
+  // padding: 16px 0;
   height: 40px;
   @include findcreek-medium(14px, var(--text-color-1));
   background-color: var(--bg-color-3);
+
+  @include xl {
+    width: max-content;
+    margin-left: auto;
+  }
 }
 
 .separator {

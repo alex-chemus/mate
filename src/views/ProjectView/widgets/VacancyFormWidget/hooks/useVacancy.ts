@@ -1,8 +1,7 @@
 import { ref, Ref, ComputedRef } from 'vue'
-import {
-  useApiState, useAuthState, useDispatch, useAlert
-} from '@/shared/utils'
+import { useAlert } from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
+import useAppStore from '@/store/useAppStore'
 import { FileInfo } from '@/shared/types'
 import { IFile } from '../types'
 
@@ -12,15 +11,16 @@ const useVacancy = ({
   getFiles: ComputedRef<IFile[] | null> | Ref<IFile[] | null>,
   projectID: number
 }) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
+  
   const { setDangerMessage, setSuccessMessage } = useAlert()
 
   const name = ref<string | null>(null)
   const description = ref<string | null>(null)
   const themeID = ref<number | null>(null)
   const skills = ref<string[]>([])
+
+  const disabled = ref(false)
 
   const isUploadingFile = ref<number | null>(null)
 
@@ -42,14 +42,16 @@ const useVacancy = ({
   }
 
   const uploadFiles = async (files: IFile[]) => {
+    disabled.value = true
+
     const res: number[] = []
 
-    /* eslint-disable */
     for (const file of files) {
       const fileInfo = await uploadFile(file)
       if (fileInfo) res.push(fileInfo.fileID)
     }
-    /* eslint-enable */
+
+    disabled.value = false
 
     return res
   }
@@ -93,7 +95,7 @@ const useVacancy = ({
   }
 
   return {
-    name, description, themeID, skills, uploadVacancy, uploadFile, isUploadingFile
+    name, description, themeID, skills, uploadVacancy, uploadFile, isUploadingFile, disabled
   }
 }
 

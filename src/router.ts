@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import {
   LandingPage, ErrorPage, NewProjectView, MainView,
-  ProjectView, VacanciesView, UserView, ProjectsListView, GlobalSearchView
+  ProjectView, VacanciesView, UserView, ProjectsListView, GlobalSearchView, PostsFeedView
 } from '@/views'
 
 const routes: Array<RouteRecordRaw> = [
@@ -14,6 +14,7 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/projects-list', component: ProjectsListView },
   { path: '/new-project', component: NewProjectView },
   { path: '/global-search', component: GlobalSearchView },
+  { path: '/feed', component: PostsFeedView },
 
   { path: '/', component: MainView },
 ]

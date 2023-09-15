@@ -1,13 +1,11 @@
 import { Reply, Comment } from '@/shared/types'
-import { useApiState, useAuthState, useDispatch } from '@/shared/utils'
+import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 
 const useCommentLikes = (
   { onUpdate }: { onUpdate: () => void }
 ) => {
-  const apiState = useApiState()
-  const authState = useAuthState()
-  const dispatch = useDispatch()
+  const { apiState, authState, dispatch } = useAppStore()
 
   const setReaction = async (id: number, method: 'like' | 'dislike' | 'removeLike' | 'removeDislike') => {
     const body = new FormData()

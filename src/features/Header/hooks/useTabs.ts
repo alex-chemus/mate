@@ -10,6 +10,7 @@ const useTabs = ({ id }: { id: ComputedRef<number | null> }) => {
     if (id.value && route.path.startsWith(`/user/${id.value}`)) return 'profile'
     if (route.path.startsWith('/vacancies')) return 'vacancies'
     if (route.path.startsWith('/projects-list')) return 'projects'
+    if (route.path.startsWith('/feed')) return 'feed'
     return null
   })
 
@@ -25,6 +26,10 @@ const useTabs = ({ id }: { id: ComputedRef<number | null> }) => {
 
       case 'projects':
         router.push({ path: '/projects-list' })
+        break
+
+      case 'feed':
+        router.push({ path: '/feed' })
         break
 
       default: break;
