@@ -86,6 +86,16 @@ aside {
   }
 }
 
+.new-post-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+
+  @include md {
+    display: block;
+  }
+}
+
 .projects-aside {
   & > *:not(:last-child) {
     margin-bottom: 23px;

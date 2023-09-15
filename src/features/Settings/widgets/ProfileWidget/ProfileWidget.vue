@@ -26,7 +26,7 @@ const {
 const { uploadMedia, removeMedia, editMedia } = useMedia()
 const {
   uploadSettings, bio, skills, disabled
-} = useSettings({ uploadImage, uploadSpecialties, address: addressValue })
+} = useSettings({ uploadImage, uploadSpecialties, address: addressValue, bio: props.fullAccount.bio })
 
 const addressOpened = ref(false)
 const getAddress = computed(() => {
@@ -103,18 +103,18 @@ const getAddress = computed(() => {
     </template>
 
     <template #skills>
-  <Skills
-    :skills="skills || fullAccount.skills.split(', ').filter(Boolean)"
-    @add="skill => {
-      if (skills) skills.push(skill)
-      else skills = [...fullAccount.skills, skill]
-    }"
-    @remove="skill => {
-      if (skills) skills = skills.filter(s => s !== skill)
-      else skills = [...fullAccount.skills.split(', ')].filter(s => s !== skill)
-    }"
-  />
-</template>
+      <Skills
+        :skills="skills || fullAccount.skills.split(', ').filter(Boolean)"
+        @add="skill => {
+          if (skills) skills.push(skill)
+          else skills = [...fullAccount.skills.split(', ').filter(Boolean), skill]
+        }"
+        @remove="skill => {
+          if (skills) skills = skills.filter(s => s !== skill)
+          else skills = [...fullAccount.skills.split(', ')].filter(s => s !== skill)
+        }"
+      />
+    </template>
 
 
     <template #save-button>
