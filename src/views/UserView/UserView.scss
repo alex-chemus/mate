@@ -196,6 +196,7 @@ aside,
 
   :deep(.card) {
     gap: 10px;
+    width: 100%;
   }
 
   @include xl {
