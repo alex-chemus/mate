@@ -38,7 +38,7 @@ onMounted(() => {
 })
 
 const wasRedirected = computed(() => {
-  return window.location.pathname === 'redirect'
+  return window.location.pathname.startsWith('/redirect')
 })
 const getTokenFromUrl = computed(() => {
   const params = window.location.search.split('?')[1].split('&')

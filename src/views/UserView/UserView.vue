@@ -48,7 +48,7 @@ const getProjectIds = computed(() => {
 
 const projects = ref<FullProject[] | null>(null)
 const fetchProjects = async () => {
-  if (getProjectIds.value)
+  if (getProjectIds.value && getProjectIds.value.length)
     projects.value = await fetchApi('projects.getInfo', { projectsIDs: getProjectIds.value.join(', ') })
 }
 onMounted(fetchProjects)
