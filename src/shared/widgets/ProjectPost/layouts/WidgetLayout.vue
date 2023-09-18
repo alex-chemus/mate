@@ -11,30 +11,6 @@ const { theme } = useTheme()
 
 <template>
   <article class="post-section" :class="theme">
-    <!-- <img v-if="img" :src="img" alt="" class="image" />
-    <div v-else class="image placeholder" /> -->
-    <!-- <div class="post-banner">
-      <slot name="banner" />
-    </div> -->
-
-    <!-- <div class="post-container">
-      <div class="text">
-        <slot name="text" />
-      </div>
-
-      <div class="author-container">
-        <slot name="author" />
-      </div>
-
-      <div class="buttons-wrapper">
-        <slot name="buttons" />
-      </div>
-
-      <div class="comment-container">
-        <slot name="comment" />
-      </div>
-    </div> -->
-
     <slot name="header" />
     <slot name="text" />
     <slot name="gallery" />
