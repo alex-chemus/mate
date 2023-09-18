@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useFetchApi } from '@/shared/utils'
-import { PostWidget as UserPost } from '@/views/UserView/widgets'
-import { PostWidget as ProjectPost } from '@/views/ProjectView/widgets'
+import { UserPost, ProjectPost } from '@/shared/widgets'
 import { PostsObserver } from '../ProjectView/ui'
 import { IPost } from './types'
 import { Loader } from '@/shared/ui'

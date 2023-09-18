@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { PostFormWidget } from '@/shared/widgets'
+import { PostFormWidget, ProjectPost } from '@/shared/widgets'
 import { useFullAccount } from '@/shared/api'
 import { useWindowWidth } from '@/shared/utils'
-import type { Company } from './types'
-import { PostWidget, VacancyFormWidget } from './widgets'
+import { Company } from './types'
+import { VacancyFormWidget } from './widgets'
 import {
   ProfileCard, Subscriptions, About,
   NewPost, Projects, Employees, PostsObserver
@@ -32,9 +32,7 @@ const postUpdate = ref<symbol | null>(null)
 const setPostUpdate = () => {
   postUpdate.value = Symbol()
 }
-const {
-  getPosts, authors, next, updatePost
-} = usePosts({ project, update: postUpdate })
+const { getPosts, authors, next } = usePosts({ project, update: postUpdate })
 
 const ownsProject = computed(() => {
   if (!fullAccount.value || !project.value) return
@@ -89,12 +87,11 @@ const ownsProject = computed(() => {
     </template>
 
     <template #posts v-if="getPosts && authors">
-      <post-widget
+      <project-post
         v-for="post in getPosts" :key="post.date.unixTime"
         :post="post"
         :project="project"
         :author="authors!.find((i) => i.postID === post.id)!.author"
-        @reload="updatePost"
       />
     </template>
 

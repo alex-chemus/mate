@@ -6,11 +6,17 @@ import { ThumbDownFilled } from '@/shared/icons'
 const { theme } = useTheme()
 
 const props = defineProps<{
-  likes: number,
-  dislikes: number,
+  // likes: number,
+  // dislikes: number,
   comments: number,
   // comments: string,
-  reaction: 0 | 1 | -1
+  // reaction: 0 | 1 | -1
+  reaction: {
+    likes: number,
+    dislikes: number,
+    isLiked: boolean,
+    isDisliked: boolean
+  }
 }>()
 
 const emit = defineEmits<{
@@ -20,44 +26,44 @@ const emit = defineEmits<{
 }>()
 
 const getLikes = computed(() => {
-  if (props.likes < 1_000) return props.likes.toString()
+  if (props.reaction.likes < 1_000) return props.reaction.likes.toString()
 
-  if (props.likes < 1_000_000) {
-    const a = Math.floor(props.likes / 1_000)
-    const b = +props.likes.toString().split('').reverse()[2]
+  if (props.reaction.likes < 1_000_000) {
+    const a = Math.floor(props.reaction.likes / 1_000)
+    const b = +props.reaction.likes.toString().split('').reverse()[2]
     return `${a},${b}K`
   }
 
-  const a = Math.floor(props.likes / 1_000_000)
-  const b = +props.likes.toString().split('').reverse()[5]
+  const a = Math.floor(props.reaction.likes / 1_000_000)
+  const b = +props.reaction.likes.toString().split('').reverse()[5]
   return `${a},${b}M`
 })
 
 const getDislikes = computed(() => {
-  if (props.dislikes < 1_000) return props.dislikes.toString()
+  if (props.reaction.dislikes < 1_000) return props.reaction.dislikes.toString()
 
-  if (props.dislikes < 1_000_000) {
-    const a = Math.floor(props.dislikes / 1_000)
-    const b = +props.dislikes.toString().split('').reverse()[2]
+  if (props.reaction.dislikes < 1_000_000) {
+    const a = Math.floor(props.reaction.dislikes / 1_000)
+    const b = +props.reaction.dislikes.toString().split('').reverse()[2]
     return `${a},${b}K`
   }
 
-  const a = Math.floor(props.dislikes / 1_000_000)
-  const b = +props.dislikes.toString().split('').reverse()[5]
+  const a = Math.floor(props.reaction.dislikes / 1_000_000)
+  const b = +props.reaction.dislikes.toString().split('').reverse()[5]
   return `${a},${b}M`
 })
 </script>
 
 <template>
   <div class="buttons-container">
-    <button @click="emit('like')" :class="[theme, { active: reaction === 1 }]" class="button like">
+    <button @click="emit('like')" :class="[theme, { active: reaction.isLiked }]" class="button like">
       <svg width="16" height="16" viewBox="0 0 24 24">
         <use href="@/assets/imgs/tabler-sprite.svg#tabler-heart-filled" />
       </svg>
       <span>{{ getLikes }}</span>
     </button>
 
-    <button @click="emit('dislike')" :class="[theme, { active: reaction === -1 }]" class="button dislike">
+    <button @click="emit('dislike')" :class="[theme, { active: reaction.isDisliked }]" class="button dislike">
       <thumb-down-filled />
       <span>{{ getDislikes }}</span>
     </button>
@@ -68,34 +74,6 @@ const getDislikes = computed(() => {
       </svg>
       <span>{{ comments }}</span>
     </button>
-
-    <!-- <button @click="emit('comment')" :class="theme" class="button --offset">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-messages" />
-      </svg>
-      <span>{{ props.comments }}</span>
-    </button> -->
-
-    <!-- <button :class="theme" class="button">
-      <svg width="20" height="20" viewBox="0 0 20 20">
-        <use href="@/assets/imgs/tabler-sprite.svg#tabler-screen-share" />
-      </svg>
-      <span>Поделиться</span>
-    </button>
-
-    <popover v-model:visible="isOpen" trigger="click" placement="top-left">
-      <template #button>
-        <button :class="theme" class="button --round" @click="isOpen = !isOpen">
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <use href="@/assets/imgs/tabler-sprite.svg#tabler-dots-vertical" />
-          </svg>
-        </button>
-      </template>
-
-      <template #content>
-        <post-popup-layout />
-      </template>
-    </popover> -->
   </div>
 </template>
 

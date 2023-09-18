@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import {
-  defineProps, defineEmits, computed, ref
-} from 'vue'
+import { defineProps, computed, ref } from 'vue'
+import dayjs from 'dayjs'
 import { Avatar, FullUserPost } from '@/shared/types'
 import { CommentsWidget } from '@/shared/widgets'
+import { useFetchApi } from '@/shared/utils'
 import { WidgetLayout } from './layouts'
-import { useDate, useViewer, useLikes } from './hooks'
+import { useViewer } from './hooks'
 import {
   ImageViewer, PostText, PostHeader, PostGallery,
   PostButtons
@@ -24,16 +24,35 @@ const props = defineProps<{
   author: AuthorProps
 }>()
 
-const emit = defineEmits<{
-  (e: 'reload', id: number): void
-}>()
+const fetchApi = useFetchApi()
 
-const { uploadLike, uploadDislike } = useLikes({
-  onUpdate: () => emit('reload', props.post.id)
+const reaction = ref({
+  likes: props.post.likesNumber,
+  dislikes: props.post.dislikesNumber,
+  isLiked: props.post.isLiked,
+  isDisliked: props.post.isDisliked
 })
 
-const date = useDate({
-  timestamp: computed(() => props.post.date.unixTime * 1000)
+const handleLike = async () => {
+  reaction.value = reaction.value.isLiked
+    ? await fetchApi('userPosts.removeLike', { postID: props.post.id.toString() }) 
+    : await fetchApi('userPosts.like', { postID: props.post.id.toString() })
+}
+
+const handleDislike = async () => {
+  reaction.value = reaction.value.isDisliked
+    ? await fetchApi('userPosts.removeDislike', { postID: props.post.id.toString() }) 
+    : await fetchApi('userPosts.dislike', { postID: props.post.id.toString() })
+}
+
+const getDate = computed(() => {
+  const date = dayjs.unix(props.post.date.unixTime)
+  switch (true) {
+    case dayjs().isBefore(date, 'day'): return `Вчера в ${date.format('H:mm')}`
+    case dayjs().isSame(date, 'day'): return `Сегодня в ${date.format('H:mm')}`
+    case dayjs().isSame(date, 'year'): return date.format('H:mm DD.MM')
+    default: return date.format('H:mm DD.MM.YY')
+  }
 })
 
 const getImages = computed(() => {
@@ -42,14 +61,6 @@ const getImages = computed(() => {
 })
 
 const { viewImage, nextImage, prevImage } = useViewer({ getImages })
-
-const localReaction = ref<-1 | 0 | 1 | null>(null)
-const getReaction = computed(() => {
-  if (localReaction.value !== null) return localReaction.value
-  if (props.post.isLiked) return 1
-  if (props.post.isDisliked) return -1
-  return 0
-})
 
 const showComments = ref(false)
 </script>
@@ -70,7 +81,7 @@ const showComments = ref(false)
         :author="`${author.firstName} ${author.lastName}`"
         :author-id="author.findcreekID"
         :author-text-id="author.textID"
-        :date-string="date"
+        :date-string="getDate"
       />
     </template>
 
@@ -85,25 +96,13 @@ const showComments = ref(false)
       <post-text :text="post.description" />
     </template>
 
-    <!-- <template #heading>
-      <post-heading :heading="post.title" />
-    </template> -->
-
     <template #buttons>
       <post-buttons
-        :reaction="getReaction"
-        :likes="post.likesNumber"
-        :dislikes="post.dislikesNumber"
+        :reaction="reaction"
         :comments="post.comments.length"
-        @like="() => {
-          localReaction = localReaction === 1 ? 0 : 1
-          uploadLike(post.id, post.isLiked, post.isDisliked)
-        }"
-        @dislike="() => {
-          localReaction = localReaction === -1 ? 0 : -1
-          uploadDislike(post.id, post.isLiked, post.isDisliked)
-        }"
         @comment="showComments = !showComments"
+        @like="handleLike"
+        @dislike="handleDislike"
       />
     </template>
 

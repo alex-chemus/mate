@@ -14,7 +14,7 @@ import SocialMediaList from './SocialMediaList/SocialMediaList.vue'
 import { usePosts } from './hooks'
 import { PostsObserver } from './ui'
 import BioModal from './ui/BioModal.vue'
-import { PostWidget } from './widgets'
+import { UserPost } from '@/shared/widgets'
 
 const router = useRouter()
 
@@ -67,7 +67,7 @@ const getProjectsList = computed(() => {
 })
 
 // временное решение, вынести всю логику в UserPosts во время рефакторинга
-const { posts, updatePost, next } = usePosts({ userInfo: user })
+const { posts, next } = usePosts({ userInfo: user })
 
 const skills = computed(() => {
   if (!user.value) return null
@@ -78,11 +78,6 @@ const skills = computed(() => {
 const { windowWidth, breakpoints } = useWindowWidth()
 
 const { openPostEditor } = usePostEditor()
-
-// const bioRefresher = ref(Symbol())
-// const openBioModal = () => {
-//   bioRefresher.value = Symbol()
-// }
 
 const isBioOpen = ref(false)
 
@@ -213,16 +208,10 @@ const subscriptions = ref<Subscription[] | null>(null)
         <span>Расскажите, что произошло</span>
       </button>
 
-      <!-- <user-posts
-        :user-avatar="user.avatar.avatarCompressed || user.avatar.avatar"
-        :user-name="`${user.firstName} ${user.lastName}`"
-        :user-tag="user.textID"
-      /> -->
-      <post-widget
+      <user-post
         v-for="post in posts" :key="post.date.unixTime"
         :post="post"
         :author="user"
-        @reload="updatePost"
       />
 
       <posts-observer @intersect="next()" />
@@ -253,83 +242,6 @@ const subscriptions = ref<Subscription[] | null>(null)
       </card>
     </aside>
   </section>
-
-  <!-- <view-layout v-if="user" :loading="!user">
-    <template #profile-card>
-      <profile-card
-        :full-name="`${user.firstName} ${user.lastName}`"
-        :img="user.avatar.avatarCompressed"
-        :subscribers="user.subscribersNumber"
-        :subscriptions="user.subscriptionsNumber"
-        :nickname="user.textID"
-        :banner="user.profileCover ? user.profileCover : undefined"
-        :can-edit="isMe(user.findcreekID)"
-        :is-subscribed="user.isSubscribed"
-        :bio="user.bio"
-        :projects-count="fullProjects?.length"
-        @subscribe="uploadSubscribe(fullUsers![0].findcreekID)"
-        @unsubscribe="uploadUnsubscribe(fullUsers![0].findcreekID)"
-        @name-click="openBioModal"
-      />
-    </template>
-
-    <template #contacts>
-      <contacts
-        v-if="windowWidth >= breakpoints.xl"
-        :media="user.contacts.socialNetworks"
-      />
-    </template>
-
-    <template #skills>
-      <Skills v-if="skills && windowWidth >= breakpoints.xl" :is-me="isMe(user.findcreekID)" :skills="skills" />
-    </template>
-
-    <template #bio>
-      <bio
-        :bio="user.bio"
-        :is-me="isMe(user.findcreekID)"
-        :emails="user.contacts.emailAddresses"
-        :specialties="user.specialties.map(s => s.rusName)"
-        :registration-date="user.registrationDate"
-        :phones="user.contacts.phoneNumbers"
-        :city="user.address.cityRusName"
-        :skills="user.skills"
-        :media="windowWidth < breakpoints.xl ? user.contacts.socialNetworks : undefined"
-        :refresher="bioRefresher"
-      />
-    </template>
-
-    <template #new-post>
-      <new-post
-        v-if="isMe(user.findcreekID)"
-        :img="user.avatar.avatarCompressed ?? user.avatar.avatar"
-      />
-    </template>
-
-    <template #posts v-if="posts">
-      <post-widget
-        v-for="post in posts" :key="post.date.unixTime"
-        :post="post"
-        :author="user"
-        @reload="updatePost"
-      />
-    </template>
-
-    <template #posts-observer>
-      <posts-observer @intersect="next()" />
-    </template>
-
-    <template #projects>
-      <Projects v-if="fullProjects" :projects="fullProjects" />
-    </template>
-
-    <template #subscriptions>
-      <Subscriptions
-        v-if="subscriptions"
-        :subscriptions="subscriptions"
-      />
-    </template>
-  </view-layout> -->
 </template>
 
 <style scoped lang="scss" src="./UserView.scss" />
