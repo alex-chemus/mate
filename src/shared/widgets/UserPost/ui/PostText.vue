@@ -50,7 +50,7 @@ const getText = useTextWithLinks(computedText)
 }
 
 .text-roboto {
-  font-family: "Roboto", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--roboto);
 }
 
 .text:deep(a) {
