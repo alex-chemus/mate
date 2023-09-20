@@ -40,9 +40,17 @@ const getText = useTextWithLinks(computedText)
 <style lang="scss" scoped>
 @import '@/assets/styles/style.scss';
 
+.text-wrapper {
+  margin-top: -5px;
+}
+
 .text {
   display: inline;
   line-height: 140%;
+}
+
+.text-roboto {
+  font-family: var(--roboto);
 }
 
 .text:deep(a) {

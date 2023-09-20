@@ -42,7 +42,7 @@ header {
 }
 
 .avatar {
-  width: 40px;
+  width: 38px;
   aspect-ratio: 1;
   border-radius: 100vmax;
   object-fit: cover;
@@ -51,7 +51,7 @@ header {
 
 .author-wrapper {
   & > *:not(:last-child) {
-    margin-bottom: 3px;
+    // margin-bottom: 3px;
   }
 }
 
