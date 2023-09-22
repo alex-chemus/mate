@@ -1,0 +1,193 @@
+@import '@/assets/styles/style.scss';
+
+.new-project-view {
+  margin: 40px auto 40px;
+  flex-grow: 1;
+  background-color: var(--bg-color-2);
+  border: var(--border-2);
+  border-radius: 13px;
+  max-width: 900px;
+  width: 100%;
+  overflow: hidden;
+  align-self: center;
+  @include flex(flex-start, stretch, column);
+  gap: 30px;
+}
+
+.form-step {
+  padding: 60px 130px 0;
+  display: block;
+  text-align: left;
+  
+  &.center {
+    @include flex(center, center, column);
+    gap: 40px;
+
+    * {
+      text-align: center;
+    }
+  }
+
+  @include lg {
+    padding: 25px 20px 0;
+  }
+}
+
+.form-steps-carousel {
+  margin-bottom: auto;
+  width: 100%;
+  flex-grow: 2;
+  position: relative;
+  @include flex(space-between, stretch, column);
+
+  &:deep(.carousel__pagination) {
+    margin: 0;
+    gap: 10px;
+  }
+
+  &:deep(.carousel__pagination-button) {
+    width: 8px;
+    height: 8px;
+    border-radius: 100vmax;
+    background-color: var(--bg-color-3);
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &:deep(.carousel__pagination-button--active) {
+    background-color: var(--accent);
+  }
+}
+
+.controls-wrapper {
+  @include flex(stretch, center);
+  align-self: stretch;
+  gap: 28px;
+  padding: 0 130px 60px;
+
+  &.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 28px;
+
+    @include md {
+      display: flex;
+      grid-gap: 10px;
+    }
+  }
+
+  @include md {
+    @include flex(flex-start, stretch, column);
+    gap: 10px;
+  }
+
+  @include lg {
+    padding: 0 25px 20px;
+  }
+}
+
+.form-step-heading {
+  @include findcreek-bold(30px, var(--heading-color-1));
+  margin-bottom: 28px;
+
+  @include lg {
+    font-size: 24px;
+  }
+}
+
+.form-step-description {
+  @include findcreek-medium(16px, var(--text-color-1));
+  margin-bottom: 48px;
+}
+
+// todo: мб в будущем вынести в styles как глобальные стили
+.form-item {
+  margin-bottom: 0;
+
+  :deep(.ant-form-item-label) {
+    margin: 0 0 7px 10px;
+    padding: 0;
+    @include findcreek-medium(14px, var(--text-color-1));
+  }
+
+  :deep(label) {
+    color: inherit;
+  }
+
+  :deep(.ant-form-item-control-input) {
+    min-height: 40px;
+  }
+
+  :deep(input) {
+    height: 40px;
+    padding: 0 14px;
+    @include findcreek(14px, var(--text-color-1));
+    background-color: transparent;
+    background-color: var(--bg-color-3);
+    border: var(--border-1);
+
+    &:is(:hover, :focus) {
+      border: 1px solid var(--accent);
+    }
+  }
+
+  :deep(textarea) {
+    @include findcreek-medium(14px, var(--text-color-1));
+    resize: none;
+    border-radius: 8px;
+    background-color: var(--bg-color-3);
+    border: var(--border-1);
+
+    &:is(:hover, :focus) {
+      border: 1px solid var(--accent);
+    }
+  }
+}
+
+:deep(.cover) {
+  height: 100px;
+  width: 100%;
+  border-radius: 13px;
+  @include findcreek-medium(14px, var(--text-color-1));
+  letter-spacing: -0.03em;
+  @include flex(center, center);
+  gap: 9px;
+  border: 1px dashed var(--bg-color-1);
+  background-position: center;
+  background-size: cover;
+}
+
+.avatar-wrapper {
+  margin-top: -50px;
+  margin-left: 50px;
+}
+
+:deep(.avatar) {
+  width: 100px;
+  height: 100px;
+  border-radius: 100vmax;
+  border: 2px solid var(--bg-color-2);
+  @include flex(center, center);
+  color: var(--text-color-1);
+}
+
+.button-default {
+  height: 48px;
+  @include flex(center, center);
+  border-radius: 8px;
+  background-color: var(--bg-color-3);
+  border: var(--border-2);
+  @include findcreek-bold(16px, var(--text-color-1));
+  flex-grow: 1;
+}
+
+.button-primary {  
+  height: 48px;
+  @include flex(center, center);
+  border-radius: 8px;
+  background-color: var(--light-accent);
+  @include findcreek-bold(16px, white);
+  flex-grow: 1;
+}

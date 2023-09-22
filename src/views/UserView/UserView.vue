@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { PostFormWidget } from '@/shared/widgets'
+import { PostFormWidget } from '@/shared/components'
 import { useWindowWidth, useFetchApi, usePostEditor } from '@/shared/utils'
 import { Modal } from '@/shared/hocs'
 import useAppStore from '@/store/useAppStore'
@@ -14,7 +14,7 @@ import SocialMediaList from './SocialMediaList/SocialMediaList.vue'
 import { usePosts } from './hooks'
 import { PostsObserver } from './ui'
 import BioModal from './ui/BioModal.vue'
-import { UserPost } from '@/shared/widgets'
+import { UserPost } from '@/shared/components'
 
 const router = useRouter()
 

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { PostFormWidget, ProjectPost } from '@/shared/widgets'
+import { PostFormWidget, ProjectPost } from '@/shared/components'
 import { useFullAccount } from '@/shared/api'
 import { useWindowWidth } from '@/shared/utils'
 import { Company } from './types'

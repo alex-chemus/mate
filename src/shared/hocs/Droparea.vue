@@ -78,6 +78,6 @@ const onClick = () => {
 }
 
 .input {
-  display: none;
+  display: none !important;
 }
 </style>

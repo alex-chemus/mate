@@ -4,7 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import './index.css'
-import 'ant-design-vue/dist/reset.css';
+import 'ant-design-vue/dist/reset.css'
 
 createApp(App)
   .use(store)

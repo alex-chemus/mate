@@ -5,7 +5,7 @@ import {
 import {
   FullProjectPost, Avatar
 } from '@/shared/types'
-import { CommentsWidget } from '@/shared/widgets'
+import { CommentsWidget } from '@/shared/components'
 import { useDate, useLikes, useViewer } from './hooks'
 import { WidgetLayout } from './layouts'
 import {

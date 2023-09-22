@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import {
   LandingPage, ErrorPage, NewProjectView, MainView,
-  ProjectView, VacanciesView, UserView, ProjectsListView, GlobalSearchView, PostsFeedView
+  ProjectView, VacanciesView, UserView, ProjectsListView, GlobalSearchView, PostsFeedView, SandboxView
 } from '@/views'
 
 const routes: Array<RouteRecordRaw> = [
@@ -15,6 +15,8 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/new-project', component: NewProjectView },
   { path: '/global-search', component: GlobalSearchView },
   { path: '/feed', component: PostsFeedView },
+
+  { path: '/sandbox', component: process.env.VUE_APP_SANDBOX ? SandboxView : MainView },
 
   { path: '/', component: MainView },
 ]
