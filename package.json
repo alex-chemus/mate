@@ -13,6 +13,7 @@
     "-": "^0.0.1",
     "@egjs/vue3-flicking": "^4.10.5",
     "@tabler/icons-vue": "^2.32.0",
+    "ant-design-vue": "^4.0.3",
     "connect-history-api-fallback": "^2.0.0",
     "core-js": "^3.8.3",
     "dayjs": "^1.11.9",
