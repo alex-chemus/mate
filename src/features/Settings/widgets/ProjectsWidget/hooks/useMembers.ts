@@ -1,5 +1,5 @@
 import { ref, computed, ComputedRef, watch } from 'vue'
-import { useGlobalUpdate } from '@/shared/utils'
+import { useGlobalRefresher } from '@/shared/utils'
 import useAppStore from '@/store/useAppStore'
 import { FullProject, ExcludeProperties } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
@@ -10,7 +10,7 @@ const useMembers = ({ currentProject }: {
   currentProject: ComputedRef<FullProject | null>
 }) => {
   const { apiState, authState, dispatch } = useAppStore()
-  const { globalProjectsUpdate } = useGlobalUpdate()
+  const { globalProjectsRefresher } = useGlobalRefresher()
 
   const currentProjectMembers = userCurrentProjectMembers({ currentProject })
 
@@ -64,7 +64,7 @@ const useMembers = ({ currentProject }: {
     fetchOnSearch(searchString.value)
   }
 
-  watch(globalProjectsUpdate, () => {
+  watch(globalProjectsRefresher, () => {
     if (typeof searchString.value === 'string')
       fetchOnSearch(searchString.value)
   })

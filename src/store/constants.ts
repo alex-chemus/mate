@@ -14,10 +14,10 @@ export enum fetchActions {
   FETCH = 'FETCH__FETCH'
 }
 
-export enum updateActions {
-  SET_UPDATE = 'SET_UPDATE',
-  SET_ACCOUNT_UPDATE = 'SET_ACCOUNT_UPDATE',
-  SET_PROJECTS_UPDATE = 'SET_PROJECTS_UPDATE'
+export enum refresherActions {
+  REFRESH = 'REFRESH',
+  REFRESH_ACCOUNT = 'REFRESH_ACCOUNT',
+  REFRESH_PROJECTS = 'REFRESH_PROJECTS'
 }
 
 export enum alertActions {

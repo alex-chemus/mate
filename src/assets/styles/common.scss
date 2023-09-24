@@ -162,3 +162,137 @@ button {
 .animate__animated {
   --animate-duration: 1s;
 }
+
+.ant-form-item {
+  margin-bottom: 0;
+}
+
+.ant-form-vertical .ant-form-item-label {
+  margin: 0 0 7px 10px;
+  padding: 0;
+  @include findcreek-medium(14px, var(--text-color-1));
+
+  label {
+    color: inherit !important;
+  }
+}
+
+.ant-form-item-control-input {
+  min-height: 40px;
+
+  ::placeholder {
+    color: var(--text-color-2) !important;
+  }
+}
+
+.ant-input {
+  height: 40px;
+  padding: 0 14px;
+  @include findcreek(14px, var(--text-color-1));
+  background-color: transparent;
+  background-color: var(--bg-color-3);
+  border: var(--border-1);
+  border-radius: 8px;
+
+  &:is(:hover, :focus) {
+    border: 1px solid var(--accent);
+  }
+}
+
+.ant-input-affix-wrapper {
+  height: 40px;
+  background-color: var(--bg-color-3);
+  padding: 0;
+  padding-left: 11px;
+  overflow: hidden;
+  border: var(--border-1);
+  border-radius: 8px;
+
+  &:is(:hover, :focus) {
+    border: 1px solid var(--accent);
+  }
+}
+
+.ant-picker {
+  height: 40px;
+  padding: 0 14px;
+  @include findcreek(14px, var(--text-color-1));
+  background-color: transparent;
+  background-color: var(--bg-color-3);
+  border: var(--border-1);
+  border-radius: 8px;
+  width: 100%;
+
+  input {
+    color: inherit !important;
+  }
+
+  .ant-picker-suffix {
+    color: inherit;
+  }
+
+  .ant-picker-clear {
+    display: none;
+  }
+
+  &:is(:hover, :focus) {
+    border: 1px solid var(--accent);
+  }
+}
+
+.ant-picker-panel-container {
+  background-color: var(--bg-color-3) !important;
+  color: var(--text-color-1);
+}
+
+.ant-picker-content .ant-picker-cell {
+  color: var(--text-color-1);
+  opacity: .5;
+}
+
+.ant-picker-header-view,
+.ant-picker-header button,
+.ant-picker-content .ant-picker-cell.ant-picker-cell-in-view,
+.ant-picker-content th {
+  color: var(--text-color-1) !important;
+  opacity: 1;
+}
+
+.ant-picker-today-btn,
+.ant-picker-cell-in-view.ant-picker-cell-today {
+  color: var(--accent) !important;
+}
+
+.ant-radio-wrapper {
+  height: 40px;
+  padding: 0 14px;
+  margin: 0;
+  @include findcreek(14px, var(--text-color-1));
+  background-color: transparent;
+  background-color: var(--bg-color-3);
+  border: var(--border-1);
+  border-radius: 8px;
+  @include flex(flex-start, center);
+  transition: var(--fast);
+}
+
+*:not(.ant-radio-checked) .ant-radio-inner {
+  background-color: transparent !important;
+  border: 2px solid var(--text-color-2) !important;
+}
+
+.ant-radio-checked .ant-radio-inner {
+  background-color: transparent !important;
+  border: 2px solid var(--accent) !important;
+
+  &::after {
+    background-color: var(--accent);
+  }
+}
+
+:is(
+  .ant-radio-wrapper:hover,
+  .ant-radio-wrapper:has(.ant-radio-checked)
+) {
+  border: 1px solid var(--accent) !important;
+}

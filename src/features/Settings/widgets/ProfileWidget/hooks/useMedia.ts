@@ -1,10 +1,10 @@
-import { useGlobalUpdate } from '@/shared/utils'
+import { useGlobalRefresher } from '@/shared/utils'
 import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 
 const useMedia = () => {
   const { apiState, authState, dispatch } = useAppStore()
-  const { setGlobalAccountUpdate } = useGlobalUpdate()
+  const { refreshAccountGlobal } = useGlobalRefresher()
 
   const uploadMedia = async (payload: string, noUpdate?: boolean) => {
     const body = new FormData()
@@ -21,7 +21,7 @@ const useMedia = () => {
       errorMessage: '[features/Settings/ProfileWidget/useMedia] Failed to upload contact'
     })
 
-    if (!noUpdate) setGlobalAccountUpdate()
+    if (!noUpdate) refreshAccountGlobal()
   }
 
   const removeMedia = async (payload: number, noUpdate?: boolean) => {
@@ -39,14 +39,14 @@ const useMedia = () => {
       errorMessage: '[features/Settings/ProfileWidget/useMedia] Failed to delete contact'
     })
 
-    if (!noUpdate) setGlobalAccountUpdate()
+    if (!noUpdate) refreshAccountGlobal()
   }
 
   const editMedia = async (payload: { id: number, link: string }) => {
     await removeMedia(payload.id, true)
     await uploadMedia(payload.link, true)
 
-    setGlobalAccountUpdate()
+    refreshAccountGlobal()
   }
 
   return {

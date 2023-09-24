@@ -1,14 +1,12 @@
-import {
-  ref, onMounted, computed, watch
-} from 'vue'
-import { useGlobalUpdate } from '@/shared/utils'
+import { ref, onMounted, computed, watch } from 'vue'
+import { useGlobalRefresher } from '@/shared/utils'
 import { FullAccount, FullProject } from '@/shared/types'
 import { useFetchFullProjects } from '@/shared/api'
 
 const useProjects = ({ fullAccount }: { fullAccount: FullAccount }) => {
   const projectsInfo = ref<FullProject[] | null>(null)
   const currentProjectID = ref<number | null>(null)
-  const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
+  const { globalRefresher, globalProjectsRefresher } = useGlobalRefresher()
 
   const fetchFullProjects = useFetchFullProjects('[features/Settings/ProjectsWidget/useProjects] Failed to fetch projects')
 
@@ -21,7 +19,7 @@ const useProjects = ({ fullAccount }: { fullAccount: FullAccount }) => {
     currentProjectID.value = projectsInfo.value[0].id
   })
 
-  watch([globalUpdate, globalProjectsUpdate], async () => {
+  watch([globalRefresher, globalProjectsRefresher], async () => {
     projectsInfo.value = await fetchFullProjects([
       ...fullAccount.projectsManagement.administrator,
       ...fullAccount.projectsManagement.editor,

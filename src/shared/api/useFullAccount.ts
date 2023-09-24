@@ -1,12 +1,12 @@
 import { ref, onMounted, watch } from 'vue'
 import { fetchActions } from '@/store/constants'
-import { useGlobalUpdate } from '@/shared/utils'
+import { useGlobalRefresher } from '@/shared/utils'
 import useAppStore from '@/store/useAppStore'
 import { FullAccount } from '@/shared/types'
 
 const useFullAccount = (logErrorMessage?: string) => {
   const { apiState, authState, dispatch } = useAppStore()
-  const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
+  const { globalRefresher, globalAccountRefresher } = useGlobalRefresher()
 
   const fetchAccount = async () => {
     const body = new FormData()
@@ -26,7 +26,7 @@ const useFullAccount = (logErrorMessage?: string) => {
   })
 
 
-  watch([globalUpdate, globalAccountUpdate, authState], async () => {
+  watch([globalRefresher, globalAccountRefresher, authState], async () => {
     fullAccount.value = await fetchAccount()
   })
 

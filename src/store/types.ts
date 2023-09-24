@@ -10,7 +10,7 @@ export type ThemeModuleState = {
 
 export type ApiModuleState = {
   apiUrl: string,
-  cloudUlr: string
+  cloudUlr: string,
 }
 
 export type FetchModuleState = {
@@ -18,10 +18,10 @@ export type FetchModuleState = {
   errorMsg: string | null
 }
 
-export type UpdateModuleState = {
-  update: symbol,
-  accountUpdate: symbol,
-  projectsUpdate: symbol
+export type RefresherModuleState = {
+  refresher: symbol,
+  accountRefresher: symbol,
+  projectsRefresher: symbol
 }
 
 export type AlertModuleState = {
@@ -39,7 +39,7 @@ export type RootState = {
   theme: ThemeModuleState,
   api: ApiModuleState,
   fetch: FetchModuleState,
-  update: UpdateModuleState,
+  refresher: RefresherModuleState,
   alert: AlertModuleState,
   user: UserModuleState
 }

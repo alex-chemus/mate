@@ -1,6 +1,6 @@
 import { onMounted, ref, watch, Ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useGlobalUpdate, } from '@/shared/utils'
+import { useGlobalRefresher, } from '@/shared/utils'
 import { fetchActions } from '@/store/constants'
 import useAppStore from '@/store/useAppStore'
 import { FullProject } from '@/shared/types'
@@ -9,7 +9,7 @@ import type { Employee, Role } from '../types'
 const useProject = ({ update }: { update: Ref<symbol> }) => {
   const { apiState, authState, dispatch } = useAppStore()
 
-  const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
+  const { globalRefresher, globalProjectsRefresher } = useGlobalRefresher()
 
   const route = useRoute()
   const router = useRouter()
@@ -77,7 +77,7 @@ const useProject = ({ update }: { update: Ref<symbol> }) => {
     project.value = await fetchProjectInfo(route.params.id as string)
   })
 
-  watch([globalUpdate, update, globalProjectsUpdate], async () => {
+  watch([globalRefresher, update, globalProjectsRefresher], async () => {
     project.value = await fetchProjectInfo(route.params.id as string)
   })
 

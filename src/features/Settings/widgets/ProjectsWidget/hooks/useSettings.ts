@@ -1,6 +1,6 @@
 import { ref, computed, Ref } from 'vue'
 import { fetchActions } from '@/store/constants'
-import { useGlobalUpdate, useAlert } from '@/shared/utils'
+import { useGlobalRefresher, useAlert } from '@/shared/utils'
 import useAppStore from '@/store/useAppStore'
 
 const useSettings = ({ uploadImage, currentProjectID }: {
@@ -8,7 +8,7 @@ const useSettings = ({ uploadImage, currentProjectID }: {
   currentProjectID: Ref<number | null>
 }) => {
   const { apiState, authState, dispatch } = useAppStore()
-  const { setGlobalProjectsUpdate } = useGlobalUpdate()
+  const { refreshProjectsGlobal } = useGlobalRefresher()
   const { setSuccessMessage } = useAlert()
 
   const disabled = ref(false)
@@ -83,7 +83,7 @@ const useSettings = ({ uploadImage, currentProjectID }: {
       })
     }
 
-    setGlobalProjectsUpdate()
+    refreshProjectsGlobal()
     setSuccessMessage('Сохранено')
 
     disabled.value = false

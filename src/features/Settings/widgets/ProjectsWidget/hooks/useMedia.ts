@@ -1,5 +1,5 @@
 import { ComputedRef } from 'vue'
-import { useGlobalUpdate } from '@/shared/utils'
+import { useGlobalRefresher } from '@/shared/utils'
 import useAppStore from '@/store/useAppStore'
 import { FullProject } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
@@ -10,7 +10,7 @@ const useMedia = ({
   currentProject: ComputedRef<FullProject | null>
 }) => {
   const { apiState, authState, dispatch } = useAppStore()
-  const { setGlobalProjectsUpdate } = useGlobalUpdate()
+  const { refreshProjectsGlobal } = useGlobalRefresher()
 
   const onAdd = async (link: string, noUpdate?: boolean) => {
     const body = new FormData()
@@ -26,7 +26,7 @@ const useMedia = ({
       errorMessage: '[features/Settings/ProjectsWidget/useMedia] Failed to add contact'
     })
 
-    if (!noUpdate) setGlobalProjectsUpdate()
+    if (!noUpdate) refreshProjectsGlobal()
   }
 
   const onRemove = async (id: number, noUpdate?: boolean) => {
@@ -43,14 +43,14 @@ const useMedia = ({
       errorMessage: '[features/Settings/ProjectsWidget/useMedia] Failed to delete contact'
     })
 
-    if (!noUpdate) setGlobalProjectsUpdate()
+    if (!noUpdate) refreshProjectsGlobal()
   }
 
   const onEdit = async (payload: { id: number, link: string }) => {
     await onRemove(payload.id, true)
     await onAdd(payload.link, true)
 
-    setGlobalProjectsUpdate()
+    refreshProjectsGlobal()
   }
 
   return {

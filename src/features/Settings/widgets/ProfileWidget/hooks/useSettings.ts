@@ -1,7 +1,7 @@
 import { ref, Ref } from 'vue'
 import { fetchActions } from '@/store/constants'
 import useAppStore from '@/store/useAppStore'
-import { useGlobalUpdate, useAlert } from '@/shared/utils'
+import { useGlobalRefresher, useAlert } from '@/shared/utils'
 
 const useSettings = ({
   uploadImage, uploadSpecialties, address, bio: bioProp
@@ -16,7 +16,7 @@ const useSettings = ({
   bio: string
 }) => {
   const { apiState, authState, dispatch } = useAppStore()
-  const { setGlobalAccountUpdate } = useGlobalUpdate()
+  const { refreshAccountGlobal } = useGlobalRefresher()
   const { setSuccessMessage } = useAlert()
 
   const bio = ref<string | null>(bioProp)
@@ -71,7 +71,7 @@ const useSettings = ({
       errorMessage: '[features/Settings/ProfileWidget/useSettings] Failed to upload settings'
     })
 
-    setGlobalAccountUpdate()
+    refreshAccountGlobal()
     setSuccessMessage('Сохранено')
 
     return null

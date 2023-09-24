@@ -2,7 +2,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { PostFormWidget } from '@/shared/components'
-import { useWindowWidth, useFetchApi, usePostEditor } from '@/shared/utils'
+import { useWindowWidth, useFetchApi, usePostEditor, useGlobalRefresher } from '@/shared/utils'
 import { Modal } from '@/shared/hocs'
 import useAppStore from '@/store/useAppStore'
 import { Loader, PlaceholderImg } from '@/shared/ui'
@@ -26,6 +26,11 @@ const { userState } = useAppStore()
 
 const refresher = ref(Symbol())
 const refresh = () => refresher.value = Symbol()
+
+const { globalAccountRefresher } = useGlobalRefresher()
+watch(globalAccountRefresher, () => {
+  if (userState.value?.findcreekID === user.value?.findcreekID) refresh()
+})
 
 const user = ref<FullUser | null>(null)
 const fetchUser = async () => {

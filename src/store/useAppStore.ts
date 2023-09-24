@@ -10,7 +10,7 @@ export default function useAppStore() {
     authState: computed(() => store.state.auth),
     themeState: computed(() => store.state.theme),
     fetchState: computed(() => store.state.fetch),
-    updateState: computed(() => store.state.update),
+    refresherState: computed(() => store.state.refresher),
     alertState: computed(() => store.state.alert),
     userState: computed(() => store.state.user.info),
     commit: store.commit,

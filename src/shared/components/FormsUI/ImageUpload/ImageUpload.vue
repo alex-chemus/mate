@@ -8,21 +8,22 @@ type Value = number | null
 const props = defineProps<{
   value: Value,
   className?: string,
-  stretch?: boolean
+  stretch?: boolean,
+  initialImage?: string
 }>()
 const { value, className } = toRefs(props)
 
 const emit = defineEmits<{
-  (e: 'update:value', value: Value): void
+  (e: 'update:value', value: Value): void,
+  (e: 'touch'): void
 }>()
 
 const cloudApi = useCloudApi()
 
-const image = ref<string | null>(null)
+const image = ref<string | null>(props.initialImage ?? null)
 
 const getImage = async () => {
   if (!value.value) return
-  console.log('get files')
   const res = await cloudApi.getFiles([value.value])
   image.value = res[0].additionalData.urlToFile
 }
@@ -32,7 +33,7 @@ watch(value, getImage)
 const setImage = async (e: FileList) => {
   if (!e[0].type.startsWith('image/')) return
   const res = await cloudApi.setFile(e[0])
-  console.log('set image')
+  emit('touch')
   emit('update:value', res[0].fileID)
 }
 </script>

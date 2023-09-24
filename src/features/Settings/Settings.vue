@@ -6,6 +6,7 @@ import { IconId, IconUser, IconUsers } from '@tabler/icons-vue'
 import { Modal } from '@/shared/hocs'
 import { useWindowWidth } from '@/shared/utils'
 import { GeneralWidget, ProjectsWidget, ProfileWidget } from './widgets'
+import GeneralSettings from './GeneralSettings/GeneralSettings.vue'
 
 const router = useRouter()
 
@@ -141,7 +142,8 @@ const getTitle = computed(() => {
       <section v-if="userState" class="tab-content">
         <h2 class="tab-content__heading">{{ getTitle }}</h2>
         <div class="tab-content__content-wrapper">
-          <general-widget v-if="currentTab === 'general'" />
+          <!-- <general-widget v-if="currentTab === 'general'" /> -->
+          <general-settings v-if="currentTab === 'general'" />
           <profile-widget v-if="currentTab === 'profile'" :full-account="userState" />
           <projects-widget v-if="currentTab === 'projects' && hasProjects" :full-account="userState" />
         </div>

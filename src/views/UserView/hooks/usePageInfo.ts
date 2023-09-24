@@ -1,16 +1,14 @@
-import {
-  ref, onMounted, watch, Ref
-} from 'vue'
+import { ref, onMounted, watch, Ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useFetchFullUsers, useFetchFullProjects } from '@/shared/api'
-import { useGlobalUpdate } from '@/shared/utils'
+import { useGlobalRefresher } from '@/shared/utils'
 import { FullProject, FullUser } from '@/shared/types'
 import useIsMe from './useIsMe'
 
 const useViewInfo = ({ update }: { update?: Ref<symbol> }) => {
   const router = useRouter()
   const route = useRoute()
-  const { globalUpdate, globalAccountUpdate } = useGlobalUpdate()
+  const { globalRefresher, globalAccountRefresher } = useGlobalRefresher()
 
   const fetchFullUsers = useFetchFullUsers('[views/UserView/usePageInfo] Failed to fetch users')
   const fetchFullProjects = useFetchFullProjects('[views/UserView/usePageInfo] Failed to fetch projects')
@@ -29,7 +27,7 @@ const useViewInfo = ({ update }: { update?: Ref<symbol> }) => {
     fullUsers.value = await fetchFullUsers([+route.params.id])
   })
 
-  watch([globalUpdate, update, globalAccountUpdate], async () => {
+  watch([globalRefresher, update, globalAccountRefresher], async () => {
     fullUsers.value = await fetchFullUsers([+route.params.id])
   })
 

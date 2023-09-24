@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { useGlobalUpdate, useAlert } from '@/shared/utils'
+import { useGlobalRefresher, useAlert } from '@/shared/utils'
 import useAppStore from '@/store/useAppStore'
 import { fetchActions } from '@/store/constants'
 
@@ -11,7 +11,7 @@ type Role = {
 
 const useRoles = () => {
   const { apiState, authState, dispatch } = useAppStore()
-  const { setGlobalProjectsUpdate } = useGlobalUpdate()
+  const { refreshProjectsGlobal } = useGlobalRefresher()
   const { setSuccessMessage } = useAlert()
 
   const selectedRole = ref<Role | null>(null)
@@ -43,7 +43,7 @@ const useRoles = () => {
       errorMessage: '[features/Settings/ProjectsWidget/useRoles] Failed to set user role'
     })
 
-    setGlobalProjectsUpdate()
+    refreshProjectsGlobal()
     setSuccessMessage('Должность изменена')
 
     disabled.value = false

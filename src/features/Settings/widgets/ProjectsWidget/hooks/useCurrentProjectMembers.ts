@@ -1,7 +1,5 @@
-import {
-  ComputedRef, watch, ref, computed
-} from 'vue'
-import { useGlobalUpdate } from '@/shared/utils'
+import { ComputedRef, watch, ref, computed } from 'vue'
+import { useGlobalRefresher } from '@/shared/utils'
 import useAppStore from '@/store/useAppStore'
 import { ExcludeProperties, FullProject } from '@/shared/types'
 import { fetchActions } from '@/store/constants'
@@ -11,7 +9,7 @@ const useCurrentProjectMembers = ({ currentProject }: {
   currentProject: ComputedRef<FullProject | null>
 }) => {
   const { apiState, authState, dispatch } = useAppStore()
-  const { globalUpdate, globalProjectsUpdate } = useGlobalUpdate()
+  const { globalRefresher, globalProjectsRefresher } = useGlobalRefresher()
 
   const fetchMembers = async (usersIDs: number[]) => {
     const body = new FormData()
@@ -34,7 +32,7 @@ const useCurrentProjectMembers = ({ currentProject }: {
     [index: number]: Member[]
   }>({})
 
-  watch([globalUpdate, globalProjectsUpdate], () => {
+  watch([globalRefresher, globalProjectsRefresher], () => {
     allMembersInfo.value = {}
   })
 

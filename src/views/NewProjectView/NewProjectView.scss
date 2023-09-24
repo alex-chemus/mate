@@ -102,50 +102,6 @@
   margin-bottom: 48px;
 }
 
-// todo: мб в будущем вынести в styles как глобальные стили
-.form-item {
-  margin-bottom: 0;
-
-  :deep(.ant-form-item-label) {
-    margin: 0 0 7px 10px;
-    padding: 0;
-    @include findcreek-medium(14px, var(--text-color-1));
-  }
-
-  :deep(label) {
-    color: inherit;
-  }
-
-  :deep(.ant-form-item-control-input) {
-    min-height: 40px;
-  }
-
-  :deep(input) {
-    height: 40px;
-    padding: 0 14px;
-    @include findcreek(14px, var(--text-color-1));
-    background-color: transparent;
-    background-color: var(--bg-color-3);
-    border: var(--border-1);
-
-    &:is(:hover, :focus) {
-      border: 1px solid var(--accent);
-    }
-  }
-
-  :deep(textarea) {
-    @include findcreek-medium(14px, var(--text-color-1));
-    resize: none;
-    border-radius: 8px;
-    background-color: var(--bg-color-3);
-    border: var(--border-1);
-
-    &:is(:hover, :focus) {
-      border: 1px solid var(--accent);
-    }
-  }
-}
-
 :deep(.cover) {
   height: 100px;
   width: 100%;

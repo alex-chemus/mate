@@ -1,0 +1,42 @@
+@import '@/assets/styles/style.scss';
+
+.general-settings {
+  @include flex(flex-start, stretch, column);
+  gap: 30px;
+}
+
+.general-settings-nametag-prefix {
+  @include findcreek(14px, var(--text-color-2));
+}
+
+:deep(.avatar) {
+  width: 100px;
+  height: 100px;
+  border-radius: 100vmax;
+  border: 2px solid var(--bg-color-2);
+  @include flex(center, center);
+  color: var(--text-color-1);
+}
+
+.general-settings-name {
+  @include findcreek-medium(20px, var(--text-color-1));
+}
+
+.general-settings-nametag {
+  @include findcreek(14px, var(--text-color-2));
+}
+
+.general-settings-submit-button {
+  margin-top: auto;
+  height: 40px;
+  width: 100%;
+  @include flex(center, center);
+  border-radius: 8px;
+  background-color: var(--light-accent, $accent);
+  @include findcreek-medium(16px, white);
+  transition: var(--fast, $fast);
+
+  &:is(:hover, :focus) {
+    box-shadow: 0 2px 12px 0 var(--light-accent);
+  }
+}
